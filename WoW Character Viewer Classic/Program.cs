@@ -15,7 +15,7 @@ namespace WoW_Character_Viewer_Classic
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SharpGLForm());
+            Application.Run(new Viewer());
         }
     }
 }

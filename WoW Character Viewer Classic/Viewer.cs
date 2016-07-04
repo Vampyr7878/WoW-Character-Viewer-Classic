@@ -13,12 +13,12 @@ namespace WoW_Character_Viewer_Classic
     /// <summary>
     /// The main form class.
     /// </summary>
-    public partial class SharpGLForm : Form
+    public partial class Viewer : Form
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SharpGLForm"/> class.
+        /// Initializes a new instance of the <see cref="Viewer"/> class.
         /// </summary>
-        public SharpGLForm()
+        public Viewer()
         {
             InitializeComponent();
         }
@@ -89,7 +89,7 @@ namespace WoW_Character_Viewer_Classic
             OpenGL gl = openGLControl.OpenGL;
 
             //  Set the clear color.
-            gl.ClearColor(0, 0, 0, 0);
+            gl.ClearColor(0.1f, 0.1f, 0.1f, 0f);
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace WoW_Character_Viewer_Classic
             gl.LoadIdentity();
 
             //  Create a perspective transformation.
-            gl.Perspective(60.0f, (double)Width / (double)Height, 0.01, 100.0);
+            gl.Perspective(60.0f, (double)openGLControl.Width / (double)openGLControl.Height, 0.01, 100.0);
 
             //  Use the 'look at' helper function to position and aim the camera.
             gl.LookAt(-5, 5, -5, 0, 0, 0, 0, 1, 0);
