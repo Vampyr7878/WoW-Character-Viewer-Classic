@@ -1,8 +1,9 @@
-﻿using System;
+﻿using SharpGL;
+using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using SharpGL;
+using WoW_Character_Viewer_Classic.Models;
 
 namespace WoW_Character_Viewer_Classic
 {
@@ -12,6 +13,8 @@ namespace WoW_Character_Viewer_Classic
         string characterRace;
         string characterClass;
         string iconsPath;
+        Character character;
+        float rotation = 1f;
 
         public Viewer()
         {
@@ -48,6 +51,7 @@ namespace WoW_Character_Viewer_Classic
                     Male();
                     break;
             }
+            ChangeRace();
         }
 
         void GenderUnclick()
@@ -162,6 +166,14 @@ namespace WoW_Character_Viewer_Classic
 
         void Human()
         {
+            if(characterGender)
+            {
+                character = new HumanMale();
+            }
+            else
+            {
+                character = new HumanFemale();
+            }
             humanButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
             paladinButton.Visible = true;
@@ -176,6 +188,14 @@ namespace WoW_Character_Viewer_Classic
 
         void Orc()
         {
+            if (characterGender)
+            {
+                character = new OrcMale();
+            }
+            else
+            {
+                character = new OrcFemale();
+            }
             orcButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
             paladinButton.Visible = false;
@@ -190,6 +210,14 @@ namespace WoW_Character_Viewer_Classic
 
         void Dwarf()
         {
+            if (characterGender)
+            {
+                character = new DwarfMale();
+            }
+            else
+            {
+                character = new DwarfFemale();
+            }
             dwarfButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
             paladinButton.Visible = true;
@@ -204,6 +232,14 @@ namespace WoW_Character_Viewer_Classic
 
         void Undead()
         {
+            if (characterGender)
+            {
+                character = new ScourgeMale();
+            }
+            else
+            {
+                character = new ScourgeFemale();
+            }
             undeadButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
             paladinButton.Visible = false;
@@ -218,6 +254,14 @@ namespace WoW_Character_Viewer_Classic
 
         void NightElf()
         {
+            if (characterGender)
+            {
+                character = new NightElfMale();
+            }
+            else
+            {
+                character = new NightElfFemale();
+            }
             nightElfButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
             paladinButton.Visible = false;
@@ -232,6 +276,14 @@ namespace WoW_Character_Viewer_Classic
 
         void Tauren()
         {
+            if (characterGender)
+            {
+                character = new TaurenMale();
+            }
+            else
+            {
+                character = new TaurenFemale();
+            }
             taurenButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
             paladinButton.Visible = false;
@@ -246,6 +298,14 @@ namespace WoW_Character_Viewer_Classic
 
         void Gnome()
         {
+            if (characterGender)
+            {
+                character = new GnomeMale();
+            }
+            else
+            {
+                character = new GnomeFemale();
+            }
             gnomeButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
             paladinButton.Visible = false;
@@ -260,6 +320,14 @@ namespace WoW_Character_Viewer_Classic
 
         void Troll()
         {
+            if (characterGender)
+            {
+                character = new TrollMale();
+            }
+            else
+            {
+                character = new TrollFemale();
+            }
             trollButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
             paladinButton.Visible = false;
@@ -396,11 +464,18 @@ namespace WoW_Character_Viewer_Classic
             OpenGL gl = openGLControl.OpenGL;
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
             gl.LoadIdentity();
+            if(character != null)
+            {
+                character.rotation = rotation;
+                gl.Rotate(rotation++, 0f, 1f, 0f);
+                character.Render(gl);
+            }
         }
 
         void openGLControl_OpenGLInitialized(object sender, EventArgs e)
         {
             OpenGL gl = openGLControl.OpenGL;
+            gl.Color(1f, 1f, 1f);
             gl.ClearColor(0.1f, 0.1f, 0.1f, 0f);
         }
 
@@ -410,7 +485,7 @@ namespace WoW_Character_Viewer_Classic
             gl.MatrixMode(OpenGL.GL_PROJECTION);
             gl.LoadIdentity();
             gl.Perspective(60.0f, (double)openGLControl.Width / (double)openGLControl.Height, 0.01, 100.0);
-            gl.LookAt(-5, 5, -5, 0, 0, 0, 0, 1, 0);
+            gl.LookAt(3, 1, 0, 0, 1, 0, 0, 1, 0);
             gl.MatrixMode(OpenGL.GL_MODELVIEW);
         }
 
@@ -433,6 +508,26 @@ namespace WoW_Character_Viewer_Classic
             Button button = (Button)sender;
             characterClass = button.Name[0].ToString().ToUpper() + button.Name.Replace("Button", "").Substring(1);
             ChangeClass();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            character.geoset++;
+            if(character.geoset == character.Geosets)
+            {
+                character.geoset = 1;
+            }
+            label1.Text = "Geoset: " + character.geoset;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            character.geoset--;
+            if (character.geoset == 0)
+            {
+                character.geoset = character.Geosets - 1;
+            }
+            label1.Text = "Geoset: " + character.geoset;
         }
     }
 }
