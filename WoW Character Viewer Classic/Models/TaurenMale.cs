@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using SharpGL;
 
 namespace WoW_Character_Viewer_Classic.Models
 {
     class TaurenMale : Character
     {
-        enum Geoset
+        enum Geosets
         {
             Body1,
             Mane1,
@@ -81,9 +79,41 @@ namespace WoW_Character_Viewer_Classic.Models
             Feature5
         };
 
+        List<Geosets> currentGeosets;
+
         public TaurenMale() : base(@"Character\Tauren\Male\TaurenMale.xml")
         {
-            
+            currentGeosets = new List<Geosets>()
+            {
+                Geosets.Body1,
+                Geosets.Mane1,
+                Geosets.Hair01,
+                Geosets.Ears1,
+                Geosets.Teeth1,
+                Geosets.Back1,
+                Geosets.Wrist1,
+                Geosets.Tail1,
+                Geosets.Legs1,
+                Geosets.Hoof1
+            };
+        }
+
+        public override void Render(OpenGL gl)
+        {
+            gl.Color(1f, 1f, 1f);
+            foreach(Geosets geoset in currentGeosets)
+            {
+                if(billboards.Contains(vertices[indices[triangles[geosets[(int)geoset].triangle]]].Bones[0].index))
+                {
+                    RenderBillboard(gl, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
+                }
+                else
+                {
+                    RenderGeoset(gl, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
+                }
+            }
+            gl.Color(1f, 0f, 0f);
+            RenderSkeleton(gl);
         }
     }
 }

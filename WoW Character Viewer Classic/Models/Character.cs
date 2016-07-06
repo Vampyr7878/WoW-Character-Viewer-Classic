@@ -1,17 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using SharpGL;
+using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Xml.Serialization;
-using SharpGL;
 
 namespace WoW_Character_Viewer_Classic.Models
 {
     abstract class Character
     {
-        Model model;
-        public int geoset = 1;
+        protected Model model;
+        protected ModelVertex[] vertices;
+        protected int[] indices;
+        protected int[] triangles;
+        protected ModelViewGeoset[] geosets;
+        protected ModelBone[] bones;
         public float rotation;
-        List<int> billboards;
+        protected List<int> billboards;
 
         public Character(string file)
         {
@@ -20,6 +23,11 @@ namespace WoW_Character_Viewer_Classic.Models
             {
                 model = (Model)serializer.Deserialize(reader.BaseStream);
             }
+            vertices = model.Vertices;
+            indices = model.View.Indices;
+            triangles = model.View.Triangles;
+            geosets = model.View.Geosets;
+            bones = model.Bones;
             billboards = new List<int>();
             for(int i = 0; i < model.Bones.Length; i++)
             {
@@ -35,77 +43,71 @@ namespace WoW_Character_Viewer_Classic.Models
             get { return model.View.Geosets.Length; }
         }
 
-        public void Render(OpenGL gl)
+        protected void RenderBillboard(OpenGL gl, int start, int count)
         {
             float x, y, z;
-            gl.Color(1f, 0f, 0f);
-            gl.Begin(OpenGL.GL_TRIANGLES);
-            for (int j = model.View.Geosets[0].triangle; j < model.View.Geosets[0].triangle + model.View.Geosets[0].triangles; j++)
+            foreach (int billboard in billboards)
             {
-                x = model.Vertices[model.View.Indices[model.View.Triangles[j]]].Position.x;
-                y = model.Vertices[model.View.Indices[model.View.Triangles[j]]].Position.y;
-                z = model.Vertices[model.View.Indices[model.View.Triangles[j]]].Position.z;
+                x = model.Bones[billboard].Position.x;
+                y = model.Bones[billboard].Position.y;
+                z = model.Bones[billboard].Position.z;
+                gl.PushMatrix();
+                gl.Translate(x, y, z);
+                gl.Rotate(-rotation, 0f, 1f, 0f);
+                gl.Translate(-x, -y, -z);
+                gl.Begin(OpenGL.GL_TRIANGLES);
+                for (int i = start; i < start + count; i++)
+                {
+                    if (vertices[indices[triangles[i]]].Bones[0].index == billboard)
+                    {
+                        x = vertices[indices[triangles[i]]].Position.x;
+                        y = vertices[indices[triangles[i]]].Position.y;
+                        z = vertices[indices[triangles[i]]].Position.z;
+                        gl.Vertex(x, y, z);
+                    }
+                }
+                gl.End();
+                gl.PopMatrix();
+            }
+        }
+
+        protected void RenderGeoset(OpenGL gl, int start, int count)
+        {
+            float x, y, z;
+            gl.Begin(OpenGL.GL_TRIANGLES);
+            for (int i = start; i < start + count; i++)
+            {
+                x = vertices[indices[triangles[i]]].Position.x;
+                y = vertices[indices[triangles[i]]].Position.y;
+                z = vertices[indices[triangles[i]]].Position.z;
                 gl.Vertex(x, y, z);
             }
             gl.End();
-            gl.Color(1f, 1f, 1f);
-            if(billboards.Contains(model.Vertices[model.View.Indices[model.View.Triangles[model.View.Geosets[geoset].triangle]]].Bones[0].index))
-            {
-                foreach(int billboard in billboards)
-                {
-                    x = model.Bones[billboard].Position.x;
-                    y = model.Bones[billboard].Position.y;
-                    z = model.Bones[billboard].Position.z;
-                    gl.PushMatrix();
-                    gl.Translate(x, y, z);
-                    gl.Rotate(-rotation, 0f, 1f, 0f);
-                    gl.Translate(-x, -y, -z);
-                    gl.Begin(OpenGL.GL_TRIANGLES);
-                    for(int j = model.View.Geosets[geoset].triangle; j < model.View.Geosets[geoset].triangle + model.View.Geosets[geoset].triangles; j++)
-                    {
-                        if(model.Vertices[model.View.Indices[model.View.Triangles[j]]].Bones[0].index == billboard)
-                        {
-                            x = model.Vertices[model.View.Indices[model.View.Triangles[j]]].Position.x;
-                            y = model.Vertices[model.View.Indices[model.View.Triangles[j]]].Position.y;
-                            z = model.Vertices[model.View.Indices[model.View.Triangles[j]]].Position.z;
-                            gl.Vertex(x, y, z);
-                        }
-                    }
-                    gl.End();
-                    gl.PopMatrix();
-                }
-            }
-            else
-            {
-                gl.Begin(OpenGL.GL_TRIANGLES);
-                for(int j = model.View.Geosets[geoset].triangle; j < model.View.Geosets[geoset].triangle + model.View.Geosets[geoset].triangles; j++)
-                {
-                    x = model.Vertices[model.View.Indices[model.View.Triangles[j]]].Position.x;
-                    y = model.Vertices[model.View.Indices[model.View.Triangles[j]]].Position.y;
-                    z = model.Vertices[model.View.Indices[model.View.Triangles[j]]].Position.z;
-                    gl.Vertex(x, y, z);
-                }
-                gl.End();
-            }
-            gl.Color(0f, 0f, 1f);
+        }
+
+        protected void RenderSkeleton(OpenGL gl)
+        {
+            float x, y, z;
             gl.Disable(OpenGL.GL_DEPTH_TEST);
             gl.Begin(OpenGL.GL_LINES);
-            for (int i = 0; i < model.Bones.Count(); i++)
+            for (int i = 0; i < bones.Length; i++)
             {
-                if (model.Bones[i].Parent >= 0)
+                if (bones[i].Parent >= 0)
                 {
-                    x = model.Bones[model.Bones[i].Parent].Position.x;
-                    y = model.Bones[model.Bones[i].Parent].Position.y;
-                    z = model.Bones[model.Bones[i].Parent].Position.z;
+                    x = bones[bones[i].Parent].Position.x;
+                    y = bones[bones[i].Parent].Position.y;
+                    z = bones[bones[i].Parent].Position.z;
                     gl.Vertex(x, y, z);
-                    x = model.Bones[i].Position.x;
-                    y = model.Bones[i].Position.y;
-                    z = model.Bones[i].Position.z;
+                    x = bones[i].Position.x;
+                    y = bones[i].Position.y;
+                    z = bones[i].Position.z;
                     gl.Vertex(x, y, z);
                 }
             }
             gl.End();
             gl.Enable(OpenGL.GL_DEPTH_TEST);
         }
+
+        public abstract void Render(OpenGL gl);
     }
 }

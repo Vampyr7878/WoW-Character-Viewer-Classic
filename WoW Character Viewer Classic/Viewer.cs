@@ -188,7 +188,7 @@ namespace WoW_Character_Viewer_Classic
 
         void Orc()
         {
-            if (characterGender)
+            if(characterGender)
             {
                 character = new OrcMale();
             }
@@ -210,7 +210,7 @@ namespace WoW_Character_Viewer_Classic
 
         void Dwarf()
         {
-            if (characterGender)
+            if(characterGender)
             {
                 character = new DwarfMale();
             }
@@ -232,7 +232,7 @@ namespace WoW_Character_Viewer_Classic
 
         void Undead()
         {
-            if (characterGender)
+            if(characterGender)
             {
                 character = new ScourgeMale();
             }
@@ -254,7 +254,7 @@ namespace WoW_Character_Viewer_Classic
 
         void NightElf()
         {
-            if (characterGender)
+            if(characterGender)
             {
                 character = new NightElfMale();
             }
@@ -276,7 +276,7 @@ namespace WoW_Character_Viewer_Classic
 
         void Tauren()
         {
-            if (characterGender)
+            if(characterGender)
             {
                 character = new TaurenMale();
             }
@@ -298,7 +298,7 @@ namespace WoW_Character_Viewer_Classic
 
         void Gnome()
         {
-            if (characterGender)
+            if(characterGender)
             {
                 character = new GnomeMale();
             }
@@ -320,7 +320,7 @@ namespace WoW_Character_Viewer_Classic
 
         void Troll()
         {
-            if (characterGender)
+            if(characterGender)
             {
                 character = new TrollMale();
             }
@@ -464,18 +464,14 @@ namespace WoW_Character_Viewer_Classic
             OpenGL gl = openGLControl.OpenGL;
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
             gl.LoadIdentity();
-            if(character != null)
-            {
-                character.rotation = rotation;
-                gl.Rotate(rotation++, 0f, 1f, 0f);
-                character.Render(gl);
-            }
+            character.rotation = rotation;
+            gl.Rotate(rotation++, 0f, 1f, 0f);
+            character.Render(gl);
         }
 
         void openGLControl_OpenGLInitialized(object sender, EventArgs e)
         {
             OpenGL gl = openGLControl.OpenGL;
-            gl.Color(1f, 1f, 1f);
             gl.ClearColor(0.1f, 0.1f, 0.1f, 0f);
         }
 
@@ -508,26 +504,6 @@ namespace WoW_Character_Viewer_Classic
             Button button = (Button)sender;
             characterClass = button.Name[0].ToString().ToUpper() + button.Name.Replace("Button", "").Substring(1);
             ChangeClass();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            character.geoset++;
-            if(character.geoset == character.Geosets)
-            {
-                character.geoset = 1;
-            }
-            label1.Text = "Geoset: " + character.geoset;
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            character.geoset--;
-            if (character.geoset == 0)
-            {
-                character.geoset = character.Geosets - 1;
-            }
-            label1.Text = "Geoset: " + character.geoset;
         }
     }
 }

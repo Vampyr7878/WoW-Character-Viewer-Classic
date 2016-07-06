@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using SharpGL;
 
 namespace WoW_Character_Viewer_Classic.Models
 {
@@ -63,9 +61,41 @@ namespace WoW_Character_Viewer_Classic.Models
             Glow1
         };
 
+        List<Geosets> currentGeosets;
+
         public ScourgeMale() : base(@"Character\Scourge\Male\ScourgeMale.xml")
         {
-            
+            currentGeosets = new List<Geosets>()
+            {
+                Geosets.Body1,
+                Geosets.Glow1,
+                Geosets.Ears1,
+                Geosets.Feature2,
+                Geosets.Back1,
+                Geosets.Arms1,
+                Geosets.Wrist1,
+                Geosets.Bones1,
+                Geosets.Legs1,
+                Geosets.Boots1
+            };
+        }
+
+        public override void Render(OpenGL gl)
+        {
+            gl.Color(1f, 1f, 1f);
+            foreach(Geosets geoset in currentGeosets)
+            {
+                if(billboards.Contains(vertices[indices[triangles[geosets[(int)geoset].triangle]]].Bones[0].index))
+                {
+                    RenderBillboard(gl, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
+                }
+                else
+                {
+                    RenderGeoset(gl, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
+                }
+            }
+            gl.Color(1f, 0f, 0f);
+            RenderSkeleton(gl);
         }
     }
 }
