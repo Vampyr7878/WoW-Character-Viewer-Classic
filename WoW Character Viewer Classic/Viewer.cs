@@ -1,5 +1,6 @@
 ﻿using SharpGL;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -167,6 +168,7 @@ namespace WoW_Character_Viewer_Classic
             }
             characterClass = "Warrior";
             ChangeClass();
+            showSkeletonButton.Text = "Show Skeleton";
         }
 
         void RaceUnclick()
@@ -481,7 +483,7 @@ namespace WoW_Character_Viewer_Classic
             OpenGL gl = openGLControl.OpenGL;
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
             gl.LoadIdentity();
-            character.rotation = rotation;
+            character.Rotation = rotation;
             Point current = openGLControl.PointToClient(MousePosition);
             if (rotate)
             {
@@ -573,6 +575,12 @@ namespace WoW_Character_Viewer_Classic
             Button button = (Button)sender;
             characterClass = button.Name[0].ToString().ToUpper() + button.Name.Replace("Button", "").Substring(1);
             ChangeClass();
+        }
+
+        void showSkeleton_Click(object sender, EventArgs e)
+        {
+            character.Skeleton = !character.Skeleton;
+            showSkeletonButton.Text = character.Skeleton ? "Hide Skeleton" : "Show Skeleton";
         }
     }
 }

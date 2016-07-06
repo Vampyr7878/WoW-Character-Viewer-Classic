@@ -84,7 +84,6 @@ namespace WoW_Character_Viewer_Classic.Models
         public override void Render(OpenGL gl)
         {
             MakeTextures(gl);
-            gl.Color(1f, 1f, 1f);
             foreach(Geosets geoset in currentGeosets)
             {
                 if(billboards.Contains(vertices[indices[triangles[geosets[(int)geoset].triangle]]].Bones[0].index))
@@ -96,7 +95,6 @@ namespace WoW_Character_Viewer_Classic.Models
                     RenderGeoset(gl, (int)geoset, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
                 }
             }
-            gl.Color(1f, 0f, 0f);
             RenderSkeleton(gl);
         }
     }
