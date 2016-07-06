@@ -14,11 +14,28 @@ namespace WoW_Character_Viewer_Classic
         string characterClass;
         string iconsPath;
         Character character;
-        float rotation = 1f;
+        bool rotate;
+        bool move;
+        PointF mouse;
+        float rotation;
+        float currentRotation;
+        PointF position;
+        PointF currentPosition;
+        float zoom;
+        float currentZoom;
+        float distance;
+        float zoomMin;
+        float zoomMax;
 
         public Viewer()
         {
             InitializeComponent();
+            openGLControl.MouseWheel += openGlControl_MouseWheel;
+            rotate = false;
+            move = false;
+            zoomMin = 0.2f;
+            zoomMax = 6;
+            distance = 3;
             iconsPath = @"Icons\";
             Random random = new Random();
             RandomGender(random.Next(2));
@@ -465,8 +482,20 @@ namespace WoW_Character_Viewer_Classic
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
             gl.LoadIdentity();
             character.rotation = rotation;
-            gl.Rotate(rotation++, 0f, 1f, 0f);
+            Point current = openGLControl.PointToClient(MousePosition);
+            if (rotate)
+            {
+                rotation = currentRotation + mouse.X - current.X;
+            }
+            if (move)
+            {
+                position.X = currentPosition.X + (mouse.X - current.X) / 100f;
+                position.Y = currentPosition.Y + (mouse.Y - current.Y) / 100f;
+            }
+            gl.LookAt(distance - zoom / 10f, 1f + position.Y, position.X, -zoom / 10f, 1f + position.Y, position.X, 0f, 1f, 0f);
+            gl.Rotate(rotation, 0f, 1f, 0f);
             character.Render(gl);
+            currentZoom = zoom;
         }
 
         void openGLControl_OpenGLInitialized(object sender, EventArgs e)
@@ -481,8 +510,48 @@ namespace WoW_Character_Viewer_Classic
             gl.MatrixMode(OpenGL.GL_PROJECTION);
             gl.LoadIdentity();
             gl.Perspective(60.0f, (double)openGLControl.Width / (double)openGLControl.Height, 0.01, 100.0);
-            gl.LookAt(3, 1, 0, 0, 1, 0, 0, 1, 0);
             gl.MatrixMode(OpenGL.GL_MODELVIEW);
+        }
+
+        void openGLControl_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouse.X = e.X;
+            mouse.Y = e.Y;
+            if (e.Button == MouseButtons.Left)
+            {
+                rotate = true;
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                move = true;
+            }
+        }
+
+        void openGLControl_MouseUp(object sender, MouseEventArgs e)
+        {
+            rotate = false;
+            move = false;
+            currentRotation = rotation;
+            currentPosition = position;
+        }
+
+        void openGLControl_MouseLeave(object sender, EventArgs e)
+        {
+            rotate = false;
+            move = false;
+        }
+
+        void openGlControl_MouseWheel(object sender, MouseEventArgs e)
+        {
+            zoom = currentZoom + (e.Delta / 100f);
+            if (distance - zoom / 10 < zoomMin)
+            {
+                zoom = currentZoom;
+            }
+            if (distance - zoom / 10 > zoomMax)
+            {
+                zoom = currentZoom;
+            }
         }
 
         void genderButton_Click(object sender, EventArgs e)

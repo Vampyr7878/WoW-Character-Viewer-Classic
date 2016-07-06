@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using SharpGL;
+﻿using SharpGL;
+using System.Collections.Generic;
 
 namespace WoW_Character_Viewer_Classic.Models
 {
@@ -76,6 +76,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         public override void Render(OpenGL gl)
         {
+            MakeTextures(gl);
             gl.Color(1f, 1f, 1f);
             foreach(Geosets geoset in currentGeosets)
             {
@@ -85,7 +86,7 @@ namespace WoW_Character_Viewer_Classic.Models
                 }
                 else
                 {
-                    RenderGeoset(gl, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
+                    RenderGeoset(gl, (int)geoset, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
                 }
             }
             gl.Color(1f, 0f, 0f);
