@@ -1,6 +1,5 @@
 ﻿using SharpGL;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -172,6 +171,9 @@ namespace WoW_Character_Viewer_Classic
             showSkeletonButton.Text = "Show Skeleton";
             Skin();
             Face();
+            Hair();
+            HairColor();
+            Facial();
         }
 
         void RaceUnclick()
@@ -507,6 +509,47 @@ namespace WoW_Character_Viewer_Classic
             faceLabel.Text = character.FaceName + character.Face;
         }
 
+        void Hair()
+        {
+            if (character.Hair < 0)
+            {
+                character.Hair = character.HairsCount - 1;
+            }
+            if (character.Hair == character.HairsCount)
+            {
+                character.Hair = 0;
+            }
+            hairLabel.Text = character.HairName + character.Hair;
+            hairNameLabel.Text = character.HairNames[character.Hair];
+        }
+
+        void HairColor()
+        {
+            if (character.Color < 0)
+            {
+                character.Color = character.ColorsCount - 1;
+            }
+            if (character.Color == character.ColorsCount)
+            {
+                character.Color = 0;
+            }
+            colorLabel.Text = character.ColorName + character.Color;
+        }
+
+        void Facial()
+        {
+            if (character.Facial < 0)
+            {
+                character.Facial = character.FacialsCount - 1;
+            }
+            if (character.Facial == character.FacialsCount)
+            {
+                character.Facial = 0;
+            }
+            facialLabel.Text = character.FacialName + character.Facial;
+            facialNameLabel.Text = character.FacialNames[character.Facial];
+        }
+
         void openGLControl_OpenGLDraw(object sender, RenderEventArgs e)
         {
             OpenGL gl = openGLControl.OpenGL;
@@ -629,6 +672,18 @@ namespace WoW_Character_Viewer_Classic
                     character.Face--;
                     Face();
                     break;
+                case "hair":
+                    character.Hair--;
+                    Hair();
+                    break;
+                case "color":
+                    character.Color--;
+                    HairColor();
+                    break;
+                case "facial":
+                    character.Facial--;
+                    Facial();
+                    break;
             }
         }
 
@@ -644,6 +699,18 @@ namespace WoW_Character_Viewer_Classic
                 case "face":
                     character.Face++;
                     Face();
+                    break;
+                case "hair":
+                    character.Hair++;
+                    Hair();
+                    break;
+                case "color":
+                    character.Color++;
+                    HairColor();
+                    break;
+                case "facial":
+                    character.Facial++;
+                    Facial();
                     break;
             }
         }

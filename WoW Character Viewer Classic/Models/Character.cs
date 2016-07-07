@@ -22,6 +22,14 @@ namespace WoW_Character_Viewer_Classic.Models
         protected int skinsCount;
         string faceName;
         protected int facesCount;
+        protected string hairName;
+        protected string[] hairNames;
+        protected int hairsCount;
+        protected string colorName;
+        protected int colorsCount;
+        protected string facialName;
+        protected string[] facialNames;
+        protected int facialsCount;
 
         public Character(string file)
         {
@@ -54,6 +62,11 @@ namespace WoW_Character_Viewer_Classic.Models
             Skin = 0;
             faceName = "Face: ";
             Face = 0;
+            Hair = 0;
+            Color = 0;
+            Facial = 0;
+            GetHairNames();
+            GetFacialNames();
         }
 
         public Model Model { get { return model; } }
@@ -74,10 +87,37 @@ namespace WoW_Character_Viewer_Classic.Models
 
         public int FacesCount { get { return facesCount; } }
 
+        public string HairName { get { return hairName; } }
+
+        public string[] HairNames { get { return hairNames; } }
+
+        public int Hair { get; set; }
+
+        public int HairsCount { get { return hairsCount; } }
+
+        public string ColorName { get { return colorName; } }
+
+        public int Color { get; set; }
+
+        public int ColorsCount { get { return colorsCount; } }
+
+        public string FacialName { get { return facialName; } }
+
+        public string[] FacialNames { get { return facialNames; } }
+
+        public int Facial { get; set; }
+
+        public int FacialsCount { get { return facialsCount; } }
+
         //public int Geosets
         //{
         //    get { return model.View.Geosets.Length; }
         //}
+
+        protected string Number(int number)
+        {
+            return number > 9 ? number.ToString() : "0" + number;
+        }
 
         protected void MakeTextures(OpenGL gl)
         {
@@ -96,11 +136,6 @@ namespace WoW_Character_Viewer_Classic.Models
                         break;
                 }
             }
-        }
-
-        string Number(int number)
-        {
-            return number > 9 ? number.ToString() : "0" + number;
         }
 
         void MakeTexture(OpenGL gl, int index)
@@ -122,13 +157,20 @@ namespace WoW_Character_Viewer_Classic.Models
             }
             DrawLayer(graphics, gender + model.Name + "FaceUpper" + Number(Face) + "_" + Number(Skin) + ".png", 0, 160);
             DrawLayer(graphics, gender + model.Name + "FaceLower" + Number(Face) + "_" + Number(Skin) + ".png", 0, 192);
+            DrawLayer(graphics, "FacialUpperHair" + GetFacialUpper() + "_" + Number(Color) + ".png", 0, 160);
+            DrawLayer(graphics, "FacialLowerHair" + GetFacialLower() + "_" + Number(Color) + ".png", 0, 192);
+            DrawLayer(graphics, "ScalpUpperHair" + GetScalpUpper() + "_" + Number(Color) + ".png", 0, 160);
+            DrawLayer(graphics, "ScalpLowerHair" + GetScalpLower() + "_" + Number(Color) + ".png", 0, 192);
             textures[index].Create(gl, bitmap);
         }
 
         void DrawLayer(Graphics graphics, string layer, int x, int y)
         {
             Bitmap bitmap = LoadBitmap(texturesPath + layer);
-            graphics.DrawImage(bitmap, new Point(x, y));
+            if(bitmap != null)
+            {
+                graphics.DrawImage(bitmap, new Point(x, y));
+            }
         }
 
         void MakeExtraTexture(OpenGL gl, int index)
@@ -140,12 +182,16 @@ namespace WoW_Character_Viewer_Classic.Models
 
         Bitmap LoadBitmap(string file)
         {
-            Bitmap bitmap;
-            using(StreamReader reader = new StreamReader(file))
+            if(File.Exists(file))
             {
-                bitmap = new Bitmap(reader.BaseStream);
+                Bitmap bitmap;
+                using(StreamReader reader = new StreamReader(file))
+                {
+                    bitmap = new Bitmap(reader.BaseStream);
+                }
+                return bitmap;
             }
-            return bitmap;
+            return null;
         }
 
         protected void RenderBillboard(OpenGL gl, int geoset, int start, int count)
@@ -284,6 +330,18 @@ namespace WoW_Character_Viewer_Classic.Models
                 gl.Enable(OpenGL.GL_DEPTH_TEST);
             }
         }
+
+        protected abstract void GetHairNames();
+
+        protected abstract void GetFacialNames();
+
+        protected abstract string GetFacialUpper();
+
+        protected abstract string GetFacialLower();
+
+        protected abstract string GetScalpUpper();
+
+        protected abstract string GetScalpLower();
 
         public abstract void Render(OpenGL gl);
     }

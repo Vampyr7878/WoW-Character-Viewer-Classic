@@ -84,7 +84,106 @@ namespace WoW_Character_Viewer_Classic.Models
             };
             skinsCount = 10;
             facesCount = 12;
+            hairName = "Hair Style: ";
+            hairsCount = 12;
+            colorName = "Hair Color: ";
+            colorsCount = 10;
+            facialName = "Facial Hair: ";
+            facialsCount = 9;
         }
+
+        protected override void GetHairNames()
+        {
+            hairNames = new[]
+            {
+                "Bald",
+                "Peasant",
+                "Soldier",
+                "Monk",
+                "Barbarian",
+                "Dashing",
+                "Loose",
+                "Courtier",
+                "Scholar",
+                "Rogue",
+                "Fabulous",
+                "Samson"
+            };
+        }
+
+        protected override void GetFacialNames()
+        {
+            facialNames = new[]
+            {
+                "Bearded",
+                "Colonel",
+                "Duelist",
+                "Goatee",
+                "Wizard",
+                "Chops",
+                "Van Dyke",
+                "Mustachioed",
+                "Clean"
+            };
+        }
+
+        protected override string GetFacialUpper()
+        {
+            return Number(Facial);
+        }
+
+        protected override string GetFacialLower()
+        {
+            return Number(Facial);
+        }
+
+        protected override string GetScalpUpper()
+        {
+            string scalpUpper = "";
+            switch(Hair)
+            {
+                case 1:
+                case 2:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 9:
+                case 10:
+                case 11:
+                    scalpUpper = "02";
+                    break;
+                case 3:
+                case 8:
+                    scalpUpper = "01";
+                    break;
+            }
+            return scalpUpper;
+        }
+		
+		protected override string GetScalpLower()
+        {
+            string scalpLower = "";
+            switch (Hair)
+            {
+                case 1:
+                case 2:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 9:
+                case 10:
+                case 11:
+                    scalpLower = "02";
+                    break;
+                case 3:
+                case 8:
+                    scalpLower = "01";
+                    break;
+            }
+            return scalpLower;
+		}
 
         public override void Render(OpenGL gl)
         {

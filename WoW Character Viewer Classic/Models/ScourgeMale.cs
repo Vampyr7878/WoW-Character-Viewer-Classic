@@ -80,7 +80,168 @@ namespace WoW_Character_Viewer_Classic.Models
             };
             skinsCount = 6;
             facesCount = 10;
+            hairName = "Hair Style: ";
+            hairsCount = 10;
+            colorName = "Hair Color: ";
+            colorsCount = 10;
+            facialName = "Features: ";
+            facialsCount = 17;
         }
+		
+		protected override void GetHairNames()
+		{
+		    hairNames = new[]
+		    {
+		        "Bald",
+		        "Mohawk",
+		        "Shaggy",
+		        "Wisps",
+		        "Spiked",
+		        "Wild",
+		        "Scholar",
+		        "Full",
+		        "Topknot",
+		        "Long"
+		    };
+		}
+
+        protected override void GetFacialNames()
+        {
+            facialNames = new[]
+            {
+                "Intact",
+                "Rot-Kissed",
+                "Strapped",
+                "Strapped Slackjaw",
+                "Strapped Drooler",
+                "Rotting",
+                "Rotting Slackjaw",
+                "Rotting Drooler",
+                "Bonejawed",
+                "Jawsome",
+                "Toothy",
+                "Toothy Slackjaw",
+                "Cheeky",
+                "Cheeky Slackjaw",
+                "Putrid",
+                "Putrid Slackjaw",
+                "Putrid Drooler"
+            };
+        }
+
+        protected override string GetFacialUpper()
+        {
+            string facialUpper = "";
+            switch(Facial)
+            {
+                case 1:
+                    facialUpper = "00";
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                    facialUpper = "01";
+                    break;
+                case 5:
+                case 6:
+                case 7:
+                    facialUpper = "02";
+                    break;
+                case 8:
+                case 9:
+                    facialUpper = "03";
+                    break;
+                case 10:
+                case 11:
+                    facialUpper = "04";
+                    break;
+                case 12:
+                case 13:
+                    facialUpper = "05";
+                    break;
+                case 14:
+                case 15:
+                case 16:
+                    facialUpper = "06";
+                    break;
+            }
+            return facialUpper;
+        }
+
+        protected override string GetFacialLower()
+        {
+            string facialLower = "";
+            switch (Facial)
+            {
+                case 1:
+                    facialLower = "00";
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                    facialLower = "01";
+                    break;
+                case 5:
+                case 6:
+                case 7:
+                    facialLower = "02";
+                    break;
+                case 8:
+                case 9:
+                    facialLower = "03";
+                    break;
+                case 10:
+                case 11:
+                    facialLower = "04";
+                    break;
+                case 12:
+                case 13:
+                    facialLower = "05";
+                    break;
+                case 14:
+                case 15:
+                case 16:
+                    facialLower = "06";
+                    break;
+            }
+            return facialLower;
+        }
+		
+		protected override string GetScalpUpper()
+		{
+		    string scalpUpper = "";
+		    switch(Hair)
+		    {
+                case 2:
+                case 7:
+                case 9:
+		            scalpUpper = "00";
+                    break;
+                case 5:
+                case 6:
+		            scalpUpper = "01";
+                    break;
+		    }
+		    return scalpUpper;
+		}
+		
+		protected override string GetScalpLower()
+        {
+            string scalpLower = "";
+            switch (Hair)
+            {
+                case 2:
+                case 7:
+                case 9:
+                    scalpLower = "00";
+                    break;
+                case 5:
+                case 6:
+                    scalpLower = "01";
+                    break;
+            }
+            return scalpLower;
+		}
 
         public override void Render(OpenGL gl)
         {

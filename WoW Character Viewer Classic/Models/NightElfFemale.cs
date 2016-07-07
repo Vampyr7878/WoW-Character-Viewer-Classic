@@ -66,7 +66,64 @@ namespace WoW_Character_Viewer_Classic.Models
             };
             skinsCount = 9;
             facesCount = 9;
+            hairName = "Hair Style: ";
+            hairsCount = 7;
+            colorName = "Hair Color: ";
+            colorsCount = 8;
+            facialName = "Markings: ";
+            facialsCount = 10;
         }
+		
+		protected override void GetHairNames()
+		{
+		    hairNames = new[]
+		    {
+		        "Long",
+		        "Loose Tail",
+		        "Short",
+		        "High Tail",
+		        "Braided Tails",
+		        "Short Tail",
+		        "Braided Tail"
+		    };
+		}
+
+        protected override void GetFacialNames()
+        {
+            facialNames = new[]
+            {
+                "Bear",
+                "Blades",
+                "Crane",
+                "Leaf",
+                "Claws",
+                "Wings",
+                "Serpent",
+                "Owl",
+                "Shadow",
+                "No Tattoo",
+            };
+        }
+
+        protected override string GetFacialUpper()
+        {
+            return Number(Facial + 4);
+        }
+
+        protected override string GetFacialLower()
+        {
+            return Number(Facial + 4);
+        }
+		
+		protected override string GetScalpUpper()
+		{
+			return "01";
+		}
+		
+		protected override string GetScalpLower()
+		{
+			return "01";
+		}
 
         public override void Render(OpenGL gl)
         {

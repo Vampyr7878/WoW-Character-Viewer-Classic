@@ -77,7 +77,94 @@ namespace WoW_Character_Viewer_Classic.Models
             };
             skinsCount = 9;
             facesCount = 9;
+            hairName = "Hair Style: ";
+            hairsCount = 7;
+            colorName = "Hair Color: ";
+            colorsCount = 8;
+            facialName = "Facial Hair: ";
+            facialsCount = 6;
         }
+		
+		protected override void GetHairNames()
+		{
+		    hairNames = new[]
+		    {
+		        "Mane",
+		        "Chonmage Braids",
+		        "Long",
+		        "Tail",
+		        "Chonmage Long",
+		        "Short Tail",
+		        "Windswept"
+		    };
+		}
+
+        protected override void GetFacialNames()
+        {
+            facialNames = new[]
+            {
+                "Clean",
+                "Groomed",
+                "Bearded",
+                "Mustachioed",
+                "Chops",
+                "Goatee"
+            };
+        }
+
+        protected override string GetFacialUpper()
+        {
+            string facialUpper = "";
+            switch(Facial)
+            {
+                case 1:
+                    facialUpper = "00";
+                    break;
+                case 2:
+                case 5:
+                    facialUpper = "01";
+                    break;
+                case 3:
+                    facialUpper = "02";
+                    break;
+                case 4:
+                    facialUpper = "03";
+                    break;
+            }
+            return facialUpper;
+        }
+
+        protected override string GetFacialLower()
+        {
+            string facialLower = "";
+            switch (Facial)
+            {
+                case 1:
+                    facialLower = "00";
+                    break;
+                case 2:
+                case 5:
+                    facialLower = "01";
+                    break;
+                case 3:
+                    facialLower = "02";
+                    break;
+                case 4:
+                    facialLower = "03";
+                    break;
+            }
+            return facialLower;
+        }
+		
+		protected override string GetScalpUpper()
+		{
+			return "00";
+		}
+		
+		protected override string GetScalpLower()
+		{
+			return "00";
+		}
 
         public override void Render(OpenGL gl)
         {

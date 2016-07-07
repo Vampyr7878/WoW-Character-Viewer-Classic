@@ -76,7 +76,94 @@ namespace WoW_Character_Viewer_Classic.Models
             };
             skinsCount = 6;
             facesCount = 5;
+            hairName = "Hair Style: ";
+            hairsCount = 6;
+            colorName = "Hair Color: ";
+            colorsCount = 10;
+            facialName = "Tusks: ";
+            facialsCount = 11;
         }
+		
+		protected override void GetHairNames()
+		{
+		    hairNames = new[]
+		    {
+		        "Bald",
+		        "Receding",
+		        "Crest",
+		        "Windswept",
+		        "Topknot",
+		        "Tail"
+		    };
+		}
+
+        protected override void GetFacialNames()
+        {
+            facialNames = new[]
+            {
+                "Tusked",
+                "Gougers",
+                "Mammoth",
+                "Upturned",
+                "Bridle",
+                "Tusked Mask",
+                "Warpaint Gougers",
+                "Striped Mammoth",
+                "Painted Upturned",
+                "Painted Bridle",
+                "Spotted Mammoth"
+            };
+        }
+
+        protected override string GetFacialUpper()
+        {
+            return Number(Facial - 5);
+        }
+
+        protected override string GetFacialLower()
+        {
+            return Number(Facial - 5);
+        }
+		
+		protected override string GetScalpUpper()
+		{
+		    string scalpUpper = "";
+		    switch(Hair)
+		    {
+                case 1:
+		            scalpUpper = "00";
+                    break;
+                case 2:
+                case 4:
+		            scalpUpper = "02";
+                    break;
+                case 3:
+                case 5:
+		            scalpUpper = "01";
+                    break;
+		    }
+		    return scalpUpper;
+		}
+		
+		protected override string GetScalpLower()
+        {
+            string scalpLower = "";
+            switch (Hair)
+            {
+                case 1:
+                    scalpLower = "00";
+                    break;
+                case 2:
+                case 4:
+                    scalpLower = "02";
+                    break;
+                case 3:
+                case 5:
+                    scalpLower = "01";
+                    break;
+            }
+            return scalpLower;
+		}
 
         public override void Render(OpenGL gl)
         {

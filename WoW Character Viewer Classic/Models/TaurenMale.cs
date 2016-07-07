@@ -98,7 +98,62 @@ namespace WoW_Character_Viewer_Classic.Models
             };
             skinsCount = 19;
             facesCount = 5;
+            hairName = "Horn Style: ";
+            hairsCount = 8;
+            colorName = "Horn Color: ";
+            colorsCount = 3;
+            facialName = "Facial Hair: ";
+            facialsCount = 7;
         }
+		
+		protected override void GetHairNames()
+		{
+		    hairNames = new[]
+		    {
+		        "Longhorn",
+		        "Bull",
+		        "Charger",
+		        "Broken",
+		        "Snapped",
+		        "Tiny",
+		        "Buffalo",
+		        "Gorefest"
+		    };
+		}
+
+        protected override void GetFacialNames()
+        {
+            facialNames = new[]
+            {
+                "Clean",
+                "Triple Braids",
+                "Ringed",
+                "Braid",
+                "Bearded",
+                "Double Braids",
+                "Ringed & Braided"
+            };
+        }
+
+        protected override string GetFacialUpper()
+        {
+            return "";
+        }
+
+        protected override string GetFacialLower()
+        {
+            return "";
+        }
+		
+		protected override string GetScalpUpper()
+		{
+			return "";
+		}
+		
+		protected override string GetScalpLower()
+		{
+			return "00";
+		}
 
         public override void Render(OpenGL gl)
         {
