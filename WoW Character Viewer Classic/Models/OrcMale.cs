@@ -88,7 +88,7 @@ namespace WoW_Character_Viewer_Classic.Models
             {
                 if(billboards.Contains(vertices[indices[triangles[geosets[(int)geoset].triangle]]].Bones[0].index))
                 {
-                    RenderBillboard(gl, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
+                    RenderBillboard(gl, (int)geoset, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
                 }
                 else
                 {

@@ -503,6 +503,10 @@ namespace WoW_Character_Viewer_Classic
         void openGLControl_OpenGLInitialized(object sender, EventArgs e)
         {
             OpenGL gl = openGLControl.OpenGL;
+            gl.Disable(OpenGL.GL_TEXTURE_2D);
+            gl.DepthMask((byte)OpenGL.GL_TRUE);
+            gl.Disable(OpenGL.GL_BLEND);
+            gl.Disable(OpenGL.GL_ALPHA_TEST);
             gl.ClearColor(0.1f, 0.1f, 0.1f, 0f);
         }
 
