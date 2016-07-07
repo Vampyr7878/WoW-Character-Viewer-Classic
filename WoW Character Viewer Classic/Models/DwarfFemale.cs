@@ -72,6 +72,8 @@ namespace WoW_Character_Viewer_Classic.Models
                 Geosets.Wrist1,
                 Geosets.Legs1
 			};
+            skinsCount = 9;
+            facesCount = 10;
         }
 
         public override void Render(OpenGL gl)

@@ -9,17 +9,19 @@ namespace WoW_Character_Viewer_Classic.Models
 {
     abstract class Character
     {
-        protected Model model;
+        Model model;
         protected ModelVertex[] vertices;
         protected int[] indices;
         protected int[] triangles;
         protected ModelViewGeoset[] geosets;
-        protected ModelBone[] bones;
         protected List<int> billboards;
-        protected Texture[] textures;
-        protected string texturesPath;
-        bool skeleton;
-        float rotation;
+        ModelBone[] bones;
+        Texture[] textures;
+        string texturesPath;
+        string skinName;
+        protected int skinsCount;
+        string faceName;
+        protected int facesCount;
 
         public Character(string file)
         {
@@ -28,7 +30,7 @@ namespace WoW_Character_Viewer_Classic.Models
             {
                 model = (Model)serializer.Deserialize(reader.BaseStream);
             }
-            skeleton = false;
+            Skeleton = false;
             texturesPath = @"Character\" + model.Name.Replace("Female", "").Replace("Male", "") + @"\";
             vertices = model.Vertices;
             indices = model.View.Indices;
@@ -48,29 +50,34 @@ namespace WoW_Character_Viewer_Classic.Models
                     billboards.Add(i);
                 }
             }
+            skinName = "Skin Color: ";
+            Skin = 0;
+            faceName = "Face: ";
+            Face = 0;
         }
 
-        public Model Model
-        {
-            get { return model; }
-        }
+        public Model Model { get { return model; } }
 
-        public bool Skeleton
-        {
-            get { return skeleton; }
-            set { skeleton = value; }
-        }
+        public bool Skeleton { get; set; }
 
-        public float Rotation
-        {
-            get { return rotation; }
-            set { rotation = value; }
-        }
+        public float Rotation { get; set; }
 
-        public int Geosets
-        {
-            get { return model.View.Geosets.Length; }
-        }
+        public string SkinName { get { return skinName; } }
+
+        public int Skin { get; set; }
+
+        public int SkinsCount { get { return skinsCount; } }
+
+        public string FaceName { get { return faceName; } }
+
+        public int Face { get; set; }
+
+        public int FacesCount { get { return facesCount; } }
+
+        //public int Geosets
+        //{
+        //    get { return model.View.Geosets.Length; }
+        //}
 
         protected void MakeTextures(OpenGL gl)
         {
@@ -91,6 +98,11 @@ namespace WoW_Character_Viewer_Classic.Models
             }
         }
 
+        string Number(int number)
+        {
+            return number > 9 ? number.ToString() : "0" + number;
+        }
+
         void MakeTexture(OpenGL gl, int index)
         {
             Bitmap bitmap = LoadBitmap(model.Textures[index].file.Replace(".BLP", ".PNG"));
@@ -100,14 +112,29 @@ namespace WoW_Character_Viewer_Classic.Models
         void MakeBodyTexture(OpenGL gl, int index)
         {
             string gender = model.Name.Contains("Female") ? @"Female\" : @"Male\";
-            Bitmap bitmap = LoadBitmap(texturesPath + gender + model.Name + "Skin00_00.png");
+            Bitmap bitmap = LoadBitmap(texturesPath + gender + model.Name + "Skin00_" + Number(Skin) + ".png");
+            bitmap = new Bitmap(bitmap);
+            Graphics graphics = Graphics.FromImage(bitmap);
+            DrawLayer(graphics, gender + model.Name + "NakedPelvisSkin00_" + Number(Skin) + ".png", 128, 96);
+            if(model.Name.Contains("Female"))
+            {
+                DrawLayer(graphics, gender + model.Name + "NakedTorsoSkin00_" + Number(Skin) + ".png", 128, 0);
+            }
+            DrawLayer(graphics, gender + model.Name + "FaceUpper" + Number(Face) + "_" + Number(Skin) + ".png", 0, 160);
+            DrawLayer(graphics, gender + model.Name + "FaceLower" + Number(Face) + "_" + Number(Skin) + ".png", 0, 192);
             textures[index].Create(gl, bitmap);
+        }
+
+        void DrawLayer(Graphics graphics, string layer, int x, int y)
+        {
+            Bitmap bitmap = LoadBitmap(texturesPath + layer);
+            graphics.DrawImage(bitmap, new Point(x, y));
         }
 
         void MakeExtraTexture(OpenGL gl, int index)
         {
             string gender = model.Name.Contains("Female") ? @"Female\" : @"Male\";
-            Bitmap bitmap = LoadBitmap(texturesPath + gender + model.Name + "Skin00_00_Extra.png");
+            Bitmap bitmap = LoadBitmap(texturesPath + gender + model.Name + "Skin00_" + Number(Skin) + "_Extra.png");
             textures[index].Create(gl, bitmap);
         }
 
@@ -135,7 +162,7 @@ namespace WoW_Character_Viewer_Classic.Models
                 z = model.Bones[billboard].Position.z;
                 gl.PushMatrix();
                 gl.Translate(x, y, z);
-                gl.Rotate(-rotation, 0f, 1f, 0f);
+                gl.Rotate(-Rotation, 0f, 1f, 0f);
                 gl.Translate(-x, -y, -z);
                 gl.Begin(OpenGL.GL_TRIANGLES);
                 for (int i = start; i < start + count; i++)
@@ -203,7 +230,7 @@ namespace WoW_Character_Viewer_Classic.Models
                 case 1:
                     gl.Enable(OpenGL.GL_BLEND);
                     gl.Enable(OpenGL.GL_ALPHA_TEST);
-                    gl.BlendFunc(OpenGL.GL_SRC_ALPHA, OpenGL.GL_ONE_MINUS_SRC_ALPHA);
+                    gl.BlendFunc(OpenGL.GL_ONE, OpenGL.GL_ZERO);
                     gl.AlphaFunc(OpenGL.GL_GREATER, 0.9f);
                     break;
                 case 2:
@@ -234,7 +261,7 @@ namespace WoW_Character_Viewer_Classic.Models
         protected void RenderSkeleton(OpenGL gl)
         {
             float x, y, z;
-            if(skeleton)
+            if(Skeleton)
             {
                 gl.Color(1f, 0f, 0f);
                 gl.Disable(OpenGL.GL_DEPTH_TEST);

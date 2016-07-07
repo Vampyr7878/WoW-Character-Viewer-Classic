@@ -39,6 +39,7 @@ namespace WoW_Character_Viewer_Classic
             distance = 3;
             iconsPath = @"Icons\";
             Random random = new Random();
+            character = new HumanMale();
             RandomGender(random.Next(2));
             RandomRace(random.Next(8));
         }
@@ -169,6 +170,8 @@ namespace WoW_Character_Viewer_Classic
             characterClass = "Warrior";
             ChangeClass();
             showSkeletonButton.Text = "Show Skeleton";
+            Skin();
+            Face();
         }
 
         void RaceUnclick()
@@ -478,6 +481,32 @@ namespace WoW_Character_Viewer_Classic
             }
         }
 
+        void Skin()
+        {
+            if(character.Skin < 0)
+            {
+                character.Skin = character.SkinsCount - 1;
+            }
+            if(character.Skin == character.SkinsCount)
+            {
+                character.Skin = 0;
+            }
+            skinLabel.Text = character.SkinName + character.Skin;
+        }
+
+        void Face()
+        {
+            if (character.Face < 0)
+            {
+                character.Face = character.FacesCount - 1;
+            }
+            if (character.Face == character.FacesCount)
+            {
+                character.Face = 0;
+            }
+            faceLabel.Text = character.FaceName + character.Face;
+        }
+
         void openGLControl_OpenGLDraw(object sender, RenderEventArgs e)
         {
             OpenGL gl = openGLControl.OpenGL;
@@ -585,6 +614,38 @@ namespace WoW_Character_Viewer_Classic
         {
             character.Skeleton = !character.Skeleton;
             showSkeletonButton.Text = character.Skeleton ? "Hide Skeleton" : "Show Skeleton";
+        }
+
+        void prevButton_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            switch(button.Name.Replace("PrevButton", ""))
+            {
+                case "skin":
+                    character.Skin--;
+                    Skin();
+                    break;
+                case "face":
+                    character.Face--;
+                    Face();
+                    break;
+            }
+        }
+
+        void nextButton_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            switch (button.Name.Replace("NextButton", ""))
+            {
+                case "skin":
+                    character.Skin++;
+                    Skin();
+                    break;
+                case "face":
+                    character.Face++;
+                    Face();
+                    break;
+            }
         }
     }
 }
