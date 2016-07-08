@@ -76,7 +76,10 @@
     <Compile Include="Models\TaurenMale.cs" />
     <Compile Include="Models\TrollFemale.cs" />
     <Compile Include="Models\TrollMale.cs" />
-    <Compile Include="Serialization\Model.cs" />
+    <Compile Include="Serialization\Model.cs">
+      <SubType>code</SubType>
+      <DependentUpon>Model.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Viewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +112,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Serialization\Model.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico">

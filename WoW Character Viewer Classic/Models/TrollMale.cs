@@ -63,12 +63,10 @@ namespace WoW_Character_Viewer_Classic.Models
 
         public TrollMale() : base(@"Character\Troll\Male\TrollMale.xml")
         {
-            currentGeosets = new List<Geosets>()
+            currentGeosets = new List<Geosets>
             {
                 Geosets.Body1,
-                Geosets.Style7,
                 Geosets.Ears1,
-                Geosets.Feature1,
                 Geosets.Back1,
                 Geosets.Wrist1,
                 Geosets.Legs1,
@@ -165,8 +163,119 @@ namespace WoW_Character_Viewer_Classic.Models
             return scalpLower;
 		}
 
+        protected override string GetHairTexture()
+        {
+            return "00";
+        }
+
+        protected override void HairGeosets()
+        {
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Style"));
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Hair"));
+            List<Geosets> list;
+            switch(Hair)
+            {
+                case 0:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Style4
+                    };
+                    break;
+                case 1:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Style5,
+                        Geosets.Hair06
+                    };
+                    break;
+                case 2:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Style6,
+                        Geosets.Hair01
+                    };
+                    break;
+                case 3:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Style7,
+                        Geosets.Hair04
+                    };
+                    break;
+                case 4:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Style2,
+                        Geosets.Hair05
+                    };
+                    break;
+                case 5:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Style1,
+                        Geosets.Hair02
+                    };
+                    break;
+                default:
+                    list = new List<Geosets>();
+                    break;
+            }
+            currentGeosets.AddRange(list);
+        }
+
+        protected override void FacialGeosets()
+        {
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Feature"));
+            List<Geosets> list;
+            switch(Facial)
+            {
+                case 0:
+                case 5:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Feature1
+                    };
+                    break;
+                case 1:
+                case 6:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Feature2
+                    };
+                    break;
+                case 2:
+                case 7:
+                case 10:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Feature3
+                    };
+                    break;
+                case 3:
+                case 8:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Feature4
+                    };
+                    break;
+                case 4:
+                case 9:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Feature5
+                    };
+                    break;
+                default:
+                    list = new List<Geosets>();
+                    break;
+            }
+            currentGeosets.AddRange(list);
+        }
+
         public override void Render(OpenGL gl)
         {
+            HairGeosets();
+            FacialGeosets();
             MakeTextures(gl);
             foreach(Geosets geoset in currentGeosets)
             {

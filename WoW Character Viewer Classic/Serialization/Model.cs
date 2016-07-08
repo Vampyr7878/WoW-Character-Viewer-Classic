@@ -205,15 +205,9 @@ public partial class ModelBoneTranslation {
     
     private float xField;
     
-    private bool xFieldSpecified;
-    
     private float yField;
     
-    private bool yFieldSpecified;
-    
     private float zField;
-    
-    private bool zFieldSpecified;
     
     private string valueField;
     
@@ -229,17 +223,6 @@ public partial class ModelBoneTranslation {
     }
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool xSpecified {
-        get {
-            return this.xFieldSpecified;
-        }
-        set {
-            this.xFieldSpecified = value;
-        }
-    }
-    
-    /// <uwagi/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public float y {
         get {
@@ -251,17 +234,6 @@ public partial class ModelBoneTranslation {
     }
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool ySpecified {
-        get {
-            return this.yFieldSpecified;
-        }
-        set {
-            this.yFieldSpecified = value;
-        }
-    }
-    
-    /// <uwagi/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public float z {
         get {
@@ -269,17 +241,6 @@ public partial class ModelBoneTranslation {
         }
         set {
             this.zField = value;
-        }
-    }
-    
-    /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool zSpecified {
-        get {
-            return this.zFieldSpecified;
-        }
-        set {
-            this.zFieldSpecified = value;
         }
     }
     
@@ -305,19 +266,11 @@ public partial class ModelBoneRotation {
     
     private float xField;
     
-    private bool xFieldSpecified;
-    
     private float yField;
-    
-    private bool yFieldSpecified;
     
     private float zField;
     
-    private bool zFieldSpecified;
-    
     private float wField;
-    
-    private bool wFieldSpecified;
     
     private string valueField;
     
@@ -333,17 +286,6 @@ public partial class ModelBoneRotation {
     }
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool xSpecified {
-        get {
-            return this.xFieldSpecified;
-        }
-        set {
-            this.xFieldSpecified = value;
-        }
-    }
-    
-    /// <uwagi/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public float y {
         get {
@@ -351,17 +293,6 @@ public partial class ModelBoneRotation {
         }
         set {
             this.yField = value;
-        }
-    }
-    
-    /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool ySpecified {
-        get {
-            return this.yFieldSpecified;
-        }
-        set {
-            this.yFieldSpecified = value;
         }
     }
     
@@ -377,17 +308,6 @@ public partial class ModelBoneRotation {
     }
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool zSpecified {
-        get {
-            return this.zFieldSpecified;
-        }
-        set {
-            this.zFieldSpecified = value;
-        }
-    }
-    
-    /// <uwagi/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public float w {
         get {
@@ -395,17 +315,6 @@ public partial class ModelBoneRotation {
         }
         set {
             this.wField = value;
-        }
-    }
-    
-    /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool wSpecified {
-        get {
-            return this.wFieldSpecified;
-        }
-        set {
-            this.wFieldSpecified = value;
         }
     }
     
@@ -431,15 +340,9 @@ public partial class ModelBoneScale {
     
     private float xField;
     
-    private bool xFieldSpecified;
-    
     private float yField;
     
-    private bool yFieldSpecified;
-    
     private float zField;
-    
-    private bool zFieldSpecified;
     
     private string valueField;
     
@@ -455,17 +358,6 @@ public partial class ModelBoneScale {
     }
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool xSpecified {
-        get {
-            return this.xFieldSpecified;
-        }
-        set {
-            this.xFieldSpecified = value;
-        }
-    }
-    
-    /// <uwagi/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public float y {
         get {
@@ -477,17 +369,6 @@ public partial class ModelBoneScale {
     }
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool ySpecified {
-        get {
-            return this.yFieldSpecified;
-        }
-        set {
-            this.yFieldSpecified = value;
-        }
-    }
-    
-    /// <uwagi/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public float z {
         get {
@@ -495,17 +376,6 @@ public partial class ModelBoneScale {
         }
         set {
             this.zField = value;
-        }
-    }
-    
-    /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool zSpecified {
-        get {
-            return this.zFieldSpecified;
-        }
-        set {
-            this.zFieldSpecified = value;
         }
     }
     
@@ -531,15 +401,9 @@ public partial class ModelBonePosition {
     
     private float xField;
     
-    private bool xFieldSpecified;
-    
     private float yField;
     
-    private bool yFieldSpecified;
-    
     private float zField;
-    
-    private bool zFieldSpecified;
     
     private string valueField;
     
@@ -555,17 +419,6 @@ public partial class ModelBonePosition {
     }
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool xSpecified {
-        get {
-            return this.xFieldSpecified;
-        }
-        set {
-            this.xFieldSpecified = value;
-        }
-    }
-    
-    /// <uwagi/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public float y {
         get {
@@ -577,17 +430,6 @@ public partial class ModelBonePosition {
     }
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool ySpecified {
-        get {
-            return this.yFieldSpecified;
-        }
-        set {
-            this.yFieldSpecified = value;
-        }
-    }
-    
-    /// <uwagi/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public float z {
         get {
@@ -595,17 +437,6 @@ public partial class ModelBonePosition {
         }
         set {
             this.zField = value;
-        }
-    }
-    
-    /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool zSpecified {
-        get {
-            return this.zFieldSpecified;
-        }
-        set {
-            this.zFieldSpecified = value;
         }
     }
     
@@ -689,15 +520,9 @@ public partial class ModelVertexPosition {
     
     private float xField;
     
-    private bool xFieldSpecified;
-    
     private float yField;
     
-    private bool yFieldSpecified;
-    
     private float zField;
-    
-    private bool zFieldSpecified;
     
     private string valueField;
     
@@ -713,17 +538,6 @@ public partial class ModelVertexPosition {
     }
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool xSpecified {
-        get {
-            return this.xFieldSpecified;
-        }
-        set {
-            this.xFieldSpecified = value;
-        }
-    }
-    
-    /// <uwagi/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public float y {
         get {
@@ -735,17 +549,6 @@ public partial class ModelVertexPosition {
     }
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool ySpecified {
-        get {
-            return this.yFieldSpecified;
-        }
-        set {
-            this.yFieldSpecified = value;
-        }
-    }
-    
-    /// <uwagi/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public float z {
         get {
@@ -753,17 +556,6 @@ public partial class ModelVertexPosition {
         }
         set {
             this.zField = value;
-        }
-    }
-    
-    /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool zSpecified {
-        get {
-            return this.zFieldSpecified;
-        }
-        set {
-            this.zFieldSpecified = value;
         }
     }
     
@@ -789,11 +581,7 @@ public partial class ModelVertexBone {
     
     private int indexField;
     
-    private bool indexFieldSpecified;
-    
     private int weightField;
-    
-    private bool weightFieldSpecified;
     
     private string valueField;
     
@@ -809,17 +597,6 @@ public partial class ModelVertexBone {
     }
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool indexSpecified {
-        get {
-            return this.indexFieldSpecified;
-        }
-        set {
-            this.indexFieldSpecified = value;
-        }
-    }
-    
-    /// <uwagi/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public int weight {
         get {
@@ -827,17 +604,6 @@ public partial class ModelVertexBone {
         }
         set {
             this.weightField = value;
-        }
-    }
-    
-    /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool weightSpecified {
-        get {
-            return this.weightFieldSpecified;
-        }
-        set {
-            this.weightFieldSpecified = value;
         }
     }
     
@@ -863,15 +629,9 @@ public partial class ModelVertexNormal {
     
     private float xField;
     
-    private bool xFieldSpecified;
-    
     private float yField;
     
-    private bool yFieldSpecified;
-    
     private float zField;
-    
-    private bool zFieldSpecified;
     
     private string valueField;
     
@@ -887,17 +647,6 @@ public partial class ModelVertexNormal {
     }
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool xSpecified {
-        get {
-            return this.xFieldSpecified;
-        }
-        set {
-            this.xFieldSpecified = value;
-        }
-    }
-    
-    /// <uwagi/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public float y {
         get {
@@ -909,17 +658,6 @@ public partial class ModelVertexNormal {
     }
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool ySpecified {
-        get {
-            return this.yFieldSpecified;
-        }
-        set {
-            this.yFieldSpecified = value;
-        }
-    }
-    
-    /// <uwagi/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public float z {
         get {
@@ -927,17 +665,6 @@ public partial class ModelVertexNormal {
         }
         set {
             this.zField = value;
-        }
-    }
-    
-    /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool zSpecified {
-        get {
-            return this.zFieldSpecified;
-        }
-        set {
-            this.zFieldSpecified = value;
         }
     }
     
@@ -963,11 +690,7 @@ public partial class ModelVertexTexture {
     
     private float xField;
     
-    private bool xFieldSpecified;
-    
     private float yField;
-    
-    private bool yFieldSpecified;
     
     private string valueField;
     
@@ -983,17 +706,6 @@ public partial class ModelVertexTexture {
     }
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool xSpecified {
-        get {
-            return this.xFieldSpecified;
-        }
-        set {
-            this.xFieldSpecified = value;
-        }
-    }
-    
-    /// <uwagi/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public float y {
         get {
@@ -1001,17 +713,6 @@ public partial class ModelVertexTexture {
         }
         set {
             this.yField = value;
-        }
-    }
-    
-    /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool ySpecified {
-        get {
-            return this.yFieldSpecified;
-        }
-        set {
-            this.yFieldSpecified = value;
         }
     }
     
@@ -1096,41 +797,11 @@ public partial class ModelView {
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
 public partial class ModelViewGeoset {
     
-    private int idField;
-    
-    private bool idFieldSpecified;
-    
     private int triangleField;
-    
-    private bool triangleFieldSpecified;
     
     private int trianglesField;
     
-    private bool trianglesFieldSpecified;
-    
     private string valueField;
-    
-    /// <uwagi/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public int id {
-        get {
-            return this.idField;
-        }
-        set {
-            this.idField = value;
-        }
-    }
-    
-    /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool idSpecified {
-        get {
-            return this.idFieldSpecified;
-        }
-        set {
-            this.idFieldSpecified = value;
-        }
-    }
     
     /// <uwagi/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -1144,17 +815,6 @@ public partial class ModelViewGeoset {
     }
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool triangleSpecified {
-        get {
-            return this.triangleFieldSpecified;
-        }
-        set {
-            this.triangleFieldSpecified = value;
-        }
-    }
-    
-    /// <uwagi/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public int triangles {
         get {
@@ -1162,17 +822,6 @@ public partial class ModelViewGeoset {
         }
         set {
             this.trianglesField = value;
-        }
-    }
-    
-    /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool trianglesSpecified {
-        get {
-            return this.trianglesFieldSpecified;
-        }
-        set {
-            this.trianglesFieldSpecified = value;
         }
     }
     
@@ -1198,15 +847,9 @@ public partial class ModelViewTexture {
     
     private int geosetField;
     
-    private bool geosetFieldSpecified;
-    
     private int blendField;
     
-    private bool blendFieldSpecified;
-    
     private int textureField;
-    
-    private bool textureFieldSpecified;
     
     private string valueField;
     
@@ -1222,17 +865,6 @@ public partial class ModelViewTexture {
     }
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool geosetSpecified {
-        get {
-            return this.geosetFieldSpecified;
-        }
-        set {
-            this.geosetFieldSpecified = value;
-        }
-    }
-    
-    /// <uwagi/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public int blend {
         get {
@@ -1244,17 +876,6 @@ public partial class ModelViewTexture {
     }
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool blendSpecified {
-        get {
-            return this.blendFieldSpecified;
-        }
-        set {
-            this.blendFieldSpecified = value;
-        }
-    }
-    
-    /// <uwagi/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public int texture {
         get {
@@ -1262,17 +883,6 @@ public partial class ModelViewTexture {
         }
         set {
             this.textureField = value;
-        }
-    }
-    
-    /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool textureSpecified {
-        get {
-            return this.textureFieldSpecified;
-        }
-        set {
-            this.textureFieldSpecified = value;
         }
     }
     
@@ -1298,8 +908,6 @@ public partial class ModelTexture {
     
     private int typeField;
     
-    private bool typeFieldSpecified;
-    
     private string fileField;
     
     private string valueField;
@@ -1312,17 +920,6 @@ public partial class ModelTexture {
         }
         set {
             this.typeField = value;
-        }
-    }
-    
-    /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool typeSpecified {
-        get {
-            return this.typeFieldSpecified;
-        }
-        set {
-            this.typeFieldSpecified = value;
         }
     }
     
@@ -1404,15 +1001,9 @@ public partial class ModelAttachmentPosition {
     
     private float xField;
     
-    private bool xFieldSpecified;
-    
     private float yField;
     
-    private bool yFieldSpecified;
-    
     private float zField;
-    
-    private bool zFieldSpecified;
     
     private string valueField;
     
@@ -1428,17 +1019,6 @@ public partial class ModelAttachmentPosition {
     }
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool xSpecified {
-        get {
-            return this.xFieldSpecified;
-        }
-        set {
-            this.xFieldSpecified = value;
-        }
-    }
-    
-    /// <uwagi/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public float y {
         get {
@@ -1450,17 +1030,6 @@ public partial class ModelAttachmentPosition {
     }
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool ySpecified {
-        get {
-            return this.yFieldSpecified;
-        }
-        set {
-            this.yFieldSpecified = value;
-        }
-    }
-    
-    /// <uwagi/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public float z {
         get {
@@ -1468,17 +1037,6 @@ public partial class ModelAttachmentPosition {
         }
         set {
             this.zField = value;
-        }
-    }
-    
-    /// <uwagi/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool zSpecified {
-        get {
-            return this.zFieldSpecified;
-        }
-        set {
-            this.zFieldSpecified = value;
         }
     }
     

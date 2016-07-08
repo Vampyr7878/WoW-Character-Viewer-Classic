@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Model">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="Name"/>
+        <xs:element name="Bones">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Bone" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:int" name="Billboard"/>
+                    <xs:element type="xs:int" name="Parent"/>
+                    <xs:element name="Translation">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:float" name="x"/>
+                            <xs:attribute type="xs:float" name="y"/>
+                            <xs:attribute type="xs:float" name="z"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Rotation">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:float" name="x"/>
+                            <xs:attribute type="xs:float" name="y"/>
+                            <xs:attribute type="xs:float" name="z"/>
+                            <xs:attribute type="xs:float" name="w"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Scale">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:float" name="x"/>
+                            <xs:attribute type="xs:float" name="y"/>
+                            <xs:attribute type="xs:float" name="z"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Position">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:float" name="x"/>
+                            <xs:attribute type="xs:float" name="y"/>
+                            <xs:attribute type="xs:float" name="z"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Vertices">
+          <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+              <xs:element name="Vertex">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Position">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:float" name="x"/>
+                            <xs:attribute type="xs:float" name="y"/>
+                            <xs:attribute type="xs:float" name="z"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Bones">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Bone" maxOccurs="unbounded" minOccurs="0">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute type="xs:int" name="index"/>
+                                  <xs:attribute type="xs:int" name="weight"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Normal">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:float" name="x"/>
+                            <xs:attribute type="xs:float" name="y"/>
+                            <xs:attribute type="xs:float" name="z"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Texture">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:float" name="x"/>
+                            <xs:attribute type="xs:float" name="y"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="View">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Indices">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:int" name="Index" maxOccurs="unbounded" minOccurs="0"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Triangles">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:int" name="Triangle" maxOccurs="unbounded" minOccurs="0"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Geosets">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Geoset" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:int" name="triangle"/>
+                            <xs:attribute type="xs:int" name="triangles"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Textures">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Texture" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:int" name="geoset"/>
+                            <xs:attribute type="xs:int" name="blend"/>
+                            <xs:attribute type="xs:int" name="texture"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Textures">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Texture" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:int" name="type"/>
+                      <xs:attribute type="xs:string" name="file"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Blending">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:int" name="Blend" maxOccurs="unbounded" minOccurs="0"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Attachments">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Attachment" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:int" name="ID"/>
+                    <xs:element type="xs:int" name="Bone"/>
+                    <xs:element name="Position">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:float" name="x"/>
+                            <xs:attribute type="xs:float" name="y"/>
+                            <xs:attribute type="xs:float" name="z"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

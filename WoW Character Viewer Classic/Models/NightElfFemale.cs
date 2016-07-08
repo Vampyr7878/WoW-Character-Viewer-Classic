@@ -54,9 +54,10 @@ namespace WoW_Character_Viewer_Classic.Models
 
         public NightElfFemale() : base(@"Character\NightElf\Female\NightElfFemale.xml")
         {
-            currentGeosets = new List<Geosets>()
+            currentGeosets = new List<Geosets>
             {
                 Geosets.Body1,
+                Geosets.Facial01,
                 Geosets.Glow1,
                 Geosets.Ears1,
                 Geosets.Back1,
@@ -125,8 +126,75 @@ namespace WoW_Character_Viewer_Classic.Models
 			return "01";
 		}
 
+        protected override string GetHairTexture()
+        {
+            return "00";
+        }
+
+        protected override void HairGeosets()
+        {
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Hair"));
+            List<Geosets> list;
+            switch(Hair)
+            {
+                case 0:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Hair01
+                    };
+                    break;
+                case 1:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Hair07
+                    };
+                    break;
+                case 2:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Hair03
+                    };
+                    break;
+                case 3:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Hair06
+                    };
+                    break;
+                case 4:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Hair05
+                    };
+                    break;
+                case 5:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Hair04
+                    };
+                    break;
+                case 6:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Hair02
+                    };
+                    break;
+                default:
+                    list = new List<Geosets>();
+                    break;
+            }
+            currentGeosets.AddRange(list);
+        }
+
+        protected override void FacialGeosets()
+        {
+			
+        }
+
         public override void Render(OpenGL gl)
         {
+            HairGeosets();
+            FacialGeosets();
             MakeTextures(gl);
             foreach(Geosets geoset in currentGeosets)
             {

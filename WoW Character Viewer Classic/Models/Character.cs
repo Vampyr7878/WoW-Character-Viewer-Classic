@@ -31,7 +31,7 @@ namespace WoW_Character_Viewer_Classic.Models
         protected string[] facialNames;
         protected int facialsCount;
 
-        public Character(string file)
+        protected Character(string file)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Model));
             using(StreamReader reader = new StreamReader(file))
@@ -109,11 +109,6 @@ namespace WoW_Character_Viewer_Classic.Models
 
         public int FacialsCount { get { return facialsCount; } }
 
-        //public int Geosets
-        //{
-        //    get { return model.View.Geosets.Length; }
-        //}
-
         protected string Number(int number)
         {
             return number > 9 ? number.ToString() : "0" + number;
@@ -130,6 +125,9 @@ namespace WoW_Character_Viewer_Classic.Models
                         break;
                     case 1:
                         MakeBodyTexture(gl, i);
+                        break;
+                    case 6:
+                        MakeHairTexture(gl, i);
                         break;
                     case 8:
                         MakeExtraTexture(gl, i);
@@ -170,6 +168,15 @@ namespace WoW_Character_Viewer_Classic.Models
             if(bitmap != null)
             {
                 graphics.DrawImage(bitmap, new Point(x, y));
+            }
+        }
+
+        void MakeHairTexture(OpenGL gl, int index)
+        {
+            Bitmap bitmap = LoadBitmap(texturesPath + "Hair" + GetHairTexture() + "_" + Number(Color) + ".png");
+            if(bitmap != null)
+            {
+                textures[index].Create(gl, bitmap);
             }
         }
 
@@ -342,6 +349,12 @@ namespace WoW_Character_Viewer_Classic.Models
         protected abstract string GetScalpUpper();
 
         protected abstract string GetScalpLower();
+
+        protected abstract string GetHairTexture();
+
+        protected abstract void HairGeosets();
+
+        protected abstract void FacialGeosets();
 
         public abstract void Render(OpenGL gl);
     }

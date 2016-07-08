@@ -70,7 +70,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         public OrcMale() : base(@"Character\Orc\Male\OrcMale.xml")
         {
-            currentGeosets = new List<Geosets>()
+            currentGeosets = new List<Geosets>
             {
                 Geosets.Body1,
                 Geosets.Ears1,
@@ -88,20 +88,20 @@ namespace WoW_Character_Viewer_Classic.Models
             facialName = "Facial Hair: ";
             facialsCount = 11;
         }
-		
-		protected override void GetHairNames()
-		{
-		    hairNames = new[]
-		    {
-		        "Bald",
-		        "Topknot",
-		        "Chonmage",
-		        "Crest",
-		        "Chonmage Long",
-		        "Braided",
-		        "Tail"
-		    };
-		}
+
+        protected override void GetHairNames()
+        {
+            hairNames = new[]
+            {
+                "Bald",
+                "Topknot",
+                "Chonmage",
+                "Crest",
+                "Chonmage Long",
+                "Braided",
+                "Tail"
+            };
+        }
 
         protected override void GetFacialNames()
         {
@@ -155,7 +155,7 @@ namespace WoW_Character_Viewer_Classic.Models
         protected override string GetFacialLower()
         {
             string facialLower = "";
-            switch (Facial)
+            switch(Facial)
             {
                 case 1:
                     facialLower = "00";
@@ -182,36 +182,36 @@ namespace WoW_Character_Viewer_Classic.Models
             }
             return facialLower;
         }
-		
-		protected override string GetScalpUpper()
-		{
-		    string scalpUpper = "";
-		    switch(Hair)
-		    {
+
+        protected override string GetScalpUpper()
+        {
+            string scalpUpper = "";
+            switch(Hair)
+            {
                 case 1:
                 case 2:
-		            scalpUpper = "00";
+                    scalpUpper = "00";
                     break;
                 case 3:
-		            scalpUpper = "01";
+                    scalpUpper = "01";
                     break;
                 case 4:
-		            scalpUpper = "02";
+                    scalpUpper = "02";
                     break;
                 case 5:
-		            scalpUpper = "03";
+                    scalpUpper = "03";
                     break;
                 case 6:
-		            scalpUpper = "04";
+                    scalpUpper = "04";
                     break;
-		    }
-		    return scalpUpper;
-		}
-		
-		protected override string GetScalpLower()
+            }
+            return scalpUpper;
+        }
+
+        protected override string GetScalpLower()
         {
             string scalpLower = "";
-            switch (Hair)
+            switch(Hair)
             {
                 case 1:
                 case 2:
@@ -231,10 +231,144 @@ namespace WoW_Character_Viewer_Classic.Models
                     break;
             }
             return scalpLower;
-		}
+        }
+
+        protected override string GetHairTexture()
+        {
+            return "00";
+        }
+
+        protected override void HairGeosets()
+        {
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Style"));
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Hair"));
+            List<Geosets> list;
+            switch(Hair)
+            {
+                case 1:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Style4,
+                        Geosets.Hair06
+                    };
+                    break;
+                case 2:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Style2,
+                        Geosets.Hair05
+                    };
+                    break;
+                case 3:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Hair03
+                    };
+                    break;
+                case 4:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Style3,
+                        Geosets.Hair01
+                    };
+                    break;
+                case 5:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Style1,
+                        Geosets.Hair02
+                    };
+                    break;
+                case 6:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Style5,
+                        Geosets.Hair04
+                    };
+                    break;
+                default:
+                    list = new List<Geosets>();
+                    break;
+            }
+            currentGeosets.AddRange(list);
+        }
+
+        protected override void FacialGeosets()
+        {
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Feature"));
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Facial"));
+            List<Geosets> list;
+            switch(Facial)
+            {
+                case 2:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Facial03
+                    };
+                    break;
+                case 3:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Facial04
+                    };
+                    break;
+                case 4:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Facial05
+                    };
+                    break;
+                case 5:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Feature2,
+                        Geosets.Facial09
+                    };
+                    break;
+                case 6:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Feature4,
+                        Geosets.Facial06
+                    };
+                    break;
+                case 7:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Feature1,
+                        Geosets.Facial01
+                    };
+                    break;
+                case 8:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Feature3,
+                        Geosets.Facial07
+                    };
+                    break;
+                case 9:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Facial08
+                    };
+                    break;
+                case 10:
+                    list = new List<Geosets>
+                    {
+                        Geosets.Facial02
+                    };
+                    break;
+                default:
+                    list = new List<Geosets>();
+                    break;
+            }
+            currentGeosets.AddRange(list);
+        }
 
         public override void Render(OpenGL gl)
         {
+            HairGeosets();
+            FacialGeosets();
             MakeTextures(gl);
             foreach(Geosets geoset in currentGeosets)
             {
