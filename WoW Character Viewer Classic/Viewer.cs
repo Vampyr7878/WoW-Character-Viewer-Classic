@@ -596,9 +596,12 @@ namespace WoW_Character_Viewer_Classic
             jewelryItemsDialog = new JewelryItemsDialog(slot, characterRace, characterClass);
             if(jewelryItemsDialog.ShowDialog() == DialogResult.OK)
             {
-                character.Gear[WoWHelper.Slot(slot)] = jewelryItemsDialog.Selected.ID;
-                Button button = (Button)Controls.Find(slot + "Button", true).First();
-                ChangeIcon(button, iconsPath + jewelryItemsDialog.Selected.Icon + ".png", WoWHelper.QalityColor(jewelryItemsDialog.Selected.Quality));
+                if(jewelryItemsDialog.Selected != null)
+                {
+                    character.Gear[WoWHelper.Slot(slot)] = jewelryItemsDialog.Selected.ID;
+                    Button button = (Button)Controls.Find(slot + "Button", true).First();
+                    ChangeIcon(button, iconsPath + jewelryItemsDialog.Selected.Icon + ".png", WoWHelper.QalityColor(jewelryItemsDialog.Selected.Quality));
+                }
             }
             jewelryItemsDialog.Close();
         }

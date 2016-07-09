@@ -90,7 +90,15 @@ namespace WoW_Character_Viewer_Classic.Dialogs
                 }
                 list.Sort((x, y) => x.Name.CompareTo(y.Name));
                 itemsListBox.Items.AddRange(list.ToArray());
-                itemsListBox.SelectedIndex = 0;
+                if(itemsListBox.Items.Count > 0)
+                {
+                    itemsListBox.SelectedIndex = 0;
+                }
+                else
+                {
+                    itemsListBox.SelectedIndex = -1;
+                    selected = null;
+                }
             }
         }
 
