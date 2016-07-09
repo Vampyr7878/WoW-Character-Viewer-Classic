@@ -3,6 +3,7 @@ using SharpGL.SceneGraph.Assets;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace WoW_Character_Viewer_Classic.Models
@@ -38,6 +39,7 @@ namespace WoW_Character_Viewer_Classic.Models
             {
                 model = (Model)serializer.Deserialize(reader.BaseStream);
             }
+            Gear = Enumerable.Repeat("0", 25).ToArray();
             Skeleton = false;
             texturesPath = @"Character\" + model.Name.Replace("Female", "").Replace("Male", "") + @"\";
             vertices = model.Vertices;
@@ -70,6 +72,8 @@ namespace WoW_Character_Viewer_Classic.Models
         }
 
         public Model Model { get { return model; } }
+
+        public string[] Gear { get; set; }
 
         public bool Skeleton { get; set; }
 

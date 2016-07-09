@@ -2,13 +2,16 @@
 using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using WoW_Character_Viewer_Classic.Dialogs;
 using WoW_Character_Viewer_Classic.Models;
 
 namespace WoW_Character_Viewer_Classic
 {
     public partial class Viewer : Form
     {
+        JewelryItemsDialog jewelryItemsDialog;
         bool characterGender;
         string characterRace;
         string characterClass;
@@ -33,6 +36,7 @@ namespace WoW_Character_Viewer_Classic
             openGLControl.MouseWheel += openGlControl_MouseWheel;
             rotate = false;
             move = false;
+            ResetCamera();
             zoomMin = 0.2f;
             zoomMax = 6;
             distance = 3;
@@ -41,6 +45,13 @@ namespace WoW_Character_Viewer_Classic
             character = new HumanMale();
             RandomGender(random.Next(2));
             RandomRace(random.Next(8));
+        }
+
+        void ResetCamera()
+        {
+            currentRotation = rotation = 0f;
+            currentPosition = position = new PointF(0f, 0f);
+            currentZoom = zoom = 0f;
         }
 
         void RandomGender(int number)
@@ -174,6 +185,7 @@ namespace WoW_Character_Viewer_Classic
             Hair();
             HairColor();
             Facial();
+            ResetCamera();
         }
 
         void RaceUnclick()
@@ -397,6 +409,7 @@ namespace WoW_Character_Viewer_Classic
                     Druid();
                     break;
             }
+            ResetGearIcons();
         }
 
         void ClassUnclick()
@@ -483,6 +496,33 @@ namespace WoW_Character_Viewer_Classic
             }
         }
 
+        void ResetGearIcons()
+        {
+            ChangeIcon(headButton, iconsPath + "UI-PaperDoll-Slot-Head.png");
+            ChangeIcon(neckButton, iconsPath + "UI-PaperDoll-Slot-Neck.png");
+            ChangeIcon(shoulderButton, iconsPath + "UI-PaperDoll-Slot-Shoulder.png");
+            ChangeIcon(backButton, iconsPath + "UI-PaperDoll-Slot-Chest.png");
+            ChangeIcon(chestButton, iconsPath + "UI-PaperDoll-Slot-Chest.png");
+            ChangeIcon(shirtButton, iconsPath + "UI-PaperDoll-Slot-Shirt.png");
+            ChangeIcon(tabardButton, iconsPath + "UI-PaperDoll-Slot-Tabard.png");
+            ChangeIcon(wristButton, iconsPath + "UI-PaperDoll-Slot-Wrists.png");
+            ChangeIcon(handsButton, iconsPath + "UI-PaperDoll-Slot-Hands.png");
+            ChangeIcon(waistButton, iconsPath + "UI-PaperDoll-Slot-Waist.png");
+            ChangeIcon(legsButton, iconsPath + "UI-PaperDoll-Slot-Legs.png");
+            ChangeIcon(feetButton, iconsPath + "UI-PaperDoll-Slot-Feet.png");
+            ChangeIcon(finger1Button, iconsPath + "UI-PaperDoll-Slot-Finger.png");
+            ChangeIcon(finger2Button, iconsPath + "UI-PaperDoll-Slot-Finger.png");
+            ChangeIcon(trinket1Button, iconsPath + "UI-PaperDoll-Slot-Trinket.png");
+            ChangeIcon(trinket2Button, iconsPath + "UI-PaperDoll-Slot-Trinket.png");
+            ChangeIcon(mainHandButton, iconsPath + "UI-PaperDoll-Slot-MainHand.png");
+            ChangeIcon(offHandButton, iconsPath + "UI-PaperDoll-Slot-SecondaryHand.png");
+            ChangeIcon(bag1Button, iconsPath + "UI-PaperDoll-Slot-Bag.png");
+            ChangeIcon(bag2Button, iconsPath + "UI-PaperDoll-Slot-Bag.png");
+            ChangeIcon(bag3Button, iconsPath + "UI-PaperDoll-Slot-Bag.png");
+            ChangeIcon(bag4Button, iconsPath + "UI-PaperDoll-Slot-Bag.png");
+            ChangeIcon(mountButton, iconsPath + "UI-Backpack-EmptySlot.png");
+        }
+
         void Skin()
         {
             if(character.Skin < 0)
@@ -548,6 +588,17 @@ namespace WoW_Character_Viewer_Classic
             }
             facialLabel.Text = character.FacialName + character.Facial;
             facialNameLabel.Text = character.FacialNames[character.Facial];
+        }
+
+        void Jewelry(string slot)
+        {
+            jewelryItemsDialog = new JewelryItemsDialog(slot);
+            if(jewelryItemsDialog.ShowDialog() == DialogResult.OK)
+            {
+                character.Gear[WoWHelper.Slot(slot)] = jewelryItemsDialog.Selected.ID;
+                Button button = (Button)Controls.Find(slot + "Button", true).First();
+                ChangeIcon(button, iconsPath + jewelryItemsDialog.Selected.Icon + ".png");
+            }
         }
 
         void openGLControl_OpenGLDraw(object sender, RenderEventArgs e)
@@ -711,6 +762,32 @@ namespace WoW_Character_Viewer_Classic
                 case "facial":
                     character.Facial++;
                     Facial();
+                    break;
+            }
+        }
+
+        void slotButton_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            switch(button.Name.Replace("Button", ""))
+            {
+                case "neck":
+                case "finger1":
+                case "finger2":
+                case "trinket1":
+                case "trinket2":
+                    Jewelry(button.Name.Replace("Button", ""));
+                    break;
+            }
+        }
+
+        void bottomButton_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            switch(button.Name.Replace("Button", ""))
+            {
+                case "reset":
+                    ResetGearIcons();
                     break;
             }
         }
