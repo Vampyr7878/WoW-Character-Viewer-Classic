@@ -39,7 +39,7 @@ namespace WoW_Character_Viewer_Classic
             ResetCamera();
             zoomMin = 0.2f;
             zoomMax = 6;
-            distance = 3;
+            distance = 2.8f;
             iconsPath = @"Icons\";
             Random random = new Random();
             character = new HumanMale();
@@ -92,27 +92,27 @@ namespace WoW_Character_Viewer_Classic
         void Female()
         {
             femaleButton.FlatStyle = FlatStyle.Flat;
-            ChangeIcon(humanButton, iconsPath + "UI-CharacterCreate-Races_Human-Female.png");
-            ChangeIcon(orcButton, iconsPath + "UI-CharacterCreate-Races_Orc-Female.png");
-            ChangeIcon(dwarfButton, iconsPath + "UI-CharacterCreate-Races_Dwarf-Female.png");
-            ChangeIcon(undeadButton, iconsPath + "UI-CharacterCreate-Races_Undead-Female.png");
-            ChangeIcon(nightElfButton, iconsPath + "UI-CharacterCreate-Races_NightElf-Female.png");
-            ChangeIcon(taurenButton, iconsPath + "UI-CharacterCreate-Races_Tauren-Female.png");
-            ChangeIcon(gnomeButton, iconsPath + "UI-CharacterCreate-Races_Gnome-Female.png");
-            ChangeIcon(trollButton, iconsPath + "UI-CharacterCreate-Races_Troll-Female.png");
+            ChangeIcon(humanButton, iconsPath + "UI-CharacterCreate-Races_Human-Female.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(orcButton, iconsPath + "UI-CharacterCreate-Races_Orc-Female.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(dwarfButton, iconsPath + "UI-CharacterCreate-Races_Dwarf-Female.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(undeadButton, iconsPath + "UI-CharacterCreate-Races_Undead-Female.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(nightElfButton, iconsPath + "UI-CharacterCreate-Races_NightElf-Female.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(taurenButton, iconsPath + "UI-CharacterCreate-Races_Tauren-Female.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(gnomeButton, iconsPath + "UI-CharacterCreate-Races_Gnome-Female.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(trollButton, iconsPath + "UI-CharacterCreate-Races_Troll-Female.png", Color.FromArgb(25, 25, 25));
         }
 
         void Male()
         {
             maleButton.FlatStyle = FlatStyle.Flat;
-            ChangeIcon(humanButton, iconsPath + "UI-CharacterCreate-Races_Human-Male.png");
-            ChangeIcon(orcButton, iconsPath + "UI-CharacterCreate-Races_Orc-Male.png");
-            ChangeIcon(dwarfButton, iconsPath + "UI-CharacterCreate-Races_Dwarf-Male.png");
-            ChangeIcon(undeadButton, iconsPath + "UI-CharacterCreate-Races_Undead-Male.png");
-            ChangeIcon(nightElfButton, iconsPath + "UI-CharacterCreate-Races_NightElf-Male.png");
-            ChangeIcon(taurenButton, iconsPath + "UI-CharacterCreate-Races_Tauren-Male.png");
-            ChangeIcon(gnomeButton, iconsPath + "UI-CharacterCreate-Races_Gnome-Male.png");
-            ChangeIcon(trollButton, iconsPath + "UI-CharacterCreate-Races_Troll-Male.png");
+            ChangeIcon(humanButton, iconsPath + "UI-CharacterCreate-Races_Human-Male.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(orcButton, iconsPath + "UI-CharacterCreate-Races_Orc-Male.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(dwarfButton, iconsPath + "UI-CharacterCreate-Races_Dwarf-Male.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(undeadButton, iconsPath + "UI-CharacterCreate-Races_Undead-Male.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(nightElfButton, iconsPath + "UI-CharacterCreate-Races_NightElf-Male.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(taurenButton, iconsPath + "UI-CharacterCreate-Races_Tauren-Male.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(gnomeButton, iconsPath + "UI-CharacterCreate-Races_Gnome-Male.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(trollButton, iconsPath + "UI-CharacterCreate-Races_Troll-Male.png", Color.FromArgb(25, 25, 25));
         }
 
         void RandomRace(int number)
@@ -428,99 +428,100 @@ namespace WoW_Character_Viewer_Classic
         void Warrior()
         {
             warriorButton.FlatStyle = FlatStyle.Flat;
-            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Ranged.png");
-            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Ammo.png");
+            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Ranged.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Ammo.png", Color.FromArgb(25, 25, 25));
         }
 
         void Paladin()
         {
             paladinButton.FlatStyle = FlatStyle.Flat;
-            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Relic.png");
-            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Bag.png");
+            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Relic.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Bag.png", Color.FromArgb(25, 25, 25));
         }
 
         void Hunter()
         {
             hunterButton.FlatStyle = FlatStyle.Flat;
-            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Ranged.png");
-            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Ammo.png");
+            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Ranged.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Ammo.png", Color.FromArgb(25, 25, 25));
         }
 
         void Rogue()
         {
             rogueButton.FlatStyle = FlatStyle.Flat;
-            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Ranged.png");
-            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Ammo.png");
+            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Ranged.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Ammo.png", Color.FromArgb(25, 25, 25));
         }
 
         void Priest()
         {
             priestButton.FlatStyle = FlatStyle.Flat;
-            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Ranged.png");
-            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Bag.png");
+            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Ranged.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Bag.png", Color.FromArgb(25, 25, 25));
         }
 
         void Shaman()
         {
             shamanButton.FlatStyle = FlatStyle.Flat;
-            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Relic.png");
-            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Bag.png");
+            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Relic.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Bag.png", Color.FromArgb(25, 25, 25));
         }
 
         void Mage()
         {
             mageButton.FlatStyle = FlatStyle.Flat;
-            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Ranged.png");
-            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Bag.png");
+            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Ranged.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Bag.png", Color.FromArgb(25, 25, 25));
         }
 
         void Warlock()
         {
             warlockButton.FlatStyle = FlatStyle.Flat;
-            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Ranged.png");
-            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Bag.png");
+            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Ranged.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Bag.png", Color.FromArgb(25, 25, 25));
         }
 
         void Druid()
         {
             druidButton.FlatStyle = FlatStyle.Flat;
-            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Relic.png");
-            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Bag.png");
+            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Relic.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Bag.png", Color.FromArgb(25, 25, 25));
         }
 
-        void ChangeIcon(Button button, string path)
+        void ChangeIcon(Button button, string path, Color color)
         {
             using(StreamReader reader = new StreamReader(path))
             {
                 button.BackgroundImage = new Bitmap(reader.BaseStream);
             }
+            button.BackColor = color;
         }
 
         void ResetGearIcons()
         {
-            ChangeIcon(headButton, iconsPath + "UI-PaperDoll-Slot-Head.png");
-            ChangeIcon(neckButton, iconsPath + "UI-PaperDoll-Slot-Neck.png");
-            ChangeIcon(shoulderButton, iconsPath + "UI-PaperDoll-Slot-Shoulder.png");
-            ChangeIcon(backButton, iconsPath + "UI-PaperDoll-Slot-Chest.png");
-            ChangeIcon(chestButton, iconsPath + "UI-PaperDoll-Slot-Chest.png");
-            ChangeIcon(shirtButton, iconsPath + "UI-PaperDoll-Slot-Shirt.png");
-            ChangeIcon(tabardButton, iconsPath + "UI-PaperDoll-Slot-Tabard.png");
-            ChangeIcon(wristButton, iconsPath + "UI-PaperDoll-Slot-Wrists.png");
-            ChangeIcon(handsButton, iconsPath + "UI-PaperDoll-Slot-Hands.png");
-            ChangeIcon(waistButton, iconsPath + "UI-PaperDoll-Slot-Waist.png");
-            ChangeIcon(legsButton, iconsPath + "UI-PaperDoll-Slot-Legs.png");
-            ChangeIcon(feetButton, iconsPath + "UI-PaperDoll-Slot-Feet.png");
-            ChangeIcon(finger1Button, iconsPath + "UI-PaperDoll-Slot-Finger.png");
-            ChangeIcon(finger2Button, iconsPath + "UI-PaperDoll-Slot-Finger.png");
-            ChangeIcon(trinket1Button, iconsPath + "UI-PaperDoll-Slot-Trinket.png");
-            ChangeIcon(trinket2Button, iconsPath + "UI-PaperDoll-Slot-Trinket.png");
-            ChangeIcon(mainHandButton, iconsPath + "UI-PaperDoll-Slot-MainHand.png");
-            ChangeIcon(offHandButton, iconsPath + "UI-PaperDoll-Slot-SecondaryHand.png");
-            ChangeIcon(bag1Button, iconsPath + "UI-PaperDoll-Slot-Bag.png");
-            ChangeIcon(bag2Button, iconsPath + "UI-PaperDoll-Slot-Bag.png");
-            ChangeIcon(bag3Button, iconsPath + "UI-PaperDoll-Slot-Bag.png");
-            ChangeIcon(bag4Button, iconsPath + "UI-PaperDoll-Slot-Bag.png");
-            ChangeIcon(mountButton, iconsPath + "UI-Backpack-EmptySlot.png");
+            ChangeIcon(headButton, iconsPath + "UI-PaperDoll-Slot-Head.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(neckButton, iconsPath + "UI-PaperDoll-Slot-Neck.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(shoulderButton, iconsPath + "UI-PaperDoll-Slot-Shoulder.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(backButton, iconsPath + "UI-PaperDoll-Slot-Chest.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(chestButton, iconsPath + "UI-PaperDoll-Slot-Chest.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(shirtButton, iconsPath + "UI-PaperDoll-Slot-Shirt.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(tabardButton, iconsPath + "UI-PaperDoll-Slot-Tabard.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(wristButton, iconsPath + "UI-PaperDoll-Slot-Wrists.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(handsButton, iconsPath + "UI-PaperDoll-Slot-Hands.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(waistButton, iconsPath + "UI-PaperDoll-Slot-Waist.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(legsButton, iconsPath + "UI-PaperDoll-Slot-Legs.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(feetButton, iconsPath + "UI-PaperDoll-Slot-Feet.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(finger1Button, iconsPath + "UI-PaperDoll-Slot-Finger.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(finger2Button, iconsPath + "UI-PaperDoll-Slot-Finger.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(trinket1Button, iconsPath + "UI-PaperDoll-Slot-Trinket.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(trinket2Button, iconsPath + "UI-PaperDoll-Slot-Trinket.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(mainHandButton, iconsPath + "UI-PaperDoll-Slot-MainHand.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(offHandButton, iconsPath + "UI-PaperDoll-Slot-SecondaryHand.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(bag1Button, iconsPath + "UI-PaperDoll-Slot-Bag.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(bag2Button, iconsPath + "UI-PaperDoll-Slot-Bag.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(bag3Button, iconsPath + "UI-PaperDoll-Slot-Bag.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(bag4Button, iconsPath + "UI-PaperDoll-Slot-Bag.png", Color.FromArgb(25, 25, 25));
+            ChangeIcon(mountButton, iconsPath + "UI-Backpack-EmptySlot.png", Color.FromArgb(25, 25, 25));
         }
 
         void Skin()
@@ -592,13 +593,14 @@ namespace WoW_Character_Viewer_Classic
 
         void Jewelry(string slot)
         {
-            jewelryItemsDialog = new JewelryItemsDialog(slot);
+            jewelryItemsDialog = new JewelryItemsDialog(slot, characterRace, characterClass);
             if(jewelryItemsDialog.ShowDialog() == DialogResult.OK)
             {
                 character.Gear[WoWHelper.Slot(slot)] = jewelryItemsDialog.Selected.ID;
                 Button button = (Button)Controls.Find(slot + "Button", true).First();
-                ChangeIcon(button, iconsPath + jewelryItemsDialog.Selected.Icon + ".png");
+                ChangeIcon(button, iconsPath + jewelryItemsDialog.Selected.Icon + ".png", WoWHelper.QalityColor(jewelryItemsDialog.Selected.Quality));
             }
+            jewelryItemsDialog.Close();
         }
 
         void openGLControl_OpenGLDraw(object sender, RenderEventArgs e)
@@ -617,7 +619,7 @@ namespace WoW_Character_Viewer_Classic
                 position.X = currentPosition.X + (mouse.X - current.X) / 100f;
                 position.Y = currentPosition.Y + (mouse.Y - current.Y) / 100f;
             }
-            gl.LookAt(distance - zoom / 10f, 1f + position.Y, position.X, -zoom / 10f, 1f + position.Y, position.X, 0f, 1f, 0f);
+            gl.LookAt(distance - zoom / 10f, 1.2f + position.Y, position.X, -zoom / 10f, 1.2f + position.Y, position.X, 0f, 1f, 0f);
             gl.Rotate(rotation, 0f, 1f, 0f);
             character.Render(gl);
             currentZoom = zoom;

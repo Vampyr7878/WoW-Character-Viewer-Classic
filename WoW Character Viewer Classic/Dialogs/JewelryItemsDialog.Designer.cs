@@ -100,7 +100,6 @@
             // 
             // JewelryItemsDialog
             // 
-            this.AcceptButton = this.acceptButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
@@ -114,10 +113,12 @@
             this.ForeColor = System.Drawing.Color.Yellow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "JewelryItemsDialog";
-            this.Text = "Items Dialog";
+            this.Text = "Items";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.JewelryItemsDialog_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

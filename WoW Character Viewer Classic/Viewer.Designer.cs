@@ -886,6 +886,7 @@
             // 
             // finger1Button
             // 
+            this.finger1Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.finger1Button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("finger1Button.BackgroundImage")));
             this.finger1Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.finger1Button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -893,7 +894,7 @@
             this.finger1Button.Name = "finger1Button";
             this.finger1Button.Size = new System.Drawing.Size(48, 48);
             this.finger1Button.TabIndex = 13;
-            this.finger1Button.UseVisualStyleBackColor = true;
+            this.finger1Button.UseVisualStyleBackColor = false;
             this.finger1Button.Click += new System.EventHandler(this.slotButton_Click);
             // 
             // feetButton

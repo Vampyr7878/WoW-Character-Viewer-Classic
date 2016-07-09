@@ -270,11 +270,11 @@ namespace WoW_Character_Viewer_Classic.Models
 
         int FindTexture(int geoset)
         {
-            for(int i = 0; i < model.View.Textures.Length; i++)
+            foreach(ModelViewTexture texture in model.View.Textures)
             {
-                if(model.View.Textures[i].geoset == geoset)
+                if(texture.geoset == geoset)
                 {
-                    return model.View.Textures[i].texture;
+                    return texture.texture;
                 }
             }
             return -1;
@@ -323,17 +323,17 @@ namespace WoW_Character_Viewer_Classic.Models
                 gl.Color(1f, 0f, 0f);
                 gl.Disable(OpenGL.GL_DEPTH_TEST);
                 gl.Begin(OpenGL.GL_LINES);
-                for(int i = 0; i < bones.Length; i++)
+                foreach(ModelBone bone in bones)
                 {
-                    if(bones[i].Parent >= 0)
+                    if(bone.Parent >= 0)
                     {
-                        x = bones[bones[i].Parent].Position.x;
-                        y = bones[bones[i].Parent].Position.y;
-                        z = bones[bones[i].Parent].Position.z;
+                        x = bones[bone.Parent].Position.x;
+                        y = bones[bone.Parent].Position.y;
+                        z = bones[bone.Parent].Position.z;
                         gl.Vertex(x, y, z);
-                        x = bones[i].Position.x;
-                        y = bones[i].Position.y;
-                        z = bones[i].Position.z;
+                        x = bone.Position.x;
+                        y = bone.Position.y;
+                        z = bone.Position.z;
                         gl.Vertex(x, y, z);
                     }
                 }

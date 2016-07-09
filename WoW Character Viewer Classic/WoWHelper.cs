@@ -117,5 +117,74 @@ namespace WoW_Character_Viewer_Classic
             }
             return slot;
         }
+
+        public static bool RaceMatch(int raceMask, string characterRace)
+        {
+            int mask = 0;
+            switch(characterRace)
+            {
+                case "Human":
+                    mask = 1;
+                    break;
+                case "Orc":
+                    mask = 2;
+                    break;
+                case "Dwarf":
+                    mask = 4;
+                    break;
+                case "Undead":
+                    mask = 16;
+                    break;
+                case "Night Elf":
+                    mask = 8;
+                    break;
+                case "Tauren":
+                    mask = 32;
+                    break;
+                case "Gnome":
+                    mask = 64;
+                    break;
+                case "Troll":
+                    mask = 128;
+                    break;
+            }
+            return (raceMask & mask) == mask;
+        }
+
+        public static bool ClassMatch(int classMask, string characterClass)
+        {
+            int mask = 0;
+            switch (characterClass)
+            {
+                case "Warrior":
+                    mask = 1;
+                    break;
+                case "Paladin":
+                    mask = 2;
+                    break;
+                case "Hunter":
+                    mask = 4;
+                    break;
+                case "Rogue":
+                    mask = 8;
+                    break;
+                case "Priest":
+                    mask = 16;
+                    break;
+                case "Shaman":
+                    mask = 64;
+                    break;
+                case "Mage":
+                    mask = 128;
+                    break;
+                case "Warlock":
+                    mask = 256;
+                    break;
+                case "Druid":
+                    mask = 1024;
+                    break;
+            }
+            return (classMask & mask) == mask;
+        }
     }
 }

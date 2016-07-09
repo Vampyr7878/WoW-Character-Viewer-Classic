@@ -5,14 +5,17 @@ namespace WoW_Character_Viewer_Classic.Controls
 {
     class JewelryItemsListBox : ListBox
     {
-        public JewelryItemsListBox() : base()
+        Font bold;
+
+        public JewelryItemsListBox()
         {
             DrawMode = DrawMode.OwnerDrawVariable;
+            bold = new Font(Font, FontStyle.Bold);
         }
 
         protected override void OnDrawItem(DrawItemEventArgs e)
         {
-            if (e.Index >= this.Items.Count || e.Index <= -1)
+            if (e.Index >= Items.Count || e.Index <= -1)
             {
                 return;
             }
@@ -27,7 +30,8 @@ namespace WoW_Character_Viewer_Classic.Controls
             icon = new Bitmap(icon, e.Bounds.Height, e.Bounds.Height);
             graphics.FillRectangle(new TextureBrush(icon), e.Bounds.X, e.Bounds.Y, e.Bounds.Height, e.Bounds.Height);
             SizeF stringSize = graphics.MeasureString(item.Name, Font);
-            graphics.DrawString(item.Name, Font, new SolidBrush(WoWHelper.QalityColor(item.Quality)), 15, e.Bounds.Y + (e.Bounds.Height - stringSize.Height) / 2);
+            Font font = (e.State & DrawItemState.Selected) == DrawItemState.Selected ? bold : Font;
+            graphics.DrawString(item.Name, font, new SolidBrush(WoWHelper.QalityColor(item.Quality)), 15, e.Bounds.Y + (e.Bounds.Height - stringSize.Height) / 2);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
@@ -10,7 +11,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         JewelryItems items;
         JewlryItemsJewelryItem selected;
 
-        public JewelryItemsDialog(string slot)
+        public JewelryItemsDialog(string slot, string characterRace, string characterClass)
         {
             InitializeComponent();
             XmlSerializer serializer = new XmlSerializer(typeof(JewelryItems));
@@ -18,6 +19,8 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             {
                 items = (JewelryItems)serializer.Deserialize(reader.BaseStream);
             }
+            RaceFilter(characterRace);
+            ClassFilter(characterClass);
             List<JewlryItemsJewelryItem> list = new List<JewlryItemsJewelryItem>(items.JewelryItem);
             list.Sort((x, y) => x.Name.CompareTo(y.Name));
             itemsListBox.Items.AddRange(list.ToArray());
@@ -46,17 +49,43 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             return file;
         }
 
-        void searchButton_Click(object sender, System.EventArgs e)
+        void RaceFilter(string characterRace)
+        {
+            List<JewlryItemsJewelryItem> list = new List<JewlryItemsJewelryItem>(items.JewelryItem);
+            foreach(JewlryItemsJewelryItem item in items.JewelryItem)
+            {
+                if(!WoWHelper.RaceMatch(item.AllowableRace, characterRace))
+                {
+                    list.Remove(item);
+                }
+            }
+            items.JewelryItem = list.ToArray();
+        }
+
+        void ClassFilter(string characterClass)
+        {
+            List<JewlryItemsJewelryItem> list = new List<JewlryItemsJewelryItem>(items.JewelryItem);
+            foreach(JewlryItemsJewelryItem item in items.JewelryItem)
+            {
+                if(!WoWHelper.ClassMatch(item.AllowableClass, characterClass))
+                {
+                    list.Remove(item);
+                }
+            }
+            items.JewelryItem = list.ToArray();
+        }
+
+        void searchButton_Click(object sender, EventArgs e)
         {
             if(searchTextBox.Text != "")
             {
                 itemsListBox.Items.Clear();
                 List<JewlryItemsJewelryItem> list = new List<JewlryItemsJewelryItem>();
-                for(int i = 0; i < items.JewelryItem.Length; i++)
+                foreach(JewlryItemsJewelryItem item in items.JewelryItem)
                 {
-                    if(items.JewelryItem[i].Name.Contains(searchTextBox.Text))
+                    if(item.Name.Contains(searchTextBox.Text))
                     {
-                        list.Add(items.JewelryItem[i]);
+                        list.Add(item);
                     }
                 }
                 list.Sort((x, y) => x.Name.CompareTo(y.Name));
@@ -65,9 +94,27 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             }
         }
 
-        void itemsListBox_SelectedIndexChanged(object sender, System.EventArgs e)
+        void itemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             selected = (JewlryItemsJewelryItem)itemsListBox.SelectedItem;
+        }
+
+        void JewelryItemsDialog_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                if(searchTextBox.Focused)
+                {
+                    searchButton_Click(searchButton, null);
+                    AcceptButton = null;
+                }
+                else
+                {
+                    DialogResult = DialogResult.OK;
+                    Hide();
+                }
+                e.Handled = e.SuppressKeyPress = true;
+            }
         }
     }
 }
