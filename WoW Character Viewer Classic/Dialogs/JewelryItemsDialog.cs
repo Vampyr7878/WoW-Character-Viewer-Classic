@@ -23,6 +23,12 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             ClassFilter(characterClass);
             List<JewlryItemsJewelryItem> list = new List<JewlryItemsJewelryItem>(items.JewelryItem);
             list.Sort((x, y) => x.Name.CompareTo(y.Name));
+            JewlryItemsJewelryItem item = new JewlryItemsJewelryItem();
+            item.Name = "None";
+            item.ID = "0";
+            item.Icon = NoneIcon(slot);
+            item.Quality = -1;
+            itemsListBox.Items.Add(item);
             itemsListBox.Items.AddRange(list.ToArray());
             itemsListBox.SelectedIndex = 0;
         }
@@ -73,6 +79,26 @@ namespace WoW_Character_Viewer_Classic.Dialogs
                 }
             }
             items.JewelryItem = list.ToArray();
+        }
+
+        string NoneIcon(string slot)
+        {
+            string icon = "";
+            switch(slot)
+            {
+                case "neck":
+                    icon = "UI-PaperDoll-Slot-Neck";
+                    break;
+                case "finger1":
+                case "finger2":
+                    icon = "UI-PaperDoll-Slot-Finger";
+                    break;
+                case "trinket1":
+                case "trinket2":
+                    icon = "UI-PaperDoll-Slot-Trinket";
+                    break;
+            }
+            return icon;
         }
 
         void searchButton_Click(object sender, EventArgs e)

@@ -101,6 +101,8 @@
             this.neckButton = new System.Windows.Forms.Button();
             this.headButton = new System.Windows.Forms.Button();
             this.openGLControl = new SharpGL.OpenGLControl();
+            this.slotTooltip = new WoW_Character_Viewer_Classic.Controls.ButtonTooltip();
+            this.buttonTooltip = new WoW_Character_Viewer_Classic.Controls.ButtonTooltip();
             this.tabControl.SuspendLayout();
             this.appearancePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
@@ -294,6 +296,8 @@
             this.mountButton.Size = new System.Drawing.Size(48, 48);
             this.mountButton.TabIndex = 62;
             this.mountButton.UseVisualStyleBackColor = true;
+            this.mountButton.MouseEnter += new System.EventHandler(this.mountButton_MouseEnter);
+            this.mountButton.MouseLeave += new System.EventHandler(this.mountButton_MouseLeave);
             // 
             // bag4Button
             // 
@@ -305,6 +309,8 @@
             this.bag4Button.Size = new System.Drawing.Size(48, 48);
             this.bag4Button.TabIndex = 61;
             this.bag4Button.UseVisualStyleBackColor = true;
+            this.bag4Button.MouseEnter += new System.EventHandler(this.bagButton_MouseEnter);
+            this.bag4Button.MouseLeave += new System.EventHandler(this.bagButton_MouseLeave);
             // 
             // bag3Button
             // 
@@ -316,6 +322,8 @@
             this.bag3Button.Size = new System.Drawing.Size(48, 48);
             this.bag3Button.TabIndex = 60;
             this.bag3Button.UseVisualStyleBackColor = true;
+            this.bag3Button.MouseEnter += new System.EventHandler(this.bagButton_MouseEnter);
+            this.bag3Button.MouseLeave += new System.EventHandler(this.bagButton_MouseLeave);
             // 
             // bag2Button
             // 
@@ -327,6 +335,8 @@
             this.bag2Button.Size = new System.Drawing.Size(48, 48);
             this.bag2Button.TabIndex = 59;
             this.bag2Button.UseVisualStyleBackColor = true;
+            this.bag2Button.MouseEnter += new System.EventHandler(this.bagButton_MouseEnter);
+            this.bag2Button.MouseLeave += new System.EventHandler(this.bagButton_MouseLeave);
             // 
             // bag1Button
             // 
@@ -338,6 +348,8 @@
             this.bag1Button.Size = new System.Drawing.Size(48, 48);
             this.bag1Button.TabIndex = 58;
             this.bag1Button.UseVisualStyleBackColor = true;
+            this.bag1Button.MouseEnter += new System.EventHandler(this.bagButton_MouseEnter);
+            this.bag1Button.MouseLeave += new System.EventHandler(this.bagButton_MouseLeave);
             // 
             // backpackButton
             // 
@@ -349,6 +361,8 @@
             this.backpackButton.Size = new System.Drawing.Size(48, 48);
             this.backpackButton.TabIndex = 57;
             this.backpackButton.UseVisualStyleBackColor = true;
+            this.backpackButton.MouseEnter += new System.EventHandler(this.bagButton_MouseEnter);
+            this.backpackButton.MouseLeave += new System.EventHandler(this.bagButton_MouseLeave);
             // 
             // facialNameLabel
             // 
@@ -569,6 +583,8 @@
             this.druidButton.TabIndex = 39;
             this.druidButton.UseVisualStyleBackColor = true;
             this.druidButton.Click += new System.EventHandler(this.classButton_Click);
+            this.druidButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.druidButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // warlockButton
             // 
@@ -582,6 +598,8 @@
             this.warlockButton.TabIndex = 38;
             this.warlockButton.UseVisualStyleBackColor = true;
             this.warlockButton.Click += new System.EventHandler(this.classButton_Click);
+            this.warlockButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.warlockButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // mageButton
             // 
@@ -595,6 +613,8 @@
             this.mageButton.TabIndex = 37;
             this.mageButton.UseVisualStyleBackColor = true;
             this.mageButton.Click += new System.EventHandler(this.classButton_Click);
+            this.mageButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.mageButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // shamanButton
             // 
@@ -608,6 +628,8 @@
             this.shamanButton.TabIndex = 36;
             this.shamanButton.UseVisualStyleBackColor = true;
             this.shamanButton.Click += new System.EventHandler(this.classButton_Click);
+            this.shamanButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.shamanButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // priestButton
             // 
@@ -621,6 +643,8 @@
             this.priestButton.TabIndex = 35;
             this.priestButton.UseVisualStyleBackColor = true;
             this.priestButton.Click += new System.EventHandler(this.classButton_Click);
+            this.priestButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.priestButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // rogueButton
             // 
@@ -634,6 +658,8 @@
             this.rogueButton.TabIndex = 34;
             this.rogueButton.UseVisualStyleBackColor = true;
             this.rogueButton.Click += new System.EventHandler(this.classButton_Click);
+            this.rogueButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.rogueButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // hunterButton
             // 
@@ -647,6 +673,8 @@
             this.hunterButton.TabIndex = 33;
             this.hunterButton.UseVisualStyleBackColor = true;
             this.hunterButton.Click += new System.EventHandler(this.classButton_Click);
+            this.hunterButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.hunterButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // paladinButton
             // 
@@ -660,6 +688,8 @@
             this.paladinButton.TabIndex = 32;
             this.paladinButton.UseVisualStyleBackColor = true;
             this.paladinButton.Click += new System.EventHandler(this.classButton_Click);
+            this.paladinButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.paladinButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // warriorButton
             // 
@@ -673,6 +703,8 @@
             this.warriorButton.TabIndex = 31;
             this.warriorButton.UseVisualStyleBackColor = true;
             this.warriorButton.Click += new System.EventHandler(this.classButton_Click);
+            this.warriorButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.warriorButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // trollButton
             // 
@@ -686,6 +718,8 @@
             this.trollButton.TabIndex = 30;
             this.trollButton.UseVisualStyleBackColor = true;
             this.trollButton.Click += new System.EventHandler(this.raceButton_Click);
+            this.trollButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.trollButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // gnomeButton
             // 
@@ -699,6 +733,8 @@
             this.gnomeButton.TabIndex = 29;
             this.gnomeButton.UseVisualStyleBackColor = true;
             this.gnomeButton.Click += new System.EventHandler(this.raceButton_Click);
+            this.gnomeButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.gnomeButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // taurenButton
             // 
@@ -712,6 +748,8 @@
             this.taurenButton.TabIndex = 28;
             this.taurenButton.UseVisualStyleBackColor = true;
             this.taurenButton.Click += new System.EventHandler(this.raceButton_Click);
+            this.taurenButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.taurenButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // nightElfButton
             // 
@@ -725,6 +763,8 @@
             this.nightElfButton.TabIndex = 27;
             this.nightElfButton.UseVisualStyleBackColor = true;
             this.nightElfButton.Click += new System.EventHandler(this.raceButton_Click);
+            this.nightElfButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.nightElfButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // undeadButton
             // 
@@ -738,6 +778,8 @@
             this.undeadButton.TabIndex = 26;
             this.undeadButton.UseVisualStyleBackColor = true;
             this.undeadButton.Click += new System.EventHandler(this.raceButton_Click);
+            this.undeadButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.undeadButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // dwarfButton
             // 
@@ -751,6 +793,8 @@
             this.dwarfButton.TabIndex = 25;
             this.dwarfButton.UseVisualStyleBackColor = true;
             this.dwarfButton.Click += new System.EventHandler(this.raceButton_Click);
+            this.dwarfButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.dwarfButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // orcButton
             // 
@@ -764,6 +808,8 @@
             this.orcButton.TabIndex = 24;
             this.orcButton.UseVisualStyleBackColor = true;
             this.orcButton.Click += new System.EventHandler(this.raceButton_Click);
+            this.orcButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.orcButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // humanButton
             // 
@@ -777,6 +823,8 @@
             this.humanButton.TabIndex = 23;
             this.humanButton.UseVisualStyleBackColor = true;
             this.humanButton.Click += new System.EventHandler(this.raceButton_Click);
+            this.humanButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.humanButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // femaleButton
             // 
@@ -790,6 +838,8 @@
             this.femaleButton.TabIndex = 22;
             this.femaleButton.UseVisualStyleBackColor = true;
             this.femaleButton.Click += new System.EventHandler(this.genderButton_Click);
+            this.femaleButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.femaleButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // maleButton
             // 
@@ -803,6 +853,8 @@
             this.maleButton.TabIndex = 21;
             this.maleButton.UseVisualStyleBackColor = true;
             this.maleButton.Click += new System.EventHandler(this.genderButton_Click);
+            this.maleButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.maleButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // ammoReagentButton
             // 
@@ -814,6 +866,8 @@
             this.ammoReagentButton.Size = new System.Drawing.Size(48, 48);
             this.ammoReagentButton.TabIndex = 20;
             this.ammoReagentButton.UseVisualStyleBackColor = true;
+            this.ammoReagentButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
+            this.ammoReagentButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
             // 
             // rangedRelicButton
             // 
@@ -825,6 +879,8 @@
             this.rangedRelicButton.Size = new System.Drawing.Size(48, 48);
             this.rangedRelicButton.TabIndex = 19;
             this.rangedRelicButton.UseVisualStyleBackColor = true;
+            this.rangedRelicButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
+            this.rangedRelicButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
             // 
             // offHandButton
             // 
@@ -836,6 +892,8 @@
             this.offHandButton.Size = new System.Drawing.Size(48, 48);
             this.offHandButton.TabIndex = 18;
             this.offHandButton.UseVisualStyleBackColor = true;
+            this.offHandButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
+            this.offHandButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
             // 
             // mainHandButton
             // 
@@ -847,6 +905,8 @@
             this.mainHandButton.Size = new System.Drawing.Size(48, 48);
             this.mainHandButton.TabIndex = 17;
             this.mainHandButton.UseVisualStyleBackColor = true;
+            this.mainHandButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
+            this.mainHandButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
             // 
             // trinket2Button
             // 
@@ -859,6 +919,8 @@
             this.trinket2Button.TabIndex = 16;
             this.trinket2Button.UseVisualStyleBackColor = true;
             this.trinket2Button.Click += new System.EventHandler(this.slotButton_Click);
+            this.trinket2Button.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
+            this.trinket2Button.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
             // 
             // trinket1Button
             // 
@@ -871,6 +933,8 @@
             this.trinket1Button.TabIndex = 15;
             this.trinket1Button.UseVisualStyleBackColor = true;
             this.trinket1Button.Click += new System.EventHandler(this.slotButton_Click);
+            this.trinket1Button.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
+            this.trinket1Button.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
             // 
             // finger2Button
             // 
@@ -883,6 +947,7 @@
             this.finger2Button.TabIndex = 14;
             this.finger2Button.UseVisualStyleBackColor = true;
             this.finger2Button.Click += new System.EventHandler(this.slotButton_Click);
+            this.finger2Button.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
             // 
             // finger1Button
             // 
@@ -896,6 +961,8 @@
             this.finger1Button.TabIndex = 13;
             this.finger1Button.UseVisualStyleBackColor = false;
             this.finger1Button.Click += new System.EventHandler(this.slotButton_Click);
+            this.finger1Button.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
+            this.finger1Button.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
             // 
             // feetButton
             // 
@@ -907,6 +974,8 @@
             this.feetButton.Size = new System.Drawing.Size(48, 48);
             this.feetButton.TabIndex = 12;
             this.feetButton.UseVisualStyleBackColor = true;
+            this.feetButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
+            this.feetButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
             // 
             // legsButton
             // 
@@ -918,6 +987,8 @@
             this.legsButton.Size = new System.Drawing.Size(48, 48);
             this.legsButton.TabIndex = 11;
             this.legsButton.UseVisualStyleBackColor = true;
+            this.legsButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
+            this.legsButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
             // 
             // waistButton
             // 
@@ -929,6 +1000,8 @@
             this.waistButton.Size = new System.Drawing.Size(48, 48);
             this.waistButton.TabIndex = 10;
             this.waistButton.UseVisualStyleBackColor = true;
+            this.waistButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
+            this.waistButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
             // 
             // handsButton
             // 
@@ -940,6 +1013,8 @@
             this.handsButton.Size = new System.Drawing.Size(48, 48);
             this.handsButton.TabIndex = 9;
             this.handsButton.UseVisualStyleBackColor = true;
+            this.handsButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
+            this.handsButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
             // 
             // wristButton
             // 
@@ -951,6 +1026,8 @@
             this.wristButton.Size = new System.Drawing.Size(48, 48);
             this.wristButton.TabIndex = 8;
             this.wristButton.UseVisualStyleBackColor = true;
+            this.wristButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
+            this.wristButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
             // 
             // tabardButton
             // 
@@ -962,6 +1039,8 @@
             this.tabardButton.Size = new System.Drawing.Size(48, 48);
             this.tabardButton.TabIndex = 7;
             this.tabardButton.UseVisualStyleBackColor = true;
+            this.tabardButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
+            this.tabardButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
             // 
             // shirtButton
             // 
@@ -973,6 +1052,8 @@
             this.shirtButton.Size = new System.Drawing.Size(48, 48);
             this.shirtButton.TabIndex = 6;
             this.shirtButton.UseVisualStyleBackColor = true;
+            this.shirtButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
+            this.shirtButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
             // 
             // chestButton
             // 
@@ -984,6 +1065,8 @@
             this.chestButton.Size = new System.Drawing.Size(48, 48);
             this.chestButton.TabIndex = 5;
             this.chestButton.UseVisualStyleBackColor = true;
+            this.chestButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
+            this.chestButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
             // 
             // backButton
             // 
@@ -995,6 +1078,8 @@
             this.backButton.Size = new System.Drawing.Size(48, 48);
             this.backButton.TabIndex = 4;
             this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
+            this.backButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
             // 
             // shoulderButton
             // 
@@ -1006,6 +1091,8 @@
             this.shoulderButton.Size = new System.Drawing.Size(48, 48);
             this.shoulderButton.TabIndex = 3;
             this.shoulderButton.UseVisualStyleBackColor = true;
+            this.shoulderButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
+            this.shoulderButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
             // 
             // neckButton
             // 
@@ -1018,6 +1105,8 @@
             this.neckButton.TabIndex = 2;
             this.neckButton.UseVisualStyleBackColor = true;
             this.neckButton.Click += new System.EventHandler(this.slotButton_Click);
+            this.neckButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
+            this.neckButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
             // 
             // headButton
             // 
@@ -1029,6 +1118,8 @@
             this.headButton.Size = new System.Drawing.Size(48, 48);
             this.headButton.TabIndex = 1;
             this.headButton.UseVisualStyleBackColor = true;
+            this.headButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
+            this.headButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
             // 
             // openGLControl
             // 
@@ -1047,6 +1138,26 @@
             this.openGLControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.openGLControl_MouseDown);
             this.openGLControl.MouseLeave += new System.EventHandler(this.openGLControl_MouseLeave);
             this.openGLControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.openGLControl_MouseUp);
+            // 
+            // slotTooltip
+            // 
+            this.slotTooltip.AutomaticDelay = 0;
+            this.slotTooltip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.slotTooltip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.slotTooltip.ForeColor = System.Drawing.Color.Yellow;
+            this.slotTooltip.OwnerDraw = true;
+            this.slotTooltip.UseAnimation = false;
+            this.slotTooltip.UseFading = false;
+            // 
+            // buttonTooltip
+            // 
+            this.buttonTooltip.AutomaticDelay = 0;
+            this.buttonTooltip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.buttonTooltip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.buttonTooltip.ForeColor = System.Drawing.Color.White;
+            this.buttonTooltip.OwnerDraw = true;
+            this.buttonTooltip.UseAnimation = false;
+            this.buttonTooltip.UseFading = false;
             // 
             // Viewer
             // 
@@ -1144,6 +1255,8 @@
         private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.Button mountButton;
         private System.Windows.Forms.Button showSkeletonButton;
+        private Controls.ButtonTooltip slotTooltip;
+        private Controls.ButtonTooltip buttonTooltip;
     }
 }
 

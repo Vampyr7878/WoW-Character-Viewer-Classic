@@ -31,7 +31,8 @@ namespace WoW_Character_Viewer_Classic.Controls
             graphics.FillRectangle(new TextureBrush(icon), e.Bounds.X, e.Bounds.Y, e.Bounds.Height, e.Bounds.Height);
             SizeF stringSize = graphics.MeasureString(item.Name, Font);
             Font font = (e.State & DrawItemState.Selected) == DrawItemState.Selected ? bold : Font;
-            graphics.DrawString(item.Name, font, new SolidBrush(WoWHelper.QalityColor(item.Quality)), 15, e.Bounds.Y + (e.Bounds.Height - stringSize.Height) / 2);
+            Color color = item.Name == "None" ? Color.White : WoWHelper.QalityColor(item.Quality);
+            graphics.DrawString(item.Name, font, new SolidBrush(color), 15, e.Bounds.Y + (e.Bounds.Height - stringSize.Height) / 2);
         }
     }
 }

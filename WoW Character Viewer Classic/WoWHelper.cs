@@ -9,6 +9,9 @@ namespace WoW_Character_Viewer_Classic
             Color color = new Color();
             switch(quality)
             {
+                case -1:
+                    color = Color.FromArgb(25, 25, 25);
+                    break;
                 case 0:
                     color = Color.FromArgb(157, 157, 157);
                     break;
@@ -116,6 +119,77 @@ namespace WoW_Character_Viewer_Classic
                     break;
             }
             return slot;
+        }
+
+        public static string SlotName(string slot, string characterClass)
+        {
+            string name = "";
+            switch(slot)
+            {
+                case "head":
+                case "neck":
+                case "shoulder":
+                case "back":
+                case "chest":
+                case "shirt":
+                case "tabard":
+                case "wrist":
+                case "hands":
+                case "waist":
+                case "legs":
+                case "feet":
+                case "backpack":
+                case "mount":
+                    name = slot[0].ToString().ToUpper() + slot.Substring(1);
+                    break;
+                case "finger1":
+                case "finger2":
+                case "trinket1":
+                case "trinket2":
+                    name = slot[0].ToString().ToUpper() + slot.Substring(1, slot.Length - 2);
+                    break;
+                case "mainHand":
+                case "offHand":
+                    name = slot[0].ToString().ToUpper() + slot.Replace("Hand", " Hand").Substring(1);
+                    break;
+                case "rangedRelic":
+                    name = ClassSlotName(slot, characterClass);
+                    break;
+                case "ammoReagent":
+                    name = ClassSlotName(slot, characterClass);
+                    break;
+                case "bag1":
+                case "bag2":
+                case "bag3":
+                case "bag4":
+                    name = "Equip Container";
+                    break;
+            }
+            return name;
+        }
+
+        static string ClassSlotName(string slot, string characterClass)
+        {
+            string name = "";
+            switch(characterClass)
+            {
+                case "Warrior":
+                case "Hunter":
+                case "Rogue":
+                    name = slot == "rangedRelic" ? "Ranged" : "Ammo";
+                    break;
+                case "Paladin":
+                case "Shaman":
+                case "Druid":
+                    name = slot == "rangedRelic" ? "Relic" : "Reagent";
+                    break;
+                case "Priest":
+                case "Mage":
+                case "Warlock":
+                    name = slot == "rangedRelic" ? "Ranged" : "Reagent";
+                    break;
+            }
+            return name;
         }
 
         public static bool RaceMatch(int raceMask, string characterRace)

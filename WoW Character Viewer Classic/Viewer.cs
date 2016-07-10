@@ -539,11 +539,11 @@ namespace WoW_Character_Viewer_Classic
 
         void Face()
         {
-            if (character.Face < 0)
+            if(character.Face < 0)
             {
                 character.Face = character.FacesCount - 1;
             }
-            if (character.Face == character.FacesCount)
+            if(character.Face == character.FacesCount)
             {
                 character.Face = 0;
             }
@@ -552,11 +552,11 @@ namespace WoW_Character_Viewer_Classic
 
         void Hair()
         {
-            if (character.Hair < 0)
+            if(character.Hair < 0)
             {
                 character.Hair = character.HairsCount - 1;
             }
-            if (character.Hair == character.HairsCount)
+            if(character.Hair == character.HairsCount)
             {
                 character.Hair = 0;
             }
@@ -566,11 +566,11 @@ namespace WoW_Character_Viewer_Classic
 
         void HairColor()
         {
-            if (character.Color < 0)
+            if(character.Color < 0)
             {
                 character.Color = character.ColorsCount - 1;
             }
-            if (character.Color == character.ColorsCount)
+            if(character.Color == character.ColorsCount)
             {
                 character.Color = 0;
             }
@@ -579,11 +579,11 @@ namespace WoW_Character_Viewer_Classic
 
         void Facial()
         {
-            if (character.Facial < 0)
+            if(character.Facial < 0)
             {
                 character.Facial = character.FacialsCount - 1;
             }
-            if (character.Facial == character.FacialsCount)
+            if(character.Facial == character.FacialsCount)
             {
                 character.Facial = 0;
             }
@@ -613,11 +613,11 @@ namespace WoW_Character_Viewer_Classic
             gl.LoadIdentity();
             character.Rotation = rotation;
             Point current = openGLControl.PointToClient(MousePosition);
-            if (rotate)
+            if(rotate)
             {
                 rotation = currentRotation + mouse.X - current.X;
             }
-            if (move)
+            if(move)
             {
                 position.X = currentPosition.X + (mouse.X - current.X) / 100f;
                 position.Y = currentPosition.Y + (mouse.Y - current.Y) / 100f;
@@ -651,11 +651,11 @@ namespace WoW_Character_Viewer_Classic
         {
             mouse.X = e.X;
             mouse.Y = e.Y;
-            if (e.Button == MouseButtons.Left)
+            if(e.Button == MouseButtons.Left)
             {
                 rotate = true;
             }
-            else if (e.Button == MouseButtons.Right)
+            else if(e.Button == MouseButtons.Right)
             {
                 move = true;
             }
@@ -678,11 +678,11 @@ namespace WoW_Character_Viewer_Classic
         void openGlControl_MouseWheel(object sender, MouseEventArgs e)
         {
             zoom = currentZoom + (e.Delta / 100f);
-            if (distance - zoom / 10 < zoomMin)
+            if(distance - zoom / 10 < zoomMin)
             {
                 zoom = currentZoom;
             }
-            if (distance - zoom / 10 > zoomMax)
+            if(distance - zoom / 10 > zoomMax)
             {
                 zoom = currentZoom;
             }
@@ -709,10 +709,17 @@ namespace WoW_Character_Viewer_Classic
             ChangeClass();
         }
 
-        void showSkeleton_Click(object sender, EventArgs e)
+        void button_MouseEnter(object sender, EventArgs e)
         {
-            character.Skeleton = !character.Skeleton;
-            showSkeletonButton.Text = character.Skeleton ? "Hide Skeleton" : "Show Skeleton";
+            Button button = (Button)sender;
+            string text = button.Name[0].ToString().ToUpper() + button.Name.Replace("Button", "").Replace("Elf", " Elf").Substring(1);
+            buttonTooltip.Show(text, button, 48, 48);
+        }
+
+        void button_MouseLeave(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            buttonTooltip.Hide(button);
         }
 
         void prevButton_Click(object sender, EventArgs e)
@@ -746,7 +753,7 @@ namespace WoW_Character_Viewer_Classic
         void nextButton_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            switch (button.Name.Replace("NextButton", ""))
+            switch(button.Name.Replace("NextButton", ""))
             {
                 case "skin":
                     character.Skin++;
@@ -784,6 +791,54 @@ namespace WoW_Character_Viewer_Classic
                     Jewelry(button.Name.Replace("Button", ""));
                     break;
             }
+        }
+
+        void slotButton_MouseEnter(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            if(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))] == "0")
+            {
+                slotTooltip.Show(WoWHelper.SlotName(button.Name.Replace("Button", ""), characterClass), button, 48, 48);
+            }
+        }
+
+        void slotButton_MouseLeave(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            slotTooltip.Hide(button);
+        }
+
+        void bagButton_MouseEnter(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            if(button.Name == "backpackButton" || character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))] == "0")
+            {
+                buttonTooltip.Show(WoWHelper.SlotName(button.Name.Replace("Button", ""), characterClass), button, 48, 48);
+            }
+        }
+
+        void bagButton_MouseLeave(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            buttonTooltip.Hide(button);
+        }
+
+        void mountButton_MouseEnter(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            buttonTooltip.Show(WoWHelper.SlotName(button.Name.Replace("Button", ""), characterClass), button, 48, 48);
+        }
+
+        void mountButton_MouseLeave(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            buttonTooltip.Hide(button);
+        }
+
+        void showSkeleton_Click(object sender, EventArgs e)
+        {
+            character.Skeleton = !character.Skeleton;
+            showSkeletonButton.Text = character.Skeleton ? "Hide Skeleton" : "Show Skeleton";
         }
 
         void bottomButton_Click(object sender, EventArgs e)

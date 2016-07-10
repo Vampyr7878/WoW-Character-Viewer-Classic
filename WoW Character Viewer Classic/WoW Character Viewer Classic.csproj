@@ -62,6 +62,10 @@
     <Compile Include="Controls\JewelryItemsListBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\JewelryTooltip.cs" />
+    <Compile Include="Controls\ButtonTooltip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Dialogs\JewelryItemsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
