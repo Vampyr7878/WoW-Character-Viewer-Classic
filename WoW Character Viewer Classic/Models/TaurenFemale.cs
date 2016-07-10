@@ -56,7 +56,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         List<Geosets> currentGeosets;
 
-        public TaurenFemale() : base(@"Character\Tauren\Female\TaurenFemale.xml")
+        public TaurenFemale(string characterClass) : base(@"Character\Tauren\Female\TaurenFemale.xml", characterClass)
         {
             currentGeosets = new List<Geosets>
             {

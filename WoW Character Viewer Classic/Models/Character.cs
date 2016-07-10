@@ -3,7 +3,6 @@ using SharpGL.SceneGraph.Assets;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Xml.Serialization;
 
 namespace WoW_Character_Viewer_Classic.Models
@@ -32,14 +31,24 @@ namespace WoW_Character_Viewer_Classic.Models
         protected string[] facialNames;
         protected int facialsCount;
 
-        protected Character(string file)
+        protected Character(string file, string characterClass)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Model));
             using(StreamReader reader = new StreamReader(file))
             {
                 model = (Model)serializer.Deserialize(reader.BaseStream);
             }
-            Gear = Enumerable.Repeat("0", 25).ToArray();
+            Gear = new JewlryItemsJewelryItem[25];
+            for(int i = 0; i < 25; i++)
+            {
+                Gear[i] = new JewlryItemsJewelryItem
+                {
+                    Name = "None",
+                    ID = "0",
+                    Icon = WoWHelper.SlotIcon(i, characterClass),
+                    Quality = -1
+                };
+            }
             Skeleton = false;
             texturesPath = @"Character\" + model.Name.Replace("Female", "").Replace("Male", "") + @"\";
             vertices = model.Vertices;
@@ -73,7 +82,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         public Model Model { get { return model; } }
 
-        public string[] Gear { get; set; }
+        public JewlryItemsJewelryItem[] Gear { get; set; }
 
         public bool Skeleton { get; set; }
 

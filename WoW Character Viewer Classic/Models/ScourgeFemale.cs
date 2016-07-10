@@ -58,7 +58,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         List<Geosets> currentGeosets;
 
-        public ScourgeFemale() : base(@"Character\Scourge\Female\ScourgeFemale.xml")
+        public ScourgeFemale(string characterClass) : base(@"Character\Scourge\Female\ScourgeFemale.xml", characterClass)
         {
             currentGeosets = new List<Geosets>
             {

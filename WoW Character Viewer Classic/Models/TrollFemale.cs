@@ -59,7 +59,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         List<Geosets> currentGeosets;
 
-        public TrollFemale() : base(@"Character\Troll\Female\TrollFemale.xml")
+        public TrollFemale(string characterClass) : base(@"Character\Troll\Female\TrollFemale.xml", characterClass)
         {
             currentGeosets = new List<Geosets>
             {

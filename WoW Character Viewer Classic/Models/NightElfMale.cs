@@ -63,7 +63,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         List<Geosets> currentGeosets;
 
-        public NightElfMale() : base(@"Character\NightElf\Male\NightElfMale.xml")
+        public NightElfMale(string characterClass) : base(@"Character\NightElf\Male\NightElfMale.xml", characterClass)
         {
             currentGeosets = new List<Geosets>
             {

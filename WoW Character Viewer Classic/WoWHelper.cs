@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 
 namespace WoW_Character_Viewer_Classic
 {
@@ -32,6 +33,42 @@ namespace WoW_Character_Viewer_Classic
                     break;
                 case 6:
                     color = Color.FromArgb(230, 204, 128);
+                    break;
+            }
+            return color;
+        }
+
+        public static Color ClassColor(string name)
+        {
+            Color color = new Color();
+            switch(name)
+            {
+                case "Warrior":
+                    color = Color.FromArgb(199, 156, 110);
+                    break;
+                case "Paladin":
+                    color = Color.FromArgb(245, 140, 186);
+                    break;
+                case "Hunter":
+                    color = Color.FromArgb(171, 212, 115);
+                    break;
+                case "Rogue":
+                    color = Color.FromArgb(255, 245, 105);
+                    break;
+                case "Priest":
+                    color = Color.FromArgb(255, 255, 255);
+                    break;
+                case "Shaman":
+                    color = Color.FromArgb(0, 112, 222);
+                    break;
+                case "Mage":
+                    color = Color.FromArgb(105, 204, 240);
+                    break;
+                case "Warlock":
+                    color = Color.FromArgb(148, 130, 201);
+                    break;
+                case "Druid":
+                    color = Color.FromArgb(255, 125, 10);
                     break;
             }
             return color;
@@ -121,6 +158,150 @@ namespace WoW_Character_Viewer_Classic
             return slot;
         }
 
+        public static string SlotIcon(string slot, string characterClass)
+        {
+            string icon = "";
+            switch(slot)
+            {
+                case "head":
+                    icon = "UI-PaperDoll-Slot-Head";
+                    break;
+                case "neck":
+                    icon = "UI-PaperDoll-Slot-Neck";
+                    break;
+                case "shoulder":
+                    icon = "UI-PaperDoll-Slot-Shoulder";
+                    break;
+                case "back":
+                case "chest":
+                    icon = "UI-PaperDoll-Slot-Chest";
+                    break;
+                case "shirt":
+                    icon = "UI-PaperDoll-Slot-Shirt";
+                    break;
+                case "tabard":
+                    icon = "UI-PaperDoll-Slot-Tabard";
+                    break;
+                case "wrist":
+                    icon = "UI-PaperDoll-Slot-Wrists";
+                    break;
+                case "hands":
+                    icon = "UI-PaperDoll-Slot-Hands";
+                    break;
+                case "waist":
+                    icon = "UI-PaperDoll-Slot-Waist";
+                    break;
+                case "legs":
+                    icon = "UI-PaperDoll-Slot-Legs";
+                    break;
+                case "feet":
+                    icon = "UI-PaperDoll-Slot-Feet";
+                    break;
+                case "finger1":
+                case "finger2":
+                    icon = "UI-PaperDoll-Slot-Finger";
+                    break;
+                case "trinket1":
+                case "trinket2":
+                    icon = "UI-PaperDoll-Slot-Trinket";
+                    break;
+                case "mainHand":
+                    icon = "UI-PaperDoll-Slot-MainHand";
+                    break;
+                case "offHand":
+                    icon = "UI-PaperDoll-Slot-SecondaryHand";
+                    break;
+                case "rangedRelic":
+                    icon = ClassSlotName(slot, characterClass) == "Ranged" ? "UI-PaperDoll-Slot-Ranged" : "UI-PaperDoll-Slot-Relic";
+                    break;
+                case "ammoReagent":
+                    icon = ClassSlotName(slot, characterClass) == "Ammo" ? "UI-PaperDoll-Slot-Ammo" : "UI-PaperDoll-Slot-Bag";
+                    break;
+                case "bag1":
+                case "bag2":
+                case "bag3":
+                case "bag4":
+                    icon = "UI-PaperDoll-Slot-Bag";
+                    break;
+                case "mount":
+                    icon = "UI-Backpack-EmptySlot";
+                    break;
+            }
+            return icon;
+        }
+
+        public static string SlotIcon(int slot, string characterClass)
+        {
+            string icon = "";
+            switch(slot)
+            {
+                case 0:
+                    icon = "UI-PaperDoll-Slot-Head";
+                    break;
+                case 1:
+                    icon = "UI-PaperDoll-Slot-Neck";
+                    break;
+                case 2:
+                    icon = "UI-PaperDoll-Slot-Shoulder";
+                    break;
+                case 3:
+                case 4:
+                    icon = "UI-PaperDoll-Slot-Chest";
+                    break;
+                case 5:
+                    icon = "UI-PaperDoll-Slot-Shirt";
+                    break;
+                case 6:
+                    icon = "UI-PaperDoll-Slot-Tabard";
+                    break;
+                case 7:
+                    icon = "UI-PaperDoll-Slot-Wrists";
+                    break;
+                case 8:
+                    icon = "UI-PaperDoll-Slot-Hands";
+                    break;
+                case 9:
+                    icon = "UI-PaperDoll-Slot-Waist";
+                    break;
+                case 10:
+                    icon = "UI-PaperDoll-Slot-Legs";
+                    break;
+                case 11:
+                    icon = "UI-PaperDoll-Slot-Feet";
+                    break;
+                case 12:
+                case 13:
+                    icon = "UI-PaperDoll-Slot-Finger";
+                    break;
+                case 14:
+                case 15:
+                    icon = "UI-PaperDoll-Slot-Trinket";
+                    break;
+                case 16:
+                    icon = "UI-PaperDoll-Slot-MainHand";
+                    break;
+                case 17:
+                    icon = "UI-PaperDoll-Slot-SecondaryHand";
+                    break;
+                case 18:
+                    icon = ClassSlotName(slot, characterClass) == "Ranged" ? "UI-PaperDoll-Slot-Ranged" : "UI-PaperDoll-Slot-Relic";
+                    break;
+                case 19:
+                    icon = ClassSlotName(slot, characterClass) == "Ammo" ? "UI-PaperDoll-Slot-Ammo" : "UI-PaperDoll-Slot-Bag";
+                    break;
+                case 20:
+                case 21:
+                case 22:
+                case 23:
+                    icon = "UI-PaperDoll-Slot-Bag";
+                    break;
+                case 24:
+                    icon = "UI-Backpack-EmptySlot";
+                    break;
+            }
+            return icon;
+        }
+
         public static string SlotName(string slot, string characterClass)
         {
             string name = "";
@@ -192,6 +373,30 @@ namespace WoW_Character_Viewer_Classic
             return name;
         }
 
+        static string ClassSlotName(int slot, string characterClass)
+        {
+            string name = "";
+            switch(characterClass)
+            {
+                case "Warrior":
+                case "Hunter":
+                case "Rogue":
+                    name = slot == 18 ? "Ranged" : "Ammo";
+                    break;
+                case "Paladin":
+                case "Shaman":
+                case "Druid":
+                    name = slot == 18 ? "Relic" : "Reagent";
+                    break;
+                case "Priest":
+                case "Mage":
+                case "Warlock":
+                    name = slot == 18 ? "Ranged" : "Reagent";
+                    break;
+            }
+            return name;
+        }
+
         public static bool RaceMatch(int raceMask, string characterRace)
         {
             int mask = 0;
@@ -228,7 +433,7 @@ namespace WoW_Character_Viewer_Classic
         public static bool ClassMatch(int classMask, string characterClass)
         {
             int mask = 0;
-            switch (characterClass)
+            switch(characterClass)
             {
                 case "Warrior":
                     mask = 1;
@@ -259,6 +464,57 @@ namespace WoW_Character_Viewer_Classic
                     break;
             }
             return (classMask & mask) == mask;
+        }
+
+        static string ClassName(int classMask)
+        {
+            string name = "";
+            switch(classMask)
+            {
+                case 1:
+                    name = "Warrior";
+                    break;
+                case 2:
+                    name = "Paladin";
+                    break;
+                case 4:
+                    name = "Hunter";
+                    break;
+                case 8:
+                    name = "Rogue";
+                    break;
+                case 16:
+                    name = "Priest";
+                    break;
+                case 64:
+                    name = "Shaman";
+                    break;
+                case 128:
+                    name = "Mage";
+                    break;
+                case 256:
+                    name = "Warlock";
+                    break;
+                case 1024:
+                    name = "Druid";
+                    break;
+            }
+            return name;
+        }
+
+        public static List<string> Classes(int classMask)
+        {
+            int mask = 1;
+            List<string> list = new List<string>();
+            for(int i = 0; i < 9; i++)
+            {
+                if((classMask & mask) == mask)
+                {
+                    list.Add(ClassName(classMask & mask));
+                }
+                mask <<= 1;
+            }
+            return list;
         }
     }
 }

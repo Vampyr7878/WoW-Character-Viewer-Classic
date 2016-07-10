@@ -72,7 +72,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         List<Geosets> currentGeosets;
 
-        public DwarfMale() : base(@"Character\Dwarf\Male\DwarfMale.xml")
+        public DwarfMale(string characterClass) : base(@"Character\Dwarf\Male\DwarfMale.xml", characterClass)
         {
             currentGeosets = new List<Geosets>
             {

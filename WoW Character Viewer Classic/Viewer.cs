@@ -42,7 +42,7 @@ namespace WoW_Character_Viewer_Classic
             distance = 2.8f;
             iconsPath = @"Icons\";
             Random random = new Random();
-            character = new HumanMale();
+            character = new HumanMale("Warrior");
             RandomGender(random.Next(2));
             RandomRace(random.Next(8));
         }
@@ -204,11 +204,11 @@ namespace WoW_Character_Viewer_Classic
         {
             if(characterGender)
             {
-                character = new HumanMale();
+                character = new HumanMale(characterClass);
             }
             else
             {
-                character = new HumanFemale();
+                character = new HumanFemale(characterClass);
             }
             humanButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
@@ -226,11 +226,11 @@ namespace WoW_Character_Viewer_Classic
         {
             if(characterGender)
             {
-                character = new OrcMale();
+                character = new OrcMale(characterClass);
             }
             else
             {
-                character = new OrcFemale();
+                character = new OrcFemale(characterClass);
             }
             orcButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
@@ -248,11 +248,11 @@ namespace WoW_Character_Viewer_Classic
         {
             if(characterGender)
             {
-                character = new DwarfMale();
+                character = new DwarfMale(characterClass);
             }
             else
             {
-                character = new DwarfFemale();
+                character = new DwarfFemale(characterClass);
             }
             dwarfButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
@@ -270,11 +270,11 @@ namespace WoW_Character_Viewer_Classic
         {
             if(characterGender)
             {
-                character = new ScourgeMale();
+                character = new ScourgeMale(characterClass);
             }
             else
             {
-                character = new ScourgeFemale();
+                character = new ScourgeFemale(characterClass);
             }
             undeadButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
@@ -292,11 +292,11 @@ namespace WoW_Character_Viewer_Classic
         {
             if(characterGender)
             {
-                character = new NightElfMale();
+                character = new NightElfMale(characterClass);
             }
             else
             {
-                character = new NightElfFemale();
+                character = new NightElfFemale(characterClass);
             }
             nightElfButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
@@ -314,11 +314,11 @@ namespace WoW_Character_Viewer_Classic
         {
             if(characterGender)
             {
-                character = new TaurenMale();
+                character = new TaurenMale(characterClass);
             }
             else
             {
-                character = new TaurenFemale();
+                character = new TaurenFemale(characterClass);
             }
             taurenButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
@@ -336,11 +336,11 @@ namespace WoW_Character_Viewer_Classic
         {
             if(characterGender)
             {
-                character = new GnomeMale();
+                character = new GnomeMale(characterClass);
             }
             else
             {
-                character = new GnomeFemale();
+                character = new GnomeFemale(characterClass);
             }
             gnomeButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
@@ -358,11 +358,11 @@ namespace WoW_Character_Viewer_Classic
         {
             if(characterGender)
             {
-                character = new TrollMale();
+                character = new TrollMale(characterClass);
             }
             else
             {
-                character = new TrollFemale();
+                character = new TrollFemale(characterClass);
             }
             trollButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
@@ -428,69 +428,62 @@ namespace WoW_Character_Viewer_Classic
         void Warrior()
         {
             warriorButton.FlatStyle = FlatStyle.Flat;
-            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Ranged.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Ammo.png", Color.FromArgb(25, 25, 25));
         }
 
         void Paladin()
         {
             paladinButton.FlatStyle = FlatStyle.Flat;
-            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Relic.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Bag.png", Color.FromArgb(25, 25, 25));
         }
 
         void Hunter()
         {
             hunterButton.FlatStyle = FlatStyle.Flat;
-            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Ranged.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Ammo.png", Color.FromArgb(25, 25, 25));
         }
 
         void Rogue()
         {
             rogueButton.FlatStyle = FlatStyle.Flat;
-            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Ranged.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Ammo.png", Color.FromArgb(25, 25, 25));
         }
 
         void Priest()
         {
             priestButton.FlatStyle = FlatStyle.Flat;
-            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Ranged.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Bag.png", Color.FromArgb(25, 25, 25));
         }
 
         void Shaman()
         {
             shamanButton.FlatStyle = FlatStyle.Flat;
-            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Relic.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Bag.png", Color.FromArgb(25, 25, 25));
         }
 
         void Mage()
         {
             mageButton.FlatStyle = FlatStyle.Flat;
-            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Ranged.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Bag.png", Color.FromArgb(25, 25, 25));
         }
 
         void Warlock()
         {
             warlockButton.FlatStyle = FlatStyle.Flat;
-            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Ranged.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Bag.png", Color.FromArgb(25, 25, 25));
         }
 
         void Druid()
         {
             druidButton.FlatStyle = FlatStyle.Flat;
-            ChangeIcon(rangedRelicButton, iconsPath + "UI-PaperDoll-Slot-Relic.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(ammoReagentButton, iconsPath + "UI-PaperDoll-Slot-Bag.png", Color.FromArgb(25, 25, 25));
+        }
+
+        void ChangeIcon(Button button)
+        {
+            string path = iconsPath + character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].Icon + ".png";
+            Color color = WoWHelper.QalityColor(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].Quality);
+            using(StreamReader reader = new StreamReader(path))
+            {
+                button.BackgroundImage = new Bitmap(reader.BaseStream);
+            }
+            button.BackColor = color;
         }
 
         void ChangeIcon(Button button, string path, Color color)
         {
-            using(StreamReader reader = new StreamReader(path))
+            using (StreamReader reader = new StreamReader(path))
             {
                 button.BackgroundImage = new Bitmap(reader.BaseStream);
             }
@@ -499,29 +492,41 @@ namespace WoW_Character_Viewer_Classic
 
         void ResetGearIcons()
         {
-            ChangeIcon(headButton, iconsPath + "UI-PaperDoll-Slot-Head.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(neckButton, iconsPath + "UI-PaperDoll-Slot-Neck.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(shoulderButton, iconsPath + "UI-PaperDoll-Slot-Shoulder.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(backButton, iconsPath + "UI-PaperDoll-Slot-Chest.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(chestButton, iconsPath + "UI-PaperDoll-Slot-Chest.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(shirtButton, iconsPath + "UI-PaperDoll-Slot-Shirt.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(tabardButton, iconsPath + "UI-PaperDoll-Slot-Tabard.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(wristButton, iconsPath + "UI-PaperDoll-Slot-Wrists.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(handsButton, iconsPath + "UI-PaperDoll-Slot-Hands.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(waistButton, iconsPath + "UI-PaperDoll-Slot-Waist.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(legsButton, iconsPath + "UI-PaperDoll-Slot-Legs.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(feetButton, iconsPath + "UI-PaperDoll-Slot-Feet.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(finger1Button, iconsPath + "UI-PaperDoll-Slot-Finger.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(finger2Button, iconsPath + "UI-PaperDoll-Slot-Finger.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(trinket1Button, iconsPath + "UI-PaperDoll-Slot-Trinket.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(trinket2Button, iconsPath + "UI-PaperDoll-Slot-Trinket.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(mainHandButton, iconsPath + "UI-PaperDoll-Slot-MainHand.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(offHandButton, iconsPath + "UI-PaperDoll-Slot-SecondaryHand.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(bag1Button, iconsPath + "UI-PaperDoll-Slot-Bag.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(bag2Button, iconsPath + "UI-PaperDoll-Slot-Bag.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(bag3Button, iconsPath + "UI-PaperDoll-Slot-Bag.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(bag4Button, iconsPath + "UI-PaperDoll-Slot-Bag.png", Color.FromArgb(25, 25, 25));
-            ChangeIcon(mountButton, iconsPath + "UI-Backpack-EmptySlot.png", Color.FromArgb(25, 25, 25));
+            for (int i = 0; i < 25; i++)
+            {
+                character.Gear[i] = new JewlryItemsJewelryItem
+                {
+                    Name = "None",
+                    ID = "0",
+                    Icon = WoWHelper.SlotIcon(i, characterClass),
+                    Quality = -1
+                };
+            }
+            ChangeIcon(headButton);
+            ChangeIcon(neckButton);
+            ChangeIcon(shoulderButton);
+            ChangeIcon(backButton);
+            ChangeIcon(chestButton);
+            ChangeIcon(shirtButton);
+            ChangeIcon(tabardButton);
+            ChangeIcon(wristButton);
+            ChangeIcon(handsButton);
+            ChangeIcon(waistButton);
+            ChangeIcon(legsButton);
+            ChangeIcon(feetButton);
+            ChangeIcon(finger1Button);
+            ChangeIcon(finger2Button);
+            ChangeIcon(trinket1Button);
+            ChangeIcon(trinket2Button);
+            ChangeIcon(mainHandButton);
+            ChangeIcon(offHandButton);
+            ChangeIcon(rangedRelicButton);
+            ChangeIcon(ammoReagentButton);
+            ChangeIcon(bag1Button);
+            ChangeIcon(bag2Button);
+            ChangeIcon(bag3Button);
+            ChangeIcon(bag4Button);
+            ChangeIcon(mountButton);
         }
 
         void Skin()
@@ -598,9 +603,16 @@ namespace WoW_Character_Viewer_Classic
             {
                 if(jewelryItemsDialog.Selected != null)
                 {
-                    character.Gear[WoWHelper.Slot(slot)] = jewelryItemsDialog.Selected.ID;
-                    Button button = (Button)Controls.Find(slot + "Button", true).First();
-                    ChangeIcon(button, iconsPath + jewelryItemsDialog.Selected.Icon + ".png", WoWHelper.QalityColor(jewelryItemsDialog.Selected.Quality));
+                    if(jewelryItemsDialog.Selected.MaxCount == 1 && character.Gear.Any(item => item.ID == jewelryItemsDialog.Selected.ID))
+                    {
+                        MessageBox.Show("You can have only one of that item", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        character.Gear[WoWHelper.Slot(slot)] = jewelryItemsDialog.Selected;
+                        Button button = (Button)Controls.Find(slot + "Button", true).First();
+                        ChangeIcon(button);
+                    }
                 }
             }
             jewelryItemsDialog.Close();
@@ -796,22 +808,35 @@ namespace WoW_Character_Viewer_Classic
         void slotButton_MouseEnter(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            if(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))] == "0")
+            if(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
             {
                 slotTooltip.Show(WoWHelper.SlotName(button.Name.Replace("Button", ""), characterClass), button, 48, 48);
+            }
+            else
+            {
+                jewelryTooltip.Item = character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))];
+                jewelryTooltip.Slot = button.Name.Replace("Button", "");
+                jewelryTooltip.Show(jewelryTooltip.Item.Name, button, 48, 48);
             }
         }
 
         void slotButton_MouseLeave(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            slotTooltip.Hide(button);
+            if(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
+            {
+                slotTooltip.Hide(button);
+            }
+            else
+            {
+                jewelryTooltip.Hide(button);
+            }
         }
 
         void bagButton_MouseEnter(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            if(button.Name == "backpackButton" || character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))] == "0")
+            if(button.Name == "backpackButton" || character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
             {
                 buttonTooltip.Show(WoWHelper.SlotName(button.Name.Replace("Button", ""), characterClass), button, 48, 48);
             }

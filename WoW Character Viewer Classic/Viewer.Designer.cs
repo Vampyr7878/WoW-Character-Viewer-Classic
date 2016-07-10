@@ -103,6 +103,7 @@
             this.openGLControl = new SharpGL.OpenGLControl();
             this.slotTooltip = new WoW_Character_Viewer_Classic.Controls.ButtonTooltip();
             this.buttonTooltip = new WoW_Character_Viewer_Classic.Controls.ButtonTooltip();
+            this.jewelryTooltip = new WoW_Character_Viewer_Classic.Controls.JewelryTooltip();
             this.tabControl.SuspendLayout();
             this.appearancePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
@@ -948,6 +949,7 @@
             this.finger2Button.UseVisualStyleBackColor = true;
             this.finger2Button.Click += new System.EventHandler(this.slotButton_Click);
             this.finger2Button.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
+            this.finger2Button.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
             // 
             // finger1Button
             // 
@@ -1159,6 +1161,18 @@
             this.buttonTooltip.UseAnimation = false;
             this.buttonTooltip.UseFading = false;
             // 
+            // jewelryTooltip
+            // 
+            this.jewelryTooltip.AutomaticDelay = 0;
+            this.jewelryTooltip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.jewelryTooltip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.jewelryTooltip.ForeColor = System.Drawing.Color.White;
+            this.jewelryTooltip.Item = null;
+            this.jewelryTooltip.OwnerDraw = true;
+            this.jewelryTooltip.Slot = null;
+            this.jewelryTooltip.UseAnimation = false;
+            this.jewelryTooltip.UseFading = false;
+            // 
             // Viewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1257,6 +1271,7 @@
         private System.Windows.Forms.Button showSkeletonButton;
         private Controls.ButtonTooltip slotTooltip;
         private Controls.ButtonTooltip buttonTooltip;
+        private Controls.JewelryTooltip jewelryTooltip;
     }
 }
 

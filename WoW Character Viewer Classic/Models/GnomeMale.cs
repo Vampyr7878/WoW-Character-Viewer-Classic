@@ -62,7 +62,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         List<Geosets> currentGeosets;
 
-        public GnomeMale() : base(@"Character\Gnome\Male\GnomeMale.xml")
+        public GnomeMale(string characterClass) : base(@"Character\Gnome\Male\GnomeMale.xml", characterClass)
         {
             currentGeosets = new List<Geosets>
             {

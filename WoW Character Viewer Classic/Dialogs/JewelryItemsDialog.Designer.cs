@@ -33,6 +33,7 @@
             this.searchButton = new System.Windows.Forms.Button();
             this.acceptButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.jewelryTooltip = new WoW_Character_Viewer_Classic.Controls.JewelryTooltip();
             this.itemsListBox = new WoW_Character_Viewer_Classic.Controls.JewelryItemsListBox();
             this.SuspendLayout();
             // 
@@ -85,6 +86,18 @@
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = false;
             // 
+            // jewelryTooltip
+            // 
+            this.jewelryTooltip.AutomaticDelay = 0;
+            this.jewelryTooltip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.jewelryTooltip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.jewelryTooltip.ForeColor = System.Drawing.Color.White;
+            this.jewelryTooltip.Item = null;
+            this.jewelryTooltip.OwnerDraw = true;
+            this.jewelryTooltip.Slot = null;
+            this.jewelryTooltip.UseAnimation = false;
+            this.jewelryTooltip.UseFading = false;
+            // 
             // itemsListBox
             // 
             this.itemsListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
@@ -118,7 +131,9 @@
             this.MinimizeBox = false;
             this.Name = "JewelryItemsDialog";
             this.Text = "Items";
+            this.LocationChanged += new System.EventHandler(this.JewelryItemsDialog_LocationChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.JewelryItemsDialog_KeyDown);
+            this.Move += new System.EventHandler(this.JewelryItemsDialog_Move);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,5 +146,6 @@
         private System.Windows.Forms.Button acceptButton;
         private System.Windows.Forms.Button cancelButton;
         private Controls.JewelryItemsListBox itemsListBox;
+        private Controls.JewelryTooltip jewelryTooltip;
     }
 }

@@ -68,7 +68,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         List<Geosets> currentGeosets;
 
-        public OrcMale() : base(@"Character\Orc\Male\OrcMale.xml")
+        public OrcMale(string characterClass) : base(@"Character\Orc\Male\OrcMale.xml", characterClass)
         {
             currentGeosets = new List<Geosets>
             {

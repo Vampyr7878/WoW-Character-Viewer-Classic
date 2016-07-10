@@ -14,6 +14,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         public JewelryItemsDialog(string slot, string characterRace, string characterClass)
         {
             InitializeComponent();
+            jewelryTooltip.Slot = slot;
             XmlSerializer serializer = new XmlSerializer(typeof(JewelryItems));
             using(StreamReader reader = new StreamReader(@"Data\" + ItemsFile(slot)))
             {
@@ -23,11 +24,13 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             ClassFilter(characterClass);
             List<JewlryItemsJewelryItem> list = new List<JewlryItemsJewelryItem>(items.JewelryItem);
             list.Sort((x, y) => x.Name.CompareTo(y.Name));
-            JewlryItemsJewelryItem item = new JewlryItemsJewelryItem();
-            item.Name = "None";
-            item.ID = "0";
-            item.Icon = NoneIcon(slot);
-            item.Quality = -1;
+            JewlryItemsJewelryItem item = new JewlryItemsJewelryItem
+            {
+                Name = "None",
+                ID = "0",
+                Icon = WoWHelper.SlotIcon(slot, characterClass),
+                Quality = -1
+            };
             itemsListBox.Items.Add(item);
             itemsListBox.Items.AddRange(list.ToArray());
             itemsListBox.SelectedIndex = 0;
@@ -81,26 +84,6 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             items.JewelryItem = list.ToArray();
         }
 
-        string NoneIcon(string slot)
-        {
-            string icon = "";
-            switch(slot)
-            {
-                case "neck":
-                    icon = "UI-PaperDoll-Slot-Neck";
-                    break;
-                case "finger1":
-                case "finger2":
-                    icon = "UI-PaperDoll-Slot-Finger";
-                    break;
-                case "trinket1":
-                case "trinket2":
-                    icon = "UI-PaperDoll-Slot-Trinket";
-                    break;
-            }
-            return icon;
-        }
-
         void searchButton_Click(object sender, EventArgs e)
         {
             if(searchTextBox.Text != "")
@@ -109,7 +92,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
                 List<JewlryItemsJewelryItem> list = new List<JewlryItemsJewelryItem>();
                 foreach(JewlryItemsJewelryItem item in items.JewelryItem)
                 {
-                    if(item.Name.Contains(searchTextBox.Text))
+                    if(item.Name.ToLower().Contains(searchTextBox.Text.ToLower()))
                     {
                         list.Add(item);
                     }
@@ -131,6 +114,16 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         void itemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             selected = (JewlryItemsJewelryItem)itemsListBox.SelectedItem;
+            if(selected.Name == "None")
+            {
+
+                jewelryTooltip.Hide(itemsListBox);
+            }
+            else
+            {
+                jewelryTooltip.Item = selected;
+                jewelryTooltip.Show(selected.Name, itemsListBox, itemsListBox.Size.Width, 0);
+            }
         }
 
         void JewelryItemsDialog_KeyDown(object sender, KeyEventArgs e)
@@ -149,6 +142,25 @@ namespace WoW_Character_Viewer_Classic.Dialogs
                 }
                 e.Handled = e.SuppressKeyPress = true;
             }
+        }
+
+        void JewelryItemsDialog_LocationChanged(object sender, EventArgs e)
+        {
+            if (selected.Name == "None")
+            {
+
+                jewelryTooltip.Hide(itemsListBox);
+            }
+            else
+            {
+                jewelryTooltip.Item = selected;
+                jewelryTooltip.Show(selected.Name, itemsListBox, itemsListBox.Size.Width, 0);
+            }
+        }
+
+        void JewelryItemsDialog_Move(object sender, EventArgs e)
+        {
+            jewelryTooltip.Hide(itemsListBox);
         }
     }
 }
