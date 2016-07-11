@@ -71,6 +71,7 @@ namespace WoW_Character_Viewer_Classic.Models
             Facial = 0;
             GetHairNames();
             GetFacialNames();
+            GC.Collect();
         }
 
         public Model Model { get { return model; } }
@@ -172,6 +173,7 @@ namespace WoW_Character_Viewer_Classic.Models
             DrawLayer(graphics, "ScalpUpperHair" + GetScalpUpper() + "_" + Number(Color) + ".png", 0, 160);
             DrawLayer(graphics, "ScalpLowerHair" + GetScalpLower() + "_" + Number(Color) + ".png", 0, 192);
             textures[index].Create(gl, bitmap);
+            graphics.Dispose();
             bitmap.Dispose();
         }
 
@@ -335,11 +337,11 @@ namespace WoW_Character_Viewer_Classic.Models
 
         int FindBlend(int geoset)
         {
-            for (int i = 0; i < model.View.Textures.Length; i++)
+            foreach(ModelViewTexture viewTexture in model.View.Textures)
             {
-                if (model.View.Textures[i].geoset == geoset)
+                if(viewTexture.geoset == geoset)
                 {
-                    return model.View.Textures[i].blend;
+                    return viewTexture.blend;
                 }
             }
             return -1;
@@ -399,6 +401,7 @@ namespace WoW_Character_Viewer_Classic.Models
             colorName = null;
             facialName = null;
             facialNames = null;
+            GC.Collect();
         }
 
         protected abstract void GetHairNames();

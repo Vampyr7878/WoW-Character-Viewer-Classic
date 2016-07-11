@@ -26,6 +26,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         public void GetItemList(string characterRace, string characterClass, Character character)
         {
             items = null;
+            searchTextBox.Text = "";
             itemsListBox.Items.Clear();
             this.character = character;
             rotation = 0;
@@ -38,6 +39,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             ClassFilter(characterClass);
             List<ItemsItem> list = new List<ItemsItem>(items.Item);
             list.Sort((x, y) => x.Name.CompareTo(y.Name));
+            item = null;
             item = new ItemsItem
             {
                 Name = "None",
@@ -49,6 +51,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             itemsListBox.Items.Add(item);
             itemsListBox.Items.AddRange(list.ToArray());
             itemsListBox.SelectedIndex = 0;
+            GC.Collect();
         }
 
         void RaceFilter(string characterRace)
@@ -185,12 +188,6 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         void JewelryItemsDialog_Move(object sender, EventArgs e)
         {
             backTooltip.Hide(itemsListBox);
-        }
-
-        void BackItemsDialog_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            items = null;
-            GC.Collect();
         }
     }
 }

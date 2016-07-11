@@ -68,6 +68,7 @@ namespace WoW_Character_Viewer_Classic.Controls
 
         void OnPopup(object sender, PopupEventArgs e)
         {
+            lines = null;
             lines = new List<string>();
             lines.Add(Item.Name);
             if(Item.MaxCount == 1)

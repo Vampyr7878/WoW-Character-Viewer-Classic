@@ -485,6 +485,7 @@ namespace WoW_Character_Viewer_Classic
         {
             string path = iconsPath + character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].Icon + ".png";
             Color color = WoWHelper.QalityColor(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].Quality);
+            button.BackgroundImage.Dispose();
             using(StreamReader reader = new StreamReader(path))
             {
                 button.BackgroundImage = new Bitmap(reader.BaseStream);
@@ -494,6 +495,7 @@ namespace WoW_Character_Viewer_Classic
 
         void ChangeIcon(Button button, string path, Color color)
         {
+            button.BackgroundImage.Dispose();
             using (StreamReader reader = new StreamReader(path))
             {
                 button.BackgroundImage = new Bitmap(reader.BaseStream);
@@ -505,6 +507,7 @@ namespace WoW_Character_Viewer_Classic
         {
             for (int i = 0; i < 25; i++)
             {
+                character.Gear[i] = null;
                 character.Gear[i] = new ItemsItem
                 {
                     Name = "None",
@@ -551,6 +554,7 @@ namespace WoW_Character_Viewer_Classic
             {
                 character.Skin = 0;
             }
+            skinLabel.Text = null;
             skinLabel.Text = character.SkinName + character.Skin;
         }
 
@@ -564,6 +568,7 @@ namespace WoW_Character_Viewer_Classic
             {
                 character.Face = 0;
             }
+            faceLabel.Text = null;
             faceLabel.Text = character.FaceName + character.Face;
         }
 
@@ -577,7 +582,9 @@ namespace WoW_Character_Viewer_Classic
             {
                 character.Hair = 0;
             }
+            hairLabel.Text = null;
             hairLabel.Text = character.HairName + character.Hair;
+            hairNameLabel.Text = null;
             hairNameLabel.Text = character.HairNames[character.Hair];
         }
 
@@ -591,6 +598,7 @@ namespace WoW_Character_Viewer_Classic
             {
                 character.Color = 0;
             }
+            colorLabel.Text = null;
             colorLabel.Text = character.ColorName + character.Color;
         }
 
@@ -604,7 +612,9 @@ namespace WoW_Character_Viewer_Classic
             {
                 character.Facial = 0;
             }
+            facialLabel.Text = null;
             facialLabel.Text = character.FacialName + character.Facial;
+            facialNameLabel.Text = null;
             facialNameLabel.Text = character.FacialNames[character.Facial];
         }
 
@@ -621,6 +631,7 @@ namespace WoW_Character_Viewer_Classic
                     }
                     else
                     {
+                        character.Gear[WoWHelper.Slot(slot)] = null;
                         character.Gear[WoWHelper.Slot(slot)] = jewelryItemsDialog.Selected;
                         Button button = (Button)Controls.Find(slot + "Button", true).First();
                         ChangeIcon(button);
@@ -634,11 +645,13 @@ namespace WoW_Character_Viewer_Classic
             backItemsDialog.GetItemList(characterRace, characterClass, character);
             if(backItemsDialog.ShowDialog() == DialogResult.OK)
             {
+                character.Gear[3] = null;
                 character.Gear[3] = backItemsDialog.Selected;
                 ChangeIcon(backButton);
             }
             else
             {
+                character.Gear[3] = null;
                 character.Gear[3] = new ItemsItem
                 {
                     Name = "None",
@@ -942,6 +955,7 @@ namespace WoW_Character_Viewer_Classic
         void showSkeleton_Click(object sender, EventArgs e)
         {
             character.Skeleton = !character.Skeleton;
+            showSkeletonButton.Text = null;
             showSkeletonButton.Text = character.Skeleton ? "Hide Skeleton" : "Show Skeleton";
         }
 

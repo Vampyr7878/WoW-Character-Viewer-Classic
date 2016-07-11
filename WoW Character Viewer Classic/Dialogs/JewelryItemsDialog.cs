@@ -22,6 +22,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         public void GetItemList(string slot, string characterRace, string characterClass)
         {
             items = null;
+            searchTextBox.Text = "";
             XmlSerializer serializer = new XmlSerializer(typeof(Items));
             using (StreamReader reader = new StreamReader(@"Data\" + ItemsFile(slot)))
             {
@@ -31,6 +32,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             ClassFilter(characterClass);
             List<ItemsItem> list = new List<ItemsItem>(items.Item);
             list.Sort((x, y) => x.Name.CompareTo(y.Name));
+            item = null;
             item = new ItemsItem
             {
                 Name = "None",
@@ -42,6 +44,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             itemsListBox.Items.Add(item);
             itemsListBox.Items.AddRange(list.ToArray());
             itemsListBox.SelectedIndex = 0;
+            GC.Collect();
         }
 
         string ItemsFile(string slot)

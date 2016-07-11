@@ -15,7 +15,7 @@ namespace WoW_Character_Viewer_Classic.Controls
 
         protected override void OnDrawItem(DrawItemEventArgs e)
         {
-            if (e.Index >= Items.Count || e.Index <= -1)
+            if(e.Index >= Items.Count || e.Index <= -1)
             {
                 return;
             }
