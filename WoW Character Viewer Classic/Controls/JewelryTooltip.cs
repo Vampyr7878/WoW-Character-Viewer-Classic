@@ -17,9 +17,7 @@ namespace WoW_Character_Viewer_Classic.Controls
 
         public Font Font { get; set; }
 
-        public JewlryItemsJewelryItem Item { get; set; }
-
-        public string Slot { get; set; }
+        public ItemsItem Item { get; set; }
 
         string Classes(List<string> classes)
         {
@@ -76,7 +74,7 @@ namespace WoW_Character_Viewer_Classic.Controls
             {
                 lines.Add("Unique");
             }
-            lines.Add(WoWHelper.SlotName(Slot, ""));
+            lines.Add(Item.Slot);
             List<string> classes = WoWHelper.Classes(Item.AllowableClass);
             if(classes.Count < 9)
             {

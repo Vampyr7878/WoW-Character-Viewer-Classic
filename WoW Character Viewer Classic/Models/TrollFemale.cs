@@ -1,4 +1,5 @@
 ﻿using SharpGL;
+using System;
 using System.Collections.Generic;
 
 namespace WoW_Character_Viewer_Classic.Models
@@ -59,13 +60,12 @@ namespace WoW_Character_Viewer_Classic.Models
 
         List<Geosets> currentGeosets;
 
-        public TrollFemale(string characterClass) : base(@"Character\Troll\Female\TrollFemale.xml", characterClass)
+        public TrollFemale() : base(@"Character\Troll\Female\TrollFemale.xml")
         {
             currentGeosets = new List<Geosets>
             {
                 Geosets.Body1,
                 Geosets.Ears1,
-                Geosets.Back1,
                 Geosets.Legs1,
                 Geosets.Boots1
             };
@@ -253,11 +253,25 @@ namespace WoW_Character_Viewer_Classic.Models
             currentGeosets.AddRange(list);
         }
 
+        protected override void EquipCape()
+        {
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Back"));
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Cape"));
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Buttons"));
+            if(Gear[3].ID == "0")
+            {
+                currentGeosets.Add(Geosets.Back1);
+            }
+            else
+            {
+                currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[3].Models.Cape));
+                currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[3].Models.Cape.Replace("Cape", "Buttons")));
+            }
+        }
+
         public override void Render(OpenGL gl)
         {
-            HairGeosets();
-            FacialGeosets();
-            MakeTextures(gl);
+            Prepare(gl);
             foreach(Geosets geoset in currentGeosets)
             {
                 if(billboards.Contains(vertices[indices[triangles[geosets[(int)geoset].triangle]]].Bones[0].index))
@@ -270,6 +284,12 @@ namespace WoW_Character_Viewer_Classic.Models
                 }
             }
             RenderSkeleton(gl);
+        }
+
+        public new void Dispose()
+        {
+            base.Dispose();
+            currentGeosets = null;
         }
     }
 }

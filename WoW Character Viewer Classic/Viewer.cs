@@ -12,6 +12,7 @@ namespace WoW_Character_Viewer_Classic
     public partial class Viewer : Form
     {
         JewelryItemsDialog jewelryItemsDialog;
+        BackItemsDialog backItemsDialog;
         bool characterGender;
         string characterRace;
         string characterClass;
@@ -33,6 +34,8 @@ namespace WoW_Character_Viewer_Classic
         public Viewer()
         {
             InitializeComponent();
+            jewelryItemsDialog = new JewelryItemsDialog();
+            backItemsDialog = new BackItemsDialog();
             openGLControl.MouseWheel += openGlControl_MouseWheel;
             rotate = false;
             move = false;
@@ -42,7 +45,7 @@ namespace WoW_Character_Viewer_Classic
             distance = 2.8f;
             iconsPath = @"Icons\";
             Random random = new Random();
-            character = new HumanMale("Warrior");
+            character = new HumanMale();
             RandomGender(random.Next(2));
             RandomRace(random.Next(8));
         }
@@ -202,13 +205,14 @@ namespace WoW_Character_Viewer_Classic
 
         void Human()
         {
+            character.Dispose();
             if(characterGender)
             {
-                character = new HumanMale(characterClass);
+                character = new HumanMale();
             }
             else
             {
-                character = new HumanFemale(characterClass);
+                character = new HumanFemale();
             }
             humanButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
@@ -224,13 +228,14 @@ namespace WoW_Character_Viewer_Classic
 
         void Orc()
         {
+            character.Dispose();
             if(characterGender)
             {
-                character = new OrcMale(characterClass);
+                character = new OrcMale();
             }
             else
             {
-                character = new OrcFemale(characterClass);
+                character = new OrcFemale();
             }
             orcButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
@@ -246,13 +251,14 @@ namespace WoW_Character_Viewer_Classic
 
         void Dwarf()
         {
+            character.Dispose();
             if(characterGender)
             {
-                character = new DwarfMale(characterClass);
+                character = new DwarfMale();
             }
             else
             {
-                character = new DwarfFemale(characterClass);
+                character = new DwarfFemale();
             }
             dwarfButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
@@ -268,13 +274,14 @@ namespace WoW_Character_Viewer_Classic
 
         void Undead()
         {
+            character.Dispose();
             if(characterGender)
             {
-                character = new ScourgeMale(characterClass);
+                character = new ScourgeMale();
             }
             else
             {
-                character = new ScourgeFemale(characterClass);
+                character = new ScourgeFemale();
             }
             undeadButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
@@ -290,13 +297,14 @@ namespace WoW_Character_Viewer_Classic
 
         void NightElf()
         {
+            character.Dispose();
             if(characterGender)
             {
-                character = new NightElfMale(characterClass);
+                character = new NightElfMale();
             }
             else
             {
-                character = new NightElfFemale(characterClass);
+                character = new NightElfFemale();
             }
             nightElfButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
@@ -312,13 +320,14 @@ namespace WoW_Character_Viewer_Classic
 
         void Tauren()
         {
+            character.Dispose();
             if(characterGender)
             {
-                character = new TaurenMale(characterClass);
+                character = new TaurenMale();
             }
             else
             {
-                character = new TaurenFemale(characterClass);
+                character = new TaurenFemale();
             }
             taurenButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
@@ -334,13 +343,14 @@ namespace WoW_Character_Viewer_Classic
 
         void Gnome()
         {
+            character.Dispose();
             if(characterGender)
             {
-                character = new GnomeMale(characterClass);
+                character = new GnomeMale();
             }
             else
             {
-                character = new GnomeFemale(characterClass);
+                character = new GnomeFemale();
             }
             gnomeButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
@@ -356,13 +366,14 @@ namespace WoW_Character_Viewer_Classic
 
         void Troll()
         {
+            character.Dispose();
             if(characterGender)
             {
-                character = new TrollMale(characterClass);
+                character = new TrollMale();
             }
             else
             {
-                character = new TrollFemale(characterClass);
+                character = new TrollFemale();
             }
             trollButton.FlatStyle = FlatStyle.Flat;
             warriorButton.Visible = true;
@@ -494,12 +505,13 @@ namespace WoW_Character_Viewer_Classic
         {
             for (int i = 0; i < 25; i++)
             {
-                character.Gear[i] = new JewlryItemsJewelryItem
+                character.Gear[i] = new ItemsItem
                 {
                     Name = "None",
                     ID = "0",
+                    Quality = -1,
                     Icon = WoWHelper.SlotIcon(i, characterClass),
-                    Quality = -1
+                    Textures = new ItemsItemTextures()
                 };
             }
             ChangeIcon(headButton);
@@ -598,7 +610,7 @@ namespace WoW_Character_Viewer_Classic
 
         void Jewelry(string slot)
         {
-            jewelryItemsDialog = new JewelryItemsDialog(slot, characterRace, characterClass);
+            jewelryItemsDialog.GetItemList(slot, characterRace, characterClass);
             if(jewelryItemsDialog.ShowDialog() == DialogResult.OK)
             {
                 if(jewelryItemsDialog.Selected != null)
@@ -615,7 +627,27 @@ namespace WoW_Character_Viewer_Classic
                     }
                 }
             }
-            jewelryItemsDialog.Close();
+        }
+
+        void Cape()
+        {
+            backItemsDialog.GetItemList(characterRace, characterClass, character);
+            if(backItemsDialog.ShowDialog() == DialogResult.OK)
+            {
+                character.Gear[3] = backItemsDialog.Selected;
+                ChangeIcon(backButton);
+            }
+            else
+            {
+                character.Gear[3] = new ItemsItem
+                {
+                    Name = "None",
+                    ID = "0",
+                    Quality = -1,
+                    Icon = WoWHelper.SlotIcon(3, characterClass),
+                    Textures = new ItemsItemTextures()
+                };
+            }
         }
 
         void openGLControl_OpenGLDraw(object sender, RenderEventArgs e)
@@ -790,18 +822,66 @@ namespace WoW_Character_Viewer_Classic
             }
         }
 
-        void slotButton_Click(object sender, EventArgs e)
+        void jewelryButton_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            switch(button.Name.Replace("Button", ""))
+            Jewelry(button.Name.Replace("Button", ""));
+        }
+
+        void jewelryButton_MouseEnter(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            if (character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
             {
-                case "neck":
-                case "finger1":
-                case "finger2":
-                case "trinket1":
-                case "trinket2":
-                    Jewelry(button.Name.Replace("Button", ""));
-                    break;
+                slotTooltip.Show(WoWHelper.SlotName(button.Name.Replace("Button", ""), characterClass), button, 48, 48);
+            }
+            else
+            {
+                jewelryTooltip.Item = character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))];
+                jewelryTooltip.Show(jewelryTooltip.Item.Name, button, 48, 48);
+            }
+        }
+
+        void jewelryButton_MouseLeave(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            if (character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
+            {
+                slotTooltip.Hide(button);
+            }
+            else
+            {
+                jewelryTooltip.Hide(button);
+            }
+        }
+
+        void backButton_Click(object sender, EventArgs e)
+        {
+            Cape();
+        }
+
+        void backButton_MouseEnter(object sender, EventArgs e)
+        {
+            if (character.Gear[WoWHelper.Slot("back")].ID == "0")
+            {
+                slotTooltip.Show(WoWHelper.SlotName("back", characterClass), backButton, 48, 48);
+            }
+            else
+            {
+                backTooltip.Item = character.Gear[WoWHelper.Slot("back")];
+                backTooltip.Show(backTooltip.Item.Name, backButton, 48, 48);
+            }
+        }
+
+        void backButton_MouseLeave(object sender, EventArgs e)
+        {
+            if (character.Gear[WoWHelper.Slot("back")].ID == "0")
+            {
+                slotTooltip.Hide(backButton);
+            }
+            else
+            {
+                backTooltip.Hide(backButton);
             }
         }
 
@@ -815,7 +895,6 @@ namespace WoW_Character_Viewer_Classic
             else
             {
                 jewelryTooltip.Item = character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))];
-                jewelryTooltip.Slot = button.Name.Replace("Button", "");
                 jewelryTooltip.Show(jewelryTooltip.Item.Name, button, 48, 48);
             }
         }

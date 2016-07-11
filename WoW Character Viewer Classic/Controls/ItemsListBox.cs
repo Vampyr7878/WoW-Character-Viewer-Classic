@@ -3,11 +3,11 @@ using System.Windows.Forms;
 
 namespace WoW_Character_Viewer_Classic.Controls
 {
-    class JewelryItemsListBox : ListBox
+    class ItemsListBox : ListBox
     {
         Font bold;
 
-        public JewelryItemsListBox()
+        public ItemsListBox()
         {
             DrawMode = DrawMode.OwnerDrawVariable;
             bold = new Font(Font, FontStyle.Bold);
@@ -19,7 +19,7 @@ namespace WoW_Character_Viewer_Classic.Controls
             {
                 return;
             }
-            JewlryItemsJewelryItem item = (JewlryItemsJewelryItem)Items[e.Index];
+            ItemsItem item = (ItemsItem)Items[e.Index];
             if(item == null)
             {
                 return;

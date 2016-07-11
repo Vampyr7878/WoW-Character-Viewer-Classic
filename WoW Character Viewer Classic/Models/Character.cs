@@ -1,5 +1,6 @@
 ﻿using SharpGL;
 using SharpGL.SceneGraph.Assets;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -7,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace WoW_Character_Viewer_Classic.Models
 {
-    abstract class Character
+    public abstract class Character : IDisposable
     {
         Model model;
         protected ModelVertex[] vertices;
@@ -18,6 +19,7 @@ namespace WoW_Character_Viewer_Classic.Models
         ModelBone[] bones;
         Texture[] textures;
         string texturesPath;
+        string objectComponentsPath;
         string skinName;
         protected int skinsCount;
         string faceName;
@@ -31,26 +33,17 @@ namespace WoW_Character_Viewer_Classic.Models
         protected string[] facialNames;
         protected int facialsCount;
 
-        protected Character(string file, string characterClass)
+        protected Character(string file) 
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Model));
             using(StreamReader reader = new StreamReader(file))
             {
                 model = (Model)serializer.Deserialize(reader.BaseStream);
             }
-            Gear = new JewlryItemsJewelryItem[25];
-            for(int i = 0; i < 25; i++)
-            {
-                Gear[i] = new JewlryItemsJewelryItem
-                {
-                    Name = "None",
-                    ID = "0",
-                    Icon = WoWHelper.SlotIcon(i, characterClass),
-                    Quality = -1
-                };
-            }
+            Gear = new ItemsItem[25];
             Skeleton = false;
             texturesPath = @"Character\" + model.Name.Replace("Female", "").Replace("Male", "") + @"\";
+            objectComponentsPath = @"Item\ObjectComponents\";
             vertices = model.Vertices;
             indices = model.View.Indices;
             triangles = model.View.Triangles;
@@ -82,7 +75,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         public Model Model { get { return model; } }
 
-        public JewlryItemsJewelryItem[] Gear { get; set; }
+        public ItemsItem[] Gear { get; set; }
 
         public bool Skeleton { get; set; }
 
@@ -139,6 +132,9 @@ namespace WoW_Character_Viewer_Classic.Models
                     case 1:
                         MakeBodyTexture(gl, i);
                         break;
+                    case 2:
+                        MakeCapeTexture(gl, i);
+                        break;
                     case 6:
                         MakeHairTexture(gl, i);
                         break;
@@ -151,12 +147,15 @@ namespace WoW_Character_Viewer_Classic.Models
 
         void MakeTexture(OpenGL gl, int index)
         {
+            textures[index].Destroy(gl);
             Bitmap bitmap = LoadBitmap(model.Textures[index].file.Replace(".BLP", ".PNG"));
             textures[index].Create(gl, bitmap);
+            bitmap.Dispose();
         }
 
         void MakeBodyTexture(OpenGL gl, int index)
         {
+            textures[index].Destroy(gl);
             string gender = model.Name.Contains("Female") ? @"Female\" : @"Male\";
             Bitmap bitmap = LoadBitmap(texturesPath + gender + model.Name + "Skin00_" + Number(Skin) + ".png");
             bitmap = new Bitmap(bitmap);
@@ -173,6 +172,7 @@ namespace WoW_Character_Viewer_Classic.Models
             DrawLayer(graphics, "ScalpUpperHair" + GetScalpUpper() + "_" + Number(Color) + ".png", 0, 160);
             DrawLayer(graphics, "ScalpLowerHair" + GetScalpLower() + "_" + Number(Color) + ".png", 0, 192);
             textures[index].Create(gl, bitmap);
+            bitmap.Dispose();
         }
 
         void DrawLayer(Graphics graphics, string layer, int x, int y)
@@ -181,23 +181,39 @@ namespace WoW_Character_Viewer_Classic.Models
             if(bitmap != null)
             {
                 graphics.DrawImage(bitmap, new Point(x, y));
+                bitmap.Dispose();
+            }
+        }
+
+        void MakeCapeTexture(OpenGL gl, int index)
+        {
+            textures[index].Destroy(gl);
+            Bitmap bitmap = LoadBitmap(objectComponentsPath + @"Cape\" + Gear[3].Textures.Left + ".png");
+            if(bitmap != null)
+            {
+                textures[index].Create(gl, bitmap);
+                bitmap.Dispose();
             }
         }
 
         void MakeHairTexture(OpenGL gl, int index)
         {
+            textures[index].Destroy(gl);
             Bitmap bitmap = LoadBitmap(texturesPath + "Hair" + GetHairTexture() + "_" + Number(Color) + ".png");
             if(bitmap != null)
             {
                 textures[index].Create(gl, bitmap);
+                bitmap.Dispose();
             }
         }
 
         void MakeExtraTexture(OpenGL gl, int index)
         {
+            textures[index].Destroy(gl);
             string gender = model.Name.Contains("Female") ? @"Female\" : @"Male\";
             Bitmap bitmap = LoadBitmap(texturesPath + gender + model.Name + "Skin00_" + Number(Skin) + "_Extra.png");
             textures[index].Create(gl, bitmap);
+            bitmap.Dispose();
         }
 
         Bitmap LoadBitmap(string file)
@@ -212,6 +228,11 @@ namespace WoW_Character_Viewer_Classic.Models
                 return bitmap;
             }
             return null;
+        }
+
+        protected void EquipGear()
+        {
+            EquipCape();
         }
 
         protected void RenderBillboard(OpenGL gl, int geoset, int start, int count)
@@ -351,6 +372,35 @@ namespace WoW_Character_Viewer_Classic.Models
             }
         }
 
+        public void Prepare(OpenGL gl)
+        {
+            HairGeosets();
+            FacialGeosets();
+            MakeTextures(gl);
+            EquipGear();
+        }
+
+        public void Dispose()
+        {
+            model = null;
+            vertices = null;
+            indices = null;
+            triangles = null;
+            geosets = null;
+            billboards = null;
+            bones = null;
+            textures = null;
+            texturesPath = null;
+            objectComponentsPath = null;
+            skinName = null;
+            faceName = null;
+            hairName = null;
+            hairNames = null;
+            colorName = null;
+            facialName = null;
+            facialNames = null;
+        }
+
         protected abstract void GetHairNames();
 
         protected abstract void GetFacialNames();
@@ -368,6 +418,8 @@ namespace WoW_Character_Viewer_Classic.Models
         protected abstract void HairGeosets();
 
         protected abstract void FacialGeosets();
+
+        protected abstract void EquipCape();
 
         public abstract void Render(OpenGL gl);
     }

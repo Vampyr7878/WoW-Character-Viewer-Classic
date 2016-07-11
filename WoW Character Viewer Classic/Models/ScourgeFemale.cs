@@ -1,4 +1,5 @@
 ﻿using SharpGL;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -58,13 +59,12 @@ namespace WoW_Character_Viewer_Classic.Models
 
         List<Geosets> currentGeosets;
 
-        public ScourgeFemale(string characterClass) : base(@"Character\Scourge\Female\ScourgeFemale.xml", characterClass)
+        public ScourgeFemale() : base(@"Character\Scourge\Female\ScourgeFemale.xml")
         {
             currentGeosets = new List<Geosets>
             {
                 Geosets.Body1,
                 Geosets.Ears1,
-                Geosets.Back1,
                 Geosets.Arms1,
                 Geosets.Wrist1,
                 Geosets.Bones1,
@@ -80,23 +80,23 @@ namespace WoW_Character_Viewer_Classic.Models
             facialName = "Features: ";
             facialsCount = 8;
         }
-		
-		protected override void GetHairNames()
-		{
-		    hairNames = new[]
-		    {
-		        "Wild",
-		        "Shaggy",
-		        "Loose",
-		        "Windswept",
-		        "Long",
-		        "The Bride",
-		        "Tomboy",
-		        "Styled",
-		        "Bobbed",
-		        "Soaked"
-		    };
-		}
+
+        protected override void GetHairNames()
+        {
+            hairNames = new[]
+            {
+                "Wild",
+                "Shaggy",
+                "Loose",
+                "Windswept",
+                "Long",
+                "The Bride",
+                "Tomboy",
+                "Styled",
+                "Bobbed",
+                "Soaked"
+            };
+        }
 
         protected override void GetFacialNames()
         {
@@ -122,16 +122,16 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             return Number(Facial - 1);
         }
-		
-		protected override string GetScalpUpper()
-		{
-			return "00";
-		}
-		
-		protected override string GetScalpLower()
-		{
-			return "00";
-		}
+
+        protected override string GetScalpUpper()
+        {
+            return "00";
+        }
+
+        protected override string GetScalpLower()
+        {
+            return "00";
+        }
 
         protected override string GetHairTexture()
         {
@@ -255,11 +255,25 @@ namespace WoW_Character_Viewer_Classic.Models
             currentGeosets.AddRange(list);
         }
 
+        protected override void EquipCape()
+        {
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Back"));
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Cape"));
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Buttons"));
+            if(Gear[3].ID == "0")
+            {
+                currentGeosets.Add(Geosets.Back1);
+            }
+            else
+            {
+                currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[3].Models.Cape));
+                currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[3].Models.Cape.Replace("Cape", "Buttons")));
+            }
+        }
+
         public override void Render(OpenGL gl)
         {
-            HairGeosets();
-            FacialGeosets();
-            MakeTextures(gl);
+            Prepare(gl);
             foreach(Geosets geoset in currentGeosets)
             {
                 if(billboards.Contains(vertices[indices[triangles[geosets[(int)geoset].triangle]]].Bones[0].index))
@@ -272,6 +286,12 @@ namespace WoW_Character_Viewer_Classic.Models
                 }
             }
             RenderSkeleton(gl);
+        }
+
+        public new void Dispose()
+        {
+            base.Dispose();
+            currentGeosets = null;
         }
     }
 }

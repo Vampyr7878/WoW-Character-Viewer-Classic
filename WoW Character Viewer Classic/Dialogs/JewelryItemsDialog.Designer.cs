@@ -34,7 +34,7 @@
             this.acceptButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.jewelryTooltip = new WoW_Character_Viewer_Classic.Controls.JewelryTooltip();
-            this.itemsListBox = new WoW_Character_Viewer_Classic.Controls.JewelryItemsListBox();
+            this.itemsListBox = new WoW_Character_Viewer_Classic.Controls.ItemsListBox();
             this.SuspendLayout();
             // 
             // searchTextBox
@@ -94,7 +94,6 @@
             this.jewelryTooltip.ForeColor = System.Drawing.Color.White;
             this.jewelryTooltip.Item = null;
             this.jewelryTooltip.OwnerDraw = true;
-            this.jewelryTooltip.Slot = null;
             this.jewelryTooltip.UseAnimation = false;
             this.jewelryTooltip.UseFading = false;
             // 
@@ -145,7 +144,7 @@
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.Button acceptButton;
         private System.Windows.Forms.Button cancelButton;
-        private Controls.JewelryItemsListBox itemsListBox;
+        private Controls.ItemsListBox itemsListBox;
         private Controls.JewelryTooltip jewelryTooltip;
     }
 }

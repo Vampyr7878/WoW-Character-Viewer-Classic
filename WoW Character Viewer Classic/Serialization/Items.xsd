@@ -1,14 +1,29 @@
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="JewelryItems">
+  <xs:element name="Items">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="JewelryItem" maxOccurs="unbounded" minOccurs="0">
+        <xs:element name="Item" maxOccurs="unbounded" minOccurs="0">
           <xs:complexType>
             <xs:sequence>
               <xs:element type="xs:string" name="ID"/>
               <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:string" name="Slot"/>
               <xs:element type="xs:int" name="Quality"/>
               <xs:element type="xs:string" name="Icon"/>
+              <xs:element name="Models">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="Cape"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Textures">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="Left"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
               <xs:element type="xs:int" name="AllowableClass"/>
               <xs:element type="xs:int" name="AllowableRace"/>
               <xs:element type="xs:int" name="MaxCount"/>

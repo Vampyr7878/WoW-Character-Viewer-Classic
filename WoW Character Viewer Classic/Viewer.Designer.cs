@@ -104,6 +104,7 @@
             this.slotTooltip = new WoW_Character_Viewer_Classic.Controls.ButtonTooltip();
             this.buttonTooltip = new WoW_Character_Viewer_Classic.Controls.ButtonTooltip();
             this.jewelryTooltip = new WoW_Character_Viewer_Classic.Controls.JewelryTooltip();
+            this.backTooltip = new WoW_Character_Viewer_Classic.Controls.BackTooltip();
             this.tabControl.SuspendLayout();
             this.appearancePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
@@ -919,9 +920,9 @@
             this.trinket2Button.Size = new System.Drawing.Size(48, 48);
             this.trinket2Button.TabIndex = 16;
             this.trinket2Button.UseVisualStyleBackColor = true;
-            this.trinket2Button.Click += new System.EventHandler(this.slotButton_Click);
-            this.trinket2Button.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
-            this.trinket2Button.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
+            this.trinket2Button.Click += new System.EventHandler(this.jewelryButton_Click);
+            this.trinket2Button.MouseEnter += new System.EventHandler(this.jewelryButton_MouseEnter);
+            this.trinket2Button.MouseLeave += new System.EventHandler(this.jewelryButton_MouseLeave);
             // 
             // trinket1Button
             // 
@@ -933,9 +934,9 @@
             this.trinket1Button.Size = new System.Drawing.Size(48, 48);
             this.trinket1Button.TabIndex = 15;
             this.trinket1Button.UseVisualStyleBackColor = true;
-            this.trinket1Button.Click += new System.EventHandler(this.slotButton_Click);
-            this.trinket1Button.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
-            this.trinket1Button.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
+            this.trinket1Button.Click += new System.EventHandler(this.jewelryButton_Click);
+            this.trinket1Button.MouseEnter += new System.EventHandler(this.jewelryButton_MouseEnter);
+            this.trinket1Button.MouseLeave += new System.EventHandler(this.jewelryButton_MouseLeave);
             // 
             // finger2Button
             // 
@@ -947,9 +948,9 @@
             this.finger2Button.Size = new System.Drawing.Size(48, 48);
             this.finger2Button.TabIndex = 14;
             this.finger2Button.UseVisualStyleBackColor = true;
-            this.finger2Button.Click += new System.EventHandler(this.slotButton_Click);
-            this.finger2Button.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
-            this.finger2Button.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
+            this.finger2Button.Click += new System.EventHandler(this.jewelryButton_Click);
+            this.finger2Button.MouseEnter += new System.EventHandler(this.jewelryButton_MouseEnter);
+            this.finger2Button.MouseLeave += new System.EventHandler(this.jewelryButton_MouseLeave);
             // 
             // finger1Button
             // 
@@ -962,9 +963,9 @@
             this.finger1Button.Size = new System.Drawing.Size(48, 48);
             this.finger1Button.TabIndex = 13;
             this.finger1Button.UseVisualStyleBackColor = false;
-            this.finger1Button.Click += new System.EventHandler(this.slotButton_Click);
-            this.finger1Button.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
-            this.finger1Button.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
+            this.finger1Button.Click += new System.EventHandler(this.jewelryButton_Click);
+            this.finger1Button.MouseEnter += new System.EventHandler(this.jewelryButton_MouseEnter);
+            this.finger1Button.MouseLeave += new System.EventHandler(this.jewelryButton_MouseLeave);
             // 
             // feetButton
             // 
@@ -1080,8 +1081,9 @@
             this.backButton.Size = new System.Drawing.Size(48, 48);
             this.backButton.TabIndex = 4;
             this.backButton.UseVisualStyleBackColor = true;
-            this.backButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
-            this.backButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            this.backButton.MouseEnter += new System.EventHandler(this.backButton_MouseEnter);
+            this.backButton.MouseLeave += new System.EventHandler(this.backButton_MouseLeave);
             // 
             // shoulderButton
             // 
@@ -1106,9 +1108,9 @@
             this.neckButton.Size = new System.Drawing.Size(48, 48);
             this.neckButton.TabIndex = 2;
             this.neckButton.UseVisualStyleBackColor = true;
-            this.neckButton.Click += new System.EventHandler(this.slotButton_Click);
-            this.neckButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
-            this.neckButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
+            this.neckButton.Click += new System.EventHandler(this.jewelryButton_Click);
+            this.neckButton.MouseEnter += new System.EventHandler(this.jewelryButton_MouseEnter);
+            this.neckButton.MouseLeave += new System.EventHandler(this.jewelryButton_MouseLeave);
             // 
             // headButton
             // 
@@ -1169,9 +1171,19 @@
             this.jewelryTooltip.ForeColor = System.Drawing.Color.White;
             this.jewelryTooltip.Item = null;
             this.jewelryTooltip.OwnerDraw = true;
-            this.jewelryTooltip.Slot = null;
             this.jewelryTooltip.UseAnimation = false;
             this.jewelryTooltip.UseFading = false;
+            // 
+            // backTooltip
+            // 
+            this.backTooltip.AutomaticDelay = 0;
+            this.backTooltip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.backTooltip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.backTooltip.ForeColor = System.Drawing.Color.White;
+            this.backTooltip.Item = null;
+            this.backTooltip.OwnerDraw = true;
+            this.backTooltip.UseAnimation = false;
+            this.backTooltip.UseFading = false;
             // 
             // Viewer
             // 
@@ -1272,6 +1284,7 @@
         private Controls.ButtonTooltip slotTooltip;
         private Controls.ButtonTooltip buttonTooltip;
         private Controls.JewelryTooltip jewelryTooltip;
+        private Controls.BackTooltip backTooltip;
     }
 }
 

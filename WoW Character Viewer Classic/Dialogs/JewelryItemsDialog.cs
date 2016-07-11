@@ -8,35 +8,41 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 {
     public partial class JewelryItemsDialog : Form
     {
-        JewelryItems items;
-        JewlryItemsJewelryItem selected;
+        Items items;
+        ItemsItem selected;
+        ItemsItem item;
 
-        public JewelryItemsDialog(string slot, string characterRace, string characterClass)
+        public JewelryItemsDialog()
         {
             InitializeComponent();
-            jewelryTooltip.Slot = slot;
-            XmlSerializer serializer = new XmlSerializer(typeof(JewelryItems));
-            using(StreamReader reader = new StreamReader(@"Data\" + ItemsFile(slot)))
+        }
+
+        public ItemsItem Selected { get { return selected; } }
+
+        public void GetItemList(string slot, string characterRace, string characterClass)
+        {
+            items = null;
+            XmlSerializer serializer = new XmlSerializer(typeof(Items));
+            using (StreamReader reader = new StreamReader(@"Data\" + ItemsFile(slot)))
             {
-                items = (JewelryItems)serializer.Deserialize(reader.BaseStream);
+                items = (Items)serializer.Deserialize(reader.BaseStream);
             }
             RaceFilter(characterRace);
             ClassFilter(characterClass);
-            List<JewlryItemsJewelryItem> list = new List<JewlryItemsJewelryItem>(items.JewelryItem);
+            List<ItemsItem> list = new List<ItemsItem>(items.Item);
             list.Sort((x, y) => x.Name.CompareTo(y.Name));
-            JewlryItemsJewelryItem item = new JewlryItemsJewelryItem
+            item = new ItemsItem
             {
                 Name = "None",
                 ID = "0",
+                Quality = -1,
                 Icon = WoWHelper.SlotIcon(slot, characterClass),
-                Quality = -1
+                Textures = new ItemsItemTextures()
             };
             itemsListBox.Items.Add(item);
             itemsListBox.Items.AddRange(list.ToArray());
             itemsListBox.SelectedIndex = 0;
         }
-
-        public JewlryItemsJewelryItem Selected { get { return selected; } }
 
         string ItemsFile(string slot)
         {
@@ -60,28 +66,28 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void RaceFilter(string characterRace)
         {
-            List<JewlryItemsJewelryItem> list = new List<JewlryItemsJewelryItem>(items.JewelryItem);
-            foreach(JewlryItemsJewelryItem item in items.JewelryItem)
+            List<ItemsItem> list = new List<ItemsItem>(items.Item);
+            foreach(ItemsItem item in items.Item)
             {
                 if(!WoWHelper.RaceMatch(item.AllowableRace, characterRace))
                 {
                     list.Remove(item);
                 }
             }
-            items.JewelryItem = list.ToArray();
+            items.Item = list.ToArray();
         }
 
         void ClassFilter(string characterClass)
         {
-            List<JewlryItemsJewelryItem> list = new List<JewlryItemsJewelryItem>(items.JewelryItem);
-            foreach(JewlryItemsJewelryItem item in items.JewelryItem)
+            List<ItemsItem> list = new List<ItemsItem>(items.Item);
+            foreach(ItemsItem item in items.Item)
             {
                 if(!WoWHelper.ClassMatch(item.AllowableClass, characterClass))
                 {
                     list.Remove(item);
                 }
             }
-            items.JewelryItem = list.ToArray();
+            items.Item = list.ToArray();
         }
 
         void searchButton_Click(object sender, EventArgs e)
@@ -89,12 +95,12 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             if(searchTextBox.Text != "")
             {
                 itemsListBox.Items.Clear();
-                List<JewlryItemsJewelryItem> list = new List<JewlryItemsJewelryItem>();
-                foreach(JewlryItemsJewelryItem item in items.JewelryItem)
+                List<ItemsItem> list = new List<ItemsItem>();
+                foreach(ItemsItem jewelry in items.Item)
                 {
-                    if(item.Name.ToLower().Contains(searchTextBox.Text.ToLower()))
+                    if (jewelry.Name.ToLower().Contains(searchTextBox.Text.ToLower()))
                     {
-                        list.Add(item);
+                        list.Add(jewelry);
                     }
                 }
                 list.Sort((x, y) => x.Name.CompareTo(y.Name));
@@ -102,21 +108,21 @@ namespace WoW_Character_Viewer_Classic.Dialogs
                 if(itemsListBox.Items.Count > 0)
                 {
                     itemsListBox.SelectedIndex = 0;
+                    itemsListBox.Focus();
                 }
                 else
                 {
-                    itemsListBox.SelectedIndex = -1;
-                    selected = null;
+                    itemsListBox.Items.Add(item);
+                    itemsListBox.SelectedIndex = 0;
                 }
             }
         }
 
         void itemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            selected = (JewlryItemsJewelryItem)itemsListBox.SelectedItem;
+            selected = (ItemsItem)itemsListBox.SelectedItem;
             if(selected.Name == "None")
             {
-
                 jewelryTooltip.Hide(itemsListBox);
             }
             else

@@ -22,18 +22,18 @@ using System.Xml.Serialization;
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
 [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
-public partial class JewelryItems {
+public partial class Items {
     
-    private JewlryItemsJewelryItem[] jewelryItemField;
+    private ItemsItem[] itemField;
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlElementAttribute("JewelryItem")]
-    public JewlryItemsJewelryItem[] JewelryItem {
+    [System.Xml.Serialization.XmlElementAttribute("Item")]
+    public ItemsItem[] Item {
         get {
-            return this.jewelryItemField;
+            return this.itemField;
         }
         set {
-            this.jewelryItemField = value;
+            this.itemField = value;
         }
     }
 }
@@ -44,15 +44,21 @@ public partial class JewelryItems {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class JewlryItemsJewelryItem {
+public partial class ItemsItem {
     
     private string idField;
     
     private string nameField;
     
+    private string slotField;
+    
     private int qualityField;
     
     private string iconField;
+    
+    private ItemsItemModels modelsField;
+    
+    private ItemsItemTextures texturesField;
     
     private int allowableClassField;
     
@@ -81,6 +87,16 @@ public partial class JewlryItemsJewelryItem {
     }
     
     /// <uwagi/>
+    public string Slot {
+        get {
+            return this.slotField;
+        }
+        set {
+            this.slotField = value;
+        }
+    }
+    
+    /// <uwagi/>
     public int Quality {
         get {
             return this.qualityField;
@@ -97,6 +113,26 @@ public partial class JewlryItemsJewelryItem {
         }
         set {
             this.iconField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public ItemsItemModels Models {
+        get {
+            return this.modelsField;
+        }
+        set {
+            this.modelsField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public ItemsItemTextures Textures {
+        get {
+            return this.texturesField;
+        }
+        set {
+            this.texturesField = value;
         }
     }
     
@@ -127,6 +163,48 @@ public partial class JewlryItemsJewelryItem {
         }
         set {
             this.maxCountField = value;
+        }
+    }
+}
+
+/// <uwagi/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+public partial class ItemsItemModels {
+    
+    private string capeField;
+    
+    /// <uwagi/>
+    public string Cape {
+        get {
+            return this.capeField;
+        }
+        set {
+            this.capeField = value;
+        }
+    }
+}
+
+/// <uwagi/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+public partial class ItemsItemTextures {
+    
+    private string leftField;
+    
+    /// <uwagi/>
+    public string Left {
+        get {
+            return this.leftField;
+        }
+        set {
+            this.leftField = value;
         }
     }
 }
