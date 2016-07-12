@@ -77,20 +77,20 @@ namespace WoW_Character_Viewer_Classic.Models
             facialName = "Hair: ";
             facialsCount = 5;
         }
-		
-		protected override void GetHairNames()
-		{
-		    hairNames = new[]
-		    {
-		        "Horned",
-		        "Low",
-		        "Long",
-		        "Upturned",
-		        "Small",
-		        "Wide",
-		        "Buffalo"
-		    };
-		}
+
+        protected override void GetHairNames()
+        {
+            hairNames = new[]
+            {
+                "Horned",
+                "Low",
+                "Long",
+                "Upturned",
+                "Small",
+                "Wide",
+                "Buffalo"
+            };
+        }
 
         protected override void GetFacialNames()
         {
@@ -113,16 +113,16 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             return "";
         }
-		
-		protected override string GetScalpUpper()
-		{
-			return "";
-		}
-		
-		protected override string GetScalpLower()
-		{
-			return "00";
-		}
+
+        protected override string GetScalpUpper()
+        {
+            return "";
+        }
+
+        protected override string GetScalpLower()
+        {
+            return "00";
+        }
 
         protected override string GetHairTexture()
         {
@@ -243,9 +243,9 @@ namespace WoW_Character_Viewer_Classic.Models
         public override void Render(OpenGL gl)
         {
             Prepare(gl);
-            foreach (Geosets geoset in currentGeosets)
+            foreach(Geosets geoset in currentGeosets)
             {
-                if (billboards.Contains(vertices[indices[triangles[geosets[(int)geoset].triangle]]].Bones[0].index))
+                if(billboards.Contains(vertices[indices[triangles[geosets[(int)geoset].triangle]]].Bones[0].index))
                 {
                     RenderBillboard(gl, (int)geoset, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
                 }

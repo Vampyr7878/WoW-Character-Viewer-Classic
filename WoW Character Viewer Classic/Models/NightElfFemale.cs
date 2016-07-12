@@ -74,20 +74,20 @@ namespace WoW_Character_Viewer_Classic.Models
             facialName = "Markings: ";
             facialsCount = 10;
         }
-		
-		protected override void GetHairNames()
-		{
-		    hairNames = new[]
-		    {
-		        "Long",
-		        "Loose Tail",
-		        "Short",
-		        "High Tail",
-		        "Braided Tails",
-		        "Short Tail",
-		        "Braided Tail"
-		    };
-		}
+
+        protected override void GetHairNames()
+        {
+            hairNames = new[]
+            {
+                "Long",
+                "Loose Tail",
+                "Short",
+                "High Tail",
+                "Braided Tails",
+                "Short Tail",
+                "Braided Tail"
+            };
+        }
 
         protected override void GetFacialNames()
         {
@@ -115,16 +115,16 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             return Number(Facial + 4);
         }
-		
-		protected override string GetScalpUpper()
-		{
-			return "01";
-		}
-		
-		protected override string GetScalpLower()
-		{
-			return "01";
-		}
+
+        protected override string GetScalpUpper()
+        {
+            return "01";
+        }
+
+        protected override string GetScalpLower()
+        {
+            return "01";
+        }
 
         protected override string GetHairTexture()
         {
@@ -188,7 +188,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         protected override void FacialGeosets()
         {
-			
+
         }
 
         protected override void EquipCape()

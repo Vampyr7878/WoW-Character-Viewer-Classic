@@ -496,7 +496,7 @@ namespace WoW_Character_Viewer_Classic
         void ChangeIcon(Button button, string path, Color color)
         {
             button.BackgroundImage.Dispose();
-            using (StreamReader reader = new StreamReader(path))
+            using(StreamReader reader = new StreamReader(path))
             {
                 button.BackgroundImage = new Bitmap(reader.BaseStream);
             }
@@ -505,7 +505,7 @@ namespace WoW_Character_Viewer_Classic
 
         void ResetGearIcons()
         {
-            for (int i = 0; i < 25; i++)
+            for(int i = 0; i < 25; i++)
             {
                 character.Gear[i] = null;
                 character.Gear[i] = new ItemsItem
@@ -844,7 +844,7 @@ namespace WoW_Character_Viewer_Classic
         void jewelryButton_MouseEnter(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            if (character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
+            if(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
             {
                 slotTooltip.Show(WoWHelper.SlotName(button.Name.Replace("Button", ""), characterClass), button, 48, 48);
             }
@@ -858,7 +858,7 @@ namespace WoW_Character_Viewer_Classic
         void jewelryButton_MouseLeave(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            if (character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
+            if(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
             {
                 slotTooltip.Hide(button);
             }
@@ -875,7 +875,7 @@ namespace WoW_Character_Viewer_Classic
 
         void backButton_MouseEnter(object sender, EventArgs e)
         {
-            if (character.Gear[WoWHelper.Slot("back")].ID == "0")
+            if(character.Gear[WoWHelper.Slot("back")].ID == "0")
             {
                 slotTooltip.Show(WoWHelper.SlotName("back", characterClass), backButton, 48, 48);
             }
@@ -888,7 +888,7 @@ namespace WoW_Character_Viewer_Classic
 
         void backButton_MouseLeave(object sender, EventArgs e)
         {
-            if (character.Gear[WoWHelper.Slot("back")].ID == "0")
+            if(character.Gear[WoWHelper.Slot("back")].ID == "0")
             {
                 slotTooltip.Hide(backButton);
             }

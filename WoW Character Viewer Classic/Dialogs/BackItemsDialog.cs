@@ -173,7 +173,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void JewelryItemsDialog_LocationChanged(object sender, EventArgs e)
         {
-            if (selected.Name == "None")
+            if(selected.Name == "None")
             {
 
                 backTooltip.Hide(itemsListBox);

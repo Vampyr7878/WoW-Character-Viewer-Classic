@@ -81,19 +81,19 @@ namespace WoW_Character_Viewer_Classic.Models
             facialName = "Tusks: ";
             facialsCount = 11;
         }
-		
-		protected override void GetHairNames()
-		{
-		    hairNames = new[]
-		    {
-		        "Bald",
-		        "Receding",
-		        "Crest",
-		        "Windswept",
-		        "Topknot",
-		        "Tail"
-		    };
-		}
+
+        protected override void GetHairNames()
+        {
+            hairNames = new[]
+            {
+                "Bald",
+                "Receding",
+                "Crest",
+                "Windswept",
+                "Topknot",
+                "Tail"
+            };
+        }
 
         protected override void GetFacialNames()
         {
@@ -122,31 +122,31 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             return Number(Facial - 5);
         }
-		
-		protected override string GetScalpUpper()
-		{
-		    string scalpUpper = "";
-		    switch(Hair)
-		    {
+
+        protected override string GetScalpUpper()
+        {
+            string scalpUpper = "";
+            switch(Hair)
+            {
                 case 1:
-		            scalpUpper = "00";
+                    scalpUpper = "00";
                     break;
                 case 2:
                 case 4:
-		            scalpUpper = "02";
+                    scalpUpper = "02";
                     break;
                 case 3:
                 case 5:
-		            scalpUpper = "01";
+                    scalpUpper = "01";
                     break;
-		    }
-		    return scalpUpper;
-		}
-		
-		protected override string GetScalpLower()
+            }
+            return scalpUpper;
+        }
+
+        protected override string GetScalpLower()
         {
             string scalpLower = "";
-            switch (Hair)
+            switch(Hair)
             {
                 case 1:
                     scalpLower = "00";
@@ -161,7 +161,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     break;
             }
             return scalpLower;
-		}
+        }
 
         protected override string GetHairTexture()
         {

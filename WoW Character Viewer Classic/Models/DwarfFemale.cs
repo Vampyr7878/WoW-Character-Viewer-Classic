@@ -65,12 +65,12 @@ namespace WoW_Character_Viewer_Classic.Models
 
         public DwarfFemale() : base(@"Character\Dwarf\Female\DwarfFemale.xml")
         {
-			currentGeosets = new List<Geosets>
-			{
-			    Geosets.Body1,
+            currentGeosets = new List<Geosets>
+            {
+                Geosets.Body1,
                 Geosets.Wrist1,
                 Geosets.Legs1
-			};
+            };
             skinsCount = 9;
             facesCount = 10;
             hairName = "Hair Style: ";
@@ -80,27 +80,27 @@ namespace WoW_Character_Viewer_Classic.Models
             facialName = "Piercings: ";
             facialsCount = 6;
         }
-		
-		protected override void GetHairNames()
-		{
-		    hairNames = new[]
-		    {
-		        "Double-Braided",
-		        "Braided Buns",
-		        "Braided",
-		        "Boar Tails",
-		        "Braided Bun",
-		        "Looped",
-		        "Tied",
-		        "Short",
-		        "Parted",
-		        "Short Braids",
-		        "Bobbed",
-		        "Cropped",
-		        "Bangs && Braids",
-		        "Gathered"
-		    };
-		}
+
+        protected override void GetHairNames()
+        {
+            hairNames = new[]
+            {
+                "Double-Braided",
+                "Braided Buns",
+                "Braided",
+                "Boar Tails",
+                "Braided Bun",
+                "Looped",
+                "Tied",
+                "Short",
+                "Parted",
+                "Short Braids",
+                "Bobbed",
+                "Cropped",
+                "Bangs && Braids",
+                "Gathered"
+            };
+        }
 
         protected override void GetFacialNames()
         {
@@ -124,16 +124,16 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             return "";
         }
-		
-		protected override string GetScalpUpper()
-		{
-			return "03";
-		}
-		
-		protected override string GetScalpLower()
-		{
-			return "03";
-		}
+
+        protected override string GetScalpUpper()
+        {
+            return "03";
+        }
+
+        protected override string GetScalpLower()
+        {
+            return "03";
+        }
 
         protected override string GetHairTexture()
         {

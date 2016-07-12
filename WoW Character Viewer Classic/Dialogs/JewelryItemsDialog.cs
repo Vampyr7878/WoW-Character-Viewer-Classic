@@ -24,7 +24,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             items = null;
             searchTextBox.Text = "";
             XmlSerializer serializer = new XmlSerializer(typeof(Items));
-            using (StreamReader reader = new StreamReader(@"Data\" + ItemsFile(slot)))
+            using(StreamReader reader = new StreamReader(@"Data\" + ItemsFile(slot)))
             {
                 items = (Items)serializer.Deserialize(reader.BaseStream);
             }
@@ -101,7 +101,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
                 List<ItemsItem> list = new List<ItemsItem>();
                 foreach(ItemsItem jewelry in items.Item)
                 {
-                    if (jewelry.Name.ToLower().Contains(searchTextBox.Text.ToLower()))
+                    if(jewelry.Name.ToLower().Contains(searchTextBox.Text.ToLower()))
                     {
                         list.Add(jewelry);
                     }
@@ -155,7 +155,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void JewelryItemsDialog_LocationChanged(object sender, EventArgs e)
         {
-            if (selected.Name == "None")
+            if(selected.Name == "None")
             {
 
                 jewelryTooltip.Hide(itemsListBox);

@@ -81,20 +81,20 @@ namespace WoW_Character_Viewer_Classic.Models
             facialName = "Facial Hair: ";
             facialsCount = 8;
         }
-		
-		protected override void GetHairNames()
-		{
-		    hairNames = new[]
-		    {
-		        "Bald",
-		        "Wings",
-		        "Groomed",
-		        "Cowlicked",
-		        "Styled",
-		        "Balding",
-		        "Combover"
-		    };
-		}
+
+        protected override void GetHairNames()
+        {
+            hairNames = new[]
+            {
+                "Bald",
+                "Wings",
+                "Groomed",
+                "Cowlicked",
+                "Styled",
+                "Balding",
+                "Combover"
+            };
+        }
 
         protected override void GetFacialNames()
         {
@@ -120,38 +120,38 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             return Number(Facial - 1);
         }
-		
-		protected override string GetScalpUpper()
-		{
-		    string scalpUpper = "";
-		    switch(Hair)
-		    {
+
+        protected override string GetScalpUpper()
+        {
+            string scalpUpper = "";
+            switch(Hair)
+            {
                 case 1:
-		            scalpUpper = "01";
+                    scalpUpper = "01";
                     break;
                 case 2:
-		            scalpUpper = "02";
+                    scalpUpper = "02";
                     break;
                 case 3:
-		            scalpUpper = "03";
+                    scalpUpper = "03";
                     break;
                 case 4:
-		            scalpUpper = "04";
+                    scalpUpper = "04";
                     break;
                 case 5:
-		            scalpUpper = "05";
+                    scalpUpper = "05";
                     break;
                 case 6:
-		            scalpUpper = "06";
+                    scalpUpper = "06";
                     break;
-		    }
-		    return scalpUpper;
-		}
-		
-		protected override string GetScalpLower()
+            }
+            return scalpUpper;
+        }
+
+        protected override string GetScalpLower()
         {
             string scalpLower = "";
-            switch (Hair)
+            switch(Hair)
             {
                 case 1:
                     scalpLower = "01";
@@ -173,7 +173,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     break;
             }
             return scalpLower;
-		}
+        }
 
         protected override string GetHairTexture()
         {

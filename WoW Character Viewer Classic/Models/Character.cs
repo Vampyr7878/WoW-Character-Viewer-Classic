@@ -33,7 +33,7 @@ namespace WoW_Character_Viewer_Classic.Models
         protected string[] facialNames;
         protected int facialsCount;
 
-        protected Character(string file) 
+        protected Character(string file)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Model));
             using(StreamReader reader = new StreamReader(file))
@@ -50,7 +50,7 @@ namespace WoW_Character_Viewer_Classic.Models
             geosets = model.View.Geosets;
             bones = model.Bones;
             textures = new Texture[model.Textures.Length];
-            for (int i = 0; i < textures.Length; i++)
+            for(int i = 0; i < textures.Length; i++)
             {
                 textures[i] = new Texture();
             }
@@ -244,7 +244,7 @@ namespace WoW_Character_Viewer_Classic.Models
             Blend(gl, geoset);
             gl.Enable(OpenGL.GL_TEXTURE_2D);
             textures[FindTexture(geoset)].Bind(gl);
-            foreach (int billboard in billboards)
+            foreach(int billboard in billboards)
             {
                 x = model.Bones[billboard].Position.x;
                 y = model.Bones[billboard].Position.y;
@@ -254,9 +254,9 @@ namespace WoW_Character_Viewer_Classic.Models
                 gl.Rotate(-Rotation, 0f, 1f, 0f);
                 gl.Translate(-x, -y, -z);
                 gl.Begin(OpenGL.GL_TRIANGLES);
-                for (int i = start; i < start + count; i++)
+                for(int i = start; i < start + count; i++)
                 {
-                    if (vertices[indices[triangles[i]]].Bones[0].index == billboard)
+                    if(vertices[indices[triangles[i]]].Bones[0].index == billboard)
                     {
                         x = vertices[indices[triangles[i]]].Texture.x;
                         y = vertices[indices[triangles[i]]].Texture.y;

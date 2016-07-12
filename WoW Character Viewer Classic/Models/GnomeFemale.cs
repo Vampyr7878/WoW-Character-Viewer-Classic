@@ -79,20 +79,20 @@ namespace WoW_Character_Viewer_Classic.Models
             facialName = "Earrings: ";
             facialsCount = 7;
         }
-		
-		protected override void GetHairNames()
-		{
-		    hairNames = new[]
-		    {
-		        "Tower",
-		        "Sprouts",
-		        "Boar Tails",
-		        "Parted",
-		        "Soaked",
-		        "Braided Buns",
-		        "Bobbed"
-		    };
-		}
+
+        protected override void GetHairNames()
+        {
+            hairNames = new[]
+            {
+                "Tower",
+                "Sprouts",
+                "Boar Tails",
+                "Parted",
+                "Soaked",
+                "Braided Buns",
+                "Bobbed"
+            };
+        }
 
         protected override void GetFacialNames()
         {
@@ -117,16 +117,16 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             return "";
         }
-		
-		protected override string GetScalpUpper()
-		{
-			return "00";
-		}
-		
-		protected override string GetScalpLower()
-		{
-			return "00";
-		}
+
+        protected override string GetScalpUpper()
+        {
+            return "00";
+        }
+
+        protected override string GetScalpLower()
+        {
+            return "00";
+        }
 
         protected override string GetHairTexture()
         {

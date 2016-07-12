@@ -78,18 +78,18 @@ namespace WoW_Character_Viewer_Classic.Models
             facialName = "Tusks: ";
             facialsCount = 6;
         }
-		
-		protected override void GetHairNames()
-		{
-		    hairNames = new[]
-		    {
-		        "Braids",
-		        "High Tail",
-		        "Swept Braids",
-		        "Topknot",
-		        "Braided Crest"
-		    };
-		}
+
+        protected override void GetHairNames()
+        {
+            hairNames = new[]
+            {
+                "Braids",
+                "High Tail",
+                "Swept Braids",
+                "Topknot",
+                "Braided Crest"
+            };
+        }
 
         protected override void GetFacialNames()
         {
@@ -113,29 +113,29 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             return "";
         }
-		
-		protected override string GetScalpUpper()
-		{
-		    string scalpUpper = "";
-		    switch(Hair)
-		    {
+
+        protected override string GetScalpUpper()
+        {
+            string scalpUpper = "";
+            switch(Hair)
+            {
                 case 0:
                 case 3:
                 case 4:
-		            scalpUpper = "02";
+                    scalpUpper = "02";
                     break;
                 case 1:
                 case 2:
-		            scalpUpper = "00";
+                    scalpUpper = "00";
                     break;
-		    }
-		    return scalpUpper;
-		}
-		
-		protected override string GetScalpLower()
+            }
+            return scalpUpper;
+        }
+
+        protected override string GetScalpLower()
         {
             string scalpLower = "";
-            switch (Hair)
+            switch(Hair)
             {
                 case 0:
                 case 3:
@@ -148,7 +148,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     break;
             }
             return scalpLower;
-		}
+        }
 
         protected override string GetHairTexture()
         {

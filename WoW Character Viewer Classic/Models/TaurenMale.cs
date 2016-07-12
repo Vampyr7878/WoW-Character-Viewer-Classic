@@ -103,21 +103,21 @@ namespace WoW_Character_Viewer_Classic.Models
             facialName = "Facial Hair: ";
             facialsCount = 7;
         }
-		
-		protected override void GetHairNames()
-		{
-		    hairNames = new[]
-		    {
-		        "Longhorn",
-		        "Bull",
-		        "Charger",
-		        "Broken",
-		        "Snapped",
-		        "Tiny",
-		        "Buffalo",
-		        "Gorefest"
-		    };
-		}
+
+        protected override void GetHairNames()
+        {
+            hairNames = new[]
+            {
+                "Longhorn",
+                "Bull",
+                "Charger",
+                "Broken",
+                "Snapped",
+                "Tiny",
+                "Buffalo",
+                "Gorefest"
+            };
+        }
 
         protected override void GetFacialNames()
         {
@@ -142,16 +142,16 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             return "";
         }
-		
-		protected override string GetScalpUpper()
-		{
-			return "";
-		}
-		
-		protected override string GetScalpLower()
-		{
-			return "00";
-		}
+
+        protected override string GetScalpUpper()
+        {
+            return "";
+        }
+
+        protected override string GetScalpLower()
+        {
+            return "00";
+        }
 
         protected override string GetHairTexture()
         {

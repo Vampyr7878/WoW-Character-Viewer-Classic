@@ -1,7 +1,6 @@
 ﻿using SharpGL;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace WoW_Character_Viewer_Classic.Models
 {

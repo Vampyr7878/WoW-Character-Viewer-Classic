@@ -60,7 +60,7 @@ namespace WoW_Character_Viewer_Classic.Controls
             }
             graphics.DrawString(lines[y], Font, new SolidBrush(ForeColor), new PointF(3, 1 + 14 * y++));
             List<string> classes = WoWHelper.Classes(Item.AllowableClass);
-            if (classes.Count < 9)
+            if(classes.Count < 9)
             {
                 DrawClasses(lines[y].Split(' '), y, graphics);
             }
