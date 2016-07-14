@@ -43,6 +43,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             {
                 case "Warrior":
                 case "Paladin":
+                    plateRadioButton.Checked = false;
                     leatherRadioButton.Visible = true;
                     mailRadioButton.Visible = true;
                     plateRadioButton.Visible = true;
@@ -50,6 +51,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
                     break;
                 case "Hunter":
                 case "Shaman":
+                    mailRadioButton.Checked = false;
                     leatherRadioButton.Visible = true;
                     mailRadioButton.Visible = true;
                     plateRadioButton.Visible = false;
@@ -57,6 +59,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
                     break;
                 case "Rogue":
                 case "Druid":
+                    leatherRadioButton.Checked = false;
                     leatherRadioButton.Visible = true;
                     mailRadioButton.Visible = false;
                     plateRadioButton.Visible = false;
@@ -65,6 +68,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
                 case "Priest":
                 case "Mage":
                 case "Warlock":
+                    clothRadioButton.Checked = false;
                     leatherRadioButton.Visible = false;
                     mailRadioButton.Visible = false;
                     plateRadioButton.Visible = false;
@@ -80,6 +84,9 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             {
                 case "chest":
                     file = "ChestItems.xml";
+                    break;
+                case "wrist":
+                    file = "WristItems.xml";
                     break;
             }
             return file;
@@ -205,11 +212,12 @@ namespace WoW_Character_Viewer_Classic.Dialogs
                 item = null;
                 item = new ItemsItem
                 {
-                    Name = "None",
                     ID = "0",
+                    Name = "None",
+                    Type = "",
+                    Slot = "",
                     Quality = -1,
-                    Icon = WoWHelper.SlotIcon(slot, characterClass),
-                    Textures = new ItemsItemTextures()
+                    Icon = WoWHelper.SlotIcon(slot, characterClass)
                 };
                 itemsListBox.Items.Add(item);
                 itemsListBox.Items.AddRange(list.ToArray());

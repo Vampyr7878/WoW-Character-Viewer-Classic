@@ -178,6 +178,7 @@ namespace WoW_Character_Viewer_Classic.Models
             DrawLayer(graphics, texturesPath + "ScalpUpperHair" + GetScalpUpper() + "_" + Number(Color) + ".png", 0, 160);
             DrawLayer(graphics, texturesPath + "ScalpLowerHair" + GetScalpLower() + "_" + Number(Color) + ".png", 0, 192);
             MakeChestTexture(graphics, gender);
+            MakeWristTexture(graphics, gender);
             textures[index].Create(gl, bitmap);
             graphics.Dispose();
             bitmap.Dispose();
@@ -187,7 +188,7 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             for(int i = 0; i < 25; i++)
             {
-                if(!string.IsNullOrEmpty(Gear[i].Textures.LegUpper))
+                if(Gear[1].Textures != null && !string.IsNullOrEmpty(Gear[i].Textures.LegUpper))
                 {
                     return true;
                 }
@@ -199,7 +200,7 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             for (int i = 0; i < 25; i++)
             {
-                if (!string.IsNullOrEmpty(Gear[i].Textures.TorsoUpper))
+                if (Gear[1].Textures != null && !string.IsNullOrEmpty(Gear[i].Textures.TorsoUpper))
                 {
                     return true;
                 }
@@ -209,12 +210,23 @@ namespace WoW_Character_Viewer_Classic.Models
 
         void MakeChestTexture(Graphics graphics, string gender)
         {
-            DrawLayer(graphics, ArmorTexture(@"ArmUpperTexture\" + Gear[4].Textures.ArmUpper, gender), 0, 0);
-            DrawLayer(graphics, ArmorTexture(@"ArmLowerTexture\" + Gear[4].Textures.ArmLower, gender), 0, 64);
-            DrawLayer(graphics, ArmorTexture(@"TorsoUpperTexture\" + Gear[4].Textures.TorsoUpper, gender), 128, 0);
-            DrawLayer(graphics, ArmorTexture(@"TorsoLowerTexture\" + Gear[4].Textures.TorsoLower, gender), 128, 64);
-            DrawLayer(graphics, ArmorTexture(@"LegUpperTexture\" + Gear[4].Textures.LegUpper, gender), 128, 96);
-            DrawLayer(graphics, ArmorTexture(@"LegLowerTexture\" + Gear[4].Textures.LegLower, gender), 128, 160);
+            if(Gear[4].Textures != null)
+            {
+                DrawLayer(graphics, ArmorTexture(@"ArmUpperTexture\" + Gear[4].Textures.ArmUpper, gender), 0, 0);
+                DrawLayer(graphics, ArmorTexture(@"ArmLowerTexture\" + Gear[4].Textures.ArmLower, gender), 0, 64);
+                DrawLayer(graphics, ArmorTexture(@"TorsoUpperTexture\" + Gear[4].Textures.TorsoUpper, gender), 128, 0);
+                DrawLayer(graphics, ArmorTexture(@"TorsoLowerTexture\" + Gear[4].Textures.TorsoLower, gender), 128, 64);
+                DrawLayer(graphics, ArmorTexture(@"LegUpperTexture\" + Gear[4].Textures.LegUpper, gender), 128, 96);
+                DrawLayer(graphics, ArmorTexture(@"LegLowerTexture\" + Gear[4].Textures.LegLower, gender), 128, 160);
+            }
+        }
+
+        void MakeWristTexture(Graphics graphics, string gender)
+        {
+            if(Gear[7].Textures != null && (Gear[4].Models == null || Gear[4].Models.Sleeve == ""))
+            {
+                DrawLayer(graphics, ArmorTexture(@"ArmLowerTexture\" + Gear[7].Textures.ArmLower, gender), 0, 64);
+            }
         }
 
         string ArmorTexture(string texture, string gender)
@@ -240,11 +252,14 @@ namespace WoW_Character_Viewer_Classic.Models
         void MakeCapeTexture(OpenGL gl, int index)
         {
             textures[index].Destroy(gl);
-            Bitmap bitmap = LoadBitmap(objectComponentsPath + @"Cape\" + Gear[3].Textures.Left + ".png");
-            if(bitmap != null)
+            if(Gear[3].Textures != null)
             {
-                textures[index].Create(gl, bitmap);
-                bitmap.Dispose();
+                Bitmap bitmap = LoadBitmap(objectComponentsPath + @"Cape\" + Gear[3].Textures.Left + ".png");
+                if(bitmap != null)
+                {
+                    textures[index].Create(gl, bitmap);
+                    bitmap.Dispose();
+                }
             }
         }
 

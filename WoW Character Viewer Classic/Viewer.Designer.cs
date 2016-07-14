@@ -1030,8 +1030,9 @@
             this.wristButton.Size = new System.Drawing.Size(48, 48);
             this.wristButton.TabIndex = 8;
             this.wristButton.UseVisualStyleBackColor = true;
-            this.wristButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
-            this.wristButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
+            this.wristButton.Click += new System.EventHandler(this.armorButton_Click);
+            this.wristButton.MouseEnter += new System.EventHandler(this.armorButton_MouseEnter);
+            this.wristButton.MouseLeave += new System.EventHandler(this.armorButton_MouseLeave);
             // 
             // tabardButton
             // 

@@ -512,11 +512,12 @@ namespace WoW_Character_Viewer_Classic
                 character.Gear[i] = null;
                 character.Gear[i] = new ItemsItem
                 {
-                    Name = "None",
                     ID = "0",
+                    Name = "None",
+                    Type = "",
+                    Slot = "",
                     Quality = -1,
-                    Icon = WoWHelper.SlotIcon(i, characterClass),
-                    Textures = new ItemsItemTextures()
+                    Icon = WoWHelper.SlotIcon(i, characterClass)
                 };
             }
             ChangeIcon(headButton);
@@ -644,6 +645,7 @@ namespace WoW_Character_Viewer_Classic
 
         void Cape()
         {
+            ItemsItem item = character.Gear[3];
             backItemsDialog.GetItemList(characterRace, characterClass, character);
             if(backItemsDialog.ShowDialog() == DialogResult.OK)
             {
@@ -654,19 +656,13 @@ namespace WoW_Character_Viewer_Classic
             else
             {
                 character.Gear[3] = null;
-                character.Gear[3] = new ItemsItem
-                {
-                    Name = "None",
-                    ID = "0",
-                    Quality = -1,
-                    Icon = WoWHelper.SlotIcon("back", characterClass),
-                    Textures = new ItemsItemTextures()
-                };
+                character.Gear[3] = item;
             }
         }
 
         void Armor(string slot)
         {
+            ItemsItem item = character.Gear[WoWHelper.Slot(slot)];
             armorItemsDialog.GetItemList(slot, characterRace, characterClass, character);
             if(armorItemsDialog.ShowDialog() == DialogResult.OK)
             {
@@ -678,14 +674,7 @@ namespace WoW_Character_Viewer_Classic
             else
             {
                 character.Gear[WoWHelper.Slot(slot)] = null;
-                character.Gear[WoWHelper.Slot(slot)] = new ItemsItem
-                {
-                    Name = "None",
-                    ID = "0",
-                    Quality = -1,
-                    Icon = WoWHelper.SlotIcon(slot, characterClass),
-                    Textures = new ItemsItemTextures()
-                };
+                character.Gear[WoWHelper.Slot(slot)] = item;
             }
         }
 
