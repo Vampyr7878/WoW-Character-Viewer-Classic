@@ -153,11 +153,11 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             }
         }
 
-        void JewelryItemsDialog_KeyDown(object sender, KeyEventArgs e)
+        void BackItemsDialog_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
-                if(searchTextBox.Focused)
+                if (searchTextBox.Focused)
                 {
                     searchButton_Click(searchButton, null);
                     AcceptButton = null;
@@ -171,9 +171,9 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             }
         }
 
-        void JewelryItemsDialog_LocationChanged(object sender, EventArgs e)
+        void BackItemsDialog_LocationChanged(object sender, EventArgs e)
         {
-            if(selected.Name == "None")
+            if (selected.Name == "None")
             {
 
                 backTooltip.Hide(itemsListBox);
@@ -185,7 +185,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             }
         }
 
-        void JewelryItemsDialog_Move(object sender, EventArgs e)
+        void BackItemsDialog_Move(object sender, EventArgs e)
         {
             backTooltip.Hide(itemsListBox);
         }

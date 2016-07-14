@@ -148,9 +148,9 @@
             this.MinimizeBox = false;
             this.Name = "BackItemsDialog";
             this.Text = "Items";
-            this.LocationChanged += new System.EventHandler(this.JewelryItemsDialog_LocationChanged);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.JewelryItemsDialog_KeyDown);
-            this.Move += new System.EventHandler(this.JewelryItemsDialog_Move);
+            this.LocationChanged += new System.EventHandler(this.BackItemsDialog_LocationChanged);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BackItemsDialog_KeyDown);
+            this.Move += new System.EventHandler(this.BackItemsDialog_Move);
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

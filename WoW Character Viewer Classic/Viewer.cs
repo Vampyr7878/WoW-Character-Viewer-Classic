@@ -13,6 +13,7 @@ namespace WoW_Character_Viewer_Classic
     {
         JewelryItemsDialog jewelryItemsDialog;
         BackItemsDialog backItemsDialog;
+        ArmorItemsDialog armorItemsDialog;
         bool characterGender;
         string characterRace;
         string characterClass;
@@ -36,6 +37,7 @@ namespace WoW_Character_Viewer_Classic
             InitializeComponent();
             jewelryItemsDialog = new JewelryItemsDialog();
             backItemsDialog = new BackItemsDialog();
+            armorItemsDialog = new ArmorItemsDialog();
             openGLControl.MouseWheel += openGlControl_MouseWheel;
             rotate = false;
             move = false;
@@ -657,7 +659,31 @@ namespace WoW_Character_Viewer_Classic
                     Name = "None",
                     ID = "0",
                     Quality = -1,
-                    Icon = WoWHelper.SlotIcon(3, characterClass),
+                    Icon = WoWHelper.SlotIcon("back", characterClass),
+                    Textures = new ItemsItemTextures()
+                };
+            }
+        }
+
+        void Armor(string slot)
+        {
+            armorItemsDialog.GetItemList(slot, characterRace, characterClass, character);
+            if(armorItemsDialog.ShowDialog() == DialogResult.OK)
+            {
+                character.Gear[WoWHelper.Slot(slot)] = null;
+                character.Gear[WoWHelper.Slot(slot)] = armorItemsDialog.Selected;
+                Button button = (Button)Controls.Find(slot + "Button", true).First();
+                ChangeIcon(button);
+            }
+            else
+            {
+                character.Gear[WoWHelper.Slot(slot)] = null;
+                character.Gear[WoWHelper.Slot(slot)] = new ItemsItem
+                {
+                    Name = "None",
+                    ID = "0",
+                    Quality = -1,
+                    Icon = WoWHelper.SlotIcon(slot, characterClass),
                     Textures = new ItemsItemTextures()
                 };
             }
@@ -875,7 +901,7 @@ namespace WoW_Character_Viewer_Classic
 
         void backButton_MouseEnter(object sender, EventArgs e)
         {
-            if(character.Gear[WoWHelper.Slot("back")].ID == "0")
+            if (character.Gear[WoWHelper.Slot("back")].ID == "0")
             {
                 slotTooltip.Show(WoWHelper.SlotName("back", characterClass), backButton, 48, 48);
             }
@@ -888,13 +914,46 @@ namespace WoW_Character_Viewer_Classic
 
         void backButton_MouseLeave(object sender, EventArgs e)
         {
-            if(character.Gear[WoWHelper.Slot("back")].ID == "0")
+            if (character.Gear[WoWHelper.Slot("back")].ID == "0")
             {
                 slotTooltip.Hide(backButton);
             }
             else
             {
                 backTooltip.Hide(backButton);
+            }
+        }
+
+        void armorButton_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            Armor(button.Name.Replace("Button", ""));
+        }
+
+        void armorButton_MouseEnter(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            if (character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
+            {
+                slotTooltip.Show(WoWHelper.SlotName(button.Name.Replace("Button", ""), characterClass), button, 48, 48);
+            }
+            else
+            {
+                armorTooltip.Item = character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))];
+                armorTooltip.Show(armorTooltip.Item.Name, button, 48, 48);
+            }
+        }
+
+        void armorButton_MouseLeave(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            if (character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
+            {
+                slotTooltip.Hide(button);
+            }
+            else
+            {
+                armorTooltip.Hide(button);
             }
         }
 

@@ -60,8 +60,8 @@ namespace WoW_Character_Viewer_Classic.Models
             Buttons3,
             Buttons1,
             Buttons2,
-            Skirt2,
             Skirt1,
+            Doublet1,
             Robe1,
             Legs1,
             Knees1,
@@ -91,7 +91,6 @@ namespace WoW_Character_Viewer_Classic.Models
                 Geosets.Ears1,
                 Geosets.Teeth1,
                 Geosets.Wrist1,
-                Geosets.Legs1,
                 Geosets.Hoof1
             };
             skinsCount = 19;
@@ -297,6 +296,31 @@ namespace WoW_Character_Viewer_Classic.Models
                 currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[3].Models.Cape));
                 currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[3].Models.Cape.Replace("Cape", "Buttons")));
                 currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[3].Models.Cape.Replace("Cape", "Tail")));
+            }
+        }
+
+        protected override void EquipChest()
+        {
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Sleeve"));
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Robe"));
+            if(Gear[4].ID != "0")
+            {
+                if(Gear[4].Models.Sleeve != "")
+                {
+                    currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[4].Models.Sleeve));
+                }
+                if(Gear[4].Models.Robe != "")
+                {
+                    currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[4].Models.Robe));
+                }
+            }
+            if(currentGeosets.Contains(Geosets.Robe1))
+            {
+                currentGeosets.RemoveAll(item => item.ToString().Contains("Legs"));
+            }
+            else
+            {
+                currentGeosets.Add(Geosets.Legs1);
             }
         }
 

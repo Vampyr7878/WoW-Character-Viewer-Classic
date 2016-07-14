@@ -23,6 +23,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         {
             items = null;
             searchTextBox.Text = "";
+            itemsListBox.Items.Clear();
             XmlSerializer serializer = new XmlSerializer(typeof(Items));
             using(StreamReader reader = new StreamReader(@"Data\" + ItemsFile(slot)))
             {

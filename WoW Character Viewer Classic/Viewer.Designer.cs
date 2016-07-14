@@ -105,6 +105,7 @@
             this.buttonTooltip = new WoW_Character_Viewer_Classic.Controls.ButtonTooltip();
             this.jewelryTooltip = new WoW_Character_Viewer_Classic.Controls.JewelryTooltip();
             this.backTooltip = new WoW_Character_Viewer_Classic.Controls.BackTooltip();
+            this.armorTooltip = new WoW_Character_Viewer_Classic.Controls.ArmorTooltip();
             this.tabControl.SuspendLayout();
             this.appearancePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
@@ -1068,8 +1069,9 @@
             this.chestButton.Size = new System.Drawing.Size(48, 48);
             this.chestButton.TabIndex = 5;
             this.chestButton.UseVisualStyleBackColor = true;
-            this.chestButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
-            this.chestButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
+            this.chestButton.Click += new System.EventHandler(this.armorButton_Click);
+            this.chestButton.MouseEnter += new System.EventHandler(this.armorButton_MouseEnter);
+            this.chestButton.MouseLeave += new System.EventHandler(this.armorButton_MouseLeave);
             // 
             // backButton
             // 
@@ -1185,6 +1187,17 @@
             this.backTooltip.UseAnimation = false;
             this.backTooltip.UseFading = false;
             // 
+            // armorTooltip
+            // 
+            this.armorTooltip.AutomaticDelay = 0;
+            this.armorTooltip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.armorTooltip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.armorTooltip.ForeColor = System.Drawing.Color.White;
+            this.armorTooltip.Item = null;
+            this.armorTooltip.OwnerDraw = true;
+            this.armorTooltip.UseAnimation = false;
+            this.armorTooltip.UseFading = false;
+            // 
             // Viewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1285,6 +1298,7 @@
         private Controls.ButtonTooltip buttonTooltip;
         private Controls.JewelryTooltip jewelryTooltip;
         private Controls.BackTooltip backTooltip;
+        private Controls.ArmorTooltip armorTooltip;
     }
 }
 

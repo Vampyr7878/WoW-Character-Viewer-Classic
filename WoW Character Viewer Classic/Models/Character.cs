@@ -20,6 +20,7 @@ namespace WoW_Character_Viewer_Classic.Models
         Texture[] textures;
         string texturesPath;
         string objectComponentsPath;
+        string textureComponentsPath;
         string skinName;
         protected int skinsCount;
         string faceName;
@@ -44,6 +45,7 @@ namespace WoW_Character_Viewer_Classic.Models
             Skeleton = false;
             texturesPath = @"Character\" + model.Name.Replace("Female", "").Replace("Male", "") + @"\";
             objectComponentsPath = @"Item\ObjectComponents\";
+            textureComponentsPath = @"Item\TextureComponents\";
             vertices = model.Vertices;
             indices = model.View.Indices;
             triangles = model.View.Triangles;
@@ -161,25 +163,73 @@ namespace WoW_Character_Viewer_Classic.Models
             Bitmap bitmap = LoadBitmap(texturesPath + gender + model.Name + "Skin00_" + Number(Skin) + ".png");
             bitmap = new Bitmap(bitmap);
             Graphics graphics = Graphics.FromImage(bitmap);
-            DrawLayer(graphics, gender + model.Name + "NakedPelvisSkin00_" + Number(Skin) + ".png", 128, 96);
-            if(model.Name.Contains("Female"))
+            if(!LegUpper())
             {
-                DrawLayer(graphics, gender + model.Name + "NakedTorsoSkin00_" + Number(Skin) + ".png", 128, 0);
+                DrawLayer(graphics, texturesPath + gender + model.Name + "NakedPelvisSkin00_" + Number(Skin) + ".png", 128, 96);
             }
-            DrawLayer(graphics, gender + model.Name + "FaceUpper" + Number(Face) + "_" + Number(Skin) + ".png", 0, 160);
-            DrawLayer(graphics, gender + model.Name + "FaceLower" + Number(Face) + "_" + Number(Skin) + ".png", 0, 192);
-            DrawLayer(graphics, "FacialUpperHair" + GetFacialUpper() + "_" + Number(Color) + ".png", 0, 160);
-            DrawLayer(graphics, "FacialLowerHair" + GetFacialLower() + "_" + Number(Color) + ".png", 0, 192);
-            DrawLayer(graphics, "ScalpUpperHair" + GetScalpUpper() + "_" + Number(Color) + ".png", 0, 160);
-            DrawLayer(graphics, "ScalpLowerHair" + GetScalpLower() + "_" + Number(Color) + ".png", 0, 192);
+            if(model.Name.Contains("Female") && ! TorsoUpper())
+            {
+                DrawLayer(graphics, texturesPath + gender + model.Name + "NakedTorsoSkin00_" + Number(Skin) + ".png", 128, 0);
+            }
+            DrawLayer(graphics, texturesPath + gender + model.Name + "FaceUpper" + Number(Face) + "_" + Number(Skin) + ".png", 0, 160);
+            DrawLayer(graphics, texturesPath + gender + model.Name + "FaceLower" + Number(Face) + "_" + Number(Skin) + ".png", 0, 192);
+            DrawLayer(graphics, texturesPath + "FacialUpperHair" + GetFacialUpper() + "_" + Number(Color) + ".png", 0, 160);
+            DrawLayer(graphics, texturesPath + "FacialLowerHair" + GetFacialLower() + "_" + Number(Color) + ".png", 0, 192);
+            DrawLayer(graphics, texturesPath + "ScalpUpperHair" + GetScalpUpper() + "_" + Number(Color) + ".png", 0, 160);
+            DrawLayer(graphics, texturesPath + "ScalpLowerHair" + GetScalpLower() + "_" + Number(Color) + ".png", 0, 192);
+            MakeChestTexture(graphics, gender);
             textures[index].Create(gl, bitmap);
             graphics.Dispose();
             bitmap.Dispose();
         }
 
+        bool LegUpper()
+        {
+            for(int i = 0; i < 25; i++)
+            {
+                if(!string.IsNullOrEmpty(Gear[i].Textures.LegUpper))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        bool TorsoUpper()
+        {
+            for (int i = 0; i < 25; i++)
+            {
+                if (!string.IsNullOrEmpty(Gear[i].Textures.TorsoUpper))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        void MakeChestTexture(Graphics graphics, string gender)
+        {
+            DrawLayer(graphics, ArmorTexture(@"ArmUpperTexture\" + Gear[4].Textures.ArmUpper, gender), 0, 0);
+            DrawLayer(graphics, ArmorTexture(@"ArmLowerTexture\" + Gear[4].Textures.ArmLower, gender), 0, 64);
+            DrawLayer(graphics, ArmorTexture(@"TorsoUpperTexture\" + Gear[4].Textures.TorsoUpper, gender), 128, 0);
+            DrawLayer(graphics, ArmorTexture(@"TorsoLowerTexture\" + Gear[4].Textures.TorsoLower, gender), 128, 64);
+            DrawLayer(graphics, ArmorTexture(@"LegUpperTexture\" + Gear[4].Textures.LegUpper, gender), 128, 96);
+            DrawLayer(graphics, ArmorTexture(@"LegLowerTexture\" + Gear[4].Textures.LegLower, gender), 128, 160);
+        }
+
+        string ArmorTexture(string texture, string gender)
+        {
+            string file = textureComponentsPath + texture + "_U.png";
+            if(!File.Exists(file))
+            {
+                file = gender == "Male" ? file.Replace("_U", "_M") : file.Replace("_U", "_F");
+            }
+            return file;
+        }
+
         void DrawLayer(Graphics graphics, string layer, int x, int y)
         {
-            Bitmap bitmap = LoadBitmap(texturesPath + layer);
+            Bitmap bitmap = LoadBitmap(layer);
             if(bitmap != null)
             {
                 graphics.DrawImage(bitmap, new Point(x, y));
@@ -235,6 +285,7 @@ namespace WoW_Character_Viewer_Classic.Models
         protected void EquipGear()
         {
             EquipCape();
+            EquipChest();
         }
 
         protected void RenderBillboard(OpenGL gl, int geoset, int start, int count)
@@ -423,6 +474,8 @@ namespace WoW_Character_Viewer_Classic.Models
         protected abstract void FacialGeosets();
 
         protected abstract void EquipCape();
+
+        protected abstract void EquipChest();
 
         public abstract void Render(OpenGL gl);
     }

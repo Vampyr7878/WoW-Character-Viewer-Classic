@@ -59,6 +59,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ArmorTooltip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\ItemsListBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -70,6 +73,12 @@
     </Compile>
     <Compile Include="Controls\ButtonTooltip.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ArmortemsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ArmortemsDialog.Designer.cs">
+      <DependentUpon>ArmortemsDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\BackItemsDialog.cs">
       <SubType>Form</SubType>
@@ -116,6 +125,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WoWHelper.cs" />
+    <EmbeddedResource Include="Dialogs\ArmortemsDialog.resx">
+      <DependentUpon>ArmortemsDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\BackItemsDialog.resx">
       <DependentUpon>BackItemsDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,16 +166,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\BackItems.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\FingerItems.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\NeckItems.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\TrinketItems.xml">
+    <Content Include="Data\*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icon.ico" />
@@ -243,6 +246,30 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Item\ObjectComponents\Cape\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Item\TextureComponents\ArmLowerTexture\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Item\TextureComponents\ArmUpperTexture\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Item\TextureComponents\FootTexture\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Item\TextureComponents\HandTexture\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Item\TextureComponents\LegLowerTexture\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Item\TextureComponents\LegUpperTexture\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Item\TextureComponents\TorsoLowerTexture\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Item\TextureComponents\TorsoUpperTexture\*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

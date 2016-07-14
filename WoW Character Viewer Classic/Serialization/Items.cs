@@ -175,7 +175,37 @@ public partial class ItemsItem {
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
 public partial class ItemsItemModels {
     
+    private string leftField;
+    
+    private string rightField;
+    
     private string capeField;
+    
+    private string sleeveField;
+    
+    private string doubletField;
+    
+    private string robeField;
+    
+    /// <uwagi/>
+    public string Left {
+        get {
+            return this.leftField;
+        }
+        set {
+            this.leftField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string Right {
+        get {
+            return this.rightField;
+        }
+        set {
+            this.rightField = value;
+        }
+    }
     
     /// <uwagi/>
     public string Cape {
@@ -184,6 +214,36 @@ public partial class ItemsItemModels {
         }
         set {
             this.capeField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string Sleeve {
+        get {
+            return this.sleeveField;
+        }
+        set {
+            this.sleeveField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string Doublet {
+        get {
+            return this.doubletField;
+        }
+        set {
+            this.doubletField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string Robe {
+        get {
+            return this.robeField;
+        }
+        set {
+            this.robeField = value;
         }
     }
 }
@@ -198,6 +258,24 @@ public partial class ItemsItemTextures {
     
     private string leftField;
     
+    private string rightField;
+    
+    private string armUpperField;
+    
+    private string armLowerField;
+    
+    private string handField;
+    
+    private string torsoUpperField;
+    
+    private string torsoLowerField;
+    
+    private string legUpperField;
+    
+    private string legLowerField;
+    
+    private string footField;
+    
     /// <uwagi/>
     public string Left {
         get {
@@ -205,6 +283,96 @@ public partial class ItemsItemTextures {
         }
         set {
             this.leftField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string Right {
+        get {
+            return this.rightField;
+        }
+        set {
+            this.rightField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string ArmUpper {
+        get {
+            return this.armUpperField;
+        }
+        set {
+            this.armUpperField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string ArmLower {
+        get {
+            return this.armLowerField;
+        }
+        set {
+            this.armLowerField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string Hand {
+        get {
+            return this.handField;
+        }
+        set {
+            this.handField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string TorsoUpper {
+        get {
+            return this.torsoUpperField;
+        }
+        set {
+            this.torsoUpperField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string TorsoLower {
+        get {
+            return this.torsoLowerField;
+        }
+        set {
+            this.torsoLowerField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string LegUpper {
+        get {
+            return this.legUpperField;
+        }
+        set {
+            this.legUpperField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string LegLower {
+        get {
+            return this.legLowerField;
+        }
+        set {
+            this.legLowerField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string Foot {
+        get {
+            return this.footField;
+        }
+        set {
+            this.footField = value;
         }
     }
 }

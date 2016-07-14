@@ -13,7 +13,12 @@
               <xs:element name="Models">
                 <xs:complexType>
                   <xs:sequence>
+                    <xs:element type="xs:string" name="Left"/>
+                    <xs:element type="xs:string" name="Right"/>
                     <xs:element type="xs:string" name="Cape"/>
+                    <xs:element type="xs:string" name="Sleeve"/>
+                    <xs:element type="xs:string" name="Doublet"/>
+                    <xs:element type="xs:string" name="Robe"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -21,6 +26,15 @@
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element type="xs:string" name="Left"/>
+                    <xs:element type="xs:string" name="Right"/>
+                    <xs:element type="xs:string" name="ArmUpper"/>
+                    <xs:element type="xs:string" name="ArmLower"/>
+                    <xs:element type="xs:string" name="Hand"/>
+                    <xs:element type="xs:string" name="TorsoUpper"/>
+                    <xs:element type="xs:string" name="TorsoLower"/>
+                    <xs:element type="xs:string" name="LegUpper"/>
+                    <xs:element type="xs:string" name="LegLower"/>
+                    <xs:element type="xs:string" name="Foot"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
