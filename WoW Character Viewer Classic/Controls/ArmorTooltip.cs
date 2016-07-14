@@ -58,7 +58,9 @@ namespace WoW_Character_Viewer_Classic.Controls
             {
                 graphics.DrawString(lines[y], Font, new SolidBrush(ForeColor), new PointF(3, 1 + 14 * y++));
             }
-            graphics.DrawString(lines[y], Font, new SolidBrush(ForeColor), new PointF(3, 1 + 14 * y++));
+            graphics.DrawString(lines[y], Font, new SolidBrush(ForeColor), new PointF(3, 1 + 14 * y));
+            SizeF size = graphics.MeasureString(Item.Type, Font);
+            graphics.DrawString(Item.Type, Font, new SolidBrush(ForeColor), new PointF(e.Bounds.Width - size.Width - 7, 1 + 14 * y++));
             List<string> classes = WoWHelper.Classes(Item.AllowableClass);
             if(classes.Count < 9)
             {

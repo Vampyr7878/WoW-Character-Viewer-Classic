@@ -50,6 +50,8 @@ public partial class ItemsItem {
     
     private string nameField;
     
+    private string typeField;
+    
     private string slotField;
     
     private int qualityField;
@@ -83,6 +85,16 @@ public partial class ItemsItem {
         }
         set {
             this.nameField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string Type {
+        get {
+            return this.typeField;
+        }
+        set {
+            this.typeField = value;
         }
     }
     

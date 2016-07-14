@@ -964,11 +964,6 @@ namespace WoW_Character_Viewer_Classic
             {
                 slotTooltip.Show(WoWHelper.SlotName(button.Name.Replace("Button", ""), characterClass), button, 48, 48);
             }
-            else
-            {
-                jewelryTooltip.Item = character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))];
-                jewelryTooltip.Show(jewelryTooltip.Item.Name, button, 48, 48);
-            }
         }
 
         void slotButton_MouseLeave(object sender, EventArgs e)
@@ -977,10 +972,6 @@ namespace WoW_Character_Viewer_Classic
             if(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
             {
                 slotTooltip.Hide(button);
-            }
-            else
-            {
-                jewelryTooltip.Hide(button);
             }
         }
 
