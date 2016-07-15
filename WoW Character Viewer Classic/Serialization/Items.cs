@@ -195,6 +195,8 @@ public partial class ItemsItemModels {
     
     private string sleeveField;
     
+    private string wristField;
+    
     private string doubletField;
     
     private string robeField;
@@ -236,6 +238,16 @@ public partial class ItemsItemModels {
         }
         set {
             this.sleeveField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string Wrist {
+        get {
+            return this.wristField;
+        }
+        set {
+            this.wristField = value;
         }
     }
     

@@ -88,6 +88,9 @@ namespace WoW_Character_Viewer_Classic.Dialogs
                 case "wrist":
                     file = "WristItems.xml";
                     break;
+                case "hands":
+                    file = "HandsItems.xml";
+                    break;
             }
             return file;
         }

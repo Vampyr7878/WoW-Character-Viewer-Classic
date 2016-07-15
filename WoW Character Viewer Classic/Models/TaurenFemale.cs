@@ -64,7 +64,6 @@ namespace WoW_Character_Viewer_Classic.Models
                 Geosets.Body1,
                 Geosets.Mane1,
                 Geosets.Ears1,
-                Geosets.Wrist1,
                 Geosets.Hoof1
             };
             skinsCount = 11;
@@ -239,13 +238,31 @@ namespace WoW_Character_Viewer_Classic.Models
             }
         }
 
+        protected override void EquipHands()
+        {
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Wrist"));
+            if(Gear[8].ID == "0")
+            {
+                currentGeosets.Add(Geosets.Wrist1);
+            }
+            else
+            {
+                currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[8].Models.Wrist));
+            }
+            if(currentGeosets.Contains(Geosets.Wrist3))
+            {
+                currentGeosets.Add(Geosets.Wrist4);
+            }
+        }
+
         protected override void EquipChest()
         {
             currentGeosets.RemoveAll(item => item.ToString().Contains("Sleeve"));
             currentGeosets.RemoveAll(item => item.ToString().Contains("Robe"));
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Legs"));
             if(Gear[4].ID != "0")
             {
-                if(Gear[4].Models.Sleeve != "")
+                if(currentGeosets.Contains(Geosets.Wrist1) && Gear[4].Models.Sleeve != "")
                 {
                     currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[4].Models.Sleeve));
                 }
@@ -254,11 +271,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[4].Models.Robe));
                 }
             }
-            if(currentGeosets.Contains(Geosets.Robe1))
-            {
-                currentGeosets.RemoveAll(item => item.ToString().Contains("Legs"));
-            }
-            else
+            if(!currentGeosets.Contains(Geosets.Robe1))
             {
                 currentGeosets.Add(Geosets.Legs1);
             }

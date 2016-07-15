@@ -1017,8 +1017,9 @@
             this.handsButton.Size = new System.Drawing.Size(48, 48);
             this.handsButton.TabIndex = 9;
             this.handsButton.UseVisualStyleBackColor = true;
-            this.handsButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
-            this.handsButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
+            this.handsButton.Click += new System.EventHandler(this.armorButton_Click);
+            this.handsButton.MouseEnter += new System.EventHandler(this.armorButton_MouseEnter);
+            this.handsButton.MouseLeave += new System.EventHandler(this.armorButton_MouseLeave);
             // 
             // wristButton
             // 

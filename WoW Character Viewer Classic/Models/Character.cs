@@ -179,6 +179,7 @@ namespace WoW_Character_Viewer_Classic.Models
             DrawLayer(graphics, texturesPath + "ScalpLowerHair" + GetScalpLower() + "_" + Number(Color) + ".png", 0, 192);
             MakeChestTexture(graphics, gender);
             MakeWristTexture(graphics, gender);
+            MakeHandsTexture(graphics, gender);
             textures[index].Create(gl, bitmap);
             graphics.Dispose();
             bitmap.Dispose();
@@ -188,7 +189,7 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             for(int i = 0; i < 25; i++)
             {
-                if(Gear[1].Textures != null && !string.IsNullOrEmpty(Gear[i].Textures.LegUpper))
+                if(Gear[i].Textures != null && !string.IsNullOrEmpty(Gear[i].Textures.LegUpper))
                 {
                     return true;
                 }
@@ -198,9 +199,9 @@ namespace WoW_Character_Viewer_Classic.Models
 
         bool TorsoUpper()
         {
-            for (int i = 0; i < 25; i++)
+            for(int i = 0; i < 25; i++)
             {
-                if (Gear[1].Textures != null && !string.IsNullOrEmpty(Gear[i].Textures.TorsoUpper))
+                if(Gear[i].Textures != null && !string.IsNullOrEmpty(Gear[i].Textures.TorsoUpper))
                 {
                     return true;
                 }
@@ -226,6 +227,18 @@ namespace WoW_Character_Viewer_Classic.Models
             if(Gear[7].Textures != null && (Gear[4].Models == null || Gear[4].Models.Sleeve == ""))
             {
                 DrawLayer(graphics, ArmorTexture(@"ArmLowerTexture\" + Gear[7].Textures.ArmLower, gender), 0, 64);
+            }
+        }
+
+        void MakeHandsTexture(Graphics graphics, string gender)
+        {
+            if(Gear[8].Textures != null)
+            {
+                if(Gear[4].Models == null || Gear[4].Models.Sleeve == "" || Gear[8].Models.Wrist != "Wrist1")
+                {
+                    DrawLayer(graphics, ArmorTexture(@"ArmLowerTexture\" + Gear[8].Textures.ArmLower, gender), 0, 64);
+                }
+                DrawLayer(graphics, ArmorTexture(@"HandTexture\" + Gear[8].Textures.Hand, gender), 0, 128);
             }
         }
 
@@ -300,6 +313,7 @@ namespace WoW_Character_Viewer_Classic.Models
         protected void EquipGear()
         {
             EquipCape();
+            EquipHands();
             EquipChest();
         }
 
@@ -489,6 +503,8 @@ namespace WoW_Character_Viewer_Classic.Models
         protected abstract void FacialGeosets();
 
         protected abstract void EquipCape();
+
+        protected abstract void EquipHands();
 
         protected abstract void EquipChest();
 
