@@ -978,8 +978,9 @@
             this.feetButton.Size = new System.Drawing.Size(48, 48);
             this.feetButton.TabIndex = 12;
             this.feetButton.UseVisualStyleBackColor = true;
-            this.feetButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
-            this.feetButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
+            this.feetButton.Click += new System.EventHandler(this.armorButton_Click);
+            this.feetButton.MouseEnter += new System.EventHandler(this.armorButton_MouseEnter);
+            this.feetButton.MouseLeave += new System.EventHandler(this.armorButton_MouseLeave);
             // 
             // legsButton
             // 
@@ -991,8 +992,9 @@
             this.legsButton.Size = new System.Drawing.Size(48, 48);
             this.legsButton.TabIndex = 11;
             this.legsButton.UseVisualStyleBackColor = true;
-            this.legsButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
-            this.legsButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
+            this.legsButton.Click += new System.EventHandler(this.armorButton_Click);
+            this.legsButton.MouseEnter += new System.EventHandler(this.armorButton_MouseEnter);
+            this.legsButton.MouseLeave += new System.EventHandler(this.armorButton_MouseLeave);
             // 
             // waistButton
             // 
@@ -1004,8 +1006,9 @@
             this.waistButton.Size = new System.Drawing.Size(48, 48);
             this.waistButton.TabIndex = 10;
             this.waistButton.UseVisualStyleBackColor = true;
-            this.waistButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
-            this.waistButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
+            this.waistButton.Click += new System.EventHandler(this.armorButton_Click);
+            this.waistButton.MouseEnter += new System.EventHandler(this.armorButton_MouseEnter);
+            this.waistButton.MouseLeave += new System.EventHandler(this.armorButton_MouseLeave);
             // 
             // handsButton
             // 

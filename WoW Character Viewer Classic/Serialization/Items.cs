@@ -199,7 +199,13 @@ public partial class ItemsItemModels {
     
     private string doubletField;
     
+    private string skirtField;
+    
     private string robeField;
+    
+    private string kneesField;
+    
+    private string bootsField;
     
     /// <uwagi/>
     public string Left {
@@ -262,12 +268,42 @@ public partial class ItemsItemModels {
     }
     
     /// <uwagi/>
+    public string Skirt {
+        get {
+            return this.skirtField;
+        }
+        set {
+            this.skirtField = value;
+        }
+    }
+    
+    /// <uwagi/>
     public string Robe {
         get {
             return this.robeField;
         }
         set {
             this.robeField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string Knees {
+        get {
+            return this.kneesField;
+        }
+        set {
+            this.kneesField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string Boots {
+        get {
+            return this.bootsField;
+        }
+        set {
+            this.bootsField = value;
         }
     }
 }

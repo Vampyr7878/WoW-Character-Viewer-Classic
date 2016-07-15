@@ -177,9 +177,12 @@ namespace WoW_Character_Viewer_Classic.Models
             DrawLayer(graphics, texturesPath + "FacialLowerHair" + GetFacialLower() + "_" + Number(Color) + ".png", 0, 192);
             DrawLayer(graphics, texturesPath + "ScalpUpperHair" + GetScalpUpper() + "_" + Number(Color) + ".png", 0, 160);
             DrawLayer(graphics, texturesPath + "ScalpLowerHair" + GetScalpLower() + "_" + Number(Color) + ".png", 0, 192);
+            MakeLegsTexture(graphics, gender);
             MakeChestTexture(graphics, gender);
             MakeWristTexture(graphics, gender);
             MakeHandsTexture(graphics, gender);
+            MakeWaistTexture(graphics, gender);
+            MakeFeetTexture(graphics, gender);
             textures[index].Create(gl, bitmap);
             graphics.Dispose();
             bitmap.Dispose();
@@ -187,26 +190,41 @@ namespace WoW_Character_Viewer_Classic.Models
 
         bool LegUpper()
         {
-            for(int i = 0; i < 25; i++)
+            if(Gear[4].Textures != null && !string.IsNullOrEmpty(Gear[4].Textures.LegUpper))
             {
-                if(Gear[i].Textures != null && !string.IsNullOrEmpty(Gear[i].Textures.LegUpper))
-                {
-                    return true;
-                }
+                return true;
+            }
+            if(Gear[5].Textures != null && !string.IsNullOrEmpty(Gear[5].Textures.LegUpper))
+            {
+                return true;
+            }
+            if(Gear[6].Textures != null && !string.IsNullOrEmpty(Gear[6].Textures.LegUpper))
+            {
+                return true;
             }
             return false;
         }
 
         bool TorsoUpper()
         {
-            for(int i = 0; i < 25; i++)
+            if(Gear[4].Textures != null && !string.IsNullOrEmpty(Gear[4].Textures.TorsoUpper))
             {
-                if(Gear[i].Textures != null && !string.IsNullOrEmpty(Gear[i].Textures.TorsoUpper))
-                {
-                    return true;
-                }
+                return true;
+            }
+            if(Gear[10].Textures != null && !string.IsNullOrEmpty(Gear[10].Textures.TorsoUpper))
+            {
+                return true;
             }
             return false;
+        }
+
+        void MakeLegsTexture(Graphics graphics, string gender)
+        {
+            if(Gear[10].Textures != null)
+            {
+                DrawLayer(graphics, ArmorTexture(@"LegUpperTexture\" + Gear[10].Textures.LegUpper, gender), 128, 96);
+                DrawLayer(graphics, ArmorTexture(@"LegLowerTexture\" + Gear[10].Textures.LegLower, gender), 128, 160);
+            }
         }
 
         void MakeChestTexture(Graphics graphics, string gender)
@@ -218,7 +236,14 @@ namespace WoW_Character_Viewer_Classic.Models
                 DrawLayer(graphics, ArmorTexture(@"TorsoUpperTexture\" + Gear[4].Textures.TorsoUpper, gender), 128, 0);
                 DrawLayer(graphics, ArmorTexture(@"TorsoLowerTexture\" + Gear[4].Textures.TorsoLower, gender), 128, 64);
                 DrawLayer(graphics, ArmorTexture(@"LegUpperTexture\" + Gear[4].Textures.LegUpper, gender), 128, 96);
-                DrawLayer(graphics, ArmorTexture(@"LegLowerTexture\" + Gear[4].Textures.LegLower, gender), 128, 160);
+                if(Gear[4].Models.Robe == "" && (Gear[10].Models == null || Gear[10].Models.Robe == ""))
+                {
+                    DrawLayer(graphics, ArmorTexture(@"LegLowerTexture\" + Gear[4].Textures.LegLower, gender), 128, 160);
+                }
+                else if(Gear[4].Models.Robe == "Robe1")
+                {
+                    DrawLayer(graphics, ArmorTexture(@"LegLowerTexture\" + Gear[4].Textures.LegLower, gender), 128, 160);
+                }
             }
         }
 
@@ -242,12 +267,35 @@ namespace WoW_Character_Viewer_Classic.Models
             }
         }
 
+        void MakeWaistTexture(Graphics graphics, string gender)
+        {
+            if(Gear[9].Textures != null)
+            {
+                DrawLayer(graphics, ArmorTexture(@"LegUpperTexture\" + Gear[9].Textures.LegUpper, gender), 128, 96);
+            }
+        }
+
+        void MakeFeetTexture(Graphics graphics, string gender)
+        {
+            if(Gear[11].Textures != null)
+            {
+                if((Gear[4].Models == null || Gear[4].Models.Robe == "") && (Gear[10].Models == null || Gear[10].Models.Robe == ""))
+                {
+                    DrawLayer(graphics, ArmorTexture(@"LegLowerTexture\" + Gear[11].Textures.LegLower, gender), 128, 160);
+                }
+                if(!Model.Name.Contains("Tauren") && !Model.Name.Contains("Troll"))
+                {
+                    DrawLayer(graphics, ArmorTexture(@"FootTexture\" + Gear[11].Textures.Foot, gender), 128, 224);
+                }
+            }
+        }
+
         string ArmorTexture(string texture, string gender)
         {
             string file = textureComponentsPath + texture + "_U.png";
             if(!File.Exists(file))
             {
-                file = gender == "Male" ? file.Replace("_U", "_M") : file.Replace("_U", "_F");
+                file = gender == @"Male\" ? file.Replace("_U", "_M") : file.Replace("_U", "_F");
             }
             return file;
         }
@@ -314,6 +362,8 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             EquipCape();
             EquipHands();
+            EquipFeet();
+            EquipLegs();
             EquipChest();
         }
 
@@ -505,6 +555,10 @@ namespace WoW_Character_Viewer_Classic.Models
         protected abstract void EquipCape();
 
         protected abstract void EquipHands();
+
+        protected abstract void EquipFeet();
+
+        protected abstract void EquipLegs();
 
         protected abstract void EquipChest();
 

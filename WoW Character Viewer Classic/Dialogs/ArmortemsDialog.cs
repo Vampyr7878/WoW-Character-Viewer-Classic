@@ -34,6 +34,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             this.characterRace = characterRace;
             this.characterClass = characterClass;
             rotation = 0;
+            searchTextBox.Text = "";
             ClassType();
         }
 
@@ -90,6 +91,15 @@ namespace WoW_Character_Viewer_Classic.Dialogs
                     break;
                 case "hands":
                     file = "HandsItems.xml";
+                    break;
+                case "waist":
+                    file = "WaistItems.xml";
+                    break;
+                case "legs":
+                    file = "LegsItems.xml";
+                    break;
+                case "feet":
+                    file = "FeetItems.xml";
                     break;
             }
             return file;
@@ -200,7 +210,6 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             if(radioButton.Checked)
             {
                 items = null;
-                searchTextBox.Text = "";
                 itemsListBox.Items.Clear();
                 radioButton.Font = new Font(radioButton.Font, FontStyle.Bold);
                 XmlSerializer serializer = new XmlSerializer(typeof(Items));

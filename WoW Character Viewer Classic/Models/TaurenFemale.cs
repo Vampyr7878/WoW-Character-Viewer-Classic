@@ -255,25 +255,54 @@ namespace WoW_Character_Viewer_Classic.Models
             }
         }
 
+        protected override void EquipFeet()
+        {
+        }
+
+        protected override void EquipLegs()
+        {
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Legs"));
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Robe"));
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Knees"));
+            if(Gear[10].ID != "0")
+            {
+                if(Gear[10].Models.Robe != "")
+                {
+                    currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[10].Models.Robe));
+                }
+                if((Gear[11].Models == null || Gear[11].Models.Boots == "Boots1") && Gear[10].Models.Knees != "" && Gear[10].Models.Knees != "Knees2")
+                {
+                    currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[10].Models.Knees));
+                }
+            }
+            if(!currentGeosets.Contains(Geosets.Robe1))
+            {
+                currentGeosets.Add(Geosets.Legs1);
+            }
+            else
+            {
+                currentGeosets.RemoveAll(item => item.ToString().Contains("Knees"));
+            }
+        }
+
         protected override void EquipChest()
         {
             currentGeosets.RemoveAll(item => item.ToString().Contains("Sleeve"));
-            currentGeosets.RemoveAll(item => item.ToString().Contains("Robe"));
-            currentGeosets.RemoveAll(item => item.ToString().Contains("Legs"));
             if(Gear[4].ID != "0")
             {
                 if(currentGeosets.Contains(Geosets.Wrist1) && Gear[4].Models.Sleeve != "")
                 {
                     currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[4].Models.Sleeve));
                 }
-                if(Gear[4].Models.Robe != "")
+                if(!currentGeosets.Contains(Geosets.Robe1) && Gear[4].Models.Robe != "")
                 {
                     currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[4].Models.Robe));
                 }
             }
-            if(!currentGeosets.Contains(Geosets.Robe1))
+            if(currentGeosets.Contains(Geosets.Robe1))
             {
-                currentGeosets.Add(Geosets.Legs1);
+                currentGeosets.RemoveAll(item => item.ToString().Contains("Legs"));
+                currentGeosets.RemoveAll(item => item.ToString().Contains("Knees"));
             }
         }
 
