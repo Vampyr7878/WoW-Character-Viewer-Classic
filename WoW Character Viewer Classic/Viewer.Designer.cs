@@ -106,6 +106,7 @@
             this.jewelryTooltip = new WoW_Character_Viewer_Classic.Controls.JewelryTooltip();
             this.backTooltip = new WoW_Character_Viewer_Classic.Controls.BackTooltip();
             this.armorTooltip = new WoW_Character_Viewer_Classic.Controls.ArmorTooltip();
+            this.cosmeticTooltip = new WoW_Character_Viewer_Classic.Controls.CosmeticTooltip();
             this.tabControl.SuspendLayout();
             this.appearancePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
@@ -1048,8 +1049,9 @@
             this.tabardButton.Size = new System.Drawing.Size(48, 48);
             this.tabardButton.TabIndex = 7;
             this.tabardButton.UseVisualStyleBackColor = true;
-            this.tabardButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
-            this.tabardButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
+            this.tabardButton.Click += new System.EventHandler(this.cosmeticButton_Click);
+            this.tabardButton.MouseEnter += new System.EventHandler(this.cosmeticButton_MouseEnter);
+            this.tabardButton.MouseLeave += new System.EventHandler(this.cosmeticButton_MouseLeave);
             // 
             // shirtButton
             // 
@@ -1061,8 +1063,9 @@
             this.shirtButton.Size = new System.Drawing.Size(48, 48);
             this.shirtButton.TabIndex = 6;
             this.shirtButton.UseVisualStyleBackColor = true;
-            this.shirtButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
-            this.shirtButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
+            this.shirtButton.Click += new System.EventHandler(this.cosmeticButton_Click);
+            this.shirtButton.MouseEnter += new System.EventHandler(this.cosmeticButton_MouseEnter);
+            this.shirtButton.MouseLeave += new System.EventHandler(this.cosmeticButton_MouseLeave);
             // 
             // chestButton
             // 
@@ -1203,6 +1206,17 @@
             this.armorTooltip.UseAnimation = false;
             this.armorTooltip.UseFading = false;
             // 
+            // cosmeticTooltip
+            // 
+            this.cosmeticTooltip.AutomaticDelay = 0;
+            this.cosmeticTooltip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.cosmeticTooltip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.cosmeticTooltip.ForeColor = System.Drawing.Color.White;
+            this.cosmeticTooltip.Item = null;
+            this.cosmeticTooltip.OwnerDraw = true;
+            this.cosmeticTooltip.UseAnimation = false;
+            this.cosmeticTooltip.UseFading = false;
+            // 
             // Viewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1304,6 +1318,7 @@
         private Controls.JewelryTooltip jewelryTooltip;
         private Controls.BackTooltip backTooltip;
         private Controls.ArmorTooltip armorTooltip;
+        private Controls.CosmeticTooltip cosmeticTooltip;
     }
 }
 

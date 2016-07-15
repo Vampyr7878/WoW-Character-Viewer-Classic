@@ -319,9 +319,32 @@ namespace WoW_Character_Viewer_Classic.Models
             }
         }
 
-        protected override void EquipChest()
+        protected override void EquipShirt()
         {
             currentGeosets.RemoveAll(item => item.ToString().Contains("Sleeve"));
+            if(Gear[5].ID != "0")
+            {
+                if((Gear[4].Textures == null || Gear[4].Textures.ArmLower == "") && currentGeosets.Contains(Geosets.Wrist1) && Gear[5].Models.Sleeve != "")
+                {
+                    currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[5].Models.Sleeve));
+                }
+            }
+        }
+
+        protected override void EquipWrist()
+        {
+            if(Gear[7].ID != "0")
+            {
+                currentGeosets.RemoveAll(item => item.ToString().Contains("Sleeve"));
+            }
+        }
+
+        protected override void EquipChest()
+        {
+            if(Gear[5].Models == null || Gear[5].Models.Sleeve == "")
+            {
+                currentGeosets.RemoveAll(item => item.ToString().Contains("Sleeve"));
+            }
             if(Gear[4].ID != "0")
             {
                 if(currentGeosets.Contains(Geosets.Wrist1) && Gear[4].Models.Sleeve != "")
@@ -337,6 +360,15 @@ namespace WoW_Character_Viewer_Classic.Models
             {
                 currentGeosets.RemoveAll(item => item.ToString().Contains("Legs"));
                 currentGeosets.RemoveAll(item => item.ToString().Contains("Boots"));
+            }
+        }
+
+        protected override void EquipTabard()
+        {
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Tabard"));
+            if(Gear[6].ID != "0" && !currentGeosets.Contains(Geosets.Robe1))
+            {
+                currentGeosets.Add(Geosets.Tabard1);
             }
         }
 

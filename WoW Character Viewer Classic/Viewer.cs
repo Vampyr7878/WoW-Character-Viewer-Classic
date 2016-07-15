@@ -14,6 +14,7 @@ namespace WoW_Character_Viewer_Classic
         JewelryItemsDialog jewelryItemsDialog;
         BackItemsDialog backItemsDialog;
         ArmorItemsDialog armorItemsDialog;
+        CosmeticItemsDialog cosmeticItemsDialog;
         bool characterGender;
         string characterRace;
         string characterClass;
@@ -38,6 +39,7 @@ namespace WoW_Character_Viewer_Classic
             jewelryItemsDialog = new JewelryItemsDialog();
             backItemsDialog = new BackItemsDialog();
             armorItemsDialog = new ArmorItemsDialog();
+            cosmeticItemsDialog = new CosmeticItemsDialog();
             openGLControl.MouseWheel += openGlControl_MouseWheel;
             rotate = false;
             move = false;
@@ -678,6 +680,24 @@ namespace WoW_Character_Viewer_Classic
             }
         }
 
+        void Cosmetic(string slot)
+        {
+            ItemsItem item = character.Gear[WoWHelper.Slot(slot)];
+            cosmeticItemsDialog.GetItemList(slot, characterRace, characterClass, character);
+            if(cosmeticItemsDialog.ShowDialog() == DialogResult.OK)
+            {
+                character.Gear[WoWHelper.Slot(slot)] = null;
+                character.Gear[WoWHelper.Slot(slot)] = cosmeticItemsDialog.Selected;
+                Button button = (Button)Controls.Find(slot + "Button", true).First();
+                ChangeIcon(button);
+            }
+            else
+            {
+                character.Gear[WoWHelper.Slot(slot)] = null;
+                character.Gear[WoWHelper.Slot(slot)] = item;
+            }
+        }
+
         void openGLControl_OpenGLDraw(object sender, RenderEventArgs e)
         {
             OpenGL gl = openGLControl.OpenGL;
@@ -890,7 +910,7 @@ namespace WoW_Character_Viewer_Classic
 
         void backButton_MouseEnter(object sender, EventArgs e)
         {
-            if (character.Gear[WoWHelper.Slot("back")].ID == "0")
+            if(character.Gear[WoWHelper.Slot("back")].ID == "0")
             {
                 slotTooltip.Show(WoWHelper.SlotName("back", characterClass), backButton, 48, 48);
             }
@@ -903,7 +923,7 @@ namespace WoW_Character_Viewer_Classic
 
         void backButton_MouseLeave(object sender, EventArgs e)
         {
-            if (character.Gear[WoWHelper.Slot("back")].ID == "0")
+            if(character.Gear[WoWHelper.Slot("back")].ID == "0")
             {
                 slotTooltip.Hide(backButton);
             }
@@ -922,7 +942,7 @@ namespace WoW_Character_Viewer_Classic
         void armorButton_MouseEnter(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            if (character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
+            if(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
             {
                 slotTooltip.Show(WoWHelper.SlotName(button.Name.Replace("Button", ""), characterClass), button, 48, 48);
             }
@@ -936,13 +956,46 @@ namespace WoW_Character_Viewer_Classic
         void armorButton_MouseLeave(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            if (character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
+            if(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
             {
                 slotTooltip.Hide(button);
             }
             else
             {
                 armorTooltip.Hide(button);
+            }
+        }
+
+        void cosmeticButton_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            Cosmetic(button.Name.Replace("Button", ""));
+        }
+
+        void cosmeticButton_MouseEnter(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            if(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
+            {
+                slotTooltip.Show(WoWHelper.SlotName(button.Name.Replace("Button", ""), characterClass), button, 48, 48);
+            }
+            else
+            {
+                cosmeticTooltip.Item = character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))];
+                cosmeticTooltip.Show(cosmeticTooltip.Item.Name, button, 48, 48);
+            }
+        }
+
+        void cosmeticButton_MouseLeave(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            if(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
+            {
+                slotTooltip.Hide(button);
+            }
+            else
+            {
+                cosmeticTooltip.Hide(button);
             }
         }
 

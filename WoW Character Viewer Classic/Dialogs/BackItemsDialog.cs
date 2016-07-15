@@ -45,8 +45,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
                 Name = "None",
                 ID = "0",
                 Quality = -1,
-                Icon = WoWHelper.SlotIcon("back", characterClass),
-                Textures = new ItemsItemTextures()
+                Icon = WoWHelper.SlotIcon("back", characterClass)
             };
             itemsListBox.Items.Add(item);
             itemsListBox.Items.AddRange(list.ToArray());
@@ -155,9 +154,9 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void BackItemsDialog_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if(e.KeyCode == Keys.Enter)
             {
-                if (searchTextBox.Focused)
+                if(searchTextBox.Focused)
                 {
                     searchButton_Click(searchButton, null);
                     AcceptButton = null;
@@ -173,7 +172,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void BackItemsDialog_LocationChanged(object sender, EventArgs e)
         {
-            if (selected.Name == "None")
+            if(selected.Name == "None")
             {
 
                 backTooltip.Hide(itemsListBox);

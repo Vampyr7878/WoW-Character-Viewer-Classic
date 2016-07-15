@@ -81,7 +81,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         string ItemsFile()
         {
             string file = "";
-            switch (slot)
+            switch(slot)
             {
                 case "chest":
                     file = "ChestItems.xml";
@@ -244,9 +244,9 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void ArmorItemsDialog_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if(e.KeyCode == Keys.Enter)
             {
-                if (searchTextBox.Focused)
+                if(searchTextBox.Focused)
                 {
                     searchButton_Click(searchButton, null);
                     AcceptButton = null;
@@ -262,7 +262,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void ArmorItemsDialog_LocationChanged(object sender, EventArgs e)
         {
-            if (selected.Name == "None")
+            if(selected.Name == "None")
             {
 
                 armorTooltip.Hide(itemsListBox);

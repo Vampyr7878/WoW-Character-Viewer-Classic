@@ -1,29 +1,37 @@
-﻿using System;
+﻿using SharpGL;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using WoW_Character_Viewer_Classic.Models;
 
 namespace WoW_Character_Viewer_Classic.Dialogs
 {
-    public partial class JewelryItemsDialog : Form
+    public partial class CosmeticItemsDialog : Form
     {
         Items items;
         ItemsItem selected;
         ItemsItem item;
+        Character character;
+        float rotation;
+        string slot;
 
-        public JewelryItemsDialog()
+        public CosmeticItemsDialog()
         {
             InitializeComponent();
         }
 
         public ItemsItem Selected { get { return selected; } }
 
-        public void GetItemList(string slot, string characterRace, string characterClass)
+        public void GetItemList(string slot, string characterRace, string characterClass, Character character)
         {
+            this.slot = slot;
             items = null;
             searchTextBox.Text = "";
             itemsListBox.Items.Clear();
+            this.character = character;
+            rotation = 0;
             XmlSerializer serializer = new XmlSerializer(typeof(Items));
             using(StreamReader reader = new StreamReader(@"Data\" + ItemsFile(slot)))
             {
@@ -52,16 +60,11 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             string file = "";
             switch(slot)
             {
-                case "neck":
-                    file = "NeckItems.xml";
+                case "shirt":
+                    file = "ShirtItems.xml";
                     break;
-                case "finger1":
-                case "finger2":
-                    file = "FingerItems.xml";
-                    break;
-                case "trinket1":
-                case "trinket2":
-                    file = "TrinketItems.xml";
+                case "tabard":
+                    file = "TabardItems.xml";
                     break;
             }
             return file;
@@ -93,17 +96,47 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             items.Item = list.ToArray();
         }
 
+        void openGLControl_OpenGLDraw(object sender, RenderEventArgs e)
+        {
+            OpenGL gl = openGLControl.OpenGL;
+            gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
+            gl.LoadIdentity();
+            gl.Rotate(rotation, 0f, 1f, 0f);
+            character.Render(gl);
+            rotation++;
+        }
+
+        void openGLControl_OpenGLInitialized(object sender, EventArgs e)
+        {
+            OpenGL gl = openGLControl.OpenGL;
+            gl.Disable(OpenGL.GL_TEXTURE_2D);
+            gl.DepthMask((byte)OpenGL.GL_TRUE);
+            gl.Disable(OpenGL.GL_BLEND);
+            gl.Disable(OpenGL.GL_ALPHA_TEST);
+            gl.ClearColor(0.1f, 0.1f, 0.1f, 0f);
+        }
+
+        void openGLControl_Resized(object sender, EventArgs e)
+        {
+            OpenGL gl = openGLControl.OpenGL;
+            gl.MatrixMode(OpenGL.GL_PROJECTION);
+            gl.LoadIdentity();
+            gl.Perspective(60.0f, (double)openGLControl.Width / (double)openGLControl.Height, 0.01, 100.0);
+            gl.LookAt(3f, 1.1f, 0f, 0f, 1.1f, 0f, 0f, 1f, 0f);
+            gl.MatrixMode(OpenGL.GL_MODELVIEW);
+        }
+
         void searchButton_Click(object sender, EventArgs e)
         {
             if(searchTextBox.Text != "")
             {
                 itemsListBox.Items.Clear();
                 List<ItemsItem> list = new List<ItemsItem>();
-                foreach(ItemsItem jewelry in items.Item)
+                foreach(ItemsItem item in items.Item)
                 {
-                    if(jewelry.Name.ToLower().Contains(searchTextBox.Text.ToLower()))
+                    if(item.Name.ToLower().Contains(searchTextBox.Text.ToLower()))
                     {
-                        list.Add(jewelry);
+                        list.Add(item);
                     }
                 }
                 list.Sort((x, y) => x.Name.CompareTo(y.Name));
@@ -116,7 +149,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
                 else
                 {
                     itemsListBox.Items.Add(item);
-                    itemsListBox.SelectedIndex = 0;
+                    itemsListBox.SelectedIndex = -1;
                 }
             }
         }
@@ -124,18 +157,19 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         void itemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             selected = (ItemsItem)itemsListBox.SelectedItem;
+            character.Gear[WoWHelper.Slot(slot)] = selected;
             if(selected.Name == "None")
             {
-                jewelryTooltip.Hide(itemsListBox);
+                cosmeticTooltip.Hide(itemsListBox);
             }
             else
             {
-                jewelryTooltip.Item = selected;
-                jewelryTooltip.Show(selected.Name, itemsListBox, itemsListBox.Size.Width, 0);
+                cosmeticTooltip.Item = selected;
+                cosmeticTooltip.Show(selected.Name, itemsListBox, itemsListBox.Size.Width + 6 + openGLControl.Width, 0);
             }
         }
 
-        void JewelryItemsDialog_KeyDown(object sender, KeyEventArgs e)
+        void CosmeticItemsDialog_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
             {
@@ -153,23 +187,23 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             }
         }
 
-        void JewelryItemsDialog_LocationChanged(object sender, EventArgs e)
+        void CosmeticItemsDialog_LocationChanged(object sender, EventArgs e)
         {
             if(selected.Name == "None")
             {
 
-                jewelryTooltip.Hide(itemsListBox);
+                cosmeticTooltip.Hide(itemsListBox);
             }
             else
             {
-                jewelryTooltip.Item = selected;
-                jewelryTooltip.Show(selected.Name, itemsListBox, itemsListBox.Size.Width, 0);
+                cosmeticTooltip.Item = selected;
+                cosmeticTooltip.Show(selected.Name, itemsListBox, itemsListBox.Size.Width, 0);
             }
         }
 
-        void JewelryItemsDialog_Move(object sender, EventArgs e)
+        void CosmeticItemsDialog_Move(object sender, EventArgs e)
         {
-            jewelryTooltip.Hide(itemsListBox);
+            cosmeticTooltip.Hide(itemsListBox);
         }
     }
 }

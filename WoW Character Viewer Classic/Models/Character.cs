@@ -167,7 +167,7 @@ namespace WoW_Character_Viewer_Classic.Models
             {
                 DrawLayer(graphics, texturesPath + gender + model.Name + "NakedPelvisSkin00_" + Number(Skin) + ".png", 128, 96);
             }
-            if(model.Name.Contains("Female") && ! TorsoUpper())
+            if(model.Name.Contains("Female") && !TorsoUpper())
             {
                 DrawLayer(graphics, texturesPath + gender + model.Name + "NakedTorsoSkin00_" + Number(Skin) + ".png", 128, 0);
             }
@@ -178,7 +178,9 @@ namespace WoW_Character_Viewer_Classic.Models
             DrawLayer(graphics, texturesPath + "ScalpUpperHair" + GetScalpUpper() + "_" + Number(Color) + ".png", 0, 160);
             DrawLayer(graphics, texturesPath + "ScalpLowerHair" + GetScalpLower() + "_" + Number(Color) + ".png", 0, 192);
             MakeLegsTexture(graphics, gender);
+            MakeShirtTexture(graphics, gender);
             MakeChestTexture(graphics, gender);
+            MakeTabardTexture(graphics, gender);
             MakeWristTexture(graphics, gender);
             MakeHandsTexture(graphics, gender);
             MakeWaistTexture(graphics, gender);
@@ -227,6 +229,17 @@ namespace WoW_Character_Viewer_Classic.Models
             }
         }
 
+        void MakeShirtTexture(Graphics graphics, string gender)
+        {
+            if(Gear[5].Textures != null)
+            {
+                DrawLayer(graphics, ArmorTexture(@"ArmUpperTexture\" + Gear[5].Textures.ArmUpper, gender), 0, 0);
+                DrawLayer(graphics, ArmorTexture(@"ArmLowerTexture\" + Gear[5].Textures.ArmLower, gender), 0, 64);
+                DrawLayer(graphics, ArmorTexture(@"TorsoUpperTexture\" + Gear[5].Textures.TorsoUpper, gender), 128, 0);
+                DrawLayer(graphics, ArmorTexture(@"TorsoLowerTexture\" + Gear[5].Textures.TorsoLower, gender), 128, 64);
+            }
+        }
+
         void MakeChestTexture(Graphics graphics, string gender)
         {
             if(Gear[4].Textures != null)
@@ -244,6 +257,15 @@ namespace WoW_Character_Viewer_Classic.Models
                 {
                     DrawLayer(graphics, ArmorTexture(@"LegLowerTexture\" + Gear[4].Textures.LegLower, gender), 128, 160);
                 }
+            }
+        }
+
+        void MakeTabardTexture(Graphics graphics, string gender)
+        {
+            if(Gear[6].Textures != null)
+            {
+                DrawLayer(graphics, ArmorTexture(@"TorsoUpperTexture\" + Gear[6].Textures.TorsoUpper, gender), 128, 0);
+                DrawLayer(graphics, ArmorTexture(@"TorsoLowerTexture\" + Gear[6].Textures.TorsoLower, gender), 128, 64);
             }
         }
 
@@ -364,7 +386,10 @@ namespace WoW_Character_Viewer_Classic.Models
             EquipHands();
             EquipFeet();
             EquipLegs();
+            EquipShirt();
+            EquipWrist();
             EquipChest();
+            EquipTabard();
         }
 
         protected void RenderBillboard(OpenGL gl, int geoset, int start, int count)
@@ -560,7 +585,13 @@ namespace WoW_Character_Viewer_Classic.Models
 
         protected abstract void EquipLegs();
 
+        protected abstract void EquipShirt();
+
+        protected abstract void EquipWrist();
+
         protected abstract void EquipChest();
+
+        protected abstract void EquipTabard();
 
         public abstract void Render(OpenGL gl);
     }
