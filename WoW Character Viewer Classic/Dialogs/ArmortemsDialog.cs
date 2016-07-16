@@ -83,6 +83,12 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             string file = "";
             switch(slot)
             {
+                case "head":
+                    file = "HeadItems.xml";
+                    break;
+                case "shoulder":
+                    file = "ShoulderItems.xml";
+                    break;
                 case "chest":
                     file = "ChestItems.xml";
                     break;

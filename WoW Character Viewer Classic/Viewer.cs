@@ -210,6 +210,7 @@ namespace WoW_Character_Viewer_Classic
         void Human()
         {
             character.Dispose();
+            character = null;
             if(characterGender)
             {
                 character = new HumanMale();
@@ -233,6 +234,7 @@ namespace WoW_Character_Viewer_Classic
         void Orc()
         {
             character.Dispose();
+            character = null;
             if(characterGender)
             {
                 character = new OrcMale();
@@ -256,6 +258,7 @@ namespace WoW_Character_Viewer_Classic
         void Dwarf()
         {
             character.Dispose();
+            character = null;
             if(characterGender)
             {
                 character = new DwarfMale();
@@ -279,6 +282,7 @@ namespace WoW_Character_Viewer_Classic
         void Undead()
         {
             character.Dispose();
+            character = null;
             if(characterGender)
             {
                 character = new ScourgeMale();
@@ -302,6 +306,7 @@ namespace WoW_Character_Viewer_Classic
         void NightElf()
         {
             character.Dispose();
+            character = null;
             if(characterGender)
             {
                 character = new NightElfMale();
@@ -325,6 +330,7 @@ namespace WoW_Character_Viewer_Classic
         void Tauren()
         {
             character.Dispose();
+            character = null;
             if(characterGender)
             {
                 character = new TaurenMale();
@@ -348,6 +354,7 @@ namespace WoW_Character_Viewer_Classic
         void Gnome()
         {
             character.Dispose();
+            character = null;
             if(characterGender)
             {
                 character = new GnomeMale();
@@ -371,6 +378,7 @@ namespace WoW_Character_Viewer_Classic
         void Troll()
         {
             character.Dispose();
+            character = null;
             if(characterGender)
             {
                 character = new TrollMale();
@@ -490,6 +498,7 @@ namespace WoW_Character_Viewer_Classic
             string path = iconsPath + character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].Icon + ".png";
             Color color = WoWHelper.QalityColor(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].Quality);
             button.BackgroundImage.Dispose();
+            button.BackgroundImage = null;
             using(StreamReader reader = new StreamReader(path))
             {
                 button.BackgroundImage = new Bitmap(reader.BaseStream);
@@ -500,6 +509,7 @@ namespace WoW_Character_Viewer_Classic
         void ChangeIcon(Button button, string path, Color color)
         {
             button.BackgroundImage.Dispose();
+            button.BackgroundImage = null;
             using(StreamReader reader = new StreamReader(path))
             {
                 button.BackgroundImage = new Bitmap(reader.BaseStream);

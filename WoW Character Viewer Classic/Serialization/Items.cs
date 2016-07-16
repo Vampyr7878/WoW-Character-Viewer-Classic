@@ -58,6 +58,10 @@ public partial class ItemsItem {
     
     private string iconField;
     
+    private ItemsItemMale maleField;
+    
+    private ItemsItemFemale femaleField;
+    
     private ItemsItemModels modelsField;
     
     private ItemsItemTextures texturesField;
@@ -129,6 +133,26 @@ public partial class ItemsItem {
     }
     
     /// <uwagi/>
+    public ItemsItemMale Male {
+        get {
+            return this.maleField;
+        }
+        set {
+            this.maleField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public ItemsItemFemale Female {
+        get {
+            return this.femaleField;
+        }
+        set {
+            this.femaleField = value;
+        }
+    }
+    
+    /// <uwagi/>
     public ItemsItemModels Models {
         get {
             return this.modelsField;
@@ -175,6 +199,144 @@ public partial class ItemsItem {
         }
         set {
             this.maxCountField = value;
+        }
+    }
+}
+
+/// <uwagi/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+public partial class ItemsItemMale {
+    
+    private string hairField;
+    
+    private string facialField;
+    
+    private string earringsField;
+    
+    private string otherField;
+    
+    private string earsField;
+    
+    /// <uwagi/>
+    public string Hair {
+        get {
+            return this.hairField;
+        }
+        set {
+            this.hairField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string Facial {
+        get {
+            return this.facialField;
+        }
+        set {
+            this.facialField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string Earrings {
+        get {
+            return this.earringsField;
+        }
+        set {
+            this.earringsField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string Other {
+        get {
+            return this.otherField;
+        }
+        set {
+            this.otherField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string Ears {
+        get {
+            return this.earsField;
+        }
+        set {
+            this.earsField = value;
+        }
+    }
+}
+
+/// <uwagi/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+public partial class ItemsItemFemale {
+    
+    private string hairField;
+    
+    private string facialField;
+    
+    private string earringsField;
+    
+    private string otherField;
+    
+    private string earsField;
+    
+    /// <uwagi/>
+    public string Hair {
+        get {
+            return this.hairField;
+        }
+        set {
+            this.hairField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string Facial {
+        get {
+            return this.facialField;
+        }
+        set {
+            this.facialField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string Earrings {
+        get {
+            return this.earringsField;
+        }
+        set {
+            this.earringsField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string Other {
+        get {
+            return this.otherField;
+        }
+        set {
+            this.otherField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public string Ears {
+        get {
+            return this.earsField;
+        }
+        set {
+            this.earsField = value;
         }
     }
 }

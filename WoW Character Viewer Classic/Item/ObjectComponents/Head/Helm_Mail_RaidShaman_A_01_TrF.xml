@@ -1,0 +1,1678 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Name>Helm_Mail_RaidShaman_A_01_TrF</Name>
+	<Bones>
+		<Bone>
+			<Billboard>0</Billboard>
+			<Parent>-1</Parent>
+			<Translation x="0" y="0" z="0" />
+			<Rotation x="0" y="0" z="0" w="0" />
+			<Scale x="1" y="1" z="1" />
+			<Position x="-0.1526239" y="-0.4008051" z="0.001177289" />
+		</Bone>
+		<Bone>
+			<Billboard>8</Billboard>
+			<Parent>-1</Parent>
+			<Translation x="0" y="0" z="0" />
+			<Rotation x="0" y="0" z="0" w="0" />
+			<Scale x="1" y="1" z="1" />
+			<Position x="0.05243511" y="0.009207462" z="0.0396624" />
+		</Bone>
+		<Bone>
+			<Billboard>8</Billboard>
+			<Parent>-1</Parent>
+			<Translation x="0" y="0" z="0" />
+			<Rotation x="0" y="0" z="0" w="0" />
+			<Scale x="1" y="1" z="1" />
+			<Position x="0.05243511" y="0.009207469" z="-0.03838696" />
+		</Bone>
+	</Bones>
+	<Vertices>
+		<Vertex>
+			<Position x="-0.1123459" y="0.1282104" z="-0.08642744" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.1336921" y="0.4811824" z="0.866366" />
+			<Texture x="0.4270576" y="0.8019599" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1209746" y="0.1480699" z="-0.1522814" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.4249558" y="0.9014881" z="0.08204722" />
+			<Texture x="0.5670055" y="0.7582104" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1299241" y="0.08827619" z="-0.08494229" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.5391808" y="0.8368635" z="-0.09457052" />
+			<Texture x="0.3644139" y="0.773261" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1299241" y="0.08827619" z="0.08729575" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.5391812" y="-0.8368633" z="-0.09456901" />
+			<Texture x="0.61884" y="0.9615014" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.08366062" y="0.0841791" z="0.1058846" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.04602566" y="-0.9081483" z="-0.4161108" />
+			<Texture x="0.5155385" y="0.9529119" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1209747" y="0.1480699" z="0.1546348" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.4249569" y="-0.9014875" z="0.08204826" />
+			<Texture x="0.5670055" y="0.7582104" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.112346" y="0.1282103" z="0.08878084" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.133692" y="-0.4811799" z="0.8663673" />
+			<Texture x="0.4270576" y="0.8019599" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1299241" y="0.08827619" z="0.08729575" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.5391812" y="-0.8368633" z="-0.09456901" />
+			<Texture x="0.3644139" y="0.773261" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.03243279" y="0.0870195" z="0.0915611" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.3837316" y="-0.9083899" z="0.1660656" />
+			<Texture x="0.4067743" y="0.9821448" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1399683" y="0.1371537" z="0.001176709" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.3145341" y="-1.618726E-06" z="0.9492462" />
+			<Texture x="0.9803376" y="0.07267517" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1796628" y="0.1175942" z="0.001176692" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.6235185" y="-1.134817E-06" z="0.7818086" />
+			<Texture x="0.9803447" y="0.1567697" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1633425" y="0.1170057" z="0.04376819" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.5317736" y="-0.2754289" z="0.8008469" />
+			<Texture x="0.8544945" y="0.1593106" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.112346" y="0.1282103" z="0.08878084" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.133692" y="-0.4811799" z="0.8663673" />
+			<Texture x="0.6406287" y="0.1110355" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1737835" y="0.09237672" z="0.06857513" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.7176878" y="-0.6093711" z="0.3370328" />
+			<Texture x="0.8083673" y="0.2661031" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1299241" y="0.08827619" z="0.08729575" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.5391812" y="-0.8368633" z="-0.09456901" />
+			<Texture x="0.6862093" y="0.2839534" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.08243351" y="0.1428803" z="0.04558035" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.02242189" y="-0.2328376" z="0.9722571" />
+			<Texture x="0.5855907" y="0.04820067" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.08201221" y="0.1481688" z="0.001176722" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.01605059" y="-1.79685E-06" z="0.9998712" />
+			<Texture x="0.729456" y="0.01369011" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.0003428677" y="0.1179957" z="0.0489203" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.4926908" y="-0.3880322" z="0.778901" />
+			<Texture x="0.1807491" y="0.155037" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.02368805" y="0.1390079" z="0.001176735" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.2937554" y="-1.471839E-06" z="0.9558806" />
+			<Texture x="0.260522" y="0.01160288" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.08243351" y="0.1428805" z="-0.04322698" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.02242173" y="0.2328361" z="0.9722575" />
+			<Texture x="0.5855907" y="0.04820067" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1633425" y="0.1170058" z="-0.04141479" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.5317744" y="0.2754288" z="0.8008464" />
+			<Texture x="0.8544945" y="0.1593106" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.195986" y="0.09723119" z="0.001176706" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.8569223" y="1.271982E-07" z="0.5154456" />
+			<Texture x="0.9803374" y="0.2449931" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.04363389" y="0.03745487" z="0.0752044" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.7335181" y="-0.6424938" z="-0.2217048" />
+			<Texture x="0.1925682" y="0.5058113" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.0618383" y="0.02604801" z="0.001176866" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.9367763" y="1.809221E-07" z="-0.3499287" />
+			<Texture x="0.00962102" y="0.5555443" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.04993265" y="0.05529842" z="0.001176831" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.9164206" y="-2.715439E-07" z="0.4002165" />
+			<Texture x="0.009620902" y="0.4278873" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.04191542" y="0.01901635" z="0.04979026" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.8128609" y="-0.3754693" z="-0.4452864" />
+			<Texture x="0.1465974" y="0.5861477" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.04506988" y="0.01318693" z="0.02206275" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.9201506" y="-0.2887091" z="-0.2645182" />
+			<Texture x="0.07088184" y="0.6114792" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.04768363" y="0.004431775" z="0.0156889" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.7831975" y="-0.5434768" z="0.3020507" />
+			<Texture x="0.05341298" y="0.6704874" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.05665625" y="0.01808141" z="0.001176872" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.9994168" y="4.345551E-07" z="-0.0341464" />
+			<Texture x="0.009621139" y="0.5902132" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.06744001" y="0.009669147" z="0.001176864" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.7009167" y="-3.980897E-07" z="0.7132431" />
+			<Texture x="0.00962102" y="0.6267463" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.04768358" y="0.004431908" z="-0.01333516" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.7831981" y="0.5434765" z="0.3020496" />
+			<Texture x="0.05341298" y="0.6704874" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.06643748" y="-0.00841522" z="-0.009965462" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.4610465" y="0.7760535" z="0.430322" />
+			<Texture x="0.04048662" y="0.7049485" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.05235284" y="-0.009374449" z="-0.01764885" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.6906661" y="0.5677899" z="0.4478783" />
+			<Texture x="0.06833301" y="0.7090816" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.06190475" y="-0.03112357" z="-0.02464532" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.6050143" y="0.754861" z="-0.253264" />
+			<Texture x="0.08443762" y="0.8023048" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.0827131" y="-0.03371014" z="-0.01403502" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.4883625" y="0.8317606" z="-0.2639626" />
+			<Texture x="0.047764" y="0.8133234" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.08127332" y="-0.007226192" z="0.001176887" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.7909582" y="-7.463741E-08" z="0.6118702" />
+			<Texture x="0.009621139" y="0.6998228" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.06643756" y="-0.008415361" z="0.01231925" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.4610453" y="-0.776054" z="0.4303225" />
+			<Texture x="0.04048662" y="0.7049485" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.05235289" y="-0.009374573" z="0.0200026" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.6906654" y="-0.5677904" z="0.4478787" />
+			<Texture x="0.06833301" y="0.7090816" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.04121311" y="-0.006841777" z="0.05494114" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.8300197" y="-0.4444707" z="0.3369171" />
+			<Texture x="0.1701896" y="0.698165" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.0619048" y="-0.03112368" z="0.02699909" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.605013" y="-0.7548621" z="-0.2532639" />
+			<Texture x="0.08443762" y="0.8023048" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.04034717" y="-0.02431572" z="0.05050748" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.4254581" y="-0.5678263" z="-0.7046692" />
+			<Texture x="0.1726841" y="0.7776824" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.08271316" y="-0.03371027" z="0.01638883" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.4883626" y="-0.8317605" z="-0.2639631" />
+			<Texture x="0.047764" y="0.8133234" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.1012538" y="-0.03771445" z="0.001176906" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.6301224" y="5.251285E-06" z="-0.7764958" />
+			<Texture x="0.009621139" y="0.8329321" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.01583159" y="-0.01807293" z="0.001176878" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.09489554" y="4.81779E-07" z="-0.9954872" />
+			<Texture x="0.009621965" y="0.7464818" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.04034716" y="-0.02431565" z="-0.0481537" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.4254591" y="0.5678247" z="-0.7046698" />
+			<Texture x="0.1726841" y="0.7776824" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1123459" y="0.1282104" z="-0.08642744" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.1336921" y="0.4811824" z="0.866366" />
+			<Texture x="0.6406287" y="0.1110355" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1299241" y="0.08827619" z="-0.08494229" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.5391808" y="0.8368635" z="-0.09457052" />
+			<Texture x="0.6862093" y="0.2839534" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1737835" y="0.09237675" z="-0.06622169" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.7176879" y="0.609372" z="0.337031" />
+			<Texture x="0.8083673" y="0.2661031" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1819742" y="0.04045469" z="-0.06410213" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.5711837" y="0.8200448" z="-0.03571643" />
+			<Texture x="0.8177977" y="0.4927183" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.2108334" y="0.04134249" z="0.001176757" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.9998615" y="3.299056E-07" z="0.0166398" />
+			<Texture x="0.9803374" y="0.4888424" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1733062" y="-0.01431971" z="-0.06157622" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.5980232" y="0.4724295" z="-0.6474401" />
+			<Texture x="0.8046106" y="0.7303615" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.2016758" y="-0.01431974" z="0.001176838" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.6259043" y="5.08464E-07" z="-0.7798998" />
+			<Texture x="0.9803299" y="0.7303616" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1733062" y="-0.01431974" z="0.06392989" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.5980238" y="-0.47243" z="-0.6474392" />
+			<Texture x="0.8046106" y="0.7303615" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.0766223" y="0.04099587" z="0.09793863" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.02260975" y="-0.9924489" z="-0.1205574" />
+			<Texture x="0.5216395" y="0.4903561" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.03243279" y="0.0870195" z="0.0915611" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.3837316" y="-0.9083899" z="0.1660656" />
+			<Texture x="0.3731507" y="0.2894272" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.08366062" y="0.0841791" z="0.1058846" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.04602566" y="-0.9081483" z="-0.4161108" />
+			<Texture x="0.5377212" y="0.3018036" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1819742" y="0.04045461" z="0.06645565" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.5711839" y="-0.8200448" z="-0.03571493" />
+			<Texture x="0.8177977" y="0.4927183" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.07236394" y="-0.01390366" z="0.08490856" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.02096886" y="-0.7342803" z="-0.6785224" />
+			<Texture x="0.5171448" y="0.7285733" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1248523" y="-0.01411178" z="0.08484887" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.1810156" y="-0.772313" z="-0.6089056" />
+			<Texture x="0.6608777" y="0.7294674" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.01395683" y="-0.01723319" z="0.07668197" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.1561276" y="-0.6893197" z="-0.7074338" />
+			<Texture x="0.270111" y="0.7428776" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.03364753" y="0.009353327" z="0.08884833" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.1467422" y="-0.9831993" z="-0.1085628" />
+			<Texture x="0.3954232" y="0.6281159" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.01197099" y="0.03137595" z="0.08229069" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.2971883" y="-0.9534035" z="-0.05196946" />
+			<Texture x="0.3190299" y="0.5323263" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.02110198" y="0.07553029" z="0.07740453" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.5883018" y="-0.681753" z="0.4348722" />
+			<Texture x="0.2188948" y="0.3395244" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.0238475" y="0.0002536868" z="0.07782975" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.609779" y="-0.7773026" z="0.1548234" />
+			<Texture x="0.2460576" y="0.6675248" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.02890548" y="0.003950099" z="0.0566602" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.7937471" y="-0.5810001" z="0.1800123" />
+			<Texture x="0.1876128" y="0.6515306" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.02961134" y="0.02383585" z="0.06616981" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.4007718" y="-0.7202743" z="-0.566204" />
+			<Texture x="0.1979736" y="0.5651771" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.0003428886" y="0.1179958" z="-0.04656685" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.4926918" y="0.3880316" z="0.7789006" />
+			<Texture x="0.1807491" y="0.155037" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.01892496" y="0.1179777" z="0.001176774" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.6438795" y="-1.187608E-06" z="0.7651269" />
+			<Texture x="0.009620785" y="0.1551147" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.03776258" y="0.09169422" z="0.001176789" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.8642626" y="-5.631186E-07" z="0.5030408" />
+			<Texture x="0.009620902" y="0.2690736" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.021102" y="0.07553034" z="-0.07505093" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.5883023" y="0.6817535" z="0.4348707" />
+			<Texture x="0.2188948" y="0.3395244" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.03243272" y="0.08701952" z="-0.08920753" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.3837323" y="0.90839" z="0.1660638" />
+			<Texture x="0.3731507" y="0.2894272" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.07662226" y="0.04099587" z="-0.09558502" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.02260891" y="0.9924486" z="-0.1205593" />
+			<Texture x="0.5216395" y="0.4903561" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.04363388" y="0.03745492" z="-0.07285079" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.7335179" y="0.6424931" z="-0.2217073" />
+			<Texture x="0.1925682" y="0.5058113" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.01197093" y="0.03137594" z="-0.07993703" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.2971888" y="0.9534033" z="-0.05197123" />
+			<Texture x="0.3190299" y="0.5323263" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.08366052" y="0.08417905" z="-0.1035311" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.0460247" y="0.9081479" z="-0.416112" />
+			<Texture x="0.5377212" y="0.3018036" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.04506984" y="0.01318705" z="-0.01970903" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.9201496" y="0.2887097" z="-0.2645212" />
+			<Texture x="0.07088184" y="0.6114792" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.0419154" y="0.01901641" z="-0.04743655" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.8128599" y="0.3754688" z="-0.4452886" />
+			<Texture x="0.1465974" y="0.5861477" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.02961133" y="0.02383588" z="-0.06381603" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.4007719" y="0.7202731" z="-0.5662054" />
+			<Texture x="0.1979736" y="0.5651771" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.02890546" y="0.003950148" z="-0.05430647" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.7937477" y="0.5809994" z="0.1800121" />
+			<Texture x="0.1876128" y="0.6515306" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.02384753" y="0.0002536912" z="-0.07547606" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.6097797" y="0.7773024" z="0.1548212" />
+			<Texture x="0.2460576" y="0.6675248" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.04121309" y="-0.006841725" z="-0.05258736" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.8300202" y="0.4444699" z="0.3369167" />
+			<Texture x="0.1701896" y="0.698165" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1248522" y="-0.01411179" z="-0.08249526" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.1810153" y="0.7723122" z="-0.6089067" />
+			<Texture x="0.6608777" y="0.7294674" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.07236388" y="-0.01390367" z="-0.08255484" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.02096988" y="0.7342796" z="-0.6785231" />
+			<Texture x="0.5171448" y="0.7285733" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.01395689" y="-0.01723319" z="-0.07432815" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.1561272" y="0.6893181" z="-0.7074355" />
+			<Texture x="0.270111" y="0.7428776" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.03364746" y="0.009353349" z="-0.0864946" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.1467421" y="0.983199" z="-0.1085656" />
+			<Texture x="0.3954232" y="0.6281159" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.03243272" y="0.08701952" z="-0.08920753" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="0.3837323" y="0.90839" z="0.1660638" />
+			<Texture x="0.4067743" y="0.9821448" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.08366052" y="0.08417905" z="-0.1035311" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.0460247" y="0.9081479" z="-0.416112" />
+			<Texture x="0.5155385" y="0.9529119" />
+		</Vertex>
+		<Vertex>
+			<Position x="-0.1299241" y="0.08827619" z="-0.08494229" />
+			<Bones>
+				<Bone index="0" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="-0.5391808" y="0.8368635" z="-0.09457052" />
+			<Texture x="0.61884" y="0.9615014" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.05243512" y="0.04444321" z="0.07489816" />
+			<Bones>
+				<Bone index="1" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="1" y="8.004707E-08" z="-4.698875E-08" />
+			<Texture x="0" y="0" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.0524351" y="-0.02602829" z="0.07489816" />
+			<Bones>
+				<Bone index="1" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="1" y="8.004707E-08" z="-4.698875E-08" />
+			<Texture x="0" y="1" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.05243511" y="0.04444322" z="0.004426635" />
+			<Bones>
+				<Bone index="1" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="1" y="8.004707E-08" z="-4.698875E-08" />
+			<Texture x="1" y="0" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.0524351" y="-0.02602829" z="0.004426642" />
+			<Bones>
+				<Bone index="1" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="1" y="8.004707E-08" z="-4.698875E-08" />
+			<Texture x="1" y="1" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.05243512" y="0.04444322" z="-0.003151198" />
+			<Bones>
+				<Bone index="2" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="1" y="8.004707E-08" z="-4.698875E-08" />
+			<Texture x="0" y="0" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.0524351" y="-0.02602829" z="-0.003151192" />
+			<Bones>
+				<Bone index="2" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="1" y="8.004707E-08" z="-4.698875E-08" />
+			<Texture x="0" y="1" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.05243512" y="0.04444322" z="-0.07362273" />
+			<Bones>
+				<Bone index="2" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="1" y="8.004707E-08" z="-4.698875E-08" />
+			<Texture x="1" y="0" />
+		</Vertex>
+		<Vertex>
+			<Position x="0.0524351" y="-0.02602828" z="-0.07362272" />
+			<Bones>
+				<Bone index="2" weight="255" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+				<Bone index="0" weight="0" />
+			</Bones>
+			<Normal x="1" y="8.004707E-08" z="-4.698875E-08" />
+			<Texture x="1" y="1" />
+		</Vertex>
+	</Vertices>
+	<View>
+		<Indices>
+			<Index>0</Index>
+			<Index>1</Index>
+			<Index>2</Index>
+			<Index>3</Index>
+			<Index>4</Index>
+			<Index>5</Index>
+			<Index>6</Index>
+			<Index>7</Index>
+			<Index>8</Index>
+			<Index>9</Index>
+			<Index>10</Index>
+			<Index>11</Index>
+			<Index>12</Index>
+			<Index>13</Index>
+			<Index>14</Index>
+			<Index>15</Index>
+			<Index>16</Index>
+			<Index>17</Index>
+			<Index>18</Index>
+			<Index>19</Index>
+			<Index>20</Index>
+			<Index>21</Index>
+			<Index>22</Index>
+			<Index>23</Index>
+			<Index>24</Index>
+			<Index>25</Index>
+			<Index>26</Index>
+			<Index>27</Index>
+			<Index>28</Index>
+			<Index>29</Index>
+			<Index>30</Index>
+			<Index>31</Index>
+			<Index>32</Index>
+			<Index>33</Index>
+			<Index>34</Index>
+			<Index>35</Index>
+			<Index>36</Index>
+			<Index>37</Index>
+			<Index>38</Index>
+			<Index>39</Index>
+			<Index>40</Index>
+			<Index>41</Index>
+			<Index>42</Index>
+			<Index>43</Index>
+			<Index>44</Index>
+			<Index>45</Index>
+			<Index>46</Index>
+			<Index>47</Index>
+			<Index>48</Index>
+			<Index>49</Index>
+			<Index>50</Index>
+			<Index>51</Index>
+			<Index>52</Index>
+			<Index>53</Index>
+			<Index>54</Index>
+			<Index>55</Index>
+			<Index>56</Index>
+			<Index>57</Index>
+			<Index>58</Index>
+			<Index>59</Index>
+			<Index>60</Index>
+			<Index>61</Index>
+			<Index>62</Index>
+			<Index>63</Index>
+			<Index>64</Index>
+			<Index>65</Index>
+			<Index>66</Index>
+			<Index>67</Index>
+			<Index>68</Index>
+			<Index>69</Index>
+			<Index>70</Index>
+			<Index>71</Index>
+			<Index>72</Index>
+			<Index>73</Index>
+			<Index>74</Index>
+			<Index>75</Index>
+			<Index>76</Index>
+			<Index>77</Index>
+			<Index>78</Index>
+			<Index>79</Index>
+			<Index>80</Index>
+			<Index>81</Index>
+			<Index>82</Index>
+			<Index>83</Index>
+			<Index>84</Index>
+			<Index>85</Index>
+			<Index>86</Index>
+			<Index>87</Index>
+			<Index>88</Index>
+			<Index>89</Index>
+			<Index>90</Index>
+			<Index>91</Index>
+			<Index>92</Index>
+			<Index>93</Index>
+			<Index>94</Index>
+			<Index>95</Index>
+		</Indices>
+		<Triangles>
+			<Triangle>87</Triangle>
+			<Triangle>1</Triangle>
+			<Triangle>86</Triangle>
+			<Triangle>86</Triangle>
+			<Triangle>1</Triangle>
+			<Triangle>85</Triangle>
+			<Triangle>85</Triangle>
+			<Triangle>1</Triangle>
+			<Triangle>0</Triangle>
+			<Triangle>0</Triangle>
+			<Triangle>1</Triangle>
+			<Triangle>2</Triangle>
+			<Triangle>6</Triangle>
+			<Triangle>7</Triangle>
+			<Triangle>5</Triangle>
+			<Triangle>8</Triangle>
+			<Triangle>6</Triangle>
+			<Triangle>5</Triangle>
+			<Triangle>4</Triangle>
+			<Triangle>8</Triangle>
+			<Triangle>5</Triangle>
+			<Triangle>3</Triangle>
+			<Triangle>4</Triangle>
+			<Triangle>5</Triangle>
+			<Triangle>71</Triangle>
+			<Triangle>46</Triangle>
+			<Triangle>74</Triangle>
+			<Triangle>46</Triangle>
+			<Triangle>71</Triangle>
+			<Triangle>48</Triangle>
+			<Triangle>48</Triangle>
+			<Triangle>47</Triangle>
+			<Triangle>46</Triangle>
+			<Triangle>45</Triangle>
+			<Triangle>46</Triangle>
+			<Triangle>47</Triangle>
+			<Triangle>71</Triangle>
+			<Triangle>74</Triangle>
+			<Triangle>70</Triangle>
+			<Triangle>70</Triangle>
+			<Triangle>73</Triangle>
+			<Triangle>71</Triangle>
+			<Triangle>71</Triangle>
+			<Triangle>73</Triangle>
+			<Triangle>84</Triangle>
+			<Triangle>71</Triangle>
+			<Triangle>84</Triangle>
+			<Triangle>82</Triangle>
+			<Triangle>71</Triangle>
+			<Triangle>82</Triangle>
+			<Triangle>81</Triangle>
+			<Triangle>48</Triangle>
+			<Triangle>71</Triangle>
+			<Triangle>81</Triangle>
+			<Triangle>81</Triangle>
+			<Triangle>50</Triangle>
+			<Triangle>48</Triangle>
+			<Triangle>49</Triangle>
+			<Triangle>48</Triangle>
+			<Triangle>50</Triangle>
+			<Triangle>47</Triangle>
+			<Triangle>48</Triangle>
+			<Triangle>49</Triangle>
+			<Triangle>73</Triangle>
+			<Triangle>70</Triangle>
+			<Triangle>69</Triangle>
+			<Triangle>69</Triangle>
+			<Triangle>72</Triangle>
+			<Triangle>73</Triangle>
+			<Triangle>72</Triangle>
+			<Triangle>77</Triangle>
+			<Triangle>73</Triangle>
+			<Triangle>77</Triangle>
+			<Triangle>78</Triangle>
+			<Triangle>73</Triangle>
+			<Triangle>79</Triangle>
+			<Triangle>73</Triangle>
+			<Triangle>78</Triangle>
+			<Triangle>84</Triangle>
+			<Triangle>73</Triangle>
+			<Triangle>79</Triangle>
+			<Triangle>84</Triangle>
+			<Triangle>79</Triangle>
+			<Triangle>83</Triangle>
+			<Triangle>83</Triangle>
+			<Triangle>82</Triangle>
+			<Triangle>84</Triangle>
+			<Triangle>70</Triangle>
+			<Triangle>45</Triangle>
+			<Triangle>69</Triangle>
+			<Triangle>45</Triangle>
+			<Triangle>66</Triangle>
+			<Triangle>69</Triangle>
+			<Triangle>69</Triangle>
+			<Triangle>66</Triangle>
+			<Triangle>68</Triangle>
+			<Triangle>69</Triangle>
+			<Triangle>68</Triangle>
+			<Triangle>24</Triangle>
+			<Triangle>72</Triangle>
+			<Triangle>69</Triangle>
+			<Triangle>24</Triangle>
+			<Triangle>72</Triangle>
+			<Triangle>24</Triangle>
+			<Triangle>23</Triangle>
+			<Triangle>76</Triangle>
+			<Triangle>72</Triangle>
+			<Triangle>23</Triangle>
+			<Triangle>76</Triangle>
+			<Triangle>77</Triangle>
+			<Triangle>72</Triangle>
+			<Triangle>78</Triangle>
+			<Triangle>77</Triangle>
+			<Triangle>76</Triangle>
+			<Triangle>45</Triangle>
+			<Triangle>19</Triangle>
+			<Triangle>66</Triangle>
+			<Triangle>19</Triangle>
+			<Triangle>18</Triangle>
+			<Triangle>66</Triangle>
+			<Triangle>66</Triangle>
+			<Triangle>18</Triangle>
+			<Triangle>67</Triangle>
+			<Triangle>66</Triangle>
+			<Triangle>67</Triangle>
+			<Triangle>68</Triangle>
+			<Triangle>17</Triangle>
+			<Triangle>68</Triangle>
+			<Triangle>67</Triangle>
+			<Triangle>62</Triangle>
+			<Triangle>68</Triangle>
+			<Triangle>17</Triangle>
+			<Triangle>62</Triangle>
+			<Triangle>24</Triangle>
+			<Triangle>68</Triangle>
+			<Triangle>22</Triangle>
+			<Triangle>24</Triangle>
+			<Triangle>62</Triangle>
+			<Triangle>22</Triangle>
+			<Triangle>23</Triangle>
+			<Triangle>24</Triangle>
+			<Triangle>19</Triangle>
+			<Triangle>45</Triangle>
+			<Triangle>20</Triangle>
+			<Triangle>19</Triangle>
+			<Triangle>20</Triangle>
+			<Triangle>9</Triangle>
+			<Triangle>16</Triangle>
+			<Triangle>19</Triangle>
+			<Triangle>9</Triangle>
+			<Triangle>19</Triangle>
+			<Triangle>16</Triangle>
+			<Triangle>18</Triangle>
+			<Triangle>15</Triangle>
+			<Triangle>18</Triangle>
+			<Triangle>16</Triangle>
+			<Triangle>15</Triangle>
+			<Triangle>17</Triangle>
+			<Triangle>18</Triangle>
+			<Triangle>17</Triangle>
+			<Triangle>67</Triangle>
+			<Triangle>18</Triangle>
+			<Triangle>20</Triangle>
+			<Triangle>45</Triangle>
+			<Triangle>47</Triangle>
+			<Triangle>20</Triangle>
+			<Triangle>47</Triangle>
+			<Triangle>21</Triangle>
+			<Triangle>10</Triangle>
+			<Triangle>20</Triangle>
+			<Triangle>21</Triangle>
+			<Triangle>9</Triangle>
+			<Triangle>20</Triangle>
+			<Triangle>10</Triangle>
+			<Triangle>9</Triangle>
+			<Triangle>10</Triangle>
+			<Triangle>11</Triangle>
+			<Triangle>15</Triangle>
+			<Triangle>9</Triangle>
+			<Triangle>11</Triangle>
+			<Triangle>16</Triangle>
+			<Triangle>9</Triangle>
+			<Triangle>15</Triangle>
+			<Triangle>21</Triangle>
+			<Triangle>47</Triangle>
+			<Triangle>49</Triangle>
+			<Triangle>21</Triangle>
+			<Triangle>49</Triangle>
+			<Triangle>13</Triangle>
+			<Triangle>11</Triangle>
+			<Triangle>21</Triangle>
+			<Triangle>13</Triangle>
+			<Triangle>10</Triangle>
+			<Triangle>21</Triangle>
+			<Triangle>11</Triangle>
+			<Triangle>13</Triangle>
+			<Triangle>49</Triangle>
+			<Triangle>56</Triangle>
+			<Triangle>56</Triangle>
+			<Triangle>14</Triangle>
+			<Triangle>13</Triangle>
+			<Triangle>12</Triangle>
+			<Triangle>13</Triangle>
+			<Triangle>14</Triangle>
+			<Triangle>11</Triangle>
+			<Triangle>13</Triangle>
+			<Triangle>12</Triangle>
+			<Triangle>15</Triangle>
+			<Triangle>11</Triangle>
+			<Triangle>12</Triangle>
+			<Triangle>12</Triangle>
+			<Triangle>17</Triangle>
+			<Triangle>15</Triangle>
+			<Triangle>12</Triangle>
+			<Triangle>62</Triangle>
+			<Triangle>17</Triangle>
+			<Triangle>49</Triangle>
+			<Triangle>52</Triangle>
+			<Triangle>56</Triangle>
+			<Triangle>56</Triangle>
+			<Triangle>52</Triangle>
+			<Triangle>58</Triangle>
+			<Triangle>53</Triangle>
+			<Triangle>56</Triangle>
+			<Triangle>58</Triangle>
+			<Triangle>14</Triangle>
+			<Triangle>56</Triangle>
+			<Triangle>53</Triangle>
+			<Triangle>53</Triangle>
+			<Triangle>55</Triangle>
+			<Triangle>14</Triangle>
+			<Triangle>53</Triangle>
+			<Triangle>54</Triangle>
+			<Triangle>55</Triangle>
+			<Triangle>51</Triangle>
+			<Triangle>52</Triangle>
+			<Triangle>49</Triangle>
+			<Triangle>43</Triangle>
+			<Triangle>52</Triangle>
+			<Triangle>51</Triangle>
+			<Triangle>58</Triangle>
+			<Triangle>52</Triangle>
+			<Triangle>43</Triangle>
+			<Triangle>43</Triangle>
+			<Triangle>57</Triangle>
+			<Triangle>58</Triangle>
+			<Triangle>58</Triangle>
+			<Triangle>57</Triangle>
+			<Triangle>53</Triangle>
+			<Triangle>53</Triangle>
+			<Triangle>57</Triangle>
+			<Triangle>60</Triangle>
+			<Triangle>53</Triangle>
+			<Triangle>60</Triangle>
+			<Triangle>61</Triangle>
+			<Triangle>54</Triangle>
+			<Triangle>53</Triangle>
+			<Triangle>61</Triangle>
+			<Triangle>62</Triangle>
+			<Triangle>54</Triangle>
+			<Triangle>61</Triangle>
+			<Triangle>54</Triangle>
+			<Triangle>62</Triangle>
+			<Triangle>12</Triangle>
+			<Triangle>51</Triangle>
+			<Triangle>49</Triangle>
+			<Triangle>50</Triangle>
+			<Triangle>43</Triangle>
+			<Triangle>51</Triangle>
+			<Triangle>50</Triangle>
+			<Triangle>43</Triangle>
+			<Triangle>50</Triangle>
+			<Triangle>81</Triangle>
+			<Triangle>81</Triangle>
+			<Triangle>82</Triangle>
+			<Triangle>43</Triangle>
+			<Triangle>43</Triangle>
+			<Triangle>82</Triangle>
+			<Triangle>83</Triangle>
+			<Triangle>43</Triangle>
+			<Triangle>83</Triangle>
+			<Triangle>44</Triangle>
+			<Triangle>43</Triangle>
+			<Triangle>44</Triangle>
+			<Triangle>33</Triangle>
+			<Triangle>43</Triangle>
+			<Triangle>33</Triangle>
+			<Triangle>34</Triangle>
+			<Triangle>43</Triangle>
+			<Triangle>34</Triangle>
+			<Triangle>42</Triangle>
+			<Triangle>43</Triangle>
+			<Triangle>42</Triangle>
+			<Triangle>41</Triangle>
+			<Triangle>43</Triangle>
+			<Triangle>41</Triangle>
+			<Triangle>39</Triangle>
+			<Triangle>43</Triangle>
+			<Triangle>39</Triangle>
+			<Triangle>40</Triangle>
+			<Triangle>43</Triangle>
+			<Triangle>40</Triangle>
+			<Triangle>59</Triangle>
+			<Triangle>43</Triangle>
+			<Triangle>59</Triangle>
+			<Triangle>57</Triangle>
+			<Triangle>44</Triangle>
+			<Triangle>83</Triangle>
+			<Triangle>79</Triangle>
+			<Triangle>79</Triangle>
+			<Triangle>80</Triangle>
+			<Triangle>44</Triangle>
+			<Triangle>33</Triangle>
+			<Triangle>44</Triangle>
+			<Triangle>80</Triangle>
+			<Triangle>80</Triangle>
+			<Triangle>32</Triangle>
+			<Triangle>33</Triangle>
+			<Triangle>33</Triangle>
+			<Triangle>32</Triangle>
+			<Triangle>31</Triangle>
+			<Triangle>34</Triangle>
+			<Triangle>33</Triangle>
+			<Triangle>31</Triangle>
+			<Triangle>34</Triangle>
+			<Triangle>31</Triangle>
+			<Triangle>35</Triangle>
+			<Triangle>34</Triangle>
+			<Triangle>35</Triangle>
+			<Triangle>42</Triangle>
+			<Triangle>80</Triangle>
+			<Triangle>79</Triangle>
+			<Triangle>78</Triangle>
+			<Triangle>80</Triangle>
+			<Triangle>78</Triangle>
+			<Triangle>30</Triangle>
+			<Triangle>30</Triangle>
+			<Triangle>32</Triangle>
+			<Triangle>80</Triangle>
+			<Triangle>32</Triangle>
+			<Triangle>30</Triangle>
+			<Triangle>31</Triangle>
+			<Triangle>31</Triangle>
+			<Triangle>30</Triangle>
+			<Triangle>29</Triangle>
+			<Triangle>31</Triangle>
+			<Triangle>29</Triangle>
+			<Triangle>35</Triangle>
+			<Triangle>36</Triangle>
+			<Triangle>35</Triangle>
+			<Triangle>29</Triangle>
+			<Triangle>41</Triangle>
+			<Triangle>35</Triangle>
+			<Triangle>36</Triangle>
+			<Triangle>41</Triangle>
+			<Triangle>42</Triangle>
+			<Triangle>35</Triangle>
+			<Triangle>30</Triangle>
+			<Triangle>78</Triangle>
+			<Triangle>76</Triangle>
+			<Triangle>30</Triangle>
+			<Triangle>76</Triangle>
+			<Triangle>75</Triangle>
+			<Triangle>75</Triangle>
+			<Triangle>28</Triangle>
+			<Triangle>30</Triangle>
+			<Triangle>30</Triangle>
+			<Triangle>28</Triangle>
+			<Triangle>29</Triangle>
+			<Triangle>27</Triangle>
+			<Triangle>29</Triangle>
+			<Triangle>28</Triangle>
+			<Triangle>36</Triangle>
+			<Triangle>29</Triangle>
+			<Triangle>27</Triangle>
+			<Triangle>37</Triangle>
+			<Triangle>36</Triangle>
+			<Triangle>27</Triangle>
+			<Triangle>39</Triangle>
+			<Triangle>36</Triangle>
+			<Triangle>37</Triangle>
+			<Triangle>41</Triangle>
+			<Triangle>36</Triangle>
+			<Triangle>39</Triangle>
+			<Triangle>76</Triangle>
+			<Triangle>23</Triangle>
+			<Triangle>75</Triangle>
+			<Triangle>75</Triangle>
+			<Triangle>23</Triangle>
+			<Triangle>28</Triangle>
+			<Triangle>26</Triangle>
+			<Triangle>28</Triangle>
+			<Triangle>23</Triangle>
+			<Triangle>26</Triangle>
+			<Triangle>27</Triangle>
+			<Triangle>28</Triangle>
+			<Triangle>27</Triangle>
+			<Triangle>26</Triangle>
+			<Triangle>25</Triangle>
+			<Triangle>27</Triangle>
+			<Triangle>25</Triangle>
+			<Triangle>64</Triangle>
+			<Triangle>27</Triangle>
+			<Triangle>64</Triangle>
+			<Triangle>38</Triangle>
+			<Triangle>38</Triangle>
+			<Triangle>37</Triangle>
+			<Triangle>27</Triangle>
+			<Triangle>39</Triangle>
+			<Triangle>37</Triangle>
+			<Triangle>38</Triangle>
+			<Triangle>38</Triangle>
+			<Triangle>40</Triangle>
+			<Triangle>39</Triangle>
+			<Triangle>40</Triangle>
+			<Triangle>38</Triangle>
+			<Triangle>63</Triangle>
+			<Triangle>63</Triangle>
+			<Triangle>59</Triangle>
+			<Triangle>40</Triangle>
+			<Triangle>25</Triangle>
+			<Triangle>26</Triangle>
+			<Triangle>23</Triangle>
+			<Triangle>25</Triangle>
+			<Triangle>23</Triangle>
+			<Triangle>22</Triangle>
+			<Triangle>25</Triangle>
+			<Triangle>22</Triangle>
+			<Triangle>65</Triangle>
+			<Triangle>25</Triangle>
+			<Triangle>65</Triangle>
+			<Triangle>64</Triangle>
+			<Triangle>65</Triangle>
+			<Triangle>61</Triangle>
+			<Triangle>64</Triangle>
+			<Triangle>63</Triangle>
+			<Triangle>64</Triangle>
+			<Triangle>61</Triangle>
+			<Triangle>38</Triangle>
+			<Triangle>64</Triangle>
+			<Triangle>63</Triangle>
+			<Triangle>22</Triangle>
+			<Triangle>61</Triangle>
+			<Triangle>65</Triangle>
+			<Triangle>61</Triangle>
+			<Triangle>22</Triangle>
+			<Triangle>62</Triangle>
+			<Triangle>60</Triangle>
+			<Triangle>63</Triangle>
+			<Triangle>61</Triangle>
+			<Triangle>59</Triangle>
+			<Triangle>63</Triangle>
+			<Triangle>60</Triangle>
+			<Triangle>60</Triangle>
+			<Triangle>57</Triangle>
+			<Triangle>59</Triangle>
+			<Triangle>91</Triangle>
+			<Triangle>90</Triangle>
+			<Triangle>89</Triangle>
+			<Triangle>88</Triangle>
+			<Triangle>89</Triangle>
+			<Triangle>90</Triangle>
+			<Triangle>95</Triangle>
+			<Triangle>94</Triangle>
+			<Triangle>93</Triangle>
+			<Triangle>92</Triangle>
+			<Triangle>93</Triangle>
+			<Triangle>94</Triangle>
+		</Triangles>
+		<Geosets>
+			<Geoset triangle="0" triangles="456" />
+			<Geoset triangle="456" triangles="6" />
+			<Geoset triangle="462" triangles="6" />
+		</Geosets>
+		<Textures>
+			<Texture geoset="0" blend="0" texture="0" />
+			<Texture geoset="1" blend="1" texture="1" />
+			<Texture geoset="2" blend="2" texture="1" />
+		</Textures>
+	</View>
+	<Textures>
+		<Texture type="2" file="" />
+		<Texture type="0" file="SPELLS\GENERICGLOW64.BLP" />
+	</Textures>
+	<Blending>
+		<Blend>0</Blend>
+		<Blend>4</Blend>
+		<Blend>4</Blend>
+	</Blending>
+	<Attachments />
+</Model>

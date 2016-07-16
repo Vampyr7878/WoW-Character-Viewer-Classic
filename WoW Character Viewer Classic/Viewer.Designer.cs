@@ -1132,8 +1132,9 @@
             this.headButton.Size = new System.Drawing.Size(48, 48);
             this.headButton.TabIndex = 1;
             this.headButton.UseVisualStyleBackColor = true;
-            this.headButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
-            this.headButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
+            this.headButton.Click += new System.EventHandler(this.armorButton_Click);
+            this.headButton.MouseEnter += new System.EventHandler(this.armorButton_MouseEnter);
+            this.headButton.MouseLeave += new System.EventHandler(this.armorButton_MouseLeave);
             // 
             // openGLControl
             // 

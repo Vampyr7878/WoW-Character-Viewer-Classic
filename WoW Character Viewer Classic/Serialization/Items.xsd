@@ -11,6 +11,28 @@
               <xs:element type="xs:string" name="Slot"/>
               <xs:element type="xs:int" name="Quality"/>
               <xs:element type="xs:string" name="Icon"/>
+			  <xs:element name="Male">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="Hair"/>
+                    <xs:element type="xs:string" name="Facial"/>
+                    <xs:element type="xs:string" name="Earrings"/>
+                    <xs:element type="xs:string" name="Other"/>
+                    <xs:element type="xs:string" name="Ears"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+			  <xs:element name="Female">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="Hair"/>
+                    <xs:element type="xs:string" name="Facial"/>
+                    <xs:element type="xs:string" name="Earrings"/>
+                    <xs:element type="xs:string" name="Other"/>
+                    <xs:element type="xs:string" name="Ears"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
               <xs:element name="Models">
                 <xs:complexType>
                   <xs:sequence>

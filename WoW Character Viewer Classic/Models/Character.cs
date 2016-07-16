@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Windows.Media.Media3D;
 using System.Xml.Serialization;
 
 namespace WoW_Character_Viewer_Classic.Models
@@ -11,6 +12,7 @@ namespace WoW_Character_Viewer_Classic.Models
     public abstract class Character : IDisposable
     {
         Model model;
+        protected ObjectComponent head;
         protected ModelVertex[] vertices;
         protected int[] indices;
         protected int[] triangles;
@@ -390,6 +392,45 @@ namespace WoW_Character_Viewer_Classic.Models
             EquipWrist();
             EquipChest();
             EquipTabard();
+            EquipHead();
+        }
+
+        protected void EquipHead()
+        {
+            if(head != null)
+            {
+                head.Dispose();
+                head = null;
+            }
+            if(Gear[0].ID != "0")
+            {
+                ModelBone bone = bones[FindAttachment(11).Bone];
+                Vector3D position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
+                Quaternion rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
+                head = new ObjectComponent(Gear[0].Models.Left.Replace(".mdx", HeadName()), objectComponentsPath, position, rotation);
+            }
+        }
+
+        ModelAttachment FindAttachment(int id)
+        {
+            foreach (ModelAttachment attachment in model.Attachments)
+            {
+                if (attachment.ID == id)
+                {
+                    return attachment;
+                }
+            }
+            return null;
+        }
+
+        string HeadName()
+        {
+            string name = "_" + model.Name.Substring(0, 2);
+            if(model.Name.Contains("Female"))
+            {
+                return name + "F.xml";
+            }
+            return name + "M.xml";
         }
 
         protected void RenderBillboard(OpenGL gl, int geoset, int start, int count)

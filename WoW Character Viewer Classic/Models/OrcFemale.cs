@@ -435,6 +435,10 @@ namespace WoW_Character_Viewer_Classic.Models
                     RenderGeoset(gl, (int)geoset, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
                 }
             }
+            if(head != null)
+            {
+                head.Render(gl);
+            }
             RenderSkeleton(gl);
         }
 
