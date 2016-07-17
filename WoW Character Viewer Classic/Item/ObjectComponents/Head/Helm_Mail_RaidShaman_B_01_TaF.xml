@@ -6,7 +6,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.0703052" y="-0.04425652" z="-3.415972E-05" />
 		</Bone>
@@ -14,7 +14,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.03866035" y="-0.1045626" z="-0.0487599" />
 		</Bone>
@@ -22,7 +22,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.03866028" y="-0.1045626" z="0.04672993" />
 		</Bone>
@@ -30,7 +30,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.09638724" y="-0.03884441" z="-3.415972E-05" />
 		</Bone>
@@ -2650,11 +2650,12 @@
 			<Geoset triangle="0" triangles="624" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" blend="0" texture="0" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" />
 		</Textures>
 	</View>
+	<Colors />
 	<Textures>
-		<Texture type="0" file="SPELLS\TOONSMOKE16.BLP" />
+		<Texture type="2" file="" />
 		<Texture type="0" file="SPELLS\STAR5A.BLP" />
 		<Texture type="0" file="SPELLS\TOONSMOKE16.BLP" />
 	</Textures>

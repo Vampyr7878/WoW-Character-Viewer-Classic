@@ -6,7 +6,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.06755996" y="0.07475293" z="-0.0003230283" />
 		</Bone>
@@ -14,7 +14,7 @@
 			<Billboard>512</Billboard>
 			<Parent>0</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="-0.7077975" y="0.706358" z="-0.001524925" w="-0.008875417" />
+			<Rotation x="0.708201945" y="0.00152533513" z="0.7067616" w="0.008870348" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.001338743" y="0.07056442" z="-0.0006412694" />
 		</Bone>
@@ -22,7 +22,7 @@
 			<Billboard>0</Billboard>
 			<Parent>0</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.06889363" y="0.08180077" z="-0.0008368472" />
 		</Bone>
@@ -30,7 +30,7 @@
 			<Billboard>512</Billboard>
 			<Parent>0</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="-0.7077975" y="0.706358" z="-0.001524925" w="-0.008875417" />
+			<Rotation x="0.708201945" y="0.00152533513" z="0.7067616" w="0.008870348" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.06798203" y="0.0705644041" z="0.0730861" />
 		</Bone>
@@ -38,7 +38,7 @@
 			<Billboard>512</Billboard>
 			<Parent>0</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="-0.7077975" y="0.706358" z="-0.001524925" w="-0.008875417" />
+			<Rotation x="0.708201945" y="0.00152533513" z="0.7067616" w="0.008870348" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.06798203" y="0.0705644" z="-0.07398249" />
 		</Bone>
@@ -954,16 +954,19 @@
 			<Geoset triangle="0" triangles="240" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" blend="0" texture="0" />
+			<Texture geoset="0" color="0" blend="0" texture="0" />
 		</Textures>
 	</View>
+	<Colors>
+		<Color red="0.8156863" green="0.9686275" blue="1" alpha="1" />
+	</Colors>
 	<Textures>
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\HELM_RAIDPRIEST_C_01.BLP" />
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\HELM_MAGICFLAMELICKSMOKE.BLP" />
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\PRIESTHELM01.BLP" />
 	</Textures>
 	<Blending>
-		<Blend>0</Blend>
+		<Blend>2</Blend>
 	</Blending>
 	<Attachments />
 </Model>

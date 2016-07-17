@@ -6,7 +6,7 @@
 			<Billboard>512</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="1" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.07184715" y="0.03981058" z="0.0002846361" />
 		</Bone>
@@ -14,7 +14,7 @@
 			<Billboard>512</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="1" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.02558843" y="0.02709746" z="0.08368751" />
 		</Bone>
@@ -22,7 +22,7 @@
 			<Billboard>512</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="1" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.05770701" y="0.05111755" z="-0.0378425" />
 		</Bone>
@@ -30,7 +30,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.07896707" y="0.004458078" z="-0.005187199" />
 		</Bone>
@@ -2020,9 +2020,10 @@
 			<Geoset triangle="0" triangles="426" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" blend="0" texture="0" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" />
 		</Textures>
 	</View>
+	<Colors />
 	<Textures>
 		<Texture type="2" file="" />
 	</Textures>

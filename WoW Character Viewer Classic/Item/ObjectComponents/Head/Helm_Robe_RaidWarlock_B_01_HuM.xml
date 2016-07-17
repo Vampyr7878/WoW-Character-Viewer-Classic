@@ -6,7 +6,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.004064228" y="-0.1889677" z="-0" />
 		</Bone>
@@ -14,7 +14,7 @@
 			<Billboard>8</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.1057352" y="-0.03288599" z="-0.05964517" />
 		</Bone>
@@ -22,7 +22,7 @@
 			<Billboard>8</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.1057352" y="-0.03288599" z="0.05991872" />
 		</Bone>
@@ -30,7 +30,7 @@
 			<Billboard>512</Billboard>
 			<Parent>1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0.1787348" y="0.02020741" z="-0.07501221" w="0.9808255" />
+			<Rotation x="0.178734779" y="-0.0750122" z="-0.0202074088" w="0.980825543" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.1057352" y="-0.03288597" z="-0.05964518" />
 		</Bone>
@@ -38,7 +38,7 @@
 			<Billboard>0</Billboard>
 			<Parent>1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.1058654" y="-0.009250313" z="-0.05651348" />
 		</Bone>
@@ -46,7 +46,7 @@
 			<Billboard>512</Billboard>
 			<Parent>2</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0.1787348" y="0.02020741" z="-0.07501221" w="0.9808255" />
+			<Rotation x="0.178734779" y="-0.0750122" z="-0.0202074088" w="0.980825543" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.1057352" y="-0.03288597" z="0.05991871" />
 		</Bone>
@@ -54,7 +54,7 @@
 			<Billboard>0</Billboard>
 			<Parent>2</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.1058654" y="-0.009250315" z="0.0630504" />
 		</Bone>
@@ -4030,9 +4030,10 @@
 			<Geoset triangle="0" triangles="1188" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" blend="0" texture="0" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" />
 		</Textures>
 	</View>
+	<Colors />
 	<Textures>
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\HELM_ROBE_RAIDWARLOCK_B_01.BLP" />
 		<Texture type="0" file="WORLD\GENERIC\OGRE\PASSIVE DOODADS\TORCHES\FLAMELICKSMALLMAGICBLUE.BLP" />

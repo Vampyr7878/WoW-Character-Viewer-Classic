@@ -6,7 +6,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.2009072" y="-0.06691121" z="0.1506444" />
 		</Bone>
@@ -14,7 +14,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.02700835" y="-0.1133595" z="0.03473813" />
 		</Bone>
@@ -22,7 +22,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.02700833" y="-0.1133592" z="-0.03303603" />
 		</Bone>
@@ -2901,10 +2901,11 @@
 			<Geoset triangle="666" triangles="120" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" blend="0" texture="0" />
-			<Texture geoset="1" blend="1" texture="0" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" />
+			<Texture geoset="1" color="-1" blend="1" texture="0" />
 		</Textures>
 	</View>
+	<Colors />
 	<Textures>
 		<Texture type="2" file="" />
 		<Texture type="0" file="WORLD\KALIMDOR\MAURADON\PASSIVEDOODADS\SATYRHANGINGBRAZIERS\FIRE1WHITE.BLP" />

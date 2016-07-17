@@ -6,7 +6,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.006633149" y="0.007559929" z="-0.1961802" />
 		</Bone>
@@ -14,7 +14,7 @@
 			<Billboard>0</Billboard>
 			<Parent>0</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.04977328" y="-0.1627558" z="-0.1736437" />
 		</Bone>
@@ -2046,9 +2046,10 @@
 			<Geoset triangle="0" triangles="492" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" blend="0" texture="0" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" />
 		</Textures>
 	</View>
+	<Colors />
 	<Textures>
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\SHOULDER\SHOULDER_LEATHER_PVPHORDE_C_01BLACK.BLP" />
 		<Texture type="0" file="SPELLS\FIRE1.BLP" />

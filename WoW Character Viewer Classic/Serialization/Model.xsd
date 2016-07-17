@@ -163,6 +163,7 @@
                         <xs:simpleContent>
                           <xs:extension base="xs:string">
                             <xs:attribute type="xs:int" name="geoset"/>
+                            <xs:attribute type="xs:int" name="color"/>
                             <xs:attribute type="xs:int" name="blend"/>
                             <xs:attribute type="xs:int" name="texture"/>
                           </xs:extension>
@@ -170,6 +171,23 @@
                       </xs:complexType>
                     </xs:element>
                   </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element><xs:element name="Colors">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Texture" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:float" name="red"/>
+                      <xs:attribute type="xs:float" name="green"/>
+                      <xs:attribute type="xs:float" name="blue"/>
+                      <xs:attribute type="xs:float" name="alpha"/>
+                    </xs:extension>
+                  </xs:simpleContent>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
@@ -203,21 +221,12 @@
             <xs:sequence>
               <xs:element name="Attachment" maxOccurs="unbounded" minOccurs="0">
                 <xs:complexType>
-                  <xs:sequence>
-                    <xs:element type="xs:int" name="ID"/>
-                    <xs:element type="xs:int" name="Bone"/>
-                    <xs:element name="Position">
-                      <xs:complexType>
-                        <xs:simpleContent>
-                          <xs:extension base="xs:string">
-                            <xs:attribute type="xs:float" name="x"/>
-                            <xs:attribute type="xs:float" name="y"/>
-                            <xs:attribute type="xs:float" name="z"/>
-                          </xs:extension>
-                        </xs:simpleContent>
-                      </xs:complexType>
-                    </xs:element>
-                  </xs:sequence>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:int" name="id"/>
+                      <xs:attribute type="xs:int" name="bone"/>
+                    </xs:extension>
+                  </xs:simpleContent>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>

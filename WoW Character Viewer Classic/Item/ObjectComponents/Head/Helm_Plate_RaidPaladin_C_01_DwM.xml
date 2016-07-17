@@ -6,7 +6,7 @@
 			<Billboard>8</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.1531491" y="-0.1562229" z="-0.04450266" />
 		</Bone>
@@ -14,7 +14,7 @@
 			<Billboard>8</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.1531491" y="-0.1562231" z="0.04355201" />
 		</Bone>
@@ -22,7 +22,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.04951903" y="-0.1077018" z="-0.0003564614" />
 		</Bone>
@@ -30,7 +30,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.07525792" y="0.08275" z="0.2307618" />
 		</Bone>
@@ -38,7 +38,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.1742268" y="-0.06231933" z="-0.0005308958" />
 		</Bone>
@@ -46,7 +46,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.07676893" y="0.10372" z="-0.2353524" />
 		</Bone>
@@ -5067,12 +5067,15 @@
 			<Geoset triangle="12" triangles="924" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" blend="0" texture="0" />
-			<Texture geoset="1" blend="1" texture="1" />
-			<Texture geoset="1" blend="2" texture="2" />
-			<Texture geoset="1" blend="3" texture="1" />
+			<Texture geoset="0" color="0" blend="0" texture="0" />
+			<Texture geoset="1" color="-1" blend="1" texture="1" />
+			<Texture geoset="1" color="-1" blend="2" texture="2" />
+			<Texture geoset="1" color="-1" blend="3" texture="1" />
 		</Textures>
 	</View>
+	<Colors>
+		<Color red="0.02745098" green="0.4039216" blue="0.9176471" alpha="1" />
+	</Colors>
 	<Textures>
 		<Texture type="0" file="SPELLS\STAR5A.BLP" />
 		<Texture type="0" file="SPELLS\STAR5A.BLP" />

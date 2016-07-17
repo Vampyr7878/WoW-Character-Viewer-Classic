@@ -6,7 +6,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.02408773" y="0.06279159" z="0.1118777" />
 		</Bone>
@@ -14,7 +14,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.02933017" y="0.1787551" z="0.1308049" />
 		</Bone>
@@ -2593,12 +2593,13 @@
 			<Geoset triangle="84" triangles="426" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" blend="0" texture="0" />
-			<Texture geoset="1" blend="1" texture="0" />
-			<Texture geoset="1" blend="2" texture="1" />
-			<Texture geoset="1" blend="3" texture="0" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" />
+			<Texture geoset="1" color="-1" blend="1" texture="0" />
+			<Texture geoset="1" color="-1" blend="2" texture="1" />
+			<Texture geoset="1" color="-1" blend="3" texture="0" />
 		</Textures>
 	</View>
+	<Colors />
 	<Textures>
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\HELM_MAGICFLAMELICKSMOKE.BLP" />
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\HELM_MAGICFLAMELICKSMOKE.BLP" />

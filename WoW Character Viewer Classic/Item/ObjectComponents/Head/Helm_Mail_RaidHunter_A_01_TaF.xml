@@ -6,7 +6,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0" y="0" z="-0" />
 		</Bone>
@@ -14,7 +14,7 @@
 			<Billboard>8</Billboard>
 			<Parent>0</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.05981556" y="-0.1113022" z="0.05072557" />
 		</Bone>
@@ -22,7 +22,7 @@
 			<Billboard>8</Billboard>
 			<Parent>0</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.0598155" y="-0.1113022" z="-0.05215628" />
 		</Bone>
@@ -3083,13 +3083,17 @@
 			<Geoset triangle="492" triangles="6" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" blend="0" texture="0" />
-			<Texture geoset="1" blend="1" texture="0" />
-			<Texture geoset="1" blend="2" texture="1" />
-			<Texture geoset="2" blend="3" texture="2" />
-			<Texture geoset="3" blend="4" texture="2" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" />
+			<Texture geoset="1" color="-1" blend="1" texture="0" />
+			<Texture geoset="1" color="-1" blend="2" texture="1" />
+			<Texture geoset="2" color="0" blend="3" texture="2" />
+			<Texture geoset="3" color="1" blend="4" texture="2" />
 		</Textures>
 	</View>
+	<Colors>
+		<Color red="0.8470589" green="1" blue="0" alpha="1" />
+		<Color red="0.8470589" green="1" blue="0" alpha="1" />
+	</Colors>
 	<Textures>
 		<Texture type="2" file="" />
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\SHOULDER\ORBREFLECT02.BLP" />
@@ -3103,10 +3107,6 @@
 		<Blend>4</Blend>
 	</Blending>
 	<Attachments>
-		<Attachment>
-			<ID>11</ID>
-			<Bone>0</Bone>
-			<Position x="0" y="0" z="0" />
-		</Attachment>
+		<Attachment id="11" bone="0" />
 	</Attachments>
 </Model>

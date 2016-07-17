@@ -6,7 +6,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.1646886" y="-0.1682407" z="0.107847" />
 		</Bone>
@@ -14,7 +14,7 @@
 			<Billboard>520</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="0.9772739" y="0.9772735" z="0.9772735" />
 			<Position x="-0.00357372" y="0.03791371" z="0.05606547" />
 		</Bone>
@@ -22,7 +22,7 @@
 			<Billboard>520</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="0.9772737" y="0.9772736" z="0.9772735" />
 			<Position x="-0.00357383" y="0.03791385" z="-0.05667513" />
 		</Bone>
@@ -4263,10 +4263,13 @@
 			<Geoset triangle="1104" triangles="12" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="1" blend="1" texture="1" />
-			<Texture geoset="0" blend="0" texture="0" />
+			<Texture geoset="1" color="0" blend="1" texture="1" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" />
 		</Textures>
 	</View>
+	<Colors>
+		<Color red="0.7882354" green="0.02352941" blue="0.05882353" alpha="1" />
+	</Colors>
 	<Textures>
 		<Texture type="2" file="" />
 		<Texture type="0" file="WORLD\GENERIC\PASSIVEDOODADS\LIGHTS\GLOWORANGE32.BLP" />

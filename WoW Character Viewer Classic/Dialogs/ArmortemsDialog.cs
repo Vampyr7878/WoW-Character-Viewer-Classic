@@ -29,9 +29,13 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         public void GetItemList(string slot, string characterRace, string characterClass, Character character)
         {
+            this.character = null;
             this.character = character;
+            this.slot = null;
             this.slot = slot;
+            this.characterRace = null;
             this.characterRace = characterRace;
+            this.characterClass = null;
             this.characterClass = characterClass;
             rotation = 0;
             searchTextBox.Text = "";
@@ -143,6 +147,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
             gl.LoadIdentity();
             gl.Rotate(rotation, 0f, 1f, 0f);
+            character.Rotation = rotation;
             character.Render(gl);
             rotation++;
         }
@@ -210,11 +215,17 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             }
         }
 
+        void itemsListBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            acceptButton.PerformClick();
+        }
+
         void typeRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton radioButton = (RadioButton)sender;
             if(radioButton.Checked)
             {
+                selected = null;
                 items = null;
                 itemsListBox.Items.Clear();
                 radioButton.Font = new Font(radioButton.Font, FontStyle.Bold);
@@ -240,7 +251,6 @@ namespace WoW_Character_Viewer_Classic.Dialogs
                 itemsListBox.Items.Add(item);
                 itemsListBox.Items.AddRange(list.ToArray());
                 itemsListBox.SelectedIndex = 0;
-                GC.Collect();
             }
             else
             {

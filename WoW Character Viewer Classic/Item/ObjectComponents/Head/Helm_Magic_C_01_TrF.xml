@@ -6,7 +6,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.03642245" y="0.1900721" z="-0.0005096237" />
 		</Bone>
@@ -14,7 +14,7 @@
 			<Billboard>512</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="-0.004448414" y="0.006875038" z="-0.0774641" w="0.9969615" />
+			<Rotation x="-0.004448414" y="-0.0774640962" z="-0.006875038" w="0.996961534" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.04092155" y="0.1848149" z="0.000848989" />
 		</Bone>
@@ -22,7 +22,7 @@
 			<Billboard>512</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="-0.004448414" y="0.006875038" z="-0.0774641" w="0.9969615" />
+			<Rotation x="-0.004448414" y="-0.0774640962" z="-0.006875038" w="0.996961534" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.08149002" y="0.2019846" z="0.0008489955" />
 		</Bone>
@@ -266,10 +266,11 @@
 			<Geoset triangle="0" triangles="60" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" blend="0" texture="0" />
-			<Texture geoset="0" blend="1" texture="1" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" />
+			<Texture geoset="0" color="-1" blend="1" texture="1" />
 		</Textures>
 	</View>
+	<Colors />
 	<Textures>
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\HELM_MAGIC_B_02RED.BLP" />
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\WEAPON\ARMORREFLECT3.BLP" />

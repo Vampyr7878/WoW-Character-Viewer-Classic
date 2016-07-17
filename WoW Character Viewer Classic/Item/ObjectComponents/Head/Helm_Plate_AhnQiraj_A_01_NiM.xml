@@ -6,7 +6,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0" y="0" z="-0" />
 		</Bone>
@@ -2095,11 +2095,12 @@
 			<Geoset triangle="0" triangles="345" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" blend="0" texture="0" />
-			<Texture geoset="0" blend="1" texture="1" />
-			<Texture geoset="0" blend="2" texture="2" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" />
+			<Texture geoset="0" color="-1" blend="1" texture="1" />
+			<Texture geoset="0" color="-1" blend="2" texture="2" />
 		</Textures>
 	</View>
+	<Colors />
 	<Textures>
 		<Texture type="2" file="" />
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\SMOOTHREFLECT.BLP" />

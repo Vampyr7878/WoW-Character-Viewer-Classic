@@ -6,7 +6,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.1186644" y="-0.1232708" z="-0" />
 		</Bone>
@@ -14,7 +14,7 @@
 			<Billboard>8</Billboard>
 			<Parent>0</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.1267217" y="0.02943098" z="-0" />
 		</Bone>
@@ -22,7 +22,7 @@
 			<Billboard>0</Billboard>
 			<Parent>1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.0845634" y="0.00893571" z="3.923717E-06" />
 		</Bone>
@@ -3194,11 +3194,12 @@
 			<Geoset triangle="0" triangles="600" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" blend="0" texture="0" />
-			<Texture geoset="0" blend="1" texture="1" />
-			<Texture geoset="0" blend="2" texture="0" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" />
+			<Texture geoset="0" color="-1" blend="1" texture="1" />
+			<Texture geoset="0" color="-1" blend="2" texture="0" />
 		</Textures>
 	</View>
+	<Colors />
 	<Textures>
 		<Texture type="2" file="" />
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\SHOULDER\SHOULDERREFLECT01.BLP" />

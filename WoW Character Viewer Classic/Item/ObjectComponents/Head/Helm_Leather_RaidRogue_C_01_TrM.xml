@@ -6,7 +6,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.01068986" y="-0.3162643" z="-0.003470701" />
 		</Bone>
@@ -14,7 +14,7 @@
 			<Billboard>8</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.08577525" y="-0.1298488" z="0.04462167" />
 		</Bone>
@@ -22,7 +22,7 @@
 			<Billboard>8</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.08577513" y="-0.1298486" z="-0.04403931" />
 		</Bone>
@@ -4065,10 +4065,13 @@
 			<Geoset triangle="858" triangles="12" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" blend="0" texture="0" />
-			<Texture geoset="1" blend="1" texture="1" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" />
+			<Texture geoset="1" color="0" blend="1" texture="1" />
 		</Textures>
 	</View>
+	<Colors>
+		<Color red="0.02745098" green="0.9176471" blue="0.8470589" alpha="1" />
+	</Colors>
 	<Textures>
 		<Texture type="2" file="" />
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\HELM_LEATHER_RAIDROGUE_C_01EYES.BLP" />

@@ -51,6 +51,7 @@ namespace WoW_Character_Viewer_Classic
             Random random = new Random();
             character = new HumanMale();
             RandomGender(random.Next(2));
+            CharacterDispose("Human Male");
             RandomRace(random.Next(8));
         }
 
@@ -207,10 +208,64 @@ namespace WoW_Character_Viewer_Classic
             trollButton.FlatStyle = FlatStyle.Popup;
         }
 
+        void CharacterDispose(string model)
+        {
+            switch(model)
+            {
+                case "Human Male":
+                    ((HumanMale)character).Dispose();
+                    break;
+                case "Human Female":
+                    ((HumanFemale)character).Dispose();
+                    break;
+                case "Orc Male":
+                    ((OrcMale)character).Dispose();
+                    break;
+                case "Orc Female":
+                    ((OrcFemale)character).Dispose();
+                    break;
+                case "Dwarf Male":
+                    ((DwarfMale)character).Dispose();
+                    break;
+                case "Dwarf Female":
+                    ((DwarfFemale)character).Dispose();
+                    break;
+                case "Undead Male":
+                    ((ScourgeMale)character).Dispose();
+                    break;
+                case "Undead Female":
+                    ((ScourgeFemale)character).Dispose();
+                    break;
+                case "Night Elf Male":
+                    ((NightElfMale)character).Dispose();
+                    break;
+                case "Night Elf Female":
+                    ((NightElfFemale)character).Dispose();
+                    break;
+                case "Tauren Male":
+                    ((TaurenMale)character).Dispose();
+                    break;
+                case "Tauren Female":
+                    ((TaurenFemale)character).Dispose();
+                    break;
+                case "Gnome Male":
+                    ((GnomeMale)character).Dispose();
+                    break;
+                case "Gnome Female":
+                    ((GnomeFemale)character).Dispose();
+                    break;
+                case "Troll Male":
+                    ((TrollMale)character).Dispose();
+                    break;
+                case "Troll Female":
+                    ((TrollFemale)character).Dispose();
+                    break;
+            }
+            character = null;
+        }
+
         void Human()
         {
-            character.Dispose();
-            character = null;
             if(characterGender)
             {
                 character = new HumanMale();
@@ -233,8 +288,6 @@ namespace WoW_Character_Viewer_Classic
 
         void Orc()
         {
-            character.Dispose();
-            character = null;
             if(characterGender)
             {
                 character = new OrcMale();
@@ -257,8 +310,6 @@ namespace WoW_Character_Viewer_Classic
 
         void Dwarf()
         {
-            character.Dispose();
-            character = null;
             if(characterGender)
             {
                 character = new DwarfMale();
@@ -281,8 +332,6 @@ namespace WoW_Character_Viewer_Classic
 
         void Undead()
         {
-            character.Dispose();
-            character = null;
             if(characterGender)
             {
                 character = new ScourgeMale();
@@ -305,8 +354,6 @@ namespace WoW_Character_Viewer_Classic
 
         void NightElf()
         {
-            character.Dispose();
-            character = null;
             if(characterGender)
             {
                 character = new NightElfMale();
@@ -329,8 +376,6 @@ namespace WoW_Character_Viewer_Classic
 
         void Tauren()
         {
-            character.Dispose();
-            character = null;
             if(characterGender)
             {
                 character = new TaurenMale();
@@ -353,8 +398,6 @@ namespace WoW_Character_Viewer_Classic
 
         void Gnome()
         {
-            character.Dispose();
-            character = null;
             if(characterGender)
             {
                 character = new GnomeMale();
@@ -377,8 +420,6 @@ namespace WoW_Character_Viewer_Classic
 
         void Troll()
         {
-            character.Dispose();
-            character = null;
             if(characterGender)
             {
                 character = new TrollMale();
@@ -504,6 +545,7 @@ namespace WoW_Character_Viewer_Classic
                 button.BackgroundImage = new Bitmap(reader.BaseStream);
             }
             button.BackColor = color;
+            path = null;
         }
 
         void ChangeIcon(Button button, string path, Color color)
@@ -650,6 +692,7 @@ namespace WoW_Character_Viewer_Classic
                         character.Gear[WoWHelper.Slot(slot)] = jewelryItemsDialog.Selected;
                         Button button = (Button)Controls.Find(slot + "Button", true).First();
                         ChangeIcon(button);
+                        button = null;
                     }
                 }
             }
@@ -682,6 +725,7 @@ namespace WoW_Character_Viewer_Classic
                 character.Gear[WoWHelper.Slot(slot)] = armorItemsDialog.Selected;
                 Button button = (Button)Controls.Find(slot + "Button", true).First();
                 ChangeIcon(button);
+                button = null;
             }
             else
             {
@@ -700,6 +744,7 @@ namespace WoW_Character_Viewer_Classic
                 character.Gear[WoWHelper.Slot(slot)] = cosmeticItemsDialog.Selected;
                 Button button = (Button)Controls.Find(slot + "Button", true).First();
                 ChangeIcon(button);
+                button = null;
             }
             else
             {
@@ -728,6 +773,7 @@ namespace WoW_Character_Viewer_Classic
             gl.Rotate(rotation, 0f, 1f, 0f);
             character.Render(gl);
             currentZoom = zoom;
+            gl = null;
         }
 
         void openGLControl_OpenGLInitialized(object sender, EventArgs e)
@@ -738,6 +784,7 @@ namespace WoW_Character_Viewer_Classic
             gl.Disable(OpenGL.GL_BLEND);
             gl.Disable(OpenGL.GL_ALPHA_TEST);
             gl.ClearColor(0.1f, 0.1f, 0.1f, 0f);
+            gl = null;
         }
 
         void openGLControl_Resized(object sender, EventArgs e)
@@ -747,6 +794,7 @@ namespace WoW_Character_Viewer_Classic
             gl.LoadIdentity();
             gl.Perspective(60.0f, (double)openGLControl.Width / (double)openGLControl.Height, 0.01, 100.0);
             gl.MatrixMode(OpenGL.GL_MODELVIEW);
+            gl = null;
         }
 
         void openGLControl_MouseDown(object sender, MouseEventArgs e)
@@ -792,16 +840,20 @@ namespace WoW_Character_Viewer_Classic
 
         void genderButton_Click(object sender, EventArgs e)
         {
+            CharacterDispose(characterRace + " " + (characterGender ? "Male" : "Female"));
             Button button = (Button)sender;
             characterGender = !button.Name.Contains("female");
             ChangeGender();
+            button = null;
         }
 
         void raceButton_Click(object sender, EventArgs e)
         {
+            CharacterDispose(characterRace + " " + (characterGender ? "Male" : "Female"));
             Button button = (Button)sender;
             characterRace = button.Name[0].ToString().ToUpper() + button.Name.Replace("Button", "").Replace("Elf", " Elf").Substring(1);
             ChangeRace();
+            button = null;
         }
 
         void classButton_Click(object sender, EventArgs e)
@@ -809,6 +861,7 @@ namespace WoW_Character_Viewer_Classic
             Button button = (Button)sender;
             characterClass = button.Name[0].ToString().ToUpper() + button.Name.Replace("Button", "").Substring(1);
             ChangeClass();
+            button = null;
         }
 
         void button_MouseEnter(object sender, EventArgs e)
@@ -816,12 +869,15 @@ namespace WoW_Character_Viewer_Classic
             Button button = (Button)sender;
             string text = button.Name[0].ToString().ToUpper() + button.Name.Replace("Button", "").Replace("Elf", " Elf").Substring(1);
             buttonTooltip.Show(text, button, 48, 48);
+            button = null;
+            text = null;
         }
 
         void button_MouseLeave(object sender, EventArgs e)
         {
             Button button = (Button)sender;
             buttonTooltip.Hide(button);
+            button = null;
         }
 
         void prevButton_Click(object sender, EventArgs e)
@@ -850,6 +906,7 @@ namespace WoW_Character_Viewer_Classic
                     Facial();
                     break;
             }
+            button = null;
         }
 
         void nextButton_Click(object sender, EventArgs e)
@@ -878,12 +935,14 @@ namespace WoW_Character_Viewer_Classic
                     Facial();
                     break;
             }
+            button = null;
         }
 
         void jewelryButton_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
             Jewelry(button.Name.Replace("Button", ""));
+            button = null;
         }
 
         void jewelryButton_MouseEnter(object sender, EventArgs e)
@@ -898,6 +957,7 @@ namespace WoW_Character_Viewer_Classic
                 jewelryTooltip.Item = character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))];
                 jewelryTooltip.Show(jewelryTooltip.Item.Name, button, 48, 48);
             }
+            button = null;
         }
 
         void jewelryButton_MouseLeave(object sender, EventArgs e)
@@ -911,6 +971,7 @@ namespace WoW_Character_Viewer_Classic
             {
                 jewelryTooltip.Hide(button);
             }
+            button = null;
         }
 
         void backButton_Click(object sender, EventArgs e)
@@ -947,6 +1008,7 @@ namespace WoW_Character_Viewer_Classic
         {
             Button button = (Button)sender;
             Armor(button.Name.Replace("Button", ""));
+            button = null;
         }
 
         void armorButton_MouseEnter(object sender, EventArgs e)
@@ -961,6 +1023,7 @@ namespace WoW_Character_Viewer_Classic
                 armorTooltip.Item = character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))];
                 armorTooltip.Show(armorTooltip.Item.Name, button, 48, 48);
             }
+            button = null;
         }
 
         void armorButton_MouseLeave(object sender, EventArgs e)
@@ -974,12 +1037,14 @@ namespace WoW_Character_Viewer_Classic
             {
                 armorTooltip.Hide(button);
             }
+            button = null;
         }
 
         void cosmeticButton_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
             Cosmetic(button.Name.Replace("Button", ""));
+            button = null;
         }
 
         void cosmeticButton_MouseEnter(object sender, EventArgs e)
@@ -994,6 +1059,7 @@ namespace WoW_Character_Viewer_Classic
                 cosmeticTooltip.Item = character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))];
                 cosmeticTooltip.Show(cosmeticTooltip.Item.Name, button, 48, 48);
             }
+            button = null;
         }
 
         void cosmeticButton_MouseLeave(object sender, EventArgs e)
@@ -1007,6 +1073,7 @@ namespace WoW_Character_Viewer_Classic
             {
                 cosmeticTooltip.Hide(button);
             }
+            button = null;
         }
 
         void slotButton_MouseEnter(object sender, EventArgs e)
@@ -1016,6 +1083,7 @@ namespace WoW_Character_Viewer_Classic
             {
                 slotTooltip.Show(WoWHelper.SlotName(button.Name.Replace("Button", ""), characterClass), button, 48, 48);
             }
+            button = null;
         }
 
         void slotButton_MouseLeave(object sender, EventArgs e)
@@ -1025,6 +1093,7 @@ namespace WoW_Character_Viewer_Classic
             {
                 slotTooltip.Hide(button);
             }
+            button = null;
         }
 
         void bagButton_MouseEnter(object sender, EventArgs e)
@@ -1034,24 +1103,28 @@ namespace WoW_Character_Viewer_Classic
             {
                 buttonTooltip.Show(WoWHelper.SlotName(button.Name.Replace("Button", ""), characterClass), button, 48, 48);
             }
+            button = null;
         }
 
         void bagButton_MouseLeave(object sender, EventArgs e)
         {
             Button button = (Button)sender;
             buttonTooltip.Hide(button);
+            button = null;
         }
 
         void mountButton_MouseEnter(object sender, EventArgs e)
         {
             Button button = (Button)sender;
             buttonTooltip.Show(WoWHelper.SlotName(button.Name.Replace("Button", ""), characterClass), button, 48, 48);
+            button = null;
         }
 
         void mountButton_MouseLeave(object sender, EventArgs e)
         {
             Button button = (Button)sender;
             buttonTooltip.Hide(button);
+            button = null;
         }
 
         void showSkeleton_Click(object sender, EventArgs e)
@@ -1070,6 +1143,7 @@ namespace WoW_Character_Viewer_Classic
                     ResetGearIcons();
                     break;
             }
+            button = null;
         }
     }
 }

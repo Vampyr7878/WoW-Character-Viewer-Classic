@@ -6,7 +6,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.03706833" y="-0.1159224" z="-9.810511E-05" />
 		</Bone>
@@ -14,7 +14,7 @@
 			<Billboard>8</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.0457738" y="-0.1318789" z="-0.04179391" />
 		</Bone>
@@ -22,7 +22,7 @@
 			<Billboard>8</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.04577379" y="-0.1324244" z="0.04243205" />
 		</Bone>
@@ -30,7 +30,7 @@
 			<Billboard>8</Billboard>
 			<Parent>0</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.05197812" y="-0.129511" z="0.04806526" />
 		</Bone>
@@ -38,7 +38,7 @@
 			<Billboard>8</Billboard>
 			<Parent>0</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.05197812" y="-0.129511" z="-0.04815707" />
 		</Bone>
@@ -2655,13 +2655,17 @@
 			<Geoset triangle="648" triangles="6" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" blend="2" texture="0" />
-			<Texture geoset="1" blend="0" texture="1" />
-			<Texture geoset="1" blend="1" texture="2" />
-			<Texture geoset="2" blend="3" texture="3" />
-			<Texture geoset="3" blend="4" texture="3" />
+			<Texture geoset="0" color="-1" blend="2" texture="0" />
+			<Texture geoset="1" color="-1" blend="0" texture="1" />
+			<Texture geoset="1" color="-1" blend="1" texture="2" />
+			<Texture geoset="2" color="0" blend="3" texture="3" />
+			<Texture geoset="3" color="1" blend="4" texture="3" />
 		</Textures>
 	</View>
+	<Colors>
+		<Color red="0.8470589" green="0.7098039" blue="0" alpha="1" />
+		<Color red="0.8470589" green="0.7098039" blue="0" alpha="1" />
+	</Colors>
 	<Textures>
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\SHOULDER\ORBREFLECT02.BLP" />
 		<Texture type="0" file="CREATURE\RIDINGRAPTOR\PVPRIDINGRAPTOREYEGLOWBLUE.BLP" />

@@ -109,6 +109,7 @@
             this.itemsListBox.Size = new System.Drawing.Size(300, 197);
             this.itemsListBox.TabIndex = 2;
             this.itemsListBox.SelectedIndexChanged += new System.EventHandler(this.itemsListBox_SelectedIndexChanged);
+            this.itemsListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.itemsListBox_MouseDoubleClick);
             // 
             // JewelryItemsDialog
             // 

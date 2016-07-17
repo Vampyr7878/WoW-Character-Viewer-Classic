@@ -25,9 +25,11 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         public void GetItemList(string characterRace, string characterClass, Character character)
         {
+            selected = null;
             items = null;
             searchTextBox.Text = "";
             itemsListBox.Items.Clear();
+            this.character = null;
             this.character = character;
             rotation = 0;
             XmlSerializer serializer = new XmlSerializer(typeof(Items));
@@ -50,7 +52,6 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             itemsListBox.Items.Add(item);
             itemsListBox.Items.AddRange(list.ToArray());
             itemsListBox.SelectedIndex = 0;
-            GC.Collect();
         }
 
         void RaceFilter(string characterRace)
@@ -150,6 +151,11 @@ namespace WoW_Character_Viewer_Classic.Dialogs
                 backTooltip.Item = selected;
                 backTooltip.Show(selected.Name, itemsListBox, itemsListBox.Size.Width + 6 + openGLControl.Width, 0);
             }
+        }
+
+        void itemsListBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            acceptButton.PerformClick();
         }
 
         void BackItemsDialog_KeyDown(object sender, KeyEventArgs e)

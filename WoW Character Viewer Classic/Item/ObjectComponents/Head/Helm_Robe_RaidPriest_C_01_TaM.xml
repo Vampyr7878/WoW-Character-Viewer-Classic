@@ -6,7 +6,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.01172098" y="0.08611516" z="-0.0002990862" />
 		</Bone>
@@ -14,7 +14,7 @@
 			<Billboard>512</Billboard>
 			<Parent>0</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.09195181" y="0.08123773" z="-0.0006696745" />
 		</Bone>
@@ -22,7 +22,7 @@
 			<Billboard>0</Billboard>
 			<Parent>0</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.01016795" y="0.09432218" z="-0.0008974156" />
 		</Bone>
@@ -30,7 +30,7 @@
 			<Billboard>512</Billboard>
 			<Parent>0</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.01122949" y="0.08123773" z="0.08518402" />
 		</Bone>
@@ -38,7 +38,7 @@
 			<Billboard>512</Billboard>
 			<Parent>0</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.01122948" y="0.08123772" z="-0.0860737" />
 		</Bone>
@@ -954,16 +954,19 @@
 			<Geoset triangle="0" triangles="240" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" blend="0" texture="0" />
+			<Texture geoset="0" color="0" blend="0" texture="0" />
 		</Textures>
 	</View>
+	<Colors>
+		<Color red="0.8156863" green="0.9686275" blue="1" alpha="1" />
+	</Colors>
 	<Textures>
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\HELM_RAIDPRIEST_C_01.BLP" />
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\HELM_MAGICFLAMELICKSMOKE.BLP" />
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\PRIESTHELM01.BLP" />
 	</Textures>
 	<Blending>
-		<Blend>0</Blend>
+		<Blend>2</Blend>
 	</Blending>
 	<Attachments />
 </Model>

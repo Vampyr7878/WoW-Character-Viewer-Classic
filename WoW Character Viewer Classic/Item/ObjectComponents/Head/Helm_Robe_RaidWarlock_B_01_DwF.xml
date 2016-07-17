@@ -6,7 +6,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.0388072" y="-0.1989876" z="-3.185683E-05" />
 		</Bone>
@@ -14,7 +14,7 @@
 			<Billboard>8</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.1468865" y="-0.02879461" z="0.06106953" />
 		</Bone>
@@ -22,7 +22,7 @@
 			<Billboard>8</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.1468865" y="-0.0287946" z="-0.06376994" />
 		</Bone>
@@ -30,7 +30,7 @@
 			<Billboard>0</Billboard>
 			<Parent>1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.1461075" y="-0.005171417" z="0.06420121" />
 		</Bone>
@@ -38,7 +38,7 @@
 			<Billboard>512</Billboard>
 			<Parent>1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0.1814876" y="0.02020741" z="-0.06808186" w="0.9808255" />
+			<Rotation x="0.18148759" y="-0.06808186" z="-0.02020741" w="0.980825543" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.1468865" y="-0.02879459" z="0.06106952" />
 		</Bone>
@@ -46,7 +46,7 @@
 			<Billboard>512</Billboard>
 			<Parent>2</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0.1814876" y="0.02020741" z="-0.06808186" w="0.9808255" />
+			<Rotation x="0.18148759" y="-0.06808186" z="-0.02020741" w="0.980825543" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.1468865" y="-0.02879459" z="-0.06376994" />
 		</Bone>
@@ -54,7 +54,7 @@
 			<Billboard>0</Billboard>
 			<Parent>2</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.1461075" y="-0.005171422" z="-0.06063824" />
 		</Bone>
@@ -4030,9 +4030,10 @@
 			<Geoset triangle="0" triangles="1188" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" blend="0" texture="0" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" />
 		</Textures>
 	</View>
+	<Colors />
 	<Textures>
 		<Texture type="2" file="" />
 		<Texture type="0" file="INTERFACE\BUTTONS\GLOWSTAR.BLP" />

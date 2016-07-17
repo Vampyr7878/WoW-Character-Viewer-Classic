@@ -150,6 +150,7 @@
             this.Text = "Items";
             this.LocationChanged += new System.EventHandler(this.BackItemsDialog_LocationChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BackItemsDialog_KeyDown);
+            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.itemsListBox_MouseDoubleClick);
             this.Move += new System.EventHandler(this.BackItemsDialog_Move);
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).EndInit();
             this.ResumeLayout(false);

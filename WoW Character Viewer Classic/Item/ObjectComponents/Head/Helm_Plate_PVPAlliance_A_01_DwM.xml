@@ -6,7 +6,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.001512078" y="-0.1181298" z="-0.000226075" />
 		</Bone>
@@ -14,7 +14,7 @@
 			<Billboard>8</Billboard>
 			<Parent>0</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.1191461" y="-0.1396031" z="0.03936792" />
 		</Bone>
@@ -22,7 +22,7 @@
 			<Billboard>8</Billboard>
 			<Parent>0</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.119146" y="-0.139603" z="-0.03979632" />
 		</Bone>
@@ -1749,10 +1749,13 @@
 			<Geoset triangle="426" triangles="12" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="1" blend="1" texture="1" />
-			<Texture geoset="0" blend="0" texture="0" />
+			<Texture geoset="1" color="0" blend="1" texture="1" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" />
 		</Textures>
 	</View>
+	<Colors>
+		<Color red="0.02745098" green="0.4901961" blue="0.8470589" alpha="1" />
+	</Colors>
 	<Textures>
 		<Texture type="2" file="" />
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\HELM_PLATE_PVPALLIANCE_A_01EYES.BLP" />

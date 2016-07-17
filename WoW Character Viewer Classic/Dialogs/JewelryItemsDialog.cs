@@ -21,6 +21,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         public void GetItemList(string slot, string characterRace, string characterClass)
         {
+            selected = null;
             items = null;
             searchTextBox.Text = "";
             itemsListBox.Items.Clear();
@@ -44,7 +45,6 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             itemsListBox.Items.Add(item);
             itemsListBox.Items.AddRange(list.ToArray());
             itemsListBox.SelectedIndex = 0;
-            GC.Collect();
         }
 
         string ItemsFile(string slot)
@@ -133,6 +133,11 @@ namespace WoW_Character_Viewer_Classic.Dialogs
                 jewelryTooltip.Item = selected;
                 jewelryTooltip.Show(selected.Name, itemsListBox, itemsListBox.Size.Width, 0);
             }
+        }
+
+        void itemsListBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            acceptButton.PerformClick();
         }
 
         void JewelryItemsDialog_KeyDown(object sender, KeyEventArgs e)

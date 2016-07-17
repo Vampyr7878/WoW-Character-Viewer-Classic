@@ -42,6 +42,7 @@ namespace WoW_Character_Viewer_Classic.Models
             using(StreamReader reader = new StreamReader(file))
             {
                 model = (Model)serializer.Deserialize(reader.BaseStream);
+                reader.Dispose();
             }
             Gear = new ItemsItem[25];
             Skeleton = false;
@@ -75,7 +76,8 @@ namespace WoW_Character_Viewer_Classic.Models
             Facial = 0;
             GetHairNames();
             GetFacialNames();
-            GC.Collect();
+            head = new ObjectComponent();
+            serializer = null;
         }
 
         public Model Model { get { return model; } }
@@ -156,6 +158,7 @@ namespace WoW_Character_Viewer_Classic.Models
             Bitmap bitmap = LoadBitmap(model.Textures[index].file.Replace(".BLP", ".PNG"));
             textures[index].Create(gl, bitmap);
             bitmap.Dispose();
+            bitmap = null;
         }
 
         void MakeBodyTexture(OpenGL gl, int index)
@@ -189,7 +192,10 @@ namespace WoW_Character_Viewer_Classic.Models
             MakeFeetTexture(graphics, gender);
             textures[index].Create(gl, bitmap);
             graphics.Dispose();
+            graphics = null;
             bitmap.Dispose();
+            bitmap = null;
+            gender = null;
         }
 
         bool LegUpper()
@@ -331,6 +337,7 @@ namespace WoW_Character_Viewer_Classic.Models
             {
                 graphics.DrawImage(bitmap, new Point(x, y));
                 bitmap.Dispose();
+                bitmap = null;
             }
         }
 
@@ -344,6 +351,7 @@ namespace WoW_Character_Viewer_Classic.Models
                 {
                     textures[index].Create(gl, bitmap);
                     bitmap.Dispose();
+                    bitmap = null;
                 }
             }
         }
@@ -356,6 +364,7 @@ namespace WoW_Character_Viewer_Classic.Models
             {
                 textures[index].Create(gl, bitmap);
                 bitmap.Dispose();
+                bitmap = null;
             }
         }
 
@@ -366,6 +375,8 @@ namespace WoW_Character_Viewer_Classic.Models
             Bitmap bitmap = LoadBitmap(texturesPath + gender + model.Name + "Skin00_" + Number(Skin) + "_Extra.png");
             textures[index].Create(gl, bitmap);
             bitmap.Dispose();
+            bitmap = null;
+            gender = null;
         }
 
         Bitmap LoadBitmap(string file)
@@ -397,25 +408,31 @@ namespace WoW_Character_Viewer_Classic.Models
 
         protected void EquipHead()
         {
-            if(head != null)
+            if(head.ID != Gear[0].ID)
             {
-                head.Dispose();
-                head = null;
+                if(Gear[0].ID == "0")
+                {
+                    head.Initialize();
+                }
+                else
+                {
+                    ModelBone bone = bones[FindAttachment(11).bone];
+                    Vector3D position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
+                    Quaternion rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
+                    head.Initialize(Gear[0].ID, Gear[0].Models.Left.Replace(".mdx", HeadName()), Gear[0].Textures.Left, objectComponentsPath + @"Head\", position, rotation);
+                    bone = null;
+                }
             }
-            if(Gear[0].ID != "0")
-            {
-                ModelBone bone = bones[FindAttachment(11).Bone];
-                Vector3D position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
-                Quaternion rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
-                head = new ObjectComponent(Gear[0].Models.Left.Replace(".mdx", HeadName()), objectComponentsPath, position, rotation);
-            }
+            HideHair();
+            HideFacial();
+            HideEars();
         }
 
         ModelAttachment FindAttachment(int id)
         {
-            foreach (ModelAttachment attachment in model.Attachments)
+            foreach(ModelAttachment attachment in model.Attachments)
             {
-                if (attachment.ID == id)
+                if(attachment.id == id)
                 {
                     return attachment;
                 }
@@ -436,7 +453,7 @@ namespace WoW_Character_Viewer_Classic.Models
         protected void RenderBillboard(OpenGL gl, int geoset, int start, int count)
         {
             float x, y, z;
-            gl.Color(1f, 1f, 1f);
+            SetColor(gl, geoset);
             Blend(gl, geoset);
             gl.Enable(OpenGL.GL_TEXTURE_2D);
             textures[FindTexture(geoset)].Bind(gl);
@@ -468,13 +485,14 @@ namespace WoW_Character_Viewer_Classic.Models
             }
             gl.Disable(OpenGL.GL_TEXTURE_2D);
             gl.DepthMask((byte)OpenGL.GL_TRUE);
+            gl.Disable(OpenGL.GL_ALPHA_TEST);
             gl.Disable(OpenGL.GL_BLEND);
         }
 
         protected void RenderGeoset(OpenGL gl, int geoset, int start, int count)
         {
             float x, y, z;
-            gl.Color(1f, 1f, 1f);
+            SetColor(gl, geoset);
             Blend(gl, geoset);
             gl.Enable(OpenGL.GL_TEXTURE_2D);
             textures[FindTexture(geoset)].Bind(gl);
@@ -496,13 +514,26 @@ namespace WoW_Character_Viewer_Classic.Models
             gl.Disable(OpenGL.GL_ALPHA_TEST);
         }
 
-        int FindTexture(int geoset)
+        void SetColor(OpenGL gl, int geoset)
         {
-            foreach(ModelViewTexture texture in model.View.Textures)
+            int color = FindColor(geoset);
+            if(color == -1)
             {
-                if(texture.geoset == geoset)
+                gl.Color(1f, 1f, 1f);
+            }
+            else
+            {
+                gl.Color(model.Colors[color].red, model.Colors[color].green, model.Colors[color].blue, model.Colors[color].alpha);
+            }
+        }
+
+        int FindColor(int geoset)
+        {
+            foreach(ModelViewTexture viewTexture in model.View.Textures)
+            {
+                if(viewTexture.geoset == geoset)
                 {
-                    return texture.texture;
+                    return viewTexture.color;
                 }
             }
             return -1;
@@ -538,6 +569,18 @@ namespace WoW_Character_Viewer_Classic.Models
                 if(viewTexture.geoset == geoset)
                 {
                     return viewTexture.blend;
+                }
+            }
+            return -1;
+        }
+
+        int FindTexture(int geoset)
+        {
+            foreach (ModelViewTexture texture in model.View.Textures)
+            {
+                if (texture.geoset == geoset)
+                {
+                    return texture.texture;
                 }
             }
             return -1;
@@ -581,6 +624,8 @@ namespace WoW_Character_Viewer_Classic.Models
         public void Dispose()
         {
             model = null;
+            head.Dispose();
+            head = null;
             vertices = null;
             indices = null;
             triangles = null;
@@ -597,7 +642,6 @@ namespace WoW_Character_Viewer_Classic.Models
             colorName = null;
             facialName = null;
             facialNames = null;
-            GC.Collect();
         }
 
         protected abstract void GetHairNames();
@@ -633,6 +677,12 @@ namespace WoW_Character_Viewer_Classic.Models
         protected abstract void EquipChest();
 
         protected abstract void EquipTabard();
+
+        protected abstract void HideHair();
+
+        protected abstract void HideFacial();
+
+        protected abstract void HideEars();
 
         public abstract void Render(OpenGL gl);
     }

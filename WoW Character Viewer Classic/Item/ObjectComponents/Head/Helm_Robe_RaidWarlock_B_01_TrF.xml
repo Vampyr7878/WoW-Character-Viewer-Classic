@@ -6,7 +6,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.0499657" y="-0.04950823" z="-0" />
 		</Bone>
@@ -14,7 +14,7 @@
 			<Billboard>8</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.04692797" y="0.1089764" z="-0.05464628" />
 		</Bone>
@@ -22,7 +22,7 @@
 			<Billboard>8</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.04692797" y="0.1089764" z="0.05489685" />
 		</Bone>
@@ -30,7 +30,7 @@
 			<Billboard>512</Billboard>
 			<Parent>1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0.1787348" y="0.02020741" z="-0.07501221" w="0.9808255" />
+			<Rotation x="0.178734779" y="-0.0750122" z="-0.0202074088" w="0.980825543" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.04692794" y="0.1089764" z="-0.05464628" />
 		</Bone>
@@ -38,7 +38,7 @@
 			<Billboard>0</Billboard>
 			<Parent>1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.04705821" y="0.132612" z="-0.05151459" />
 		</Bone>
@@ -46,7 +46,7 @@
 			<Billboard>512</Billboard>
 			<Parent>2</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0.1787348" y="0.02020741" z="-0.07501221" w="0.9808255" />
+			<Rotation x="0.178734779" y="-0.0750122" z="-0.0202074088" w="0.980825543" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.04692795" y="0.1089764" z="0.05489684" />
 		</Bone>
@@ -54,7 +54,7 @@
 			<Billboard>0</Billboard>
 			<Parent>2</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.04705821" y="0.132612" z="0.05802853" />
 		</Bone>
@@ -4030,9 +4030,10 @@
 			<Geoset triangle="0" triangles="1188" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" blend="0" texture="0" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" />
 		</Textures>
 	</View>
+	<Colors />
 	<Textures>
 		<Texture type="2" file="" />
 		<Texture type="0" file="WORLD\GENERIC\OGRE\PASSIVE DOODADS\TORCHES\FLAMELICKSMALLMAGICBLUE.BLP" />

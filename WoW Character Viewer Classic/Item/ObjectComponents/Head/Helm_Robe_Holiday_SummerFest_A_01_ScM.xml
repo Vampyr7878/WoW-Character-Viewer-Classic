@@ -6,7 +6,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.0438594" y="0.1000552" z="0.0002850599" />
 		</Bone>
@@ -14,7 +14,7 @@
 			<Billboard>512</Billboard>
 			<Parent>0</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.03637142" y="0.1213044" z="-8.552794E-05" />
 		</Bone>
@@ -22,7 +22,7 @@
 			<Billboard>0</Billboard>
 			<Parent>0</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.04541244" y="0.1082623" z="-0.0003132695" />
 		</Bone>
@@ -938,9 +938,12 @@
 			<Geoset triangle="0" triangles="240" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" blend="0" texture="0" />
+			<Texture geoset="0" color="0" blend="0" texture="0" />
 		</Textures>
 	</View>
+	<Colors>
+		<Color red="1" green="0.9254903" blue="0.8156863" alpha="1" />
+	</Colors>
 	<Textures>
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\HELM_RAIDPRIEST_C_01.BLP" />
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\HELM_MAGICFLAMELICKSMOKE.BLP" />

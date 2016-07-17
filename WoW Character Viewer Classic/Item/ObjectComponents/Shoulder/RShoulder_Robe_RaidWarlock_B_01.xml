@@ -6,7 +6,7 @@
 			<Billboard>0</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.0507547" y="-1.725358" z="-0.2109206" />
 		</Bone>
@@ -14,7 +14,7 @@
 			<Billboard>8</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.01014039" y="0.03830074" z="0.219941" />
 		</Bone>
@@ -22,7 +22,7 @@
 			<Billboard>8</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.1131424" y="0.1668521" z="0.1081084" />
 		</Bone>
@@ -30,7 +30,7 @@
 			<Billboard>8</Billboard>
 			<Parent>-1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.09844486" y="0.1668524" z="0.1081085" />
 		</Bone>
@@ -38,7 +38,7 @@
 			<Billboard>0</Billboard>
 			<Parent>1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.0101404" y="0.03830074" z="0.2199411" />
 		</Bone>
@@ -46,7 +46,7 @@
 			<Billboard>0</Billboard>
 			<Parent>1</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.01121478" y="0.06282935" z="0.2427984" />
 		</Bone>
@@ -54,7 +54,7 @@
 			<Billboard>512</Billboard>
 			<Parent>2</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="-0.1787348" y="0.02020836" z="0.07501221" w="0.9808255" />
+			<Rotation x="-0.1787348" y="0.07501221" z="-0.02020836" w="0.9808255" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.1131424" y="0.1668522" z="0.1081085" />
 		</Bone>
@@ -62,7 +62,7 @@
 			<Billboard>0</Billboard>
 			<Parent>2</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="0.1132727" y="0.2010811" z="0.1049768" />
 		</Bone>
@@ -70,7 +70,7 @@
 			<Billboard>0</Billboard>
 			<Parent>3</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="0" y="0" z="0" w="0" />
+			<Rotation x="0" y="0" z="-0" w="1" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.09959814" y="0.2010812" z="0.1049768" />
 		</Bone>
@@ -78,7 +78,7 @@
 			<Billboard>512</Billboard>
 			<Parent>3</Parent>
 			<Translation x="0" y="0" z="0" />
-			<Rotation x="-0.1787348" y="0.02020836" z="0.07501221" w="0.9808255" />
+			<Rotation x="-0.1787348" y="0.07501221" z="-0.02020836" w="0.9808255" />
 			<Scale x="1" y="1" z="1" />
 			<Position x="-0.09844489" y="0.1668524" z="0.1081085" />
 		</Bone>
@@ -6712,9 +6712,10 @@
 			<Geoset triangle="0" triangles="1662" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" blend="0" texture="0" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" />
 		</Textures>
 	</View>
+	<Colors />
 	<Textures>
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\SHOULDER\SHOULDER_ROBE_RAIDWARLOCK_B_01.BLP" />
 		<Texture type="0" file="SPELLS\TOONSMOKE16.BLP" />

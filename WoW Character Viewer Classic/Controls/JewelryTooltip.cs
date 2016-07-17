@@ -45,6 +45,7 @@ namespace WoW_Character_Viewer_Classic.Controls
             }
             x += 7;
             graphics.DrawString(words[words.Length - 1], Font, new SolidBrush(WoWHelper.ClassColor(words[words.Length - 1])), new PointF(x, 1 + 14 * y++));
+            graphics = null;
         }
 
         void OnDraw(object sender, DrawToolTipEventArgs e)
@@ -64,6 +65,8 @@ namespace WoW_Character_Viewer_Classic.Controls
             {
                 DrawClasses(lines[y].Split(' '), y, graphics);
             }
+            graphics = null;
+            classes = null;
         }
 
         void OnPopup(object sender, PopupEventArgs e)
@@ -94,6 +97,7 @@ namespace WoW_Character_Viewer_Classic.Controls
             size.Height += 2;
             size.Height *= lines.Count;
             e.ToolTipSize = size;
+            classes = null;
         }
     }
 }

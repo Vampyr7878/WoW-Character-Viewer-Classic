@@ -67,7 +67,7 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             currentGeosets = new List<Geosets>
             {
-                Geosets.Body1,
+                Geosets.Body1
             };
             skinsCount = 9;
             facesCount = 10;
@@ -236,6 +236,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     break;
             }
             currentGeosets.AddRange(list);
+            list = null;
         }
 
         protected override void FacialGeosets()
@@ -279,6 +280,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     break;
             }
             currentGeosets.AddRange(list);
+            list = null;
         }
 
         protected override void EquipCape()
@@ -404,6 +406,28 @@ namespace WoW_Character_Viewer_Classic.Models
             }
         }
 
+        protected override void HideHair()
+        {
+            if(Gear[0].ID != "0" && Gear[0].Female.Hair[2] == '1')
+            {
+                currentGeosets.RemoveAll(item => item.ToString().Contains("Style"));
+                currentGeosets.RemoveAll(item => item.ToString().Contains("Hair"));
+                currentGeosets.Add(Geosets.Style1);
+            }
+        }
+
+        protected override void HideFacial()
+        {
+            if(Gear[0].ID != "0" && Gear[0].Female.Piercing[2] == '1')
+            {
+                currentGeosets.RemoveAll(item => item.ToString().Contains("Facial"));
+            }
+        }
+
+        protected override void HideEars()
+        {
+        }
+
         public override void Render(OpenGL gl)
         {
             Prepare(gl);
@@ -418,9 +442,9 @@ namespace WoW_Character_Viewer_Classic.Models
                     RenderGeoset(gl, (int)geoset, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
                 }
             }
-            if(head != null)
+            if(!head.Empty)
             {
-                head.Render(gl);
+                head.Render(gl, Rotation);
             }
             RenderSkeleton(gl);
         }

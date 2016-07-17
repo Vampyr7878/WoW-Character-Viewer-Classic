@@ -32,6 +32,8 @@ public partial class Model {
     
     private ModelView viewField;
     
+    private ModelColor[] colorsField;
+    
     private ModelTexture[] texturesField;
     
     private int[] blendingField;
@@ -77,6 +79,17 @@ public partial class Model {
         }
         set {
             this.viewField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    [System.Xml.Serialization.XmlArrayItemAttribute("Color", IsNullable=false)]
+    public ModelColor[] Colors {
+        get {
+            return this.colorsField;
+        }
+        set {
+            this.colorsField = value;
         }
     }
     
@@ -847,6 +860,8 @@ public partial class ModelViewTexture {
     
     private int geosetField;
     
+    private int colorField;
+    
     private int blendField;
     
     private int textureField;
@@ -861,6 +876,17 @@ public partial class ModelViewTexture {
         }
         set {
             this.geosetField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public int color {
+        get {
+            return this.colorField;
+        }
+        set {
+            this.colorField = value;
         }
     }
     
@@ -883,6 +909,80 @@ public partial class ModelViewTexture {
         }
         set {
             this.textureField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    [System.Xml.Serialization.XmlTextAttribute()]
+    public string Value {
+        get {
+            return this.valueField;
+        }
+        set {
+            this.valueField = value;
+        }
+    }
+}
+
+/// <uwagi/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+public partial class ModelColor {
+    
+    private float redField;
+    
+    private float greenField;
+	
+    private float blueField;
+    
+    private float alphaField;
+    
+    private string valueField;
+    
+    /// <uwagi/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public float red {
+        get {
+            return this.redField;
+        }
+        set {
+            this.redField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public float green {
+        get {
+            return this.greenField;
+        }
+        set {
+            this.greenField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public float blue {
+        get {
+            return this.blueField;
+        }
+        set {
+            this.blueField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public float alpha {
+        get {
+            return this.alphaField;
+        }
+        set {
+            this.alphaField = value;
         }
     }
     
@@ -958,10 +1058,11 @@ public partial class ModelAttachment {
     
     private int boneField;
     
-    private ModelAttachmentPosition positionField;
+    private string valueField;
     
     /// <uwagi/>
-    public int ID {
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public int id {
         get {
             return this.idField;
         }
@@ -971,72 +1072,13 @@ public partial class ModelAttachment {
     }
     
     /// <uwagi/>
-    public int Bone {
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public int bone {
         get {
             return this.boneField;
         }
         set {
             this.boneField = value;
-        }
-    }
-    
-    /// <uwagi/>
-    public ModelAttachmentPosition Position {
-        get {
-            return this.positionField;
-        }
-        set {
-            this.positionField = value;
-        }
-    }
-}
-
-/// <uwagi/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ModelAttachmentPosition {
-    
-    private float xField;
-    
-    private float yField;
-    
-    private float zField;
-    
-    private string valueField;
-    
-    /// <uwagi/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public float x {
-        get {
-            return this.xField;
-        }
-        set {
-            this.xField = value;
-        }
-    }
-    
-    /// <uwagi/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public float y {
-        get {
-            return this.yField;
-        }
-        set {
-            this.yField = value;
-        }
-    }
-    
-    /// <uwagi/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public float z {
-        get {
-            return this.zField;
-        }
-        set {
-            this.zField = value;
         }
     }
     

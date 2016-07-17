@@ -10,10 +10,10 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             Body1,
             Mane1,
+            Hair01,
+            Hair02,
             Facial01,
             Facial02,
-            Facial03,
-            Facial04,
             Teeth1,
             Ears2,
             Style1,
@@ -21,26 +21,26 @@ namespace WoW_Character_Viewer_Classic.Models
             Style3,
             Style4,
             Style5,
-            Facial05,
-            Facial06,
-            Facial07,
+            Hair03,
+            Facial03,
+            Hair04,
             Style6,
             Style7,
             Style8,
             Style9,
-            Facial08,
+            Facial04,
             Ears1,
+            Facial05,
+            Facial06,
+            Facial07,
+            Facial08,
             Facial09,
             Facial10,
             Facial11,
             Facial12,
             Facial13,
-            Facial14,
-            Facial15,
-            Facial16,
-            Facial17,
-            Facial18,
-            Facial19,
+            Hair05,
+            Hair06,
             Facial20,
             Sleeve1,
             Wrist5,
@@ -88,7 +88,6 @@ namespace WoW_Character_Viewer_Classic.Models
             {
                 Geosets.Body1,
                 Geosets.Mane1,
-                Geosets.Ears1,
                 Geosets.Teeth1,
                 Geosets.Hoof1
             };
@@ -215,10 +214,12 @@ namespace WoW_Character_Viewer_Classic.Models
                     break;
             }
             currentGeosets.AddRange(list);
+            list = null;
         }
 
         protected override void FacialGeosets()
         {
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Hair"));
             currentGeosets.RemoveAll(item => item.ToString().Contains("Feature"));
             currentGeosets.RemoveAll(item => item.ToString().Contains("Facial"));
             List<Geosets> list;
@@ -228,48 +229,48 @@ namespace WoW_Character_Viewer_Classic.Models
                     list = new List<Geosets>
                     {
                         Geosets.Feature1,
-                        Geosets.Facial01,
+                        Geosets.Hair01,
+                        Geosets.Facial06,
                         Geosets.Facial10,
-                        Geosets.Facial14,
-                        Geosets.Facial18
+                        Geosets.Hair05
                     };
                     break;
                 case 2:
                     list = new List<Geosets>
                     {
                         Geosets.Feature2,
-                        Geosets.Facial05,
-                        Geosets.Facial09
+                        Geosets.Hair03,
+                        Geosets.Facial05
                     };
                     break;
                 case 3:
                     list = new List<Geosets>
                     {
+                        Geosets.Hair04,
                         Geosets.Facial07,
-                        Geosets.Facial11,
-                        Geosets.Facial15
+                        Geosets.Facial11
                     };
                     break;
                 case 4:
                     list = new List<Geosets>
                     {
-                        Geosets.Facial06
+                        Geosets.Facial03
                     };
                     break;
                 case 5:
                     list = new List<Geosets>
                     {
                         Geosets.Feature3,
-                        Geosets.Facial02,
-                        Geosets.Facial19
+                        Geosets.Hair02,
+                        Geosets.Hair06
                     };
                     break;
                 case 6:
                     list = new List<Geosets>
                     {
                         Geosets.Feature4,
-                        Geosets.Facial03,
-                        Geosets.Facial08
+                        Geosets.Facial01,
+                        Geosets.Facial04
                     };
                     break;
                 default:
@@ -277,6 +278,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     break;
             }
             currentGeosets.AddRange(list);
+            list = null;
         }
 
         protected override void EquipCape()
@@ -398,6 +400,38 @@ namespace WoW_Character_Viewer_Classic.Models
             }
         }
 
+        protected override void HideHair()
+        {
+            if(Gear[0].ID != "0" && Gear[0].Male.Hair[5] == '1')
+            {
+                currentGeosets.RemoveAll(item => item.ToString().Contains("Style"));
+                currentGeosets.RemoveAll(item => item.ToString().Contains("Hair"));
+                currentGeosets.Add(Geosets.Style5);
+            }
+        }
+
+        protected override void HideFacial()
+        {
+            if(Gear[0].ID != "0" && Gear[0].Male.Beards[5] == '1')
+            {
+                currentGeosets.RemoveAll(item => item.ToString().Contains("Feature"));
+                currentGeosets.RemoveAll(item => item.ToString().Contains("Facial"));
+            }
+        }
+
+        protected override void HideEars()
+        {
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Ears"));
+            if(Gear[0].ID != "0" && Gear[0].Male.Ears[5] == '1')
+            {
+                currentGeosets.Add(Geosets.Ears2);
+            }
+            else
+            {
+                currentGeosets.Add(Geosets.Ears1);
+            }
+        }
+
         public override void Render(OpenGL gl)
         {
             Prepare(gl);
@@ -412,9 +446,9 @@ namespace WoW_Character_Viewer_Classic.Models
                     RenderGeoset(gl, (int)geoset, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
                 }
             }
-            if(head != null)
+            if(!head.Empty)
             {
-                head.Render(gl);
+                head.Render(gl, Rotation);
             }
             RenderSkeleton(gl);
         }

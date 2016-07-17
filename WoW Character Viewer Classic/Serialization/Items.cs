@@ -213,9 +213,9 @@ public partial class ItemsItemMale {
     
     private string hairField;
     
-    private string facialField;
+    private string beardsField;
     
-    private string earringsField;
+    private string piercingField;
     
     private string otherField;
     
@@ -232,22 +232,22 @@ public partial class ItemsItemMale {
     }
     
     /// <uwagi/>
-    public string Facial {
+    public string Beards {
         get {
-            return this.facialField;
+            return this.beardsField;
         }
         set {
-            this.facialField = value;
+            this.beardsField = value;
         }
     }
     
     /// <uwagi/>
-    public string Earrings {
+    public string Piercing {
         get {
-            return this.earringsField;
+            return this.piercingField;
         }
         set {
-            this.earringsField = value;
+            this.piercingField = value;
         }
     }
     
@@ -282,9 +282,9 @@ public partial class ItemsItemFemale {
     
     private string hairField;
     
-    private string facialField;
+    private string beardsField;
     
-    private string earringsField;
+    private string piercingField;
     
     private string otherField;
     
@@ -301,22 +301,22 @@ public partial class ItemsItemFemale {
     }
     
     /// <uwagi/>
-    public string Facial {
+    public string Beards {
         get {
-            return this.facialField;
+            return this.beardsField;
         }
         set {
-            this.facialField = value;
+            this.beardsField = value;
         }
     }
     
     /// <uwagi/>
-    public string Earrings {
+    public string Piercing {
         get {
-            return this.earringsField;
+            return this.piercingField;
         }
         set {
-            this.earringsField = value;
+            this.piercingField = value;
         }
     }
     

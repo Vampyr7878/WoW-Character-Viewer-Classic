@@ -33,6 +33,10 @@ namespace WoW_Character_Viewer_Classic.Controls
             Font font = (e.State & DrawItemState.Selected) == DrawItemState.Selected ? bold : Font;
             Color color = item.Name == "None" ? Color.White : WoWHelper.QalityColor(item.Quality);
             graphics.DrawString(item.Name, font, new SolidBrush(color), 15, e.Bounds.Y + (e.Bounds.Height - stringSize.Height) / 2);
+            graphics = null;
+            item = null;
+            icon = null;
+            font = null;
         }
     }
 }

@@ -64,8 +64,7 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             currentGeosets = new List<Geosets>
             {
-                Geosets.Body1,
-                Geosets.Ears1,
+                Geosets.Body1
             };
             skinsCount = 6;
             facesCount = 6;
@@ -200,6 +199,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     break;
             }
             currentGeosets.AddRange(list);
+            list = null;
         }
 
         protected override void FacialGeosets()
@@ -249,6 +249,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     break;
             }
             currentGeosets.AddRange(list);
+            list = null;
         }
 
         protected override void EquipCape()
@@ -378,6 +379,32 @@ namespace WoW_Character_Viewer_Classic.Models
             }
         }
 
+        protected override void HideHair()
+        {
+            if(Gear[0].ID != "0" && Gear[0].Female.Hair[7] == '1')
+            {
+                currentGeosets.RemoveAll(item => item.ToString().Contains("Style"));
+                currentGeosets.RemoveAll(item => item.ToString().Contains("Hair"));
+            }
+        }
+
+        protected override void HideFacial()
+        {
+            if(Gear[0].ID != "0" && Gear[0].Female.Other[7] == '1')
+            {
+                currentGeosets.RemoveAll(item => item.ToString().Contains("Feature"));
+            }
+        }
+
+        protected override void HideEars()
+        {
+            currentGeosets.RemoveAll(item => item.ToString().Contains("Ears"));
+            if(Gear[0].ID == "0" || Gear[0].Female.Ears[7] == '0')
+            {
+                currentGeosets.Add(Geosets.Ears1);
+            }
+        }
+
         public override void Render(OpenGL gl)
         {
             Prepare(gl);
@@ -392,9 +419,9 @@ namespace WoW_Character_Viewer_Classic.Models
                     RenderGeoset(gl, (int)geoset, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
                 }
             }
-            if(head != null)
+            if(!head.Empty)
             {
-                head.Render(gl);
+                head.Render(gl, Rotation);
             }
             RenderSkeleton(gl);
         }

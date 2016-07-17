@@ -64,6 +64,8 @@ namespace WoW_Character_Viewer_Classic.Controls
             {
                 DrawClasses(lines[y].Split(' '), y, graphics);
             }
+            graphics = null;
+            classes = null;
         }
 
         void OnPopup(object sender, PopupEventArgs e)
@@ -94,6 +96,7 @@ namespace WoW_Character_Viewer_Classic.Controls
             size.Height += 2;
             size.Height *= lines.Count;
             e.ToolTipSize = size;
+            classes = null;
         }
     }
 }
