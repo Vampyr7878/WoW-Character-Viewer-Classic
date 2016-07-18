@@ -3863,9 +3863,9 @@
 			<Geoset triangle="783" triangles="120" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" color="-1" blend="0" texture="0" />
-			<Texture geoset="1" color="-1" blend="1" texture="1" />
-			<Texture geoset="2" color="-1" blend="2" texture="1" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" transparency="0" />
+			<Texture geoset="1" color="-1" blend="1" texture="1" transparency="0" />
+			<Texture geoset="2" color="-1" blend="2" texture="1" transparency="1" />
 		</Textures>
 	</View>
 	<Colors />
@@ -3873,6 +3873,10 @@
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\HELM_LEATHER_RAID_A_02REDGLOWINGEYES.BLP" />
 		<Texture type="2" file="" />
 	</Textures>
+	<Transparencies>
+		<Transparency>1</Transparency>
+		<Transparency>0.3599963</Transparency>
+	</Transparencies>
 	<Blending>
 		<Blend>4</Blend>
 		<Blend>0</Blend>

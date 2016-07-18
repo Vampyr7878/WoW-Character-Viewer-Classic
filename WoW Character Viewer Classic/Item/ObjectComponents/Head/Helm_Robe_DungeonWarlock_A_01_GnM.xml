@@ -3057,8 +3057,8 @@
 			<Geoset triangle="120" triangles="654" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" color="-1" blend="0" texture="0" />
-			<Texture geoset="1" color="-1" blend="1" texture="0" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" transparency="0" />
+			<Texture geoset="1" color="-1" blend="1" texture="0" transparency="1" />
 		</Textures>
 	</View>
 	<Colors />
@@ -3066,6 +3066,10 @@
 		<Texture type="2" file="" />
 		<Texture type="0" file="WORLD\KALIMDOR\MAURADON\PASSIVEDOODADS\SATYRHANGINGBRAZIERS\FIRE1WHITE.BLP" />
 	</Textures>
+	<Transparencies>
+		<Transparency>0.700003</Transparency>
+		<Transparency>1</Transparency>
+	</Transparencies>
 	<Blending>
 		<Blend>2</Blend>
 		<Blend>0</Blend>

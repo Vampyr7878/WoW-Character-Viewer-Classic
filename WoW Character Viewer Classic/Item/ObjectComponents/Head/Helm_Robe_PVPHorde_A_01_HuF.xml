@@ -4251,8 +4251,8 @@
 			<Geoset triangle="1092" triangles="12" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="1" color="0" blend="1" texture="1" />
-			<Texture geoset="0" color="-1" blend="0" texture="0" />
+			<Texture geoset="1" color="0" blend="1" texture="1" transparency="0" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" transparency="0" />
 		</Textures>
 	</View>
 	<Colors>
@@ -4262,6 +4262,9 @@
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\HELM_ROBE_PVPHORDE_A_01RED.BLP" />
 		<Texture type="0" file="WORLD\GENERIC\PASSIVEDOODADS\LIGHTS\GLOWORANGE32.BLP" />
 	</Textures>
+	<Transparencies>
+		<Transparency>1</Transparency>
+	</Transparencies>
 	<Blending>
 		<Blend>0</Blend>
 		<Blend>4</Blend>

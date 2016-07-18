@@ -36,6 +36,8 @@ public partial class Model {
     
     private ModelTexture[] texturesField;
     
+    private float[] transparenciesField;
+    
     private int[] blendingField;
     
     private ModelAttachment[] attachmentsField;
@@ -101,6 +103,17 @@ public partial class Model {
         }
         set {
             this.texturesField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    [System.Xml.Serialization.XmlArrayItemAttribute("Transparency", IsNullable=false)]
+    public float[] Transparencies {
+        get {
+            return this.transparenciesField;
+        }
+        set {
+            this.transparenciesField = value;
         }
     }
     
@@ -866,6 +879,8 @@ public partial class ModelViewTexture {
     
     private int textureField;
     
+    private int transparencyField;
+    
     private string valueField;
     
     /// <uwagi/>
@@ -909,6 +924,17 @@ public partial class ModelViewTexture {
         }
         set {
             this.textureField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public int transparency {
+        get {
+            return this.transparencyField;
+        }
+        set {
+            this.transparencyField = value;
         }
     }
     

@@ -954,7 +954,7 @@
 			<Geoset triangle="0" triangles="240" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" color="0" blend="0" texture="0" />
+			<Texture geoset="0" color="0" blend="0" texture="0" transparency="0" />
 		</Textures>
 	</View>
 	<Colors>
@@ -965,6 +965,9 @@
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\HELM_MAGICFLAMELICKSMOKE.BLP" />
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\PRIESTHELM01.BLP" />
 	</Textures>
+	<Transparencies>
+		<Transparency>0.2500076</Transparency>
+	</Transparencies>
 	<Blending>
 		<Blend>2</Blend>
 	</Blending>

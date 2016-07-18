@@ -1612,8 +1612,8 @@
 			<Geoset triangle="0" triangles="462" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" color="-1" blend="0" texture="0" />
-			<Texture geoset="0" color="-1" blend="1" texture="1" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" transparency="0" />
+			<Texture geoset="0" color="-1" blend="1" texture="1" transparency="0" />
 		</Textures>
 	</View>
 	<Colors />
@@ -1621,6 +1621,9 @@
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\SHOULDER\SHOULDER_LEATHER_RAIDROGUE_A_01BLUE.BLP" />
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\SHOULDER\SHOULDERREFLECT01.BLP" />
 	</Textures>
+	<Transparencies>
+		<Transparency>1</Transparency>
+	</Transparencies>
 	<Blending>
 		<Blend>0</Blend>
 		<Blend>6</Blend>

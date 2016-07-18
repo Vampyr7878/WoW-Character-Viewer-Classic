@@ -5067,10 +5067,10 @@
 			<Geoset triangle="12" triangles="924" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" color="0" blend="0" texture="0" />
-			<Texture geoset="1" color="-1" blend="1" texture="1" />
-			<Texture geoset="1" color="-1" blend="2" texture="2" />
-			<Texture geoset="1" color="-1" blend="3" texture="1" />
+			<Texture geoset="0" color="0" blend="0" texture="0" transparency="0" />
+			<Texture geoset="1" color="-1" blend="1" texture="1" transparency="1" />
+			<Texture geoset="1" color="-1" blend="2" texture="2" transparency="1" />
+			<Texture geoset="1" color="-1" blend="3" texture="1" transparency="1" />
 		</Textures>
 	</View>
 	<Colors>
@@ -5082,6 +5082,10 @@
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\WEAPON\ARMORREFLECT4.BLP" />
 		<Texture type="0" file="SPELLS\STAR5A.BLP" />
 	</Textures>
+	<Transparencies>
+		<Transparency>0.4499954</Transparency>
+		<Transparency>1</Transparency>
+	</Transparencies>
 	<Blending>
 		<Blend>4</Blend>
 		<Blend>0</Blend>

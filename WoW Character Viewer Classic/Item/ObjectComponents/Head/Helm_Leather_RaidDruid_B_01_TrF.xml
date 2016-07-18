@@ -5004,9 +5004,9 @@
 			<Geoset triangle="1212" triangles="12" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" color="-1" blend="0" texture="0" />
-			<Texture geoset="1" color="-1" blend="1" texture="0" />
-			<Texture geoset="2" color="-1" blend="2" texture="1" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" transparency="0" />
+			<Texture geoset="1" color="-1" blend="1" texture="0" transparency="1" />
+			<Texture geoset="2" color="-1" blend="2" texture="1" transparency="1" />
 		</Textures>
 	</View>
 	<Colors />
@@ -5014,6 +5014,10 @@
 		<Texture type="2" file="" />
 		<Texture type="0" file="CHARACTER\NIGHTELF\MALE\NIGHTELFMALEEYEGLOW.BLP" />
 	</Textures>
+	<Transparencies>
+		<Transparency>0.8500015</Transparency>
+		<Transparency>1</Transparency>
+	</Transparencies>
 	<Blending>
 		<Blend>5</Blend>
 		<Blend>0</Blend>

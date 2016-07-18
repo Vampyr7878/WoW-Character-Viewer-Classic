@@ -5067,21 +5067,25 @@
 			<Geoset triangle="12" triangles="924" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" color="0" blend="0" texture="0" />
-			<Texture geoset="1" color="-1" blend="1" texture="1" />
-			<Texture geoset="1" color="-1" blend="2" texture="2" />
-			<Texture geoset="1" color="-1" blend="3" texture="1" />
+			<Texture geoset="0" color="0" blend="0" texture="0" transparency="0" />
+			<Texture geoset="1" color="-1" blend="1" texture="1" transparency="1" />
+			<Texture geoset="1" color="-1" blend="2" texture="2" transparency="1" />
+			<Texture geoset="1" color="-1" blend="3" texture="1" transparency="1" />
 		</Textures>
 	</View>
 	<Colors>
 		<Color red="0.02745098" green="0.4039216" blue="0.9176471" alpha="1" />
 	</Colors>
 	<Textures>
-		<Texture type="0" file="SPELLS\STAR5A.BLP" />
-		<Texture type="0" file="SPELLS\STAR5A.BLP" />
 		<Texture type="0" file="Item\ObjectComponents\Head\Helm_Plate_RaidPaladin_C_01Eyes.blp" />
 		<Texture type="2" file="" />
+		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\WEAPON\ARMORREFLECT4.BLP" />
+		<Texture type="0" file="SPELLS\STAR5A.BLP" />
 	</Textures>
+	<Transparencies>
+		<Transparency>0.4499954</Transparency>
+		<Transparency>1</Transparency>
+	</Transparencies>
 	<Blending>
 		<Blend>4</Blend>
 		<Blend>0</Blend>

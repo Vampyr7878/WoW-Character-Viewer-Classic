@@ -6329,8 +6329,8 @@
 			<Geoset triangle="1296" triangles="66" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" color="-1" blend="0" texture="0" />
-			<Texture geoset="1" color="-1" blend="1" texture="0" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" transparency="0" />
+			<Texture geoset="1" color="-1" blend="1" texture="0" transparency="0" />
 		</Textures>
 	</View>
 	<Colors />
@@ -6339,6 +6339,9 @@
 		<Texture type="0" file="WORLD\KALIMDOR\MAURADON\PASSIVEDOODADS\SATYRHANGINGBRAZIERS\FIRE1WHITE.BLP" />
 		<Texture type="0" file="CREATURE\MOUNTEDDEATHKNIGHT\SMOKE02A.BLP" />
 	</Textures>
+	<Transparencies>
+		<Transparency>1</Transparency>
+	</Transparencies>
 	<Blending>
 		<Blend>0</Blend>
 		<Blend>0</Blend>

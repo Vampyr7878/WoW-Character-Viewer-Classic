@@ -4030,7 +4030,7 @@
 			<Geoset triangle="0" triangles="1188" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" color="-1" blend="0" texture="0" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" transparency="0" />
 		</Textures>
 	</View>
 	<Colors />
@@ -4039,6 +4039,9 @@
 		<Texture type="0" file="INTERFACE\BUTTONS\GLOWSTAR.BLP" />
 		<Texture type="0" file="WORLD\GENERIC\OGRE\PASSIVE DOODADS\TORCHES\FLAMELICKSMALLMAGICBLUE.BLP" />
 	</Textures>
+	<Transparencies>
+		<Transparency>1</Transparency>
+	</Transparencies>
 	<Blending>
 		<Blend>0</Blend>
 	</Blending>

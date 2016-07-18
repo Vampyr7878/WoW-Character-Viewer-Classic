@@ -4347,8 +4347,8 @@
 			<Geoset triangle="12" triangles="1104" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" color="0" blend="0" texture="0" />
-			<Texture geoset="1" color="-1" blend="1" texture="1" />
+			<Texture geoset="0" color="0" blend="0" texture="0" transparency="0" />
+			<Texture geoset="1" color="-1" blend="1" texture="1" transparency="0" />
 		</Textures>
 	</View>
 	<Colors>
@@ -4358,6 +4358,9 @@
 		<Texture type="0" file="WORLD\GENERIC\PASSIVEDOODADS\LIGHTS\GLOWORANGE32.BLP" />
 		<Texture type="2" file="" />
 	</Textures>
+	<Transparencies>
+		<Transparency>1</Transparency>
+	</Transparencies>
 	<Blending>
 		<Blend>4</Blend>
 		<Blend>0</Blend>

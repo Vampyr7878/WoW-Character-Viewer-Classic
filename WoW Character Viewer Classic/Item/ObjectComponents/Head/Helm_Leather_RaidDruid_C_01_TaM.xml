@@ -4230,11 +4230,11 @@
 			<Geoset triangle="966" triangles="72" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" color="-1" blend="0" texture="0" />
-			<Texture geoset="0" color="-1" blend="1" texture="1" />
-			<Texture geoset="0" color="-1" blend="2" texture="0" />
-			<Texture geoset="1" color="-1" blend="3" texture="2" />
-			<Texture geoset="2" color="-1" blend="4" texture="3" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" transparency="0" />
+			<Texture geoset="0" color="-1" blend="1" texture="1" transparency="0" />
+			<Texture geoset="0" color="-1" blend="2" texture="0" transparency="0" />
+			<Texture geoset="1" color="-1" blend="3" texture="2" transparency="0" />
+			<Texture geoset="2" color="-1" blend="4" texture="3" transparency="1" />
 		</Textures>
 	</View>
 	<Colors />
@@ -4244,6 +4244,10 @@
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\DRUIDEYE.BLP" />
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\HELM_LEATHER_RAIDDRUID_C_01.BLP" />
 	</Textures>
+	<Transparencies>
+		<Transparency>1</Transparency>
+		<Transparency>0.700003</Transparency>
+	</Transparencies>
 	<Blending>
 		<Blend>0</Blend>
 		<Blend>6</Blend>

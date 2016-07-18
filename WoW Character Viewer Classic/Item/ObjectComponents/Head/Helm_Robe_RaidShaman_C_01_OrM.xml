@@ -5397,8 +5397,8 @@
 			<Geoset triangle="1230" triangles="84" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" color="-1" blend="0" texture="0" />
-			<Texture geoset="1" color="-1" blend="1" texture="1" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" transparency="0" />
+			<Texture geoset="1" color="-1" blend="1" texture="1" transparency="1" />
 		</Textures>
 	</View>
 	<Colors />
@@ -5407,6 +5407,10 @@
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\HELM_ROBE_RAIDSHAMAN_C_01.BLP" />
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\WEAPON\FIRESWIRL.BLP" />
 	</Textures>
+	<Transparencies>
+		<Transparency>1</Transparency>
+		<Transparency>0.8999909</Transparency>
+	</Transparencies>
 	<Blending>
 		<Blend>0</Blend>
 		<Blend>2</Blend>

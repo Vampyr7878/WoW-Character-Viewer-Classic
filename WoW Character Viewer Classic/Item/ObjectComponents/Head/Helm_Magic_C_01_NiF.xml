@@ -266,8 +266,8 @@
 			<Geoset triangle="0" triangles="60" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" color="-1" blend="0" texture="0" />
-			<Texture geoset="0" color="-1" blend="1" texture="1" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" transparency="0" />
+			<Texture geoset="0" color="-1" blend="1" texture="1" transparency="1" />
 		</Textures>
 	</View>
 	<Colors />
@@ -276,6 +276,10 @@
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\WEAPON\ARMORREFLECT3.BLP" />
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\HELM_MAGICFLAMELICK.BLP" />
 	</Textures>
+	<Transparencies>
+		<Transparency>0.5999939</Transparency>
+		<Transparency>1</Transparency>
+	</Transparencies>
 	<Blending>
 		<Blend>0</Blend>
 		<Blend>4</Blend>

@@ -2655,11 +2655,11 @@
 			<Geoset triangle="648" triangles="6" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" color="-1" blend="2" texture="0" />
-			<Texture geoset="1" color="-1" blend="0" texture="1" />
-			<Texture geoset="1" color="-1" blend="1" texture="2" />
-			<Texture geoset="2" color="0" blend="3" texture="3" />
-			<Texture geoset="3" color="1" blend="4" texture="3" />
+			<Texture geoset="0" color="-1" blend="2" texture="0" transparency="0" />
+			<Texture geoset="1" color="-1" blend="0" texture="1" transparency="0" />
+			<Texture geoset="1" color="-1" blend="1" texture="2" transparency="0" />
+			<Texture geoset="2" color="0" blend="3" texture="3" transparency="1" />
+			<Texture geoset="3" color="1" blend="4" texture="3" transparency="1" />
 		</Textures>
 	</View>
 	<Colors>
@@ -2667,11 +2667,15 @@
 		<Color red="0.8470589" green="0.7098039" blue="0" alpha="1" />
 	</Colors>
 	<Textures>
-		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\SHOULDER\ORBREFLECT02.BLP" />
 		<Texture type="0" file="CREATURE\RIDINGRAPTOR\PVPRIDINGRAPTOREYEGLOWBLUE.BLP" />
 		<Texture type="2" file="" />
+		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\SHOULDER\ORBREFLECT02.BLP" />
 		<Texture type="0" file="SPELLS\GENERICGLOW64.BLP" />
 	</Textures>
+	<Transparencies>
+		<Transparency>1</Transparency>
+		<Transparency>0.3400067</Transparency>
+	</Transparencies>
 	<Blending>
 		<Blend>0</Blend>
 		<Blend>6</Blend>

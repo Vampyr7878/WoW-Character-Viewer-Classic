@@ -517,13 +517,14 @@ namespace WoW_Character_Viewer_Classic.Models
         void SetColor(OpenGL gl, int geoset)
         {
             int color = FindColor(geoset);
+            int transparency = FindTransparency(geoset);
             if(color == -1)
             {
-                gl.Color(1f, 1f, 1f);
+                gl.Color(1f, 1f, 1f, model.Transparencies[transparency]);
             }
             else
             {
-                gl.Color(model.Colors[color].red, model.Colors[color].green, model.Colors[color].blue, model.Colors[color].alpha);
+                gl.Color(model.Colors[color].red, model.Colors[color].green, model.Colors[color].blue, model.Colors[color].alpha * model.Transparencies[transparency]);
             }
         }
 
@@ -534,6 +535,18 @@ namespace WoW_Character_Viewer_Classic.Models
                 if(viewTexture.geoset == geoset)
                 {
                     return viewTexture.color;
+                }
+            }
+            return -1;
+        }
+
+        int FindTransparency(int geoset)
+        {
+            foreach(ModelViewTexture viewTexture in model.View.Textures)
+            {
+                if(viewTexture.geoset == geoset)
+                {
+                    return viewTexture.transparency;
                 }
             }
             return -1;

@@ -2046,7 +2046,7 @@
 			<Geoset triangle="0" triangles="492" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" color="-1" blend="0" texture="0" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" transparency="0" />
 		</Textures>
 	</View>
 	<Colors />
@@ -2054,6 +2054,9 @@
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\SHOULDER\SHOULDER_LEATHER_PVPHORDE_C_01BLACK.BLP" />
 		<Texture type="0" file="SPELLS\FIRE1.BLP" />
 	</Textures>
+	<Transparencies>
+		<Transparency>1</Transparency>
+	</Transparencies>
 	<Blending>
 		<Blend>0</Blend>
 	</Blending>

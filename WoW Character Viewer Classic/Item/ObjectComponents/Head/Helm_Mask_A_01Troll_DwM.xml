@@ -1519,13 +1519,16 @@
 			<Geoset triangle="0" triangles="369" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" color="-1" blend="0" texture="0" />
+			<Texture geoset="0" color="-1" blend="0" texture="0" transparency="0" />
 		</Textures>
 	</View>
 	<Colors />
 	<Textures>
 		<Texture type="2" file="" />
 	</Textures>
+	<Transparencies>
+		<Transparency>1</Transparency>
+	</Transparencies>
 	<Blending>
 		<Blend>0</Blend>
 	</Blending>
