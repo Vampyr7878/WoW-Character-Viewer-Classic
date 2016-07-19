@@ -196,6 +196,18 @@ namespace WoW_Character_Viewer_Classic
             ResetCamera();
         }
 
+        int FindAttachmentBone(int id)
+        {
+            foreach(ModelAttachment attachment in character.Model.Attachments)
+            {
+                if(attachment.id == id)
+                {
+                    return attachment.bone;
+                }
+            }
+            return -1;
+        }
+
         void RaceUnclick()
         {
             humanButton.FlatStyle = FlatStyle.Popup;

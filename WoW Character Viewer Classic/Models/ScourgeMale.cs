@@ -563,9 +563,12 @@ namespace WoW_Character_Viewer_Classic.Models
                     RenderGeoset(gl, (int)geoset, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
                 }
             }
-            if(!head.Empty)
+            foreach(ObjectComponent component in components)
             {
-                head.Render(gl, Rotation);
+                if(!component.Empty)
+                {
+                    component.Render(gl, Rotation);
+                }
             }
             RenderSkeleton(gl);
         }

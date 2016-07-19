@@ -1105,8 +1105,9 @@
             this.shoulderButton.Size = new System.Drawing.Size(48, 48);
             this.shoulderButton.TabIndex = 3;
             this.shoulderButton.UseVisualStyleBackColor = true;
-            this.shoulderButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
-            this.shoulderButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
+            this.shoulderButton.Click += new System.EventHandler(this.armorButton_Click);
+            this.shoulderButton.MouseEnter += new System.EventHandler(this.armorButton_MouseEnter);
+            this.shoulderButton.MouseLeave += new System.EventHandler(this.armorButton_MouseLeave);
             // 
             // neckButton
             // 

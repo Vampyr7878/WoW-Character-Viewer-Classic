@@ -20,6 +20,7 @@ namespace WoW_Character_Viewer_Classic.Models
         protected List<int> billboards;
         Vector3D position;
         Quaternion rotation;
+        Vector3D scale;
         Texture[] textures;
         string texture;
         string texturesPath;
@@ -43,8 +44,13 @@ namespace WoW_Character_Viewer_Classic.Models
             id = "0";
         }
 
-        public void Initialize(string id, string file, string texture, string path, Vector3D position, Quaternion rotation)
+        public void Initialize(string id, string file, string texture, string path, Vector3D position, Quaternion rotation, Vector3D scale)
         {
+            if(file == "")
+            {
+                empty = true;
+                return;
+            }
             this.id = null;
             this.id = id;
             empty = false;
@@ -52,6 +58,7 @@ namespace WoW_Character_Viewer_Classic.Models
             this.texture = texture;
             this.position = position;
             this.rotation = rotation;
+            this.scale = scale;
             texturesPath = null;
             texturesPath = path;
             model = null;
@@ -151,6 +158,7 @@ namespace WoW_Character_Viewer_Classic.Models
                 gl.PushMatrix();
                 gl.Translate(position.X, position.Y, position.Z);
                 gl.Rotate(rotation.Angle, rotation.Axis.X, rotation.Axis.Y, rotation.Axis.Z);
+                gl.Scale(scale.X, scale.Y, scale.Z);
                 gl.Translate(x, y, z);
                 gl.Rotate(-characterRotation, 0f, 1f, 0f);
                 gl.Translate(-x, -y, -z);
@@ -185,6 +193,7 @@ namespace WoW_Character_Viewer_Classic.Models
             gl.PushMatrix();
             gl.Translate(position.X, position.Y, position.Z);
             gl.Rotate(rotation.Angle, rotation.Axis.X, rotation.Axis.Y, rotation.Axis.Z);
+            gl.Scale(scale.X, scale.Y, scale.Z);
             gl.Begin(OpenGL.GL_TRIANGLES);
             for(int i = start; i < start + count; i++)
             {
@@ -304,7 +313,7 @@ namespace WoW_Character_Viewer_Classic.Models
             gl.Enable(OpenGL.GL_TEXTURE_2D);
             for(int i = 0; i < geosets.Length; i++)
             {
-                if(billboards.Contains(vertices[indices[triangles[geosets[i].triangle]]].Bones[0].index))
+                if(geosets.Length > 1 && billboards.Contains(vertices[indices[triangles[geosets[i].triangle]]].Bones[0].index))
                 {
                     RenderBillboard(gl, i, characterRotation, geosets[i].triangle, geosets[i].triangles);
                 }

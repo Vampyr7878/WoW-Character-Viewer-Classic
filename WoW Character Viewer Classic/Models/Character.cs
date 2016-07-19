@@ -12,7 +12,7 @@ namespace WoW_Character_Viewer_Classic.Models
     public abstract class Character : IDisposable
     {
         Model model;
-        protected ObjectComponent head;
+        protected ObjectComponent[] components;
         protected ModelVertex[] vertices;
         protected int[] indices;
         protected int[] triangles;
@@ -76,7 +76,12 @@ namespace WoW_Character_Viewer_Classic.Models
             Facial = 0;
             GetHairNames();
             GetFacialNames();
-            head = new ObjectComponent();
+            components = new[]
+            {
+                new ObjectComponent(),
+                new ObjectComponent(),
+                new ObjectComponent()
+            };
             serializer = null;
         }
 
@@ -404,28 +409,57 @@ namespace WoW_Character_Viewer_Classic.Models
             EquipChest();
             EquipTabard();
             EquipHead();
+            EquipShoulders();
         }
 
-        protected void EquipHead()
+        void EquipHead()
         {
-            if(head.ID != Gear[0].ID)
+            if(components[0].ID != Gear[0].ID)
             {
                 if(Gear[0].ID == "0")
                 {
-                    head.Initialize();
+                    components[0].Initialize();
                 }
                 else
                 {
                     ModelBone bone = bones[FindAttachment(11).bone];
                     Vector3D position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
                     Quaternion rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
-                    head.Initialize(Gear[0].ID, Gear[0].Models.Left.Replace(".mdx", HeadName()), Gear[0].Textures.Left, objectComponentsPath + @"Head\", position, rotation);
+                    Vector3D scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
+                    components[0].Initialize(Gear[0].ID, Gear[0].Models.Left.Replace(".mdx", HeadName()), Gear[0].Textures.Left, objectComponentsPath + @"Head\", position, rotation, scale);
                     bone = null;
                 }
             }
             HideHair();
             HideFacial();
             HideEars();
+        }
+
+        void EquipShoulders()
+        {
+            if(components[1].ID != Gear[2].ID || components[2].ID != Gear[2].ID)
+            {
+                if(Gear[2].ID == "0")
+                {
+                    components[1].Initialize();
+                    components[2].Initialize();
+                }
+                else
+                {
+                    ModelBone bone = bones[FindAttachment(6).bone];
+                    Vector3D position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
+                    Quaternion rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
+                    Vector3D scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
+                    components[1].Initialize(Gear[2].ID, Gear[2].Models.Left.Replace(".mdx", ".xml"), Gear[2].Textures.Left, objectComponentsPath + @"Shoulder\", position, rotation, scale);
+                    bone = null;
+                    bone = bones[FindAttachment(5).bone];
+                    position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
+                    rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
+                    scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
+                    components[2].Initialize(Gear[2].ID, Gear[2].Models.Right.Replace(".mdx", ".xml"), Gear[2].Textures.Right, objectComponentsPath + @"Shoulder\", position, rotation, scale);
+                    bone = null;
+                }
+            }
         }
 
         ModelAttachment FindAttachment(int id)
@@ -637,8 +671,11 @@ namespace WoW_Character_Viewer_Classic.Models
         public void Dispose()
         {
             model = null;
-            head.Dispose();
-            head = null;
+            foreach(ObjectComponent component in components)
+            {
+                component.Dispose();
+            }
+            components = null;
             vertices = null;
             indices = null;
             triangles = null;
