@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters;
 using System.Windows.Media.Media3D;
 using System.Xml.Serialization;
 
@@ -25,21 +26,20 @@ namespace WoW_Character_Viewer_Classic.Models
         string texture;
         string texturesPath;
         string id;
-        bool empty;
 
         public ObjectComponent()
         {
-            empty = true;
+            Empty = true;
             id = "0";
         }
 
         public string ID { get { return id; } }
 
-        public bool Empty { get { return empty; } }
+        public bool Empty { get; set; }
 
         public void Initialize()
         {
-            empty = true;
+            Empty = true;
             id = null;
             id = "0";
         }
@@ -48,12 +48,12 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             if(file == "")
             {
-                empty = true;
+                Empty = true;
                 return;
             }
             this.id = null;
             this.id = id;
-            empty = false;
+            Empty = false;
             this.texture = null;
             this.texture = texture;
             this.position = position;
@@ -148,8 +148,8 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             float x, y, z;
             SetColor(gl, geoset);
-            Blend(gl, geoset);
-            textures[FindTexture(geoset)].Bind(gl);
+            Blend(gl, geoset, 0);
+            textures[FindTexture(geoset, 0)].Bind(gl);
             foreach(int billboard in billboards)
             {
                 x = model.Bones[billboard].Position.x;
@@ -188,24 +188,30 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             float x, y, z;
             SetColor(gl, geoset);
-            Blend(gl, geoset);
-            textures[FindTexture(geoset)].Bind(gl);
+            int layers = CountTextures(geoset);
+            //Blend(gl, geoset);
+            //textures[FindTexture(geoset)].Bind(gl);
             gl.PushMatrix();
             gl.Translate(position.X, position.Y, position.Z);
             gl.Rotate(rotation.Angle, rotation.Axis.X, rotation.Axis.Y, rotation.Axis.Z);
             gl.Scale(scale.X, scale.Y, scale.Z);
-            gl.Begin(OpenGL.GL_TRIANGLES);
-            for(int i = start; i < start + count; i++)
+            for(int i = 0; i < layers; i++)
             {
-                x = vertices[indices[triangles[i]]].Texture.x;
-                y = vertices[indices[triangles[i]]].Texture.y;
-                gl.TexCoord(x, y);
-                x = vertices[indices[triangles[i]]].Position.x;
-                y = vertices[indices[triangles[i]]].Position.y;
-                z = vertices[indices[triangles[i]]].Position.z;
-                gl.Vertex(x, y, z);
+                Blend(gl, geoset, i);
+                textures[FindTexture(geoset, i)].Bind(gl);
+                gl.Begin(OpenGL.GL_TRIANGLES);
+                for(int j = start; j < start + count; j++)
+                {
+                    x = vertices[indices[triangles[j]]].Texture.x;
+                    y = vertices[indices[triangles[j]]].Texture.y;
+                    gl.TexCoord(x, y);
+                    x = vertices[indices[triangles[j]]].Position.x;
+                    y = vertices[indices[triangles[j]]].Position.y;
+                    z = vertices[indices[triangles[j]]].Position.z;
+                    gl.Vertex(x, y, z);
+                }
+                gl.End();
             }
-            gl.End();
             gl.PopMatrix();
             gl.DepthMask((byte)OpenGL.GL_TRUE);
             gl.Disable(OpenGL.GL_BLEND);
@@ -250,9 +256,9 @@ namespace WoW_Character_Viewer_Classic.Models
             return -1;
         }
 
-        void Blend(OpenGL gl, int geoset)
+        void Blend(OpenGL gl, int geoset, int layer)
         {
-            switch(model.Blending[FindBlend(geoset)])
+            switch(model.Blending[FindBlend(geoset, layer)])
             {
                 case 1:
                     gl.Enable(OpenGL.GL_BLEND);
@@ -283,28 +289,53 @@ namespace WoW_Character_Viewer_Classic.Models
             }
         }
 
-        int FindBlend(int geoset)
+        int FindBlend(int geoset, int layer)
         {
-            foreach(ModelViewTexture viewTexture in model.View.Textures)
+            foreach(ModelViewTexture texture in model.View.Textures)
             {
-                if(viewTexture.geoset == geoset)
+                if(texture.geoset == geoset && texture.layer == layer)
                 {
-                    return viewTexture.blend;
+                    return texture.blend;
                 }
             }
             return -1;
         }
 
-        int FindTexture(int geoset)
+        int CountTextures(int geoset)
         {
+            int count = 0;
             foreach(ModelViewTexture texture in model.View.Textures)
             {
                 if(texture.geoset == geoset)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        int FindTexture(int geoset, int layer)
+        {
+            foreach(ModelViewTexture texture in model.View.Textures)
+            {
+                if(texture.geoset == geoset && texture.layer == layer)
                 {
                     return texture.texture;
                 }
             }
             return -1;
+        }
+
+        bool GeosetBillboard(int geoset, int start, int count)
+        {
+            for(int i = start; i < start + count; i++)
+            {
+                if(!billboards.Contains(vertices[indices[triangles[i]]].Bones[0].index))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public void Render(OpenGL gl, float characterRotation)
@@ -313,7 +344,7 @@ namespace WoW_Character_Viewer_Classic.Models
             gl.Enable(OpenGL.GL_TEXTURE_2D);
             for(int i = 0; i < geosets.Length; i++)
             {
-                if(geosets.Length > 1 && billboards.Contains(vertices[indices[triangles[geosets[i].triangle]]].Bones[0].index))
+                if(GeosetBillboard(i, geosets[i].triangle, geosets[i].triangles))
                 {
                     RenderBillboard(gl, i, characterRotation, geosets[i].triangle, geosets[i].triangles);
                 }

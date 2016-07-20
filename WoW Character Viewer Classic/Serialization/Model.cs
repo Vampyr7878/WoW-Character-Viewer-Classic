@@ -877,6 +877,8 @@ public partial class ModelViewTexture {
     
     private int blendField;
     
+    private int layerField;
+    
     private int textureField;
     
     private int transparencyField;
@@ -913,6 +915,17 @@ public partial class ModelViewTexture {
         }
         set {
             this.blendField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public int layer {
+        get {
+            return this.layerField;
+        }
+        set {
+            this.layerField = value;
         }
     }
     

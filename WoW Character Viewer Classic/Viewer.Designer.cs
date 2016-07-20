@@ -107,6 +107,10 @@
             this.backTooltip = new WoW_Character_Viewer_Classic.Controls.BackTooltip();
             this.armorTooltip = new WoW_Character_Viewer_Classic.Controls.ArmorTooltip();
             this.cosmeticTooltip = new WoW_Character_Viewer_Classic.Controls.CosmeticTooltip();
+            this.weaponTooltip = new WoW_Character_Viewer_Classic.Controls.WeaponTooltip();
+            this.shieldTooltip = new WoW_Character_Viewer_Classic.Controls.ShieldTooltip();
+            this.heldInOffHandTooltip = new WoW_Character_Viewer_Classic.Controls.HeldInOffHandTooltip();
+            this.relicTooltip = new WoW_Character_Viewer_Classic.Controls.RelicTooltip();
             this.tabControl.SuspendLayout();
             this.appearancePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
@@ -252,6 +256,7 @@
             this.rangedMeleeButton.TabIndex = 66;
             this.rangedMeleeButton.Text = "Ranged";
             this.rangedMeleeButton.UseVisualStyleBackColor = false;
+            this.rangedMeleeButton.Click += new System.EventHandler(this.bottomButton_Click);
             // 
             // saveButton
             // 
@@ -883,8 +888,9 @@
             this.rangedRelicButton.Size = new System.Drawing.Size(48, 48);
             this.rangedRelicButton.TabIndex = 19;
             this.rangedRelicButton.UseVisualStyleBackColor = true;
-            this.rangedRelicButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
-            this.rangedRelicButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
+            this.rangedRelicButton.Click += new System.EventHandler(this.weaponButton_Click);
+            this.rangedRelicButton.MouseEnter += new System.EventHandler(this.weaponButton_MouseEnter);
+            this.rangedRelicButton.MouseLeave += new System.EventHandler(this.weaponButton_MouseLeave);
             // 
             // offHandButton
             // 
@@ -896,8 +902,9 @@
             this.offHandButton.Size = new System.Drawing.Size(48, 48);
             this.offHandButton.TabIndex = 18;
             this.offHandButton.UseVisualStyleBackColor = true;
-            this.offHandButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
-            this.offHandButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
+            this.offHandButton.Click += new System.EventHandler(this.weaponButton_Click);
+            this.offHandButton.MouseEnter += new System.EventHandler(this.weaponButton_MouseEnter);
+            this.offHandButton.MouseLeave += new System.EventHandler(this.weaponButton_MouseLeave);
             // 
             // mainHandButton
             // 
@@ -909,8 +916,9 @@
             this.mainHandButton.Size = new System.Drawing.Size(48, 48);
             this.mainHandButton.TabIndex = 17;
             this.mainHandButton.UseVisualStyleBackColor = true;
-            this.mainHandButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
-            this.mainHandButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
+            this.mainHandButton.Click += new System.EventHandler(this.weaponButton_Click);
+            this.mainHandButton.MouseEnter += new System.EventHandler(this.weaponButton_MouseEnter);
+            this.mainHandButton.MouseLeave += new System.EventHandler(this.weaponButton_MouseLeave);
             // 
             // trinket2Button
             // 
@@ -1219,6 +1227,50 @@
             this.cosmeticTooltip.UseAnimation = false;
             this.cosmeticTooltip.UseFading = false;
             // 
+            // weaponTooltip
+            // 
+            this.weaponTooltip.AutomaticDelay = 0;
+            this.weaponTooltip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.weaponTooltip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.weaponTooltip.ForeColor = System.Drawing.Color.White;
+            this.weaponTooltip.Item = null;
+            this.weaponTooltip.OwnerDraw = true;
+            this.weaponTooltip.UseAnimation = false;
+            this.weaponTooltip.UseFading = false;
+            // 
+            // shieldTooltip
+            // 
+            this.shieldTooltip.AutomaticDelay = 0;
+            this.shieldTooltip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.shieldTooltip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.shieldTooltip.ForeColor = System.Drawing.Color.White;
+            this.shieldTooltip.Item = null;
+            this.shieldTooltip.OwnerDraw = true;
+            this.shieldTooltip.UseAnimation = false;
+            this.shieldTooltip.UseFading = false;
+            // 
+            // heldInOffHandTooltip
+            // 
+            this.heldInOffHandTooltip.AutomaticDelay = 0;
+            this.heldInOffHandTooltip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.heldInOffHandTooltip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.heldInOffHandTooltip.ForeColor = System.Drawing.Color.White;
+            this.heldInOffHandTooltip.Item = null;
+            this.heldInOffHandTooltip.OwnerDraw = true;
+            this.heldInOffHandTooltip.UseAnimation = false;
+            this.heldInOffHandTooltip.UseFading = false;
+            // 
+            // relicTooltip
+            // 
+            this.relicTooltip.AutomaticDelay = 0;
+            this.relicTooltip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.relicTooltip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.relicTooltip.ForeColor = System.Drawing.Color.White;
+            this.relicTooltip.Item = null;
+            this.relicTooltip.OwnerDraw = true;
+            this.relicTooltip.UseAnimation = false;
+            this.relicTooltip.UseFading = false;
+            // 
             // Viewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1321,6 +1373,10 @@
         private Controls.BackTooltip backTooltip;
         private Controls.ArmorTooltip armorTooltip;
         private Controls.CosmeticTooltip cosmeticTooltip;
+        private Controls.WeaponTooltip weaponTooltip;
+        private Controls.ShieldTooltip shieldTooltip;
+        private Controls.HeldInOffHandTooltip heldInOffHandTooltip;
+        private Controls.RelicTooltip relicTooltip;
     }
 }
 

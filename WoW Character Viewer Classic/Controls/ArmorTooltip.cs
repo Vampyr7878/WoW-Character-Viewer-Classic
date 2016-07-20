@@ -88,7 +88,7 @@ namespace WoW_Character_Viewer_Classic.Controls
             Size temp;
             foreach(string line in lines)
             {
-                temp = TextRenderer.MeasureText(line, Font);
+                temp = line == Item.Slot ? TextRenderer.MeasureText(line + "   " + Item.Type, Font) : TextRenderer.MeasureText(line, Font);
                 if(temp.Width > size.Width)
                 {
                     size = temp;

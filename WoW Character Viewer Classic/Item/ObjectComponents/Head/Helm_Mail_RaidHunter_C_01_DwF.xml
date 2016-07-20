@@ -7087,10 +7087,10 @@
 			<Geoset triangle="1362" triangles="78" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" color="-1" blend="0" texture="0" transparency="0" />
-			<Texture geoset="0" color="-1" blend="1" texture="1" transparency="0" />
-			<Texture geoset="0" color="-1" blend="2" texture="0" transparency="0" />
-			<Texture geoset="1" color="-1" blend="3" texture="2" transparency="0" />
+			<Texture geoset="0" color="-1" blend="0" layer="0" texture="0" transparency="0" />
+			<Texture geoset="0" color="-1" blend="1" layer="1" texture="1" transparency="0" />
+			<Texture geoset="0" color="-1" blend="2" layer="2" texture="0" transparency="0" />
+			<Texture geoset="1" color="-1" blend="3" layer="0" texture="2" transparency="0" />
 		</Textures>
 	</View>
 	<Colors />
@@ -7098,7 +7098,7 @@
 		<Texture type="2" file="" />
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\WEAPON\ARMORREFLECT4.BLP" />
 		<Texture type="0" file="Item\ObjectComponents\Head\Helm_Mail_RaidHunter_C_01.blp" />
-		<Texture type="0" file="WORLD\KALIMDOR\MAURADON\PASSIVEDOODADS\SATYRHANGINGBRAZIERS\FIRE1WHITE.BLP" />
+		<Texture type="0" file="Item\ObjectComponents\Head\Helm_Mail_RaidHunter_C_01.blp" />
 	</Textures>
 	<Transparencies>
 		<Transparency>1</Transparency>

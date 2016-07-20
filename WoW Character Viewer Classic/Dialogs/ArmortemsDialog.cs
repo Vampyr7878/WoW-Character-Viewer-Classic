@@ -280,7 +280,6 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         {
             if(selected.Name == "None")
             {
-
                 armorTooltip.Hide(itemsListBox);
             }
             else

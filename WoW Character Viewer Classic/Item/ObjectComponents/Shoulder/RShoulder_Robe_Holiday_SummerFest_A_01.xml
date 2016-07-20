@@ -2593,17 +2593,17 @@
 			<Geoset triangle="84" triangles="426" />
 		</Geosets>
 		<Textures>
-			<Texture geoset="0" color="-1" blend="0" texture="0" transparency="0" />
-			<Texture geoset="1" color="-1" blend="1" texture="0" transparency="0" />
-			<Texture geoset="1" color="-1" blend="2" texture="1" transparency="0" />
-			<Texture geoset="1" color="-1" blend="3" texture="0" transparency="0" />
+			<Texture geoset="0" color="-1" blend="0" layer="0" texture="0" transparency="0" />
+			<Texture geoset="1" color="-1" blend="1" layer="0" texture="0" transparency="0" />
+			<Texture geoset="1" color="-1" blend="2" layer="1" texture="1" transparency="0" />
+			<Texture geoset="1" color="-1" blend="3" layer="2" texture="0" transparency="0" />
 		</Textures>
 	</View>
 	<Colors />
 	<Textures>
 		<Texture type="2" file="" />
 		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\WEAPON\ARMORREFLECT4.BLP" />
-		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\HEAD\HELM_MAGICFLAMELICKSMOKE.BLP" />
+		<Texture type="0" file="ITEM\OBJECTCOMPONENTS\WEAPON\ARMORREFLECT4.BLP" />
 	</Textures>
 	<Transparencies>
 		<Transparency>1</Transparency>

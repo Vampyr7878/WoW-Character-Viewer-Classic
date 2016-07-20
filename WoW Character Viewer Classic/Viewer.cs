@@ -15,6 +15,8 @@ namespace WoW_Character_Viewer_Classic
         BackItemsDialog backItemsDialog;
         ArmorItemsDialog armorItemsDialog;
         CosmeticItemsDialog cosmeticItemsDialog;
+        WeaponItemsDialog weaponItemsDialog;
+        RelicItemsDialog relicItemsDialog;
         bool characterGender;
         string characterRace;
         string characterClass;
@@ -40,6 +42,8 @@ namespace WoW_Character_Viewer_Classic
             backItemsDialog = new BackItemsDialog();
             armorItemsDialog = new ArmorItemsDialog();
             cosmeticItemsDialog = new CosmeticItemsDialog();
+            weaponItemsDialog = new WeaponItemsDialog();
+            relicItemsDialog = new RelicItemsDialog();
             openGLControl.MouseWheel += openGlControl_MouseWheel;
             rotate = false;
             move = false;
@@ -194,18 +198,6 @@ namespace WoW_Character_Viewer_Classic
             HairColor();
             Facial();
             ResetCamera();
-        }
-
-        int FindAttachmentBone(int id)
-        {
-            foreach(ModelAttachment attachment in character.Model.Attachments)
-            {
-                if(attachment.id == id)
-                {
-                    return attachment.bone;
-                }
-            }
-            return -1;
         }
 
         void RaceUnclick()
@@ -486,6 +478,8 @@ namespace WoW_Character_Viewer_Classic
                     break;
             }
             ResetGearIcons();
+            character.Ranged = false;
+            rangedMeleeButton.Text = "Ranged";
         }
 
         void ClassUnclick()
@@ -613,6 +607,15 @@ namespace WoW_Character_Viewer_Classic
             ChangeIcon(mountButton);
         }
 
+        void RangedMelee()
+        {
+            if(characterClass != "Paladin" && characterClass != "Shaman" && characterClass != "Druid")
+            {
+                character.Ranged = !character.Ranged;
+                rangedMeleeButton.Text = character.Ranged ? "Melee" : "Ranged";
+            }
+        }
+
         void Skin()
         {
             if(character.Skin < 0)
@@ -694,7 +697,7 @@ namespace WoW_Character_Viewer_Classic
             {
                 if(jewelryItemsDialog.Selected != null)
                 {
-                    if(jewelryItemsDialog.Selected.MaxCount == 1 && character.Gear.Any(item => item.ID == jewelryItemsDialog.Selected.ID))
+                    if(jewelryItemsDialog.Selected.MaxCount == 1 && character.Gear.Any(gearItem => gearItem.ID == jewelryItemsDialog.Selected.ID))
                     {
                         MessageBox.Show("You can have only one of that item", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -762,6 +765,63 @@ namespace WoW_Character_Viewer_Classic
             {
                 character.Gear[WoWHelper.Slot(slot)] = null;
                 character.Gear[WoWHelper.Slot(slot)] = item;
+            }
+        }
+
+        void Weapon(string slot)
+        {
+            bool ranged = character.Ranged;
+            character.Ranged = slot == "rangedRelic";
+            ItemsItem item = character.Gear[WoWHelper.Slot(slot)];
+            weaponItemsDialog.GetItemList(slot, characterRace, characterClass, character);
+            if(weaponItemsDialog.ShowDialog() == DialogResult.OK)
+            {
+                character.Gear[WoWHelper.Slot(slot)] = null;
+                character.Gear[WoWHelper.Slot(slot)] = item;
+                if(weaponItemsDialog.Selected.MaxCount == 1 && character.Gear.Any(gearItem => gearItem.ID == weaponItemsDialog.Selected.ID))
+                {
+                    MessageBox.Show("You can have only one of that item", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    character.Gear[WoWHelper.Slot(slot)] = null;
+                    character.Gear[WoWHelper.Slot(slot)] = weaponItemsDialog.Selected;
+                    Button button = (Button)Controls.Find(slot + "Button", true).First();
+                    ChangeIcon(button);
+                    button = null;
+                    if(weaponItemsDialog.Selected.Slot == "Two-hand")
+                    {
+                        ChangeIcon(offHandButton);
+                    }
+                }
+            }
+            else
+            {
+                character.Gear[WoWHelper.Slot(slot)] = null;
+                character.Gear[WoWHelper.Slot(slot)] = item;
+                if (slot != "offHand")
+                {
+                    character.Gear[17] = null;
+                    character.Gear[17] = weaponItemsDialog.OffHand;
+                }
+            }
+            character.Ranged = ranged;
+        }
+
+        void Relic()
+        {
+            ItemsItem item = character.Gear[18];
+            relicItemsDialog.GetItemList("rangedRelic", characterRace, characterClass);
+            if(relicItemsDialog.ShowDialog() == DialogResult.OK)
+            {
+                character.Gear[18] = null;
+                character.Gear[18] = relicItemsDialog.Selected;
+                ChangeIcon(rangedRelicButton);
+            }
+            else
+            {
+                character.Gear[18] = null;
+                character.Gear[18] = item;
             }
         }
 
@@ -1088,6 +1148,81 @@ namespace WoW_Character_Viewer_Classic
             button = null;
         }
 
+        void weaponButton_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            if(button == offHandButton && character.Gear[16].Slot == "Two-hand")
+            {
+                button = null;
+                return;
+            }
+            if(button == rangedRelicButton && (characterClass == "Paladin" || characterClass == "Shaman" || characterClass == "Druid"))
+            {
+                Relic();
+            }
+            else
+            {
+                Weapon(button.Name.Replace("Button", ""));
+            }
+            button = null;
+        }
+
+        void weaponButton_MouseEnter(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            if(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
+            {
+                slotTooltip.Show(WoWHelper.SlotName(button.Name.Replace("Button", ""), characterClass), button, 48, 48);
+            }
+            else if(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].Type == "Shield")
+            {
+                shieldTooltip.Item = character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))];
+                shieldTooltip.Show(shieldTooltip.Item.Name, button, 48, 48);
+            }
+            else if(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].Slot == "Held In Off-Hand")
+            {
+                heldInOffHandTooltip.Item = character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))];
+                heldInOffHandTooltip.Show(heldInOffHandTooltip.Item.Name, button, 48, 48);
+            }
+            else if(button == rangedRelicButton && (characterClass == "Paladin" || characterClass == "Shaman" || characterClass == "Druid"))
+            {
+                relicTooltip.Item = character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))];
+                relicTooltip.Show(relicTooltip.Item.Name, button, 48, 48);
+            }
+            else
+            {
+                weaponTooltip.Item = character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))];
+                weaponTooltip.Show(weaponTooltip.Item.Name, button, 48, 48);
+            }
+            button = null;
+        }
+
+        void weaponButton_MouseLeave(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            if(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
+            {
+                slotTooltip.Hide(button);
+            }
+            else if(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].Type == "Shield")
+            {
+                shieldTooltip.Hide(button);
+            }
+            else if(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].Slot == "Held In Off-Hand")
+            {
+                heldInOffHandTooltip.Hide(button);
+            }
+            else if(button == rangedRelicButton && (characterClass == "Paladin" || characterClass == "Shaman" || characterClass == "Druid"))
+            {
+                relicTooltip.Hide(button);
+            }
+            else
+            {
+                weaponTooltip.Hide(button);
+            }
+            button = null;
+        }
+
         void slotButton_MouseEnter(object sender, EventArgs e)
         {
             Button button = (Button)sender;
@@ -1153,6 +1288,9 @@ namespace WoW_Character_Viewer_Classic
             {
                 case "reset":
                     ResetGearIcons();
+                    break;
+                case "rangedMelee":
+                    RangedMelee();
                     break;
             }
             button = null;

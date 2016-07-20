@@ -466,6 +466,19 @@ namespace WoW_Character_Viewer_Classic
             return (classMask & mask) == mask;
         }
 
+        public static bool SlotMatch(string itemSlot, string slot)
+        {
+            switch(slot)
+            {
+                case "mainHand":
+                    return itemSlot != "Off Hand";
+                case "offHand":
+                    return itemSlot != "Main Hand";
+                default:
+                    return true;
+            }
+        }
+
         static string ClassName(int classMask)
         {
             string name = "";
