@@ -1367,7 +1367,7 @@ namespace WoW_Character_Viewer_Classic
             switch(button.Name.Replace("Button", ""))
             {
                 case "reset":
-                    ResetGearIcons();
+                    ResetCamera();
                     break;
                 case "rangedMelee":
                     RangedMelee();
