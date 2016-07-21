@@ -54,6 +54,8 @@ public partial class ItemsItem {
     
     private string slotField;
     
+    private int sheathField;
+    
     private int qualityField;
     
     private string iconField;
@@ -109,6 +111,16 @@ public partial class ItemsItem {
         }
         set {
             this.slotField = value;
+        }
+    }
+    
+    /// <uwagi/>
+    public int Sheath {
+        get {
+            return this.sheathField;
+        }
+        set {
+            this.sheathField = value;
         }
     }
     

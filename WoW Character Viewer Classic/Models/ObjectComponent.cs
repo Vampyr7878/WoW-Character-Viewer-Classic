@@ -94,6 +94,13 @@ namespace WoW_Character_Viewer_Classic.Models
             serializer = null;
         }
 
+        public void Modify(Vector3D position, Quaternion rotation, Vector3D scale)
+        {
+            this.position = position;
+            this.rotation = rotation;
+            this.scale = scale;
+        }
+
         void MakeTextures(OpenGL gl)
         {
             for(int i = 0; i < textures.Length; i++)

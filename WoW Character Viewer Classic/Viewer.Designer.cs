@@ -244,6 +244,7 @@
             this.sheatheUnsheatheButton.TabIndex = 67;
             this.sheatheUnsheatheButton.Text = "Sheathe";
             this.sheatheUnsheatheButton.UseVisualStyleBackColor = false;
+            this.sheatheUnsheatheButton.Click += new System.EventHandler(this.bottomButton_Click);
             // 
             // rangedMeleeButton
             // 

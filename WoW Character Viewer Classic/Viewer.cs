@@ -480,6 +480,8 @@ namespace WoW_Character_Viewer_Classic
             ResetGearIcons();
             character.Ranged = false;
             rangedMeleeButton.Text = "Ranged";
+            character.Sheathe = false;
+            sheatheUnsheatheButton.Text = "Sheathe";
         }
 
         void ClassUnclick()
@@ -613,7 +615,17 @@ namespace WoW_Character_Viewer_Classic
             {
                 character.Ranged = !character.Ranged;
                 rangedMeleeButton.Text = character.Ranged ? "Melee" : "Ranged";
+                character.Sheathe = character.Ranged;
+                sheatheUnsheatheButton.Text = character.Sheathe ? "Unsheathe" : "Sheathe";
             }
+        }
+
+        void SheatheUnsheathe()
+        {
+            character.Sheathe = !character.Sheathe;
+            sheatheUnsheatheButton.Text = character.Sheathe ? "Unsheathe" : "Sheathe";
+            character.Ranged = false;
+            rangedMeleeButton.Text = "Ranged";
         }
 
         void Skin()
@@ -771,7 +783,8 @@ namespace WoW_Character_Viewer_Classic
         void Weapon(string slot)
         {
             bool ranged = character.Ranged;
-            character.Ranged = slot == "rangedRelic";
+            bool sheathe = character.Sheathe;
+            character.Ranged = character.Sheathe = slot == "rangedRelic";
             ItemsItem item = character.Gear[WoWHelper.Slot(slot)];
             weaponItemsDialog.GetItemList(slot, characterRace, characterClass, character);
             if(weaponItemsDialog.ShowDialog() == DialogResult.OK)
@@ -806,6 +819,7 @@ namespace WoW_Character_Viewer_Classic
                 }
             }
             character.Ranged = ranged;
+            character.Sheathe = sheathe;
         }
 
         void Relic()
@@ -1291,6 +1305,9 @@ namespace WoW_Character_Viewer_Classic
                     break;
                 case "rangedMelee":
                     RangedMelee();
+                    break;
+                case "sheatheUnsheathe":
+                    SheatheUnsheathe();
                     break;
             }
             button = null;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Media.Media3D;
 
 namespace WoW_Character_Viewer_Classic
 {
@@ -528,6 +529,52 @@ namespace WoW_Character_Viewer_Classic
                 mask <<= 1;
             }
             return list;
+        }
+
+        public static int SheatheAttachment(int sheathe, bool offhand)
+        {
+            int attachment = -1;
+            switch(sheathe)
+            {
+                case 1:
+                    attachment = offhand ? 30 : 31;
+                    break;
+                case 2:
+                    attachment = 30;
+                    break;
+                case 3:
+                    attachment = offhand ? 33 : 32;
+                    break;
+                case 4:
+                    attachment = 28;
+                    break;
+            }
+            return attachment;
+        }
+
+        public static Quaternion SheatheRotation(int sheathe, bool offhand)
+        {
+            Quaternion quaternion = Quaternion.Identity;
+            switch(sheathe)
+            {
+                case 1:
+                    quaternion = offhand ? new Quaternion(new Vector3D(0f, 1f, 0f), -90f) : new Quaternion(new Vector3D(0f, 1f, 0f), 90f);
+                    quaternion *= new Quaternion(new Vector3D(0f, 0f, 1f), -45f);
+                    break;
+                case 2:
+                    quaternion = new Quaternion(new Vector3D(0f, 1f, 0f), 90f);
+                    quaternion *= new Quaternion(new Vector3D(0f, 0f, 1f), 67.5f);
+                    break;
+                case 3:
+                    quaternion = new Quaternion(new Vector3D(0f, 1f, 0f), 180f);
+                    quaternion *= new Quaternion(new Vector3D(0f, 0f, 1f), -22.5f);
+                    break;
+                case 4:
+                    quaternion = new Quaternion(new Vector3D(0f, 1f, 0f), 90f);
+                    quaternion *= new Quaternion(new Vector3D(0f, 0f, 1f), 90f);
+                    break;
+            }
+            return quaternion;
         }
     }
 }

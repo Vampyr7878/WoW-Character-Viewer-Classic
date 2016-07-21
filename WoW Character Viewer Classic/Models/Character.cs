@@ -99,6 +99,8 @@ namespace WoW_Character_Viewer_Classic.Models
 
         public bool Ranged { get; set; }
 
+        public bool Sheathe { get; set; }
+
         public string SkinName { get { return skinName; } }
 
         public int Skin { get; set; }
@@ -473,75 +475,80 @@ namespace WoW_Character_Viewer_Classic.Models
 
         void EquipMainHand()
         {
-            if(components[3].ID != Gear[16].ID)
+            if(Gear[16].ID == "0" || (Sheathe && (Gear[16].Sheath == 0 || Gear[16].Sheath == 7)))
             {
-                if(Gear[16].ID == "0")
+                components[3].Initialize();
+            }
+            else
+            {
+                int attachment = Sheathe ? WoWHelper.SheatheAttachment(Gear[16].Sheath, false) : 1;
+                ModelBone bone = bones[FindAttachment(attachment).bone];
+                Vector3D position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
+                Quaternion rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
+                rotation = Sheathe ? rotation * WoWHelper.SheatheRotation(Gear[16].Sheath, false) : rotation;
+                Vector3D scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
+                if(Gear[16].ID != components[3].ID)
                 {
-                    components[3].Initialize();
+                    components[3].Initialize(Gear[16].ID, Gear[16].Models.Left.Replace(".mdx", ".xml"), Gear[16].Textures.Left, objectComponentsPath + @"Weapon\", position, rotation, scale);
                 }
                 else
                 {
-                    ModelBone bone = bones[FindAttachment(1).bone];
-                    Vector3D position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
-                    Quaternion rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
-                    Vector3D scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
-                    components[3].Initialize(Gear[16].ID, Gear[16].Models.Left.Replace(".mdx", ".xml"), Gear[16].Textures.Left, objectComponentsPath + @"Weapon\", position, rotation, scale);
-                    bone = null;
+                    components[3].Modify(position, rotation, scale);
                 }
-            }
-            if(Gear[16].ID != "0")
-            {
-                components[3].Empty = Ranged;
+                bone = null;
             }
         }
 
         void EquipOffHand()
         {
-            if(components[4].ID != Gear[17].ID)
+            if(Gear[17].ID == "0" || (Sheathe && (Gear[17].Sheath == 0 || Gear[17].Sheath == 7)))
             {
-                if(Gear[17].ID == "0")
+                components[4].Initialize();
+            }
+            else
+            {
+                int attachment = Sheathe ? WoWHelper.SheatheAttachment(Gear[17].Sheath, true) : Gear[17].Type == "Shield" ? 0 : 2;
+                ModelBone bone = bones[FindAttachment(attachment).bone];
+                string type = Gear[17].Type == "Shield" ? @"Shield\" : @"Weapon\";
+                Vector3D position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
+                Quaternion rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
+                rotation = Sheathe ? rotation * WoWHelper.SheatheRotation(Gear[17].Sheath, true) : rotation;
+                Vector3D scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
+                if(Gear[17].ID != components[4].ID)
                 {
-                    components[4].Initialize();
+                    components[4].Initialize(Gear[17].ID, Gear[17].Models.Left.Replace(".mdx", ".xml"), Gear[17].Textures.Left, objectComponentsPath + type, position, rotation, scale);
                 }
                 else
                 {
-                    ModelBone bone = Gear[17].Type == "Shield" ? bones[FindAttachment(0).bone] : bones[FindAttachment(2).bone];
-                    string type = Gear[17].Type == "Shield" ? @"Shield\" : @"Weapon\";
-                    Vector3D position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
-                    Quaternion rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
-                    Vector3D scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
-                    components[4].Initialize(Gear[17].ID, Gear[17].Models.Left.Replace(".mdx", ".xml"), Gear[17].Textures.Left, objectComponentsPath + type, position, rotation, scale);
-                    bone = null;
-                    type = null;
+                    components[4].Modify(position, rotation, scale);
                 }
+                bone = null;
+                type = null;
             }
-            if(Gear[17].ID != "0")
-            {
-                components[4].Empty = Ranged;
-            }
+
         }
 
         void EquipRanged()
         {
-            if(components[5].ID != Gear[18].ID)
+            if(!Ranged || Gear[18].ID == "0" || Gear[18].Slot == "Relic")
             {
-                if(Gear[18].ID == "0" || Gear[18].Slot == "Relic")
+                components[5].Initialize();
+            }
+            else
+            {
+                ModelBone bone = Gear[18].Type == "Bow" ? bones[FindAttachment(2).bone] : bones[FindAttachment(1).bone];
+                Vector3D position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
+                Quaternion rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
+                Vector3D scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
+                if(components[5].ID != Gear[18].ID)
                 {
-                    components[5].Initialize();
+                    components[5].Initialize(Gear[18].ID, Gear[18].Models.Left.Replace(".mdx", ".xml"), Gear[18].Textures.Left, objectComponentsPath + @"Weapon\", position, rotation, scale);
                 }
                 else
                 {
-                    ModelBone bone = Gear[18].Type == "Bow" ? bones[FindAttachment(2).bone] : bones[FindAttachment(1).bone];
-                    Vector3D position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
-                    Quaternion rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
-                    Vector3D scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
-                    components[5].Initialize(Gear[18].ID, Gear[18].Models.Left.Replace(".mdx", ".xml"), Gear[18].Textures.Left, objectComponentsPath + @"Weapon\", position, rotation, scale);
-                    bone = null;
+                    components[5].Modify(position, rotation, scale);
                 }
-            }
-            if(Gear[18].ID != "0")
-            {
-                components[5].Empty = !Ranged;
+                bone = null;
             }
         }
 
