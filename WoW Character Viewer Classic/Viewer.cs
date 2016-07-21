@@ -17,6 +17,8 @@ namespace WoW_Character_Viewer_Classic
         CosmeticItemsDialog cosmeticItemsDialog;
         WeaponItemsDialog weaponItemsDialog;
         RelicItemsDialog relicItemsDialog;
+        AmmoItemsDialog ammoItemsDialog;
+        ReagentItemsDialog reagentItemsDialog;
         bool characterGender;
         string characterRace;
         string characterClass;
@@ -44,6 +46,8 @@ namespace WoW_Character_Viewer_Classic
             cosmeticItemsDialog = new CosmeticItemsDialog();
             weaponItemsDialog = new WeaponItemsDialog();
             relicItemsDialog = new RelicItemsDialog();
+            ammoItemsDialog = new AmmoItemsDialog();
+            reagentItemsDialog = new ReagentItemsDialog();
             openGLControl.MouseWheel += openGlControl_MouseWheel;
             rotate = false;
             move = false;
@@ -806,6 +810,23 @@ namespace WoW_Character_Viewer_Classic
                     {
                         ChangeIcon(offHandButton);
                     }
+                    if(character.Gear[18].Type == "Thrown")
+                    {
+                        character.Gear[19] = null;
+                        character.Gear[19] = weaponItemsDialog.Selected;
+                    }
+                    else
+                    {
+                        character.Gear[19] = null;
+                        character.Gear[19] = new ItemsItem
+                        {
+                            Name = "None",
+                            ID = "0",
+                            Quality = -1,
+                            Icon = WoWHelper.SlotIcon("ammoReagent", characterClass)
+                        };
+                    }
+                    ChangeIcon(ammoReagentButton);
                 }
             }
             else
@@ -824,7 +845,6 @@ namespace WoW_Character_Viewer_Classic
 
         void Relic()
         {
-            ItemsItem item = character.Gear[18];
             relicItemsDialog.GetItemList("rangedRelic", characterRace, characterClass);
             if(relicItemsDialog.ShowDialog() == DialogResult.OK)
             {
@@ -832,10 +852,27 @@ namespace WoW_Character_Viewer_Classic
                 character.Gear[18] = relicItemsDialog.Selected;
                 ChangeIcon(rangedRelicButton);
             }
-            else
+        }
+
+        void Ammo()
+        {
+            ammoItemsDialog.GetItemList(character.Gear[18].Type, characterRace, characterClass);
+            if(ammoItemsDialog.ShowDialog() == DialogResult.OK)
             {
-                character.Gear[18] = null;
-                character.Gear[18] = item;
+                character.Gear[19] = null;
+                character.Gear[19] = ammoItemsDialog.Selected;
+                ChangeIcon(ammoReagentButton);
+            }
+        }
+
+        void Reagent()
+        {
+            reagentItemsDialog.GetItemList(characterRace, characterClass);
+            if(reagentItemsDialog.ShowDialog() == DialogResult.OK)
+            {
+                character.Gear[19] = null;
+                character.Gear[19] = reagentItemsDialog.Selected;
+                ChangeIcon(ammoReagentButton);
             }
         }
 
@@ -1237,22 +1274,51 @@ namespace WoW_Character_Viewer_Classic
             button = null;
         }
 
-        void slotButton_MouseEnter(object sender, EventArgs e)
+        void ammoReagentButton_Click(object sender, EventArgs e)
+        {
+            if(character.Gear[18].ID != "0" && character.Gear[18].Type != "Thrown" && (characterClass == "Warrior" || characterClass == "Hunter" || characterClass == "Rogue"))
+            {
+                Ammo();
+            }
+            else
+            {
+                Reagent();
+            }
+        }
+
+        void ammoReagentButton_MouseEnter(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            if(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
+            if (character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
             {
                 slotTooltip.Show(WoWHelper.SlotName(button.Name.Replace("Button", ""), characterClass), button, 48, 48);
+            }
+            else if(characterClass == "Warrior" || characterClass == "Hunter" || characterClass == "Rogue")
+            {
+                ammoTooltip.Item = character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))];
+                ammoTooltip.Show(ammoTooltip.Item.Name, button, 48, 48);
+            }
+            else
+            {
+                reagentTooltip.Show(character.Gear[19].Name, button, 48, 48);
             }
             button = null;
         }
 
-        void slotButton_MouseLeave(object sender, EventArgs e)
+        void ammoReagentButton_MouseLeave(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            if(character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
+            if (character.Gear[WoWHelper.Slot(button.Name.Replace("Button", ""))].ID == "0")
             {
                 slotTooltip.Hide(button);
+            }
+            else if(characterClass == "Warrior" || characterClass == "Hunter" || characterClass == "Rogue")
+            {
+                ammoTooltip.Hide(button);
+            }
+            else
+            {
+                reagentTooltip.Hide(button);
             }
             button = null;
         }

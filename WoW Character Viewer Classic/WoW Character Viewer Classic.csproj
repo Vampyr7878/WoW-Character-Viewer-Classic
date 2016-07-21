@@ -60,6 +60,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\AmmoTooltip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ReagentTooltip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\HeldInOffHandTooltip.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -89,6 +95,18 @@
     </Compile>
     <Compile Include="Controls\ButtonTooltip.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AmmoItemsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AmmoItemsDialog.Designer.cs">
+      <DependentUpon>AmmoItemsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ReagentItemsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ReagentItemsDialog.Designer.cs">
+      <DependentUpon>ReagentItemsDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\RelicItemsDialog.cs">
       <SubType>Form</SubType>
@@ -160,6 +178,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WoWHelper.cs" />
+    <EmbeddedResource Include="Dialogs\AmmoItemsDialog.resx">
+      <DependentUpon>AmmoItemsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ReagentItemsDialog.resx">
+      <DependentUpon>ReagentItemsDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\RelicItemsDialog.resx">
       <DependentUpon>RelicItemsDialog.cs</DependentUpon>
     </EmbeddedResource>

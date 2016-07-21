@@ -111,6 +111,8 @@
             this.shieldTooltip = new WoW_Character_Viewer_Classic.Controls.ShieldTooltip();
             this.heldInOffHandTooltip = new WoW_Character_Viewer_Classic.Controls.HeldInOffHandTooltip();
             this.relicTooltip = new WoW_Character_Viewer_Classic.Controls.RelicTooltip();
+            this.ammoTooltip = new WoW_Character_Viewer_Classic.Controls.AmmoTooltip();
+            this.reagentTooltip = new WoW_Character_Viewer_Classic.Controls.ReagentTooltip();
             this.tabControl.SuspendLayout();
             this.appearancePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
@@ -876,8 +878,9 @@
             this.ammoReagentButton.Size = new System.Drawing.Size(48, 48);
             this.ammoReagentButton.TabIndex = 20;
             this.ammoReagentButton.UseVisualStyleBackColor = true;
-            this.ammoReagentButton.MouseEnter += new System.EventHandler(this.slotButton_MouseEnter);
-            this.ammoReagentButton.MouseLeave += new System.EventHandler(this.slotButton_MouseLeave);
+            this.ammoReagentButton.Click += new System.EventHandler(this.ammoReagentButton_Click);
+            this.ammoReagentButton.MouseEnter += new System.EventHandler(this.ammoReagentButton_MouseEnter);
+            this.ammoReagentButton.MouseLeave += new System.EventHandler(this.ammoReagentButton_MouseLeave);
             // 
             // rangedRelicButton
             // 
@@ -1272,6 +1275,27 @@
             this.relicTooltip.UseAnimation = false;
             this.relicTooltip.UseFading = false;
             // 
+            // ammoTooltip
+            // 
+            this.ammoTooltip.AutomaticDelay = 0;
+            this.ammoTooltip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.ammoTooltip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.ammoTooltip.ForeColor = System.Drawing.Color.White;
+            this.ammoTooltip.Item = null;
+            this.ammoTooltip.OwnerDraw = true;
+            this.ammoTooltip.UseAnimation = false;
+            this.ammoTooltip.UseFading = false;
+            // 
+            // reagentTooltip
+            // 
+            this.reagentTooltip.AutomaticDelay = 0;
+            this.reagentTooltip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.reagentTooltip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.reagentTooltip.ForeColor = System.Drawing.Color.White;
+            this.reagentTooltip.OwnerDraw = true;
+            this.reagentTooltip.UseAnimation = false;
+            this.reagentTooltip.UseFading = false;
+            // 
             // Viewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1378,6 +1402,8 @@
         private Controls.ShieldTooltip shieldTooltip;
         private Controls.HeldInOffHandTooltip heldInOffHandTooltip;
         private Controls.RelicTooltip relicTooltip;
+        private Controls.AmmoTooltip ammoTooltip;
+        private Controls.ReagentTooltip reagentTooltip;
     }
 }
 
