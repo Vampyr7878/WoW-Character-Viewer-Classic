@@ -133,7 +133,7 @@
             this.Text = "Items";
             this.LocationChanged += new System.EventHandler(this.RelicItemsDialog_LocationChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RelicItemsDialog_KeyDown);
-            this.Move += new System.EventHandler(this.RelicItemsDialog_LocationChanged);
+            this.Move += new System.EventHandler(this.RelicItemsDialog_Move);
             this.ResumeLayout(false);
             this.PerformLayout();
 

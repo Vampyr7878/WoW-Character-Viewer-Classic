@@ -59,9 +59,11 @@ namespace WoW_Character_Viewer_Classic.Models
         };
 
         List<Geosets> currentGeosets;
+        bool disposed;
 
         public TrollFemale() : base(@"Character\Troll\Female\TrollFemale.xml")
         {
+            disposed = false;
             currentGeosets = new List<Geosets>
             {
                 Geosets.Body1
@@ -407,6 +409,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         public override void Render(OpenGL gl)
         {
+            gl.PushMatrix();
             Prepare(gl);
             foreach(Geosets geoset in currentGeosets)
             {
@@ -427,12 +430,24 @@ namespace WoW_Character_Viewer_Classic.Models
                 }
             }
             RenderSkeleton(gl);
+            gl.PopMatrix();
+            if(!mount.Empty)
+            {
+                mount.Render(gl, Rotation);
+            }
         }
 
-        public new void Dispose()
+        protected override void Dispose(bool disposing)
         {
-            base.Dispose();
-            currentGeosets = null;
+            if(!disposed)
+            {
+                if(disposing)
+                {
+                }
+                currentGeosets = null;
+                disposed = true;
+            }
+            base.Dispose(disposing);
         }
     }
 }

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters;
 using System.Windows.Media.Media3D;
 using System.Xml.Serialization;
 
@@ -26,9 +25,11 @@ namespace WoW_Character_Viewer_Classic.Models
         string texture;
         string texturesPath;
         string id;
+        bool disposed;
 
         public ObjectComponent()
         {
+            disposed = false;
             Empty = true;
             id = "0";
         }
@@ -196,8 +197,6 @@ namespace WoW_Character_Viewer_Classic.Models
             float x, y, z;
             SetColor(gl, geoset);
             int layers = CountTextures(geoset);
-            //Blend(gl, geoset);
-            //textures[FindTexture(geoset)].Bind(gl);
             gl.PushMatrix();
             gl.Translate(position.X, position.Y, position.Z);
             gl.Rotate(rotation.Angle, rotation.Axis.X, rotation.Axis.Y, rotation.Axis.Z);
@@ -333,7 +332,7 @@ namespace WoW_Character_Viewer_Classic.Models
             return -1;
         }
 
-        bool GeosetBillboard(int geoset, int start, int count)
+        bool GeosetBillboard(int start, int count)
         {
             for(int i = start; i < start + count; i++)
             {
@@ -351,7 +350,7 @@ namespace WoW_Character_Viewer_Classic.Models
             gl.Enable(OpenGL.GL_TEXTURE_2D);
             for(int i = 0; i < geosets.Length; i++)
             {
-                if(GeosetBillboard(i, geosets[i].triangle, geosets[i].triangles))
+                if(GeosetBillboard(geosets[i].triangle, geosets[i].triangles))
                 {
                     RenderBillboard(gl, i, characterRotation, geosets[i].triangle, geosets[i].triangles);
                 }
@@ -363,17 +362,35 @@ namespace WoW_Character_Viewer_Classic.Models
             gl.Disable(OpenGL.GL_TEXTURE_2D);
         }
 
+        protected virtual void Dispose(bool disposing)
+        {
+            if(!disposed)
+            {
+                if(disposing)
+                {
+                }
+                model = null;
+                vertices = null;
+                indices = null;
+                triangles = null;
+                geosets = null;
+                billboards = null;
+                texture = null;
+                textures = null;
+                texturesPath = null;
+                disposed = true;
+            }
+        }
+
+        ~ObjectComponent()
+        {
+            Dispose(false);
+        }
+
         public void Dispose()
         {
-            model = null;
-            vertices = null;
-            indices = null;
-            triangles = null;
-            geosets = null;
-            billboards = null;
-            texture = null;
-            textures = null;
-            texturesPath = null;
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

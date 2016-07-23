@@ -63,6 +63,12 @@
     <Compile Include="Controls\AmmoTooltip.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\MountTooltip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\BagTooltip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\ReagentTooltip.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -101,6 +107,18 @@
     </Compile>
     <Compile Include="Dialogs\AmmoItemsDialog.Designer.cs">
       <DependentUpon>AmmoItemsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\MountItemsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\MountItemsDialog.Designer.cs">
+      <DependentUpon>MountItemsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\BagItemsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\BagItemsDialog.Designer.cs">
+      <DependentUpon>BagItemsDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ReagentItemsDialog.cs">
       <SubType>Form</SubType>
@@ -151,6 +169,7 @@
     <Compile Include="Models\GnomeMale.cs" />
     <Compile Include="Models\HumanFemale.cs" />
     <Compile Include="Models\HumanMale.cs" />
+    <Compile Include="Models\Mount.cs" />
     <Compile Include="Models\NightElfFemale.cs" />
     <Compile Include="Models\NightElfMale.cs" />
     <Compile Include="Models\ObjectComponent.cs" />
@@ -180,6 +199,12 @@
     <Compile Include="WoWHelper.cs" />
     <EmbeddedResource Include="Dialogs\AmmoItemsDialog.resx">
       <DependentUpon>AmmoItemsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MountItemsDialog.resx">
+      <DependentUpon>MountItemsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\BagItemsDialog.resx">
+      <DependentUpon>BagItemsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ReagentItemsDialog.resx">
       <DependentUpon>ReagentItemsDialog.cs</DependentUpon>
@@ -350,6 +375,42 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Item\TextureComponents\TorsoUpperTexture\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Creature\DireWolf\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Creature\FrostSabre\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Creature\Kodobeast\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Creature\MechaStrider\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Creature\MountedDeathKnight\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Creature\Nightmare\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Creature\Ram\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Creature\RidingHorse\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Creature\RidingRaptor\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Creature\RidingSilithid\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Creature\UndeadHorse\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Creature\WarHorse\*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

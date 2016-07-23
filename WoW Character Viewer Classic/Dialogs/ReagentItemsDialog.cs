@@ -79,11 +79,11 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             {
                 itemsListBox.Items.Clear();
                 List<ItemsItem> list = new List<ItemsItem>();
-                foreach(ItemsItem jewelry in items.Item)
+                foreach(ItemsItem item in items.Item)
                 {
-                    if(jewelry.Name.ToLower().Contains(searchTextBox.Text.ToLower()))
+                    if(item.Name.ToLower().Contains(searchTextBox.Text.ToLower()))
                     {
-                        list.Add(jewelry);
+                        list.Add(item);
                     }
                 }
                 list.Sort((x, y) => x.Name.CompareTo(y.Name));

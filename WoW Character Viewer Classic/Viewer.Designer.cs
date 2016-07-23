@@ -113,6 +113,8 @@
             this.relicTooltip = new WoW_Character_Viewer_Classic.Controls.RelicTooltip();
             this.ammoTooltip = new WoW_Character_Viewer_Classic.Controls.AmmoTooltip();
             this.reagentTooltip = new WoW_Character_Viewer_Classic.Controls.ReagentTooltip();
+            this.bagTooltip = new WoW_Character_Viewer_Classic.Controls.BagTooltip();
+            this.mountTooltip = new WoW_Character_Viewer_Classic.Controls.MountTooltip();
             this.tabControl.SuspendLayout();
             this.appearancePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
@@ -234,6 +236,7 @@
             this.mountDismountButton.TabIndex = 68;
             this.mountDismountButton.Text = "Mount";
             this.mountDismountButton.UseVisualStyleBackColor = false;
+            this.mountDismountButton.Click += new System.EventHandler(this.bottomButton_Click);
             // 
             // sheatheUnsheatheButton
             // 
@@ -308,6 +311,7 @@
             this.mountButton.Size = new System.Drawing.Size(48, 48);
             this.mountButton.TabIndex = 62;
             this.mountButton.UseVisualStyleBackColor = true;
+            this.mountButton.Click += new System.EventHandler(this.mountButton_Click);
             this.mountButton.MouseEnter += new System.EventHandler(this.mountButton_MouseEnter);
             this.mountButton.MouseLeave += new System.EventHandler(this.mountButton_MouseLeave);
             // 
@@ -321,6 +325,7 @@
             this.bag4Button.Size = new System.Drawing.Size(48, 48);
             this.bag4Button.TabIndex = 61;
             this.bag4Button.UseVisualStyleBackColor = true;
+            this.bag4Button.Click += new System.EventHandler(this.bagButtonClick);
             this.bag4Button.MouseEnter += new System.EventHandler(this.bagButton_MouseEnter);
             this.bag4Button.MouseLeave += new System.EventHandler(this.bagButton_MouseLeave);
             // 
@@ -334,6 +339,7 @@
             this.bag3Button.Size = new System.Drawing.Size(48, 48);
             this.bag3Button.TabIndex = 60;
             this.bag3Button.UseVisualStyleBackColor = true;
+            this.bag3Button.Click += new System.EventHandler(this.bagButtonClick);
             this.bag3Button.MouseEnter += new System.EventHandler(this.bagButton_MouseEnter);
             this.bag3Button.MouseLeave += new System.EventHandler(this.bagButton_MouseLeave);
             // 
@@ -347,6 +353,7 @@
             this.bag2Button.Size = new System.Drawing.Size(48, 48);
             this.bag2Button.TabIndex = 59;
             this.bag2Button.UseVisualStyleBackColor = true;
+            this.bag2Button.Click += new System.EventHandler(this.bagButtonClick);
             this.bag2Button.MouseEnter += new System.EventHandler(this.bagButton_MouseEnter);
             this.bag2Button.MouseLeave += new System.EventHandler(this.bagButton_MouseLeave);
             // 
@@ -360,6 +367,7 @@
             this.bag1Button.Size = new System.Drawing.Size(48, 48);
             this.bag1Button.TabIndex = 58;
             this.bag1Button.UseVisualStyleBackColor = true;
+            this.bag1Button.Click += new System.EventHandler(this.bagButtonClick);
             this.bag1Button.MouseEnter += new System.EventHandler(this.bagButton_MouseEnter);
             this.bag1Button.MouseLeave += new System.EventHandler(this.bagButton_MouseLeave);
             // 
@@ -1296,6 +1304,28 @@
             this.reagentTooltip.UseAnimation = false;
             this.reagentTooltip.UseFading = false;
             // 
+            // bagTooltip
+            // 
+            this.bagTooltip.AutomaticDelay = 0;
+            this.bagTooltip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.bagTooltip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.bagTooltip.ForeColor = System.Drawing.Color.White;
+            this.bagTooltip.Item = null;
+            this.bagTooltip.OwnerDraw = true;
+            this.bagTooltip.UseAnimation = false;
+            this.bagTooltip.UseFading = false;
+            // 
+            // mountTooltip
+            // 
+            this.mountTooltip.AutomaticDelay = 0;
+            this.mountTooltip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.mountTooltip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.mountTooltip.ForeColor = System.Drawing.Color.White;
+            this.mountTooltip.Item = null;
+            this.mountTooltip.OwnerDraw = true;
+            this.mountTooltip.UseAnimation = false;
+            this.mountTooltip.UseFading = false;
+            // 
             // Viewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1404,6 +1434,8 @@
         private Controls.RelicTooltip relicTooltip;
         private Controls.AmmoTooltip ammoTooltip;
         private Controls.ReagentTooltip reagentTooltip;
+        private Controls.BagTooltip bagTooltip;
+        private Controls.MountTooltip mountTooltip;
     }
 }
 

@@ -12,6 +12,9 @@ namespace WoW_Character_Viewer_Classic.Models
     public abstract class Character : IDisposable
     {
         Model model;
+        Model standing;
+        Model mounted;
+        protected Mount mount;
         protected ObjectComponent[] components;
         protected ModelVertex[] vertices;
         protected int[] indices;
@@ -35,18 +38,28 @@ namespace WoW_Character_Viewer_Classic.Models
         protected string facialName;
         protected string[] facialNames;
         protected int facialsCount;
+        bool disposed;
 
         protected Character(string file)
         {
+            disposed = false;
             XmlSerializer serializer = new XmlSerializer(typeof(Model));
             using(StreamReader reader = new StreamReader(file))
             {
-                model = (Model)serializer.Deserialize(reader.BaseStream);
+                standing = (Model)serializer.Deserialize(reader.BaseStream);
                 reader.Dispose();
             }
+            using(StreamReader reader = new StreamReader(file.Replace(".xml", "Mounted.xml")))
+            {
+                mounted = (Model)serializer.Deserialize(reader.BaseStream);
+                reader.Dispose();
+            }
+            model = standing;
             Gear = new ItemsItem[25];
             Skeleton = false;
             Ranged = false;
+            Sheathe = false;
+            Mounted = false;
             texturesPath = @"Character\" + model.Name.Replace("Female", "").Replace("Male", "") + @"\";
             objectComponentsPath = @"Item\ObjectComponents\";
             textureComponentsPath = @"Item\TextureComponents\";
@@ -77,6 +90,7 @@ namespace WoW_Character_Viewer_Classic.Models
             Facial = 0;
             GetHairNames();
             GetFacialNames();
+            mount = new Mount();
             components = new[]
             {
                 new ObjectComponent(),
@@ -100,6 +114,8 @@ namespace WoW_Character_Viewer_Classic.Models
         public bool Ranged { get; set; }
 
         public bool Sheathe { get; set; }
+
+        public bool Mounted { get; set; }
 
         public string SkinName { get { return skinName; } }
 
@@ -134,6 +150,38 @@ namespace WoW_Character_Viewer_Classic.Models
         public int Facial { get; set; }
 
         public int FacialsCount { get { return facialsCount; } }
+
+        public void Mount(bool mounted)
+        {
+            Mounted = mounted;
+            if(Mounted)
+            {
+                if(Gear[24].ID != "0")
+                {
+                    model = this.mounted;
+                    Ranged = false;
+                    Sheathe = true;
+                    vertices = model.Vertices;
+                    indices = model.View.Indices;
+                    triangles = model.View.Triangles;
+                    geosets = model.View.Geosets;
+                    bones = model.Bones;
+                }
+                else
+                {
+                    Mounted = false;
+                }
+            }
+            else
+            {
+                model = standing;
+                vertices = model.Vertices;
+                indices = model.View.Indices;
+                triangles = model.View.Triangles;
+                geosets = model.View.Geosets;
+                bones = model.Bones;
+            }
+        }
 
         protected string Number(int number)
         {
@@ -421,25 +469,30 @@ namespace WoW_Character_Viewer_Classic.Models
             EquipMainHand();
             EquipOffHand();
             EquipRanged();
+            EquipMount();
         }
 
         void EquipHead()
         {
-            if(components[0].ID != Gear[0].ID)
+            if(Gear[0].ID == "0")
             {
-                if(Gear[0].ID == "0")
+                components[0].Initialize();
+            }
+            else
+            {
+                ModelBone bone = bones[FindAttachment(11).bone];
+                Vector3D position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
+                Quaternion rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
+                Vector3D scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
+                if(components[0].ID != Gear[0].ID)
                 {
-                    components[0].Initialize();
+                    components[0].Initialize(Gear[0].ID, Gear[0].Models.Left.Replace(".mdx", HeadName()), Gear[0].Textures.Left, objectComponentsPath + @"Head\", position, rotation, scale);
                 }
                 else
                 {
-                    ModelBone bone = bones[FindAttachment(11).bone];
-                    Vector3D position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
-                    Quaternion rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
-                    Vector3D scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
-                    components[0].Initialize(Gear[0].ID, Gear[0].Models.Left.Replace(".mdx", HeadName()), Gear[0].Textures.Left, objectComponentsPath + @"Head\", position, rotation, scale);
-                    bone = null;
+                    components[0].Modify(position, rotation, scale);
                 }
+                bone = null;
             }
             HideHair();
             HideFacial();
@@ -448,28 +501,39 @@ namespace WoW_Character_Viewer_Classic.Models
 
         void EquipShoulders()
         {
-            if(components[1].ID != Gear[2].ID || components[2].ID != Gear[2].ID)
+            if(Gear[2].ID == "0")
             {
-                if(Gear[2].ID == "0")
+                components[1].Initialize();
+                components[2].Initialize();
+            }
+            else
+            {
+                ModelBone bone = bones[FindAttachment(6).bone];
+                Vector3D position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
+                Quaternion rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
+                Vector3D scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
+                if(components[1].ID != Gear[2].ID)
                 {
-                    components[1].Initialize();
-                    components[2].Initialize();
+                    components[1].Initialize(Gear[2].ID, Gear[2].Models.Left.Replace(".mdx", ".xml"), Gear[2].Textures.Left, objectComponentsPath + @"Shoulder\", position, rotation, scale);
                 }
                 else
                 {
-                    ModelBone bone = bones[FindAttachment(6).bone];
-                    Vector3D position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
-                    Quaternion rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
-                    Vector3D scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
-                    components[1].Initialize(Gear[2].ID, Gear[2].Models.Left.Replace(".mdx", ".xml"), Gear[2].Textures.Left, objectComponentsPath + @"Shoulder\", position, rotation, scale);
-                    bone = null;
-                    bone = bones[FindAttachment(5).bone];
-                    position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
-                    rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
-                    scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
-                    components[2].Initialize(Gear[2].ID, Gear[2].Models.Right.Replace(".mdx", ".xml"), Gear[2].Textures.Right, objectComponentsPath + @"Shoulder\", position, rotation, scale);
-                    bone = null;
+                    components[1].Modify(position, rotation, scale);
                 }
+                bone = null;
+                bone = bones[FindAttachment(5).bone];
+                position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
+                rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
+                scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
+                if(components[2].ID != Gear[2].ID)
+                {
+                    components[2].Initialize(Gear[2].ID, Gear[2].Models.Right.Replace(".mdx", ".xml"), Gear[2].Textures.Right, objectComponentsPath + @"Shoulder\", position, rotation, scale);
+                }
+                else
+                {
+                    components[2].Modify(position, rotation, scale);
+                }
+                bone = null;
             }
         }
 
@@ -549,6 +613,21 @@ namespace WoW_Character_Viewer_Classic.Models
                     components[5].Modify(position, rotation, scale);
                 }
                 bone = null;
+            }
+        }
+
+        void EquipMount()
+        {
+            if(!Mounted || Gear[24].ID == "0")
+            {
+                mount.Initialize();
+            }
+            else
+            {
+                if(mount.ID != Gear[24].ID)
+                {
+                    mount.Initialize(Gear[24].ID, Gear[24].Models.Left, Gear[24].Textures.Left, @"Creature\");
+                }
             }
         }
 
@@ -756,32 +835,58 @@ namespace WoW_Character_Viewer_Classic.Models
             FacialGeosets();
             MakeTextures(gl);
             EquipGear();
+            if(Mounted)
+            {
+                ModelBone attachment = mount.GetAttachment();
+                Quaternion rotation = new Quaternion(attachment.Rotation.x, attachment.Rotation.y, attachment.Rotation.z, attachment.Rotation.w);
+                gl.Translate(attachment.Position.x, attachment.Position.y, attachment.Position.z);
+                gl.Rotate(rotation.Angle, rotation.Axis.X, rotation.Axis.Y, rotation.Axis.Z);
+            }
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if(!disposed)
+            {
+                if(disposing)
+                {
+                    mount.Dispose();
+                    foreach (ObjectComponent component in components)
+                    {
+                        component.Dispose();
+                    }
+                }
+                model = null;
+                components = null;
+                vertices = null;
+                indices = null;
+                triangles = null;
+                geosets = null;
+                billboards = null;
+                bones = null;
+                textures = null;
+                texturesPath = null;
+                objectComponentsPath = null;
+                skinName = null;
+                faceName = null;
+                hairName = null;
+                hairNames = null;
+                colorName = null;
+                facialName = null;
+                facialNames = null;
+                disposed = true;
+            }
+        }
+
+        ~Character()
+        {
+            Dispose(false);
         }
 
         public void Dispose()
         {
-            model = null;
-            foreach(ObjectComponent component in components)
-            {
-                component.Dispose();
-            }
-            components = null;
-            vertices = null;
-            indices = null;
-            triangles = null;
-            geosets = null;
-            billboards = null;
-            bones = null;
-            textures = null;
-            texturesPath = null;
-            objectComponentsPath = null;
-            skinName = null;
-            faceName = null;
-            hairName = null;
-            hairNames = null;
-            colorName = null;
-            facialName = null;
-            facialNames = null;
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         protected abstract void GetHairNames();
