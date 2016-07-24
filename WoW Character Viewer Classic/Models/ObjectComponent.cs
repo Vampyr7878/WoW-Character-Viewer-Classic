@@ -140,16 +140,12 @@ namespace WoW_Character_Viewer_Classic.Models
 
         Bitmap LoadBitmap(string file)
         {
-            if(File.Exists(file))
-            {
                 Bitmap bitmap;
                 using(StreamReader reader = new StreamReader(file))
                 {
                     bitmap = new Bitmap(reader.BaseStream);
                 }
                 return bitmap;
-            }
-            return null;
         }
 
         void RenderBillboard(OpenGL gl, int geoset, float characterRotation, int start, int count)
@@ -217,11 +213,11 @@ namespace WoW_Character_Viewer_Classic.Models
                     gl.Vertex(x, y, z);
                 }
                 gl.End();
+                gl.DepthMask((byte)OpenGL.GL_TRUE);
+                gl.Disable(OpenGL.GL_BLEND);
+                gl.Disable(OpenGL.GL_ALPHA_TEST);
             }
             gl.PopMatrix();
-            gl.DepthMask((byte)OpenGL.GL_TRUE);
-            gl.Disable(OpenGL.GL_BLEND);
-            gl.Disable(OpenGL.GL_ALPHA_TEST);
         }
 
         void SetColor(OpenGL gl, int geoset)

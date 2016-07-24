@@ -56,8 +56,8 @@ namespace WoW_Character_Viewer_Classic
             rotate = false;
             move = false;
             ResetCamera();
-            zoomMin = 0.2f;
-            zoomMax = 6;
+            zoomMin = 0.1f;
+            zoomMax = 10f;
             distance = 2.8f;
             iconsPath = @"Icons\";
             Random random = new Random();
@@ -802,7 +802,9 @@ namespace WoW_Character_Viewer_Classic
         {
             bool ranged = character.Ranged;
             bool sheathe = character.Sheathe;
+            bool mounted = character.Mounted;
             character.Ranged = character.Sheathe = slot == "rangedRelic";
+            character.Mount(false);
             ItemsItem item = character.Gear[WoWHelper.Slot(slot)];
             weaponItemsDialog.GetItemList(slot, characterRace, characterClass, character);
             if(weaponItemsDialog.ShowDialog() == DialogResult.OK)
@@ -855,6 +857,7 @@ namespace WoW_Character_Viewer_Classic
             }
             character.Ranged = ranged;
             character.Sheathe = sheathe;
+            character.Mount(mounted);
         }
 
         void Relic()

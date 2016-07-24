@@ -2,6 +2,7 @@
 using SharpGL.SceneGraph.Assets;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
@@ -17,11 +18,13 @@ namespace WoW_Character_Viewer_Classic.Models
         protected ModelViewGeoset[] geosets;
         protected List<int> billboards;
         Texture[] textures;
-        string texture;
+        string texture1;
+        string texture2;
+        string texture3;
         string texturesPath;
         string id;
         bool disposed;
-        
+
         public Mount()
         {
             disposed = false;
@@ -40,7 +43,7 @@ namespace WoW_Character_Viewer_Classic.Models
             id = "0";
         }
 
-        public void Initialize(string id, string file, string texture, string path)
+        public void Initialize(string id, string file, string texture1, string texture2, string texture3, string path)
         {
             if(file == "")
             {
@@ -50,8 +53,12 @@ namespace WoW_Character_Viewer_Classic.Models
             this.id = null;
             this.id = id;
             Empty = false;
-            this.texture = null;
-            this.texture = texture;
+            this.texture1 = null;
+            this.texture1 = texture1;
+            this.texture2 = null;
+            this.texture2 = texture2;
+            this.texture3 = null;
+            this.texture3 = texture3;
             texturesPath = null;
             texturesPath = path;
             model = null;
@@ -92,18 +99,90 @@ namespace WoW_Character_Viewer_Classic.Models
             return (from attachment in model.Attachments where attachment.id == 0 select model.Bones[attachment.bone]).FirstOrDefault();
         }
 
+        void MakeTextures(OpenGL gl)
+        {
+            for(int i = 0; i < textures.Length; i++)
+            {
+                switch(model.Textures[i].type)
+                {
+                    case 0:
+                        MakeTexture(gl, i);
+                        break;
+                    case 11:
+                        MakeCreature1Texture(gl, i);
+                        break;
+                    case 12:
+                        MakeCreature2Texture(gl, i);
+                        break;
+                    case 13:
+                        MakeCreature3Texture(gl, i);
+                        break;
+                }
+            }
+        }
+
+        void MakeTexture(OpenGL gl, int index)
+        {
+            textures[index].Destroy(gl);
+            Bitmap bitmap = LoadBitmap(model.Textures[index].file.Replace("SPELLS", "CREATURE").Replace("Spells", "Creature").Replace(".BLP", ".PNG").Replace(".blp", ".png"));
+            textures[index].Create(gl, bitmap);
+            bitmap.Dispose();
+            bitmap = null;
+        }
+
+        void MakeCreature1Texture(OpenGL gl, int index)
+        {
+            textures[index].Destroy(gl);
+            Bitmap bitmap = LoadBitmap(texturesPath + texture1 + ".png");
+            textures[index].Create(gl, bitmap);
+            bitmap.Dispose();
+            bitmap = null;
+        }
+
+        void MakeCreature2Texture(OpenGL gl, int index)
+        {
+            textures[index].Destroy(gl);
+            Bitmap bitmap = LoadBitmap(texturesPath + texture2 + ".png");
+            textures[index].Create(gl, bitmap);
+            bitmap.Dispose();
+            bitmap = null;
+        }
+
+        void MakeCreature3Texture(OpenGL gl, int index)
+        {
+            textures[index].Destroy(gl);
+            Bitmap bitmap = LoadBitmap(texturesPath + texture3 + ".png");
+            textures[index].Create(gl, bitmap);
+            bitmap.Dispose();
+            bitmap = null;
+        }
+
+        Bitmap LoadBitmap(string file)
+        {
+            Bitmap bitmap;
+            using(StreamReader reader = new StreamReader(file))
+            {
+                bitmap = new Bitmap(reader.BaseStream);
+            }
+            return bitmap;
+        }
+
         void RenderBillboard(OpenGL gl, int geoset, float characterRotation, int start, int count)
         {
             float x, y, z;
-            //SetColor(gl, geoset);
-            //Blend(gl, geoset, 0);
-            //textures[FindTexture(geoset, 0)].Bind(gl);
+            SetColor(gl, geoset);
+            Blend(gl, geoset, 0);
+            textures[FindTexture(geoset, 0)].Bind(gl);
             foreach(int billboard in billboards)
             {
                 x = model.Bones[billboard].Position.x;
                 y = model.Bones[billboard].Position.y;
                 z = model.Bones[billboard].Position.z;
                 gl.PushMatrix();
+                if(model.Name.Contains("Kodo"))
+                {
+                    gl.Scale(0.5f, 0.5f, 0.5f);
+                }
                 gl.Translate(x, y, z);
                 gl.Rotate(-characterRotation, 0f, 1f, 0f);
                 gl.Translate(-x, -y, -z);
@@ -124,36 +203,140 @@ namespace WoW_Character_Viewer_Classic.Models
                 gl.End();
                 gl.PopMatrix();
             }
-            //gl.DepthMask((byte)OpenGL.GL_TRUE);
-            //gl.Disable(OpenGL.GL_BLEND);
-            //gl.Disable(OpenGL.GL_ALPHA_TEST);
+            gl.DepthMask((byte)OpenGL.GL_TRUE);
+            gl.Disable(OpenGL.GL_BLEND);
+            gl.Disable(OpenGL.GL_ALPHA_TEST);
         }
 
         void RenderGeoset(OpenGL gl, int geoset, int start, int count)
         {
             float x, y, z;
-            //SetColor(gl, geoset);
-            //int layers = CountTextures(geoset);
-            //for (int i = 0; i < layers; i++)
-            //{
-            //Blend(gl, geoset, i);
-            //textures[FindTexture(geoset, i)].Bind(gl);
-            gl.Begin(OpenGL.GL_TRIANGLES);
-            for(int j = start; j < start + count; j++)
+            SetColor(gl, geoset);
+            gl.PushMatrix();
+            if(model.Name.Contains("Kodo"))
             {
-                x = vertices[indices[triangles[j]]].Texture.x;
-                y = vertices[indices[triangles[j]]].Texture.y;
-                gl.TexCoord(x, y);
-                x = vertices[indices[triangles[j]]].Position.x;
-                y = vertices[indices[triangles[j]]].Position.y;
-                z = vertices[indices[triangles[j]]].Position.z;
-                gl.Vertex(x, y, z);
+                gl.Scale(0.5f, 0.5f, 0.5f);
             }
-            gl.End();
-            //}
-            //gl.DepthMask((byte)OpenGL.GL_TRUE);
-            //gl.Disable(OpenGL.GL_BLEND);
-            //gl.Disable(OpenGL.GL_ALPHA_TEST);
+            int layers = CountTextures(geoset);
+            for(int i = 0; i < layers; i++)
+            {
+                Blend(gl, geoset, i);
+                textures[FindTexture(geoset, i)].Bind(gl);
+                gl.Begin(OpenGL.GL_TRIANGLES);
+                for(int j = start; j < start + count; j++)
+                {
+                    x = vertices[indices[triangles[j]]].Texture.x;
+                    y = vertices[indices[triangles[j]]].Texture.y;
+                    gl.TexCoord(x, y);
+                    x = vertices[indices[triangles[j]]].Position.x;
+                    y = vertices[indices[triangles[j]]].Position.y;
+                    z = vertices[indices[triangles[j]]].Position.z;
+                    gl.Vertex(x, y, z);
+                }
+                gl.End();
+                gl.DepthMask((byte)OpenGL.GL_TRUE);
+                gl.Disable(OpenGL.GL_BLEND);
+                gl.Disable(OpenGL.GL_ALPHA_TEST);
+            }
+            gl.PopMatrix();
+        }
+
+        void SetColor(OpenGL gl, int geoset)
+        {
+            int color = FindColor(geoset);
+            int transparency = FindTransparency(geoset);
+            if(color == -1)
+            {
+                gl.Color(1f, 1f, 1f, model.Transparencies[transparency]);
+            }
+            else
+            {
+                gl.Color(model.Colors[color].red, model.Colors[color].green, model.Colors[color].blue, model.Colors[color].alpha * model.Transparencies[transparency]);
+            }
+        }
+
+        int FindColor(int geoset)
+        {
+            foreach(ModelViewTexture viewTexture in model.View.Textures)
+            {
+                if(viewTexture.geoset == geoset)
+                {
+                    return viewTexture.color;
+                }
+            }
+            return -1;
+        }
+
+        int FindTransparency(int geoset)
+        {
+            foreach(ModelViewTexture viewTexture in model.View.Textures)
+            {
+                if(viewTexture.geoset == geoset)
+                {
+                    return viewTexture.transparency;
+                }
+            }
+            return -1;
+        }
+
+        void Blend(OpenGL gl, int geoset, int layer)
+        {
+            switch(model.Blending[FindBlend(geoset, layer)])
+            {
+                case 1:
+                    gl.Enable(OpenGL.GL_BLEND);
+                    gl.Enable(OpenGL.GL_ALPHA_TEST);
+                    gl.BlendFunc(OpenGL.GL_ONE, OpenGL.GL_ZERO);
+                    gl.AlphaFunc(OpenGL.GL_GREATER, 0.9f);
+                    break;
+                case 4:
+                    gl.Enable(OpenGL.GL_BLEND);
+                    gl.DepthMask((byte)OpenGL.GL_FALSE);
+                    gl.BlendFunc(OpenGL.GL_SRC_ALPHA, OpenGL.GL_ONE);
+                    break;
+                case 6:
+                    gl.Enable(OpenGL.GL_BLEND);
+                    gl.DepthMask((byte)OpenGL.GL_FALSE);
+                    gl.BlendFunc(OpenGL.GL_DST_COLOR, OpenGL.GL_SRC_COLOR);
+                    break;
+            }
+        }
+
+        int FindBlend(int geoset, int layer)
+        {
+            foreach(ModelViewTexture texture in model.View.Textures)
+            {
+                if(texture.geoset == geoset && texture.layer == layer)
+                {
+                    return texture.blend;
+                }
+            }
+            return -1;
+        }
+
+        int CountTextures(int geoset)
+        {
+            int count = 0;
+            foreach(ModelViewTexture texture in model.View.Textures)
+            {
+                if(texture.geoset == geoset)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        int FindTexture(int geoset, int layer)
+        {
+            foreach(ModelViewTexture texture in model.View.Textures)
+            {
+                if(texture.geoset == geoset && texture.layer == layer)
+                {
+                    return texture.texture;
+                }
+            }
+            return -1;
         }
 
         bool GeosetBillboard(int start, int count)
@@ -170,8 +353,8 @@ namespace WoW_Character_Viewer_Classic.Models
 
         public void Render(OpenGL gl, float characterRotation)
         {
-            //MakeTextures(gl);
-            //gl.Enable(OpenGL.GL_TEXTURE_2D);
+            MakeTextures(gl);
+            gl.Enable(OpenGL.GL_TEXTURE_2D);
             for(int i = 0; i < geosets.Length; i++)
             {
                 if(GeosetBillboard(geosets[i].triangle, geosets[i].triangles))
@@ -183,7 +366,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     RenderGeoset(gl, i, geosets[i].triangle, geosets[i].triangles);
                 }
             }
-            //gl.Disable(OpenGL.GL_TEXTURE_2D);
+            gl.Disable(OpenGL.GL_TEXTURE_2D);
         }
 
         protected virtual void Dispose(bool disposing)
@@ -199,7 +382,9 @@ namespace WoW_Character_Viewer_Classic.Models
                 triangles = null;
                 geosets = null;
                 billboards = null;
-                texture = null;
+                texture1 = null;
+                texture2 = null;
+                texture3 = null;
                 textures = null;
                 texturesPath = null;
                 disposed = true;

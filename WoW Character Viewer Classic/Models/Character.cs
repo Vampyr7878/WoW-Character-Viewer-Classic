@@ -626,7 +626,7 @@ namespace WoW_Character_Viewer_Classic.Models
             {
                 if(mount.ID != Gear[24].ID)
                 {
-                    mount.Initialize(Gear[24].ID, Gear[24].Models.Left, Gear[24].Textures.Left, @"Creature\");
+                    mount.Initialize(Gear[24].ID, Gear[24].Models.Left, Gear[24].Textures.Left, Gear[24].Textures.Right, Gear[24].Textures.ArmUpper, @"Creature\");
                 }
             }
         }
@@ -837,10 +837,18 @@ namespace WoW_Character_Viewer_Classic.Models
             EquipGear();
             if(Mounted)
             {
+                if(Gear[24].Name.Contains("Kodo"))
+                {
+                    gl.Scale(0.5f, 0.5f, 0.5f);
+                }
                 ModelBone attachment = mount.GetAttachment();
                 Quaternion rotation = new Quaternion(attachment.Rotation.x, attachment.Rotation.y, attachment.Rotation.z, attachment.Rotation.w);
                 gl.Translate(attachment.Position.x, attachment.Position.y, attachment.Position.z);
                 gl.Rotate(rotation.Angle, rotation.Axis.X, rotation.Axis.Y, rotation.Axis.Z);
+                if(Gear[24].Name.Contains("Kodo"))
+                {
+                    gl.Scale(2f, 2f, 2f);
+                }
             }
         }
 
