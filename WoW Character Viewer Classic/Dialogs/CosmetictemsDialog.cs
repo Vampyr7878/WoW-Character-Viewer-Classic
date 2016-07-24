@@ -13,7 +13,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         Items items;
         ItemsItem selected;
         ItemsItem item;
-        Character character;
+        CharacterModel character;
         float rotation;
         string slot;
 
@@ -24,7 +24,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         public ItemsItem Selected { get { return selected; } }
 
-        public void GetItemList(string slot, string characterRace, string characterClass, Character character)
+        public void GetItemList(string slot, string characterRace, string characterClass, CharacterModel character)
         {
             selected = null;
             this.slot = null;

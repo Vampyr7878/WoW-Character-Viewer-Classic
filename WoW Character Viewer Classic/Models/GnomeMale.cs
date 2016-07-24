@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace WoW_Character_Viewer_Classic.Models
 {
-    class GnomeMale : Character
+    class GnomeMale : CharacterModel
     {
         enum Geosets
         {
@@ -112,12 +112,12 @@ namespace WoW_Character_Viewer_Classic.Models
 
         protected override string GetFacialUpper()
         {
-            return Number(Facial - 1);
+            return Number(Facial - 1) + "_" + Number(Color);
         }
 
         protected override string GetFacialLower()
         {
-            return Number(Facial - 1);
+            return Number(Facial - 1) + "_" + Number(Color);
         }
 
         protected override string GetScalpUpper()
@@ -144,7 +144,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     scalpUpper = "06";
                     break;
             }
-            return scalpUpper;
+            return scalpUpper + "_" + Number(Color);
         }
 
         protected override string GetScalpLower()
@@ -171,7 +171,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     scalpLower = "06";
                     break;
             }
-            return scalpLower;
+            return scalpLower + "_" + Number(Color);
         }
 
         protected override string GetHairTexture()

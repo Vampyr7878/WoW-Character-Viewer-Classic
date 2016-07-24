@@ -1,0 +1,16 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Customization">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="Race"/>
+        <xs:element type="xs:string" name="Gender"/>
+        <xs:element type="xs:string" name="Class"/>
+        <xs:element type="xs:int" name="Skin"/>
+        <xs:element type="xs:int" name="Face"/>
+        <xs:element type="xs:int" name="Hair"/>
+        <xs:element type="xs:int" name="Color"/>
+        <xs:element type="xs:int" name="Facial"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

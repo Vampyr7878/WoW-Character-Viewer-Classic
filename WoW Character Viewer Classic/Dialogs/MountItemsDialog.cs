@@ -13,7 +13,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         Items items;
         ItemsItem selected;
         ItemsItem item;
-        Character character;
+        CharacterModel character;
         float rotation;
 
         public MountItemsDialog()
@@ -23,7 +23,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         public ItemsItem Selected { get { return selected; } }
 
-        public void GetItemList(string characterRace, string characterClass, Character character)
+        public void GetItemList(string characterRace, string characterClass, CharacterModel character)
         {
             selected = null;
             items = null;

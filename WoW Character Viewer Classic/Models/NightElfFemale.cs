@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace WoW_Character_Viewer_Classic.Models
 {
-    class NightElfFemale : Character
+    class NightElfFemale : CharacterModel
     {
         enum Geosets
         {
@@ -105,22 +105,22 @@ namespace WoW_Character_Viewer_Classic.Models
 
         protected override string GetFacialUpper()
         {
-            return Number(Facial + 4);
+            return Number(Facial + 4) + "_" + Number(Color); ;
         }
 
         protected override string GetFacialLower()
         {
-            return Number(Facial + 4);
+            return Number(Facial + 4) + "_" + Number(Color); ;
         }
 
         protected override string GetScalpUpper()
         {
-            return "01";
+            return "01" + "_" + Number(Color); ;
         }
 
         protected override string GetScalpLower()
         {
-            return "01";
+            return "01" + "_" + Number(Color); ;
         }
 
         protected override string GetHairTexture()

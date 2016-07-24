@@ -101,6 +101,8 @@
             this.neckButton = new System.Windows.Forms.Button();
             this.headButton = new System.Windows.Forms.Button();
             this.openGLControl = new SharpGL.OpenGLControl();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.slotTooltip = new WoW_Character_Viewer_Classic.Controls.ButtonTooltip();
             this.buttonTooltip = new WoW_Character_Viewer_Classic.Controls.ButtonTooltip();
             this.jewelryTooltip = new WoW_Character_Viewer_Classic.Controls.JewelryTooltip();
@@ -275,6 +277,7 @@
             this.saveButton.TabIndex = 65;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = false;
+            this.saveButton.Click += new System.EventHandler(this.bottomButton_Click);
             // 
             // openButton
             // 
@@ -287,6 +290,7 @@
             this.openButton.TabIndex = 64;
             this.openButton.Text = "Open";
             this.openButton.UseVisualStyleBackColor = false;
+            this.openButton.Click += new System.EventHandler(this.bottomButton_Click);
             // 
             // resetButton
             // 
@@ -1175,6 +1179,20 @@
             this.openGLControl.MouseLeave += new System.EventHandler(this.openGLControl_MouseLeave);
             this.openGLControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.openGLControl_MouseUp);
             // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.DefaultExt = "chr";
+            this.saveFileDialog.Filter = "Character File (*.chr)|*.chr|Customization File (*.cst)|*.cst|Set File (*.set)|*." +
+    "set";
+            this.saveFileDialog.Title = "Save File";
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.DefaultExt = "chr";
+            this.openFileDialog.Filter = "Character File (*.chr)|*.chr|Customization File (*.cst)|*.cst|Set File (*.set)|*." +
+    "set";
+            this.openFileDialog.Title = "Open File";
+            // 
             // slotTooltip
             // 
             this.slotTooltip.AutomaticDelay = 0;
@@ -1436,6 +1454,8 @@
         private Controls.ReagentTooltip reagentTooltip;
         private Controls.BagTooltip bagTooltip;
         private Controls.MountTooltip mountTooltip;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }
 

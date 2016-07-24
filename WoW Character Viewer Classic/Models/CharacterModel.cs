@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 namespace WoW_Character_Viewer_Classic.Models
 {
-    public abstract class Character : IDisposable
+    public abstract class CharacterModel : IDisposable
     {
         Model model;
         Model standing;
@@ -40,18 +40,18 @@ namespace WoW_Character_Viewer_Classic.Models
         protected int facialsCount;
         bool disposed;
 
-        protected Character(string file)
+        protected CharacterModel(string file)
         {
             disposed = false;
             XmlSerializer serializer = new XmlSerializer(typeof(Model));
             using(StreamReader reader = new StreamReader(file))
             {
-                standing = (Model)serializer.Deserialize(reader.BaseStream);
+                standing = (Model)serializer.Deserialize(reader);
                 reader.Dispose();
             }
             using(StreamReader reader = new StreamReader(file.Replace(".xml", "Mounted.xml")))
             {
-                mounted = (Model)serializer.Deserialize(reader.BaseStream);
+                mounted = (Model)serializer.Deserialize(reader);
                 reader.Dispose();
             }
             model = standing;
@@ -183,6 +183,16 @@ namespace WoW_Character_Viewer_Classic.Models
             }
         }
 
+        public string[] GetGear()
+        {
+            string[] GearID = new string[25];
+            for(int i = 0; i < 25; i++)
+            {
+                GearID[i] = Gear[i].ID;
+            }
+            return GearID;
+        }
+
         protected string Number(int number)
         {
             return number > 9 ? number.ToString() : "0" + number;
@@ -239,10 +249,10 @@ namespace WoW_Character_Viewer_Classic.Models
             }
             DrawLayer(graphics, texturesPath + gender + model.Name + "FaceUpper" + Number(Face) + "_" + Number(Skin) + ".png", 0, 160);
             DrawLayer(graphics, texturesPath + gender + model.Name + "FaceLower" + Number(Face) + "_" + Number(Skin) + ".png", 0, 192);
-            DrawLayer(graphics, texturesPath + "FacialUpperHair" + GetFacialUpper() + "_" + Number(Color) + ".png", 0, 160);
-            DrawLayer(graphics, texturesPath + "FacialLowerHair" + GetFacialLower() + "_" + Number(Color) + ".png", 0, 192);
-            DrawLayer(graphics, texturesPath + "ScalpUpperHair" + GetScalpUpper() + "_" + Number(Color) + ".png", 0, 160);
-            DrawLayer(graphics, texturesPath + "ScalpLowerHair" + GetScalpLower() + "_" + Number(Color) + ".png", 0, 192);
+            DrawLayer(graphics, texturesPath + "FacialUpperHair" + GetFacialUpper() + ".png", 0, 160);
+            DrawLayer(graphics, texturesPath + "FacialLowerHair" + GetFacialLower() + ".png", 0, 192);
+            DrawLayer(graphics, texturesPath + "ScalpUpperHair" + GetScalpUpper() + ".png", 0, 160);
+            DrawLayer(graphics, texturesPath + "ScalpLowerHair" + GetScalpLower() + ".png", 0, 192);
             MakeLegsTexture(graphics, gender);
             MakeShirtTexture(graphics, gender);
             MakeChestTexture(graphics, gender);
@@ -886,7 +896,7 @@ namespace WoW_Character_Viewer_Classic.Models
             }
         }
 
-        ~Character()
+        ~CharacterModel()
         {
             Dispose(false);
         }

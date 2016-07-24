@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace WoW_Character_Viewer_Classic.Models
 {
-    class TrollFemale : Character
+    class TrollFemale : CharacterModel
     {
         enum Geosets
         {
@@ -128,7 +128,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     scalpUpper = "00";
                     break;
             }
-            return scalpUpper;
+            return scalpUpper + "_" + Number(Color);
         }
 
         protected override string GetScalpLower()
@@ -146,7 +146,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     scalpLower = "00";
                     break;
             }
-            return scalpLower;
+            return scalpLower + "_" + Number(Color);
         }
 
         protected override string GetHairTexture()

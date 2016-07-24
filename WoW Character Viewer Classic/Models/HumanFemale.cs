@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace WoW_Character_Viewer_Classic.Models
 {
-    class HumanFemale : Character
+    class HumanFemale : CharacterModel
     {
         enum Geosets
         {
@@ -145,12 +145,12 @@ namespace WoW_Character_Viewer_Classic.Models
 
         protected override string GetScalpUpper()
         {
-            return "00";
+            return "00" + "_" + Number(Color);
         }
 
         protected override string GetScalpLower()
         {
-            return "00";
+            return "00" + "_" + Number(Color);
         }
 
         protected override string GetHairTexture()

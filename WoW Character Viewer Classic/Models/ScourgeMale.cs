@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace WoW_Character_Viewer_Classic.Models
 {
-    class ScourgeMale : Character
+    class ScourgeMale : CharacterModel
     {
         enum Geosets
         {
@@ -161,7 +161,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     facialUpper = "06";
                     break;
             }
-            return facialUpper;
+            return facialUpper + "_00";
         }
 
         protected override string GetFacialLower()
@@ -200,7 +200,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     facialLower = "06";
                     break;
             }
-            return facialLower;
+            return facialLower + "_00";
         }
 
         protected override string GetScalpUpper()
@@ -218,7 +218,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     scalpUpper = "01";
                     break;
             }
-            return scalpUpper;
+            return scalpUpper + "_" + Number(Color);
         }
 
         protected override string GetScalpLower()
@@ -236,7 +236,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     scalpLower = "01";
                     break;
             }
-            return scalpLower;
+            return scalpLower + "_" + Number(Color);
         }
 
         protected override string GetHairTexture()

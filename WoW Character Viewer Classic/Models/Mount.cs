@@ -65,7 +65,7 @@ namespace WoW_Character_Viewer_Classic.Models
             XmlSerializer serializer = new XmlSerializer(typeof(Model));
             using(StreamReader reader = new StreamReader(path + file + ".xml"))
             {
-                model = (Model)serializer.Deserialize(reader.BaseStream);
+                model = (Model)serializer.Deserialize(reader);
                 reader.Dispose();
             }
             vertices = null;

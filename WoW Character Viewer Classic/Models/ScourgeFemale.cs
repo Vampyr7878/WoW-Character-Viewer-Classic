@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace WoW_Character_Viewer_Classic.Models
 {
-    class ScourgeFemale : Character
+    class ScourgeFemale : CharacterModel
     {
         enum Geosets
         {
@@ -112,22 +112,22 @@ namespace WoW_Character_Viewer_Classic.Models
 
         protected override string GetFacialUpper()
         {
-            return Number(Facial - 1);
+            return Number(Facial - 1) + "_00";
         }
 
         protected override string GetFacialLower()
         {
-            return Number(Facial - 1);
+            return Number(Facial - 1) + "_00";
         }
 
         protected override string GetScalpUpper()
         {
-            return "00";
+            return "00" + "_" + Number(Color);
         }
 
         protected override string GetScalpLower()
         {
-            return "00";
+            return "00" + "_" + Number(Color);
         }
 
         protected override string GetHairTexture()

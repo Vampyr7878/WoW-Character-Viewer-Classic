@@ -15,7 +15,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         ItemsItem selected;
         ItemsItem item;
         ItemsItem offHand;
-        Character character;
+        CharacterModel character;
         float rotation;
         string slot;
         string characterRace;
@@ -30,7 +30,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         public ItemsItem OffHand { get { return offHand; } }
 
-        public void GetItemList(string slot, string characterRace, string characterClass, Character character)
+        public void GetItemList(string slot, string characterRace, string characterClass, CharacterModel character)
         {
             offHand = character.Gear[17];
             this.character = null;

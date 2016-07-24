@@ -5,7 +5,7 @@ using System.Windows.Media.Media3D;
 
 namespace WoW_Character_Viewer_Classic.Models
 {
-    class TaurenMale : Character
+    class TaurenMale : CharacterModel
     {
         enum Geosets
         {
@@ -150,7 +150,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         protected override string GetScalpLower()
         {
-            return "00";
+            return "00" + "_" + Number(Color);
         }
 
         protected override string GetHairTexture()

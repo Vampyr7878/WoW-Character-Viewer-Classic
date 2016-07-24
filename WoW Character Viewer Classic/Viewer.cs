@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 using WoW_Character_Viewer_Classic.Dialogs;
 using WoW_Character_Viewer_Classic.Models;
 
@@ -25,7 +26,7 @@ namespace WoW_Character_Viewer_Classic
         string characterRace;
         string characterClass;
         string iconsPath;
-        Character character;
+        CharacterModel character;
         bool rotate;
         bool move;
         PointF mouse;
@@ -72,6 +73,281 @@ namespace WoW_Character_Viewer_Classic
             currentRotation = rotation = 0f;
             currentPosition = position = new PointF(0f, 0f);
             currentZoom = zoom = 0f;
+        }
+
+        void Save()
+        {
+            string name = characterRace + (characterGender ? "Male" : "Female") + characterClass;
+            saveFileDialog.FileName = name;
+            if(saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                switch(saveFileDialog.FilterIndex)
+                {
+                    case 1:
+                        SaveCharacterFile(saveFileDialog.FileName);
+                        break;
+                    case 2:
+                        SaveCustomizationFile(saveFileDialog.FileName);
+                        break;
+                    case 3:
+                        SaveSetFile(saveFileDialog.FileName);
+                        break;
+                }
+            }
+        }
+
+        void SaveCharacterFile(string name)
+        {
+            name = name.Substring(0, name.LastIndexOf('.')) + ".chr";
+            Character file = new Character
+            {
+                Customization = new CharacterCustomization
+                {
+                    Race = characterRace,
+                    Gender = characterGender ? "Male" : "Female",
+                    Class = characterClass,
+                    Skin = character.Skin,
+                    Face = character.Face,
+                    Hair = character.Hair,
+                    Color = character.Color,
+                    Facial = character.Facial
+                },
+                Gear = character.GetGear()
+            };
+            XmlSerializer serializer = new XmlSerializer(typeof(Character));
+            using(StreamWriter writer = new StreamWriter(name))
+            {
+                serializer.Serialize(writer, file);
+            }
+            serializer = null;
+            file = null;
+        }
+
+        void SaveCustomizationFile(string name)
+        {
+            name = name.Substring(0, name.LastIndexOf('.')) + ".cst";
+            Customization file = new Customization
+            {
+                Race = characterRace,
+                Gender = characterGender ? "Male" : "Female",
+                Class = characterClass,
+                Skin = character.Skin,
+                Face = character.Face,
+                Hair = character.Hair,
+                Color = character.Color,
+                Facial = character.Facial
+            };
+            XmlSerializer serializer = new XmlSerializer(typeof(Customization));
+            using(StreamWriter writer = new StreamWriter(name))
+            {
+                serializer.Serialize(writer, file);
+            }
+            serializer = null;
+            file = null;
+        }
+
+        void SaveSetFile(string name)
+        {
+            name = name.Substring(0, name.LastIndexOf('.')) + ".set";
+            Gear file = new Gear
+            {
+                Item = character.GetGear()
+            };
+            XmlSerializer serializer = new XmlSerializer(typeof(Gear));
+            using(StreamWriter writer = new StreamWriter(name))
+            {
+                serializer.Serialize(writer, file);
+            }
+            serializer = null;
+            file = null;
+        }
+
+        void Open()
+        {
+            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                switch(openFileDialog.FilterIndex)
+                {
+                    case 1:
+                        OpenCharacterFile(openFileDialog.FileName);
+                        break;
+                    case 2:
+                        OpenCustomizationFile(openFileDialog.FileName);
+                        break;
+                    case 3:
+                        OpenSetFile(openFileDialog.FileName);
+                        break;
+                }
+            }
+        }
+
+        void OpenCharacterFile(string name)
+        {
+            if(!name.Contains(".chr"))
+            {
+                MessageBox.Show("Wrong file extension", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Character file;
+            Index index;
+            Items items;
+            Button button;
+            string gear;
+            XmlSerializer serializer = new XmlSerializer(typeof(Character));
+            using(StreamReader reader = new StreamReader(name))
+            {
+                file = (Character)serializer.Deserialize(reader);
+            }
+            CharacterDispose(characterRace + " " + (characterGender ? "Male" : "Female"));
+            characterRace = file.Customization.Race;
+            ChangeRace();
+            CharacterDispose(characterRace + " " + (characterGender ? "Male" : "Female"));
+            characterGender = file.Customization.Gender == "Male";
+            ChangeGender();
+            characterClass = file.Customization.Class;
+            ChangeClass();
+            character.Skin = file.Customization.Skin;
+            Skin();
+            character.Face = file.Customization.Face;
+            Face();
+            character.Hair = file.Customization.Hair;
+            Hair();
+            character.Color = file.Customization.Color;
+            HairColor();
+            character.Facial = file.Customization.Facial;
+            Facial();
+            serializer = null;
+            serializer = new XmlSerializer(typeof(Index));
+            using(StreamReader reader = new StreamReader(@"Data\ItemsIndex.xml"))
+            {
+                index = (Index)serializer.Deserialize(reader);
+            }
+            serializer = null;
+            serializer = new XmlSerializer(typeof(Items));
+            for(int i = 0; i < 25; i++)
+            {
+                gear = FindItemsFile(file.Gear[i], index);
+                if(gear != "")
+                {
+                    using(StreamReader reader = new StreamReader(@"Data\" + gear))
+                    {
+                        items = (Items)serializer.Deserialize(reader);
+                    }
+                    character.Gear[i] = FindItem(file.Gear[i], items);
+                    button = (Button)Controls.Find(WoWHelper.Slot(i) + "Button", true).First();
+                    ChangeIcon(button);
+                    button = null;
+                    items = null;
+                }
+            }
+            serializer = null;
+            file = null;
+            index = null;
+        }
+
+        void OpenCustomizationFile(string name)
+        {
+            if(!name.Contains(".cts"))
+            {
+                MessageBox.Show("Wrong file extension", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Customization file;
+            XmlSerializer serializer = new XmlSerializer(typeof(Customization));
+            using(StreamReader reader = new StreamReader(name))
+            {
+                file = (Customization)serializer.Deserialize(reader);
+            }
+            CharacterDispose(characterRace + " " + (characterGender ? "Male" : "Female"));
+            characterRace = file.Race;
+            ChangeRace();
+            CharacterDispose(characterRace + " " + (characterGender ? "Male" : "Female"));
+            characterGender = file.Gender == "Male";
+            ChangeGender();
+            characterClass = file.Class;
+            ChangeClass();
+            character.Skin = file.Skin;
+            Skin();
+            character.Face = file.Face;
+            Face();
+            character.Hair = file.Hair;
+            Hair();
+            character.Color = file.Color;
+            HairColor();
+            character.Facial = file.Facial;
+            Facial();
+            serializer = null;
+            file = null;
+        }
+
+        void OpenSetFile(string name)
+        {
+            if(!name.Contains(".set"))
+            {
+                MessageBox.Show("Wrong file extension", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Gear file;
+            Index index;
+            Items items;
+            Button button;
+            string gear;
+            XmlSerializer serializer = new XmlSerializer(typeof(Gear));
+            using(StreamReader reader = new StreamReader(name))
+            {
+                file = (Gear)serializer.Deserialize(reader);
+            }
+            serializer = null;
+            serializer = new XmlSerializer(typeof(Index));
+            using(StreamReader reader = new StreamReader(@"Data\ItemsIndex.xml"))
+            {
+                index = (Index)serializer.Deserialize(reader);
+            }
+            serializer = null;
+            serializer = new XmlSerializer(typeof(Items));
+            for(int i = 0; i < 25; i++)
+            {
+                gear = FindItemsFile(file.Item[i], index);
+                if(gear != "")
+                {
+                    using(StreamReader reader = new StreamReader(@"Data\" + gear))
+                    {
+                        items = (Items)serializer.Deserialize(reader);
+                    }
+                    character.Gear[i] = FindItem(file.Item[i], items);
+                    button = (Button)Controls.Find(WoWHelper.Slot(i) + "Button", true).First();
+                    ChangeIcon(button);
+                    button = null;
+                    items = null;
+                }
+            }
+            serializer = null;
+            file = null;
+            index = null;
+        }
+
+        string FindItemsFile(string id, Index index)
+        {
+            foreach(IndexItem item in index.Item)
+            {
+                if(item.id == id)
+                {
+                    return item.file;
+                }
+            }
+            return "";
+        }
+
+        ItemsItem FindItem(string id, Items items)
+        {
+            foreach(ItemsItem item in items.Item)
+            {
+                if(item.ID == id)
+                {
+                    return item;
+                }
+            }
+            return null;
         }
 
         void RandomGender(int number)
@@ -1468,6 +1744,12 @@ namespace WoW_Character_Viewer_Classic
             {
                 case "reset":
                     ResetCamera();
+                    break;
+                case "open":
+                    Open();
+                    break;
+                case "save":
+                    Save();
                     break;
                 case "rangedMelee":
                     RangedMelee();

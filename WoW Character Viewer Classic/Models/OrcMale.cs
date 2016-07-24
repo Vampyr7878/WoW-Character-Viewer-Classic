@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace WoW_Character_Viewer_Classic.Models
 {
-    class OrcMale : Character
+    class OrcMale : CharacterModel
     {
         enum Geosets
         {
@@ -147,7 +147,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     facialUpper = "04";
                     break;
             }
-            return facialUpper;
+            return facialUpper + "_" + Number(Color);
         }
 
         protected override string GetFacialLower()
@@ -178,7 +178,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     facialLower = "04";
                     break;
             }
-            return facialLower;
+            return facialLower + "_" + Number(Color);
         }
 
         protected override string GetScalpUpper()
@@ -203,7 +203,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     scalpUpper = "04";
                     break;
             }
-            return scalpUpper;
+            return scalpUpper + "_" + Number(Color);
         }
 
         protected override string GetScalpLower()
@@ -228,7 +228,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     scalpLower = "04";
                     break;
             }
-            return scalpLower;
+            return scalpLower + "_" + Number(Color);
         }
 
         protected override string GetHairTexture()

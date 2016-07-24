@@ -159,6 +159,90 @@ namespace WoW_Character_Viewer_Classic
             return slot;
         }
 
+        public static string Slot(int index)
+        {
+            string slot = "";
+            switch(index)
+            {
+                case 0:
+                    slot = "head";
+                    break;
+                case 1:
+                    slot = "neck";
+                    break;
+                case 2:
+                    slot = "shoulder";
+                    break;
+                case 3:
+                    slot = "back";
+                    break;
+                case 4:
+                    slot = "chest";
+                    break;
+                case 5:
+                    slot = "shirt";
+                    break;
+                case 6:
+                    slot = "tabard";
+                    break;
+                case 7:
+                    slot = "wrist";
+                    break;
+                case 8:
+                    slot = "hands";
+                    break;
+                case 9:
+                    slot = "waist";
+                    break;
+                case 10:
+                    slot = "legs";
+                    break;
+                case 11:
+                    slot = "feet";
+                    break;
+                case 12:
+                    slot = "finger1";
+                    break;
+                case 13:
+                    slot = "finger2";
+                    break;
+                case 14:
+                    slot = "trinket1";
+                    break;
+                case 15:
+                    slot = "trinket2";
+                    break;
+                case 16:
+                    slot = "mainHand";
+                    break;
+                case 17:
+                    slot = "offHand";
+                    break;
+                case 18:
+                    slot = "rangedRelic";
+                    break;
+                case 19:
+                    slot = "ammoReagent";
+                    break;
+                case 20:
+                    slot = "bag1";
+                    break;
+                case 21:
+                    slot = "bag2";
+                    break;
+                case 22:
+                    slot = "bag3";
+                    break;
+                case 23:
+                    slot = "bag4";
+                    break;
+                case 24:
+                    slot = "mount";
+                    break;
+            }
+            return slot;
+        }
+
         public static string SlotIcon(string slot, string characterClass)
         {
             string icon = "";

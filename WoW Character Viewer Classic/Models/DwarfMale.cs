@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace WoW_Character_Viewer_Classic.Models
 {
-    class DwarfMale : Character
+    class DwarfMale : CharacterModel
     {
         enum Geosets
         {
@@ -129,12 +129,12 @@ namespace WoW_Character_Viewer_Classic.Models
 
         protected override string GetFacialUpper()
         {
-            return "00";
+            return "00" + "_" + Number(Color);
         }
 
         protected override string GetFacialLower()
         {
-            return "00";
+            return "00" + "_" + Number(Color);
         }
 
         protected override string GetScalpUpper()
@@ -156,7 +156,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     scalpUpper = "02";
                     break;
             }
-            return scalpUpper;
+            return scalpUpper + "_" + Number(Color);
         }
 
         protected override string GetScalpLower()
@@ -178,7 +178,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     scalpLower = "02";
                     break;
             }
-            return scalpLower;
+            return scalpLower + "_" + Number(Color);
         }
 
         protected override string GetHairTexture()

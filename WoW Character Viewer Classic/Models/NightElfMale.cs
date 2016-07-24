@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace WoW_Character_Viewer_Classic.Models
 {
-    class NightElfMale : Character
+    class NightElfMale : CharacterModel
     {
         enum Geosets
         {
@@ -129,7 +129,7 @@ namespace WoW_Character_Viewer_Classic.Models
                     facialUpper = "03";
                     break;
             }
-            return facialUpper;
+            return facialUpper + "_" + Number(Color); ;
         }
 
         protected override string GetFacialLower()
@@ -151,17 +151,17 @@ namespace WoW_Character_Viewer_Classic.Models
                     facialLower = "03";
                     break;
             }
-            return facialLower;
+            return facialLower + "_" + Number(Color); ;
         }
 
         protected override string GetScalpUpper()
         {
-            return "00";
+            return "00" + "_" + Number(Color); ;
         }
 
         protected override string GetScalpLower()
         {
-            return "00";
+            return "00" + "_" + Number(Color); ;
         }
 
         protected override string GetHairTexture()

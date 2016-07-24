@@ -162,7 +162,7 @@
     <Compile Include="Dialogs\JewelryItemsDialog.Designer.cs">
       <DependentUpon>JewelryItemsDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\CharacterModel.cs" />
     <Compile Include="Models\DwarfFemale.cs" />
     <Compile Include="Models\DwarfMale.cs" />
     <Compile Include="Models\GnomeFemale.cs" />
@@ -181,12 +181,24 @@
     <Compile Include="Models\TaurenMale.cs" />
     <Compile Include="Models\TrollFemale.cs" />
     <Compile Include="Models\TrollMale.cs" />
+    <Compile Include="Serialization\Character.cs">
+      <DependentUpon>Character.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Serialization\Customization.cs">
+      <DependentUpon>Customization.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Serialization\Index.cs">
+      <DependentUpon>Index.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Serialization\Items.cs">
       <DependentUpon>Items.xsd</DependentUpon>
     </Compile>
     <Compile Include="Serialization\Model.cs">
       <SubType>code</SubType>
       <DependentUpon>Model.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Serialization\Set.cs">
+      <DependentUpon>Set.xsd</DependentUpon>
     </Compile>
     <Compile Include="Viewer.cs">
       <SubType>Form</SubType>
@@ -251,10 +263,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Serialization\Character.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Serialization\Customization.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Serialization\Index.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Serialization\Items.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Serialization\Model.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Serialization\Set.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
