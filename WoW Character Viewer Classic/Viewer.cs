@@ -77,7 +77,7 @@ namespace WoW_Character_Viewer_Classic
 
         void Save()
         {
-            string name = characterRace + (characterGender ? "Male" : "Female") + characterClass;
+            string name = characterRace.Replace(" Elf", "Elf") + (characterGender ? "Male" : "Female") + characterClass;
             saveFileDialog.FileName = name;
             if(saveFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -247,7 +247,7 @@ namespace WoW_Character_Viewer_Classic
 
         void OpenCustomizationFile(string name)
         {
-            if(!name.Contains(".cts"))
+            if(!name.Contains(".cst"))
             {
                 MessageBox.Show("Wrong file extension", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
