@@ -56,7 +56,7 @@ namespace WoW_Character_Viewer_Classic.Models
             Boots3,
             Boots5,
             Boots1,
-            Botos2,
+            Boots2,
             Knees2,
             Boots4,
             Glow1
