@@ -7,12 +7,15 @@ namespace WoW_Character_Viewer_Classic.Controls
     class ArmorTooltip : ToolTip
     {
         List<string> lines;
+        Size size;
 
         public ArmorTooltip()
         {
             OwnerDraw = true;
             Popup += OnPopup;
             Draw += OnDraw;
+            lines = new List<string>();
+            size = new Size(0, 0);
         }
 
         public Font Font { get; set; }
@@ -22,7 +25,7 @@ namespace WoW_Character_Viewer_Classic.Controls
         string Classes(List<string> classes)
         {
             string text = "Classes: ";
-            foreach(string name in classes)
+            foreach (string name in classes)
             {
                 text += name + ", ";
             }
@@ -35,7 +38,7 @@ namespace WoW_Character_Viewer_Classic.Controls
             graphics.DrawString(words[0], Font, new SolidBrush(ForeColor), new PointF(x, 1 + 14 * y));
             Size size = TextRenderer.MeasureText(words[0], Font);
             x += size.Width - 12;
-            for(int i = 1; i < words.Length - 1; i++)
+            for (int i = 1; i < words.Length - 1; i++)
             {
                 x += 7;
                 graphics.DrawString(words[i].Replace(",", ""), Font, new SolidBrush(WoWHelper.ClassColor(words[i].Replace(",", ""))), new PointF(x, 1 + 14 * y));
@@ -54,7 +57,7 @@ namespace WoW_Character_Viewer_Classic.Controls
             graphics.FillRectangle(new SolidBrush(BackColor), e.Bounds);
             graphics.DrawRectangle(new Pen(Color.FromArgb(75, 75, 75)), new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width - 1, e.Bounds.Height - 1));
             graphics.DrawString(lines[y], Font, new SolidBrush(WoWHelper.QalityColor(Item.Quality)), new PointF(3, 1 + 14 * y++));
-            if(Item.MaxCount == 1)
+            if (Item.MaxCount == 1)
             {
                 graphics.DrawString(lines[y], Font, new SolidBrush(ForeColor), new PointF(3, 1 + 14 * y++));
             }
@@ -62,34 +65,32 @@ namespace WoW_Character_Viewer_Classic.Controls
             SizeF size = graphics.MeasureString(Item.Type, Font);
             graphics.DrawString(Item.Type, Font, new SolidBrush(ForeColor), new PointF(e.Bounds.Width - size.Width - 7, 1 + 14 * y++));
             List<string> classes = WoWHelper.Classes(Item.AllowableClass);
-            if(classes.Count < 9)
+            if (classes.Count < 9)
             {
                 DrawClasses(lines[y].Split(' '), y, graphics);
             }
-            graphics = null;
         }
 
         void OnPopup(object sender, PopupEventArgs e)
         {
-            lines = null;
-            lines = new List<string>();
+            lines.Clear();
             lines.Add(Item.Name);
-            if(Item.MaxCount == 1)
+            if (Item.MaxCount == 1)
             {
                 lines.Add("Unique");
             }
             lines.Add(Item.Slot);
             List<string> classes = WoWHelper.Classes(Item.AllowableClass);
-            if(classes.Count < 9)
+            if (classes.Count < 9)
             {
                 lines.Add(Classes(classes));
             }
-            Size size = new Size(0, 0);
+            size.Width = 0;
             Size temp;
-            foreach(string line in lines)
+            foreach (string line in lines)
             {
                 temp = line == Item.Slot ? TextRenderer.MeasureText(line + "   " + Item.Type, Font) : TextRenderer.MeasureText(line, Font);
-                if(temp.Width > size.Width)
+                if (temp.Width > size.Width)
                 {
                     size = temp;
                 }
@@ -97,7 +98,6 @@ namespace WoW_Character_Viewer_Classic.Controls
             size.Height += 2;
             size.Height *= lines.Count;
             e.ToolTipSize = size;
-            classes = null;
         }
     }
 }

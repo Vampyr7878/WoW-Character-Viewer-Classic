@@ -1,6 +1,5 @@
 ﻿using SharpGL;
 using SharpGL.SceneGraph.Assets;
-using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -9,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace WoW_Character_Viewer_Classic.Models
 {
-    public class Mount : IDisposable
+    public class Mount
     {
         Model model;
         ModelVertex[] vertices;
@@ -23,13 +22,12 @@ namespace WoW_Character_Viewer_Classic.Models
         string texture3;
         string texturesPath;
         string id;
-        bool disposed;
 
         public Mount()
         {
-            disposed = false;
             Empty = true;
             id = "0";
+            billboards = new List<int>();
         }
 
         public string ID { get { return id; } }
@@ -45,53 +43,39 @@ namespace WoW_Character_Viewer_Classic.Models
 
         public void Initialize(string id, string file, string texture1, string texture2, string texture3, string path)
         {
-            if(file == "")
+            if (file == "")
             {
                 Empty = true;
                 return;
             }
-            this.id = null;
             this.id = id;
             Empty = false;
-            this.texture1 = null;
             this.texture1 = texture1;
-            this.texture2 = null;
             this.texture2 = texture2;
-            this.texture3 = null;
             this.texture3 = texture3;
-            texturesPath = null;
             texturesPath = path;
-            model = null;
             XmlSerializer serializer = new XmlSerializer(typeof(Model));
-            using(StreamReader reader = new StreamReader(path + file + ".xml"))
+            using (StreamReader reader = new StreamReader(path + file + ".xml"))
             {
                 model = (Model)serializer.Deserialize(reader);
-                reader.Dispose();
             }
-            vertices = null;
             vertices = model.Vertices;
-            indices = null;
             indices = model.View.Indices;
-            triangles = null;
             triangles = model.View.Triangles;
-            geosets = null;
             geosets = model.View.Geosets;
-            textures = null;
             textures = new Texture[model.Textures.Length];
-            for(int i = 0; i < textures.Length; i++)
+            for (int i = 0; i < textures.Length; i++)
             {
                 textures[i] = new Texture();
             }
-            billboards = null;
-            billboards = new List<int>();
-            for(int i = 0; i < model.Bones.Length; i++)
+            billboards.Clear();
+            for (int i = 0; i < model.Bones.Length; i++)
             {
-                if((model.Bones[i].Billboard & 8) == 8)
+                if ((model.Bones[i].Billboard & 8) == 8)
                 {
                     billboards.Add(i);
                 }
             }
-            serializer = null;
         }
 
         public ModelBone GetAttachment()
@@ -101,9 +85,9 @@ namespace WoW_Character_Viewer_Classic.Models
 
         void MakeTextures(OpenGL gl)
         {
-            for(int i = 0; i < textures.Length; i++)
+            for (int i = 0; i < textures.Length; i++)
             {
-                switch(model.Textures[i].type)
+                switch (model.Textures[i].type)
                 {
                     case 0:
                         MakeTexture(gl, i);
@@ -124,47 +108,63 @@ namespace WoW_Character_Viewer_Classic.Models
         void MakeTexture(OpenGL gl, int index)
         {
             textures[index].Destroy(gl);
-            Bitmap bitmap = LoadBitmap(model.Textures[index].file.Replace("SPELLS", "CREATURE").Replace("Spells", "Creature").Replace(".BLP", ".PNG").Replace(".blp", ".png"));
-            textures[index].Create(gl, bitmap);
-            bitmap.Dispose();
-            bitmap = null;
+            using (Bitmap bitmap = LoadBitmap(model.Textures[index].file.Replace("SPELLS", "CREATURE").Replace("Spells", "Creature").Replace(".BLP", ".PNG").Replace(".blp", ".png")))
+            {
+                if (bitmap != null)
+                {
+                    textures[index].Create(gl, bitmap);
+                }
+            }
         }
 
         void MakeCreature1Texture(OpenGL gl, int index)
         {
             textures[index].Destroy(gl);
-            Bitmap bitmap = LoadBitmap(texturesPath + texture1 + ".png");
-            textures[index].Create(gl, bitmap);
-            bitmap.Dispose();
-            bitmap = null;
+            using (Bitmap bitmap = LoadBitmap(texturesPath + texture1 + ".png"))
+            {
+                if (bitmap != null)
+                {
+                    textures[index].Create(gl, bitmap);
+                }
+            }
         }
 
         void MakeCreature2Texture(OpenGL gl, int index)
         {
             textures[index].Destroy(gl);
-            Bitmap bitmap = LoadBitmap(texturesPath + texture2 + ".png");
-            textures[index].Create(gl, bitmap);
-            bitmap.Dispose();
-            bitmap = null;
+            using (Bitmap bitmap = LoadBitmap(texturesPath + texture2 + ".png"))
+            {
+                if (bitmap != null)
+                {
+                    textures[index].Create(gl, bitmap);
+                }
+            }
         }
 
         void MakeCreature3Texture(OpenGL gl, int index)
         {
             textures[index].Destroy(gl);
-            Bitmap bitmap = LoadBitmap(texturesPath + texture3 + ".png");
-            textures[index].Create(gl, bitmap);
-            bitmap.Dispose();
-            bitmap = null;
+            using (Bitmap bitmap = LoadBitmap(texturesPath + texture3 + ".png"))
+            {
+                if (bitmap != null)
+                {
+                    textures[index].Create(gl, bitmap);
+                }
+            }
         }
 
         Bitmap LoadBitmap(string file)
         {
-            Bitmap bitmap;
-            using(StreamReader reader = new StreamReader(file))
+            if (File.Exists(file))
             {
-                bitmap = new Bitmap(reader.BaseStream);
+                Bitmap bitmap;
+                using (StreamReader reader = new StreamReader(file))
+                {
+                    bitmap = new Bitmap(reader.BaseStream);
+                }
+                return bitmap;
             }
-            return bitmap;
+            return null;
         }
 
         void RenderBillboard(OpenGL gl, int geoset, float characterRotation, int start, int count)
@@ -173,13 +173,13 @@ namespace WoW_Character_Viewer_Classic.Models
             SetColor(gl, geoset);
             Blend(gl, geoset, 0);
             textures[FindTexture(geoset, 0)].Bind(gl);
-            foreach(int billboard in billboards)
+            foreach (int billboard in billboards)
             {
                 x = model.Bones[billboard].Position.x;
                 y = model.Bones[billboard].Position.y;
                 z = model.Bones[billboard].Position.z;
                 gl.PushMatrix();
-                if(model.Name.Contains("Kodo"))
+                if (model.Name.Contains("Kodo"))
                 {
                     gl.Scale(0.5f, 0.5f, 0.5f);
                 }
@@ -187,9 +187,9 @@ namespace WoW_Character_Viewer_Classic.Models
                 gl.Rotate(-characterRotation, 0f, 1f, 0f);
                 gl.Translate(-x, -y, -z);
                 gl.Begin(OpenGL.GL_TRIANGLES);
-                for(int i = start; i < start + count; i++)
+                for (int i = start; i < start + count; i++)
                 {
-                    if(vertices[indices[triangles[i]]].Bones[0].index == billboard)
+                    if (vertices[indices[triangles[i]]].Bones[0].index == billboard)
                     {
                         x = vertices[indices[triangles[i]]].Texture.x;
                         y = vertices[indices[triangles[i]]].Texture.y;
@@ -213,17 +213,17 @@ namespace WoW_Character_Viewer_Classic.Models
             float x, y, z;
             SetColor(gl, geoset);
             gl.PushMatrix();
-            if(model.Name.Contains("Kodo"))
+            if (model.Name.Contains("Kodo"))
             {
                 gl.Scale(0.5f, 0.5f, 0.5f);
             }
             int layers = CountTextures(geoset);
-            for(int i = 0; i < layers; i++)
+            for (int i = 0; i < layers; i++)
             {
                 Blend(gl, geoset, i);
                 textures[FindTexture(geoset, i)].Bind(gl);
                 gl.Begin(OpenGL.GL_TRIANGLES);
-                for(int j = start; j < start + count; j++)
+                for (int j = start; j < start + count; j++)
                 {
                     x = vertices[indices[triangles[j]]].Texture.x;
                     y = vertices[indices[triangles[j]]].Texture.y;
@@ -245,7 +245,7 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             int color = FindColor(geoset);
             int transparency = FindTransparency(geoset);
-            if(color == -1)
+            if (color == -1)
             {
                 gl.Color(1f, 1f, 1f, model.Transparencies[transparency]);
             }
@@ -257,9 +257,9 @@ namespace WoW_Character_Viewer_Classic.Models
 
         int FindColor(int geoset)
         {
-            foreach(ModelViewTexture viewTexture in model.View.Textures)
+            foreach (ModelViewTexture viewTexture in model.View.Textures)
             {
-                if(viewTexture.geoset == geoset)
+                if (viewTexture.geoset == geoset)
                 {
                     return viewTexture.color;
                 }
@@ -269,9 +269,9 @@ namespace WoW_Character_Viewer_Classic.Models
 
         int FindTransparency(int geoset)
         {
-            foreach(ModelViewTexture viewTexture in model.View.Textures)
+            foreach (ModelViewTexture viewTexture in model.View.Textures)
             {
-                if(viewTexture.geoset == geoset)
+                if (viewTexture.geoset == geoset)
                 {
                     return viewTexture.transparency;
                 }
@@ -281,7 +281,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         void Blend(OpenGL gl, int geoset, int layer)
         {
-            switch(model.Blending[FindBlend(geoset, layer)])
+            switch (model.Blending[FindBlend(geoset, layer)])
             {
                 case 1:
                     gl.Enable(OpenGL.GL_BLEND);
@@ -304,9 +304,9 @@ namespace WoW_Character_Viewer_Classic.Models
 
         int FindBlend(int geoset, int layer)
         {
-            foreach(ModelViewTexture texture in model.View.Textures)
+            foreach (ModelViewTexture texture in model.View.Textures)
             {
-                if(texture.geoset == geoset && texture.layer == layer)
+                if (texture.geoset == geoset && texture.layer == layer)
                 {
                     return texture.blend;
                 }
@@ -317,9 +317,9 @@ namespace WoW_Character_Viewer_Classic.Models
         int CountTextures(int geoset)
         {
             int count = 0;
-            foreach(ModelViewTexture texture in model.View.Textures)
+            foreach (ModelViewTexture texture in model.View.Textures)
             {
-                if(texture.geoset == geoset)
+                if (texture.geoset == geoset)
                 {
                     count++;
                 }
@@ -329,9 +329,9 @@ namespace WoW_Character_Viewer_Classic.Models
 
         int FindTexture(int geoset, int layer)
         {
-            foreach(ModelViewTexture texture in model.View.Textures)
+            foreach (ModelViewTexture texture in model.View.Textures)
             {
-                if(texture.geoset == geoset && texture.layer == layer)
+                if (texture.geoset == geoset && texture.layer == layer)
                 {
                     return texture.texture;
                 }
@@ -341,9 +341,9 @@ namespace WoW_Character_Viewer_Classic.Models
 
         bool GeosetBillboard(int start, int count)
         {
-            for(int i = start; i < start + count; i++)
+            for (int i = start; i < start + count; i++)
             {
-                if(!billboards.Contains(vertices[indices[triangles[i]]].Bones[0].index))
+                if (!billboards.Contains(vertices[indices[triangles[i]]].Bones[0].index))
                 {
                     return false;
                 }
@@ -355,9 +355,9 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             MakeTextures(gl);
             gl.Enable(OpenGL.GL_TEXTURE_2D);
-            for(int i = 0; i < geosets.Length; i++)
+            for (int i = 0; i < geosets.Length; i++)
             {
-                if(GeosetBillboard(geosets[i].triangle, geosets[i].triangles))
+                if (GeosetBillboard(geosets[i].triangle, geosets[i].triangles))
                 {
                     RenderBillboard(gl, i, characterRotation, geosets[i].triangle, geosets[i].triangles);
                 }
@@ -367,39 +367,6 @@ namespace WoW_Character_Viewer_Classic.Models
                 }
             }
             gl.Disable(OpenGL.GL_TEXTURE_2D);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if(!disposed)
-            {
-                if(disposing)
-                {
-                }
-                model = null;
-                vertices = null;
-                indices = null;
-                triangles = null;
-                geosets = null;
-                billboards = null;
-                texture1 = null;
-                texture2 = null;
-                texture3 = null;
-                textures = null;
-                texturesPath = null;
-                disposed = true;
-            }
-        }
-
-        ~Mount()
-        {
-            Dispose(false);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

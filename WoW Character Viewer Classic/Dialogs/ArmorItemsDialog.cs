@@ -19,23 +19,21 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         string slot;
         string characterRace;
         string characterClass;
+        List<ItemsItem> list;
 
         public ArmorItemsDialog()
         {
             InitializeComponent();
+            list = new List<ItemsItem>();
         }
 
         public ItemsItem Selected { get { return selected; } }
 
         public void GetItemList(string slot, string characterRace, string characterClass, CharacterModel character)
         {
-            this.character = null;
             this.character = character;
-            this.slot = null;
             this.slot = slot;
-            this.characterRace = null;
             this.characterRace = characterRace;
-            this.characterClass = null;
             this.characterClass = characterClass;
             rotation = 0;
             searchTextBox.Text = "";
@@ -44,7 +42,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void ClassType()
         {
-            switch(characterClass)
+            switch (characterClass)
             {
                 case "Warrior":
                 case "Paladin":
@@ -85,7 +83,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         string ItemsFile()
         {
             string file = "";
-            switch(slot)
+            switch (slot)
             {
                 case "head":
                     file = "HeadItems.xml";
@@ -117,10 +115,11 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void RaceFilter()
         {
-            List<ItemsItem> list = new List<ItemsItem>(items.Item);
-            foreach(ItemsItem item in items.Item)
+            list.Clear();
+            list.AddRange(items.Item);
+            foreach (ItemsItem item in items.Item)
             {
-                if(!WoWHelper.RaceMatch(item.AllowableRace, characterRace))
+                if (!WoWHelper.RaceMatch(item.AllowableRace, characterRace))
                 {
                     list.Remove(item);
                 }
@@ -130,10 +129,11 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void ClassFilter()
         {
-            List<ItemsItem> list = new List<ItemsItem>(items.Item);
-            foreach(ItemsItem item in items.Item)
+            list.Clear();
+            list.AddRange(items.Item);
+            foreach (ItemsItem item in items.Item)
             {
-                if(!WoWHelper.ClassMatch(item.AllowableClass, characterClass))
+                if (!WoWHelper.ClassMatch(item.AllowableClass, characterClass))
                 {
                     list.Remove(item);
                 }
@@ -174,20 +174,20 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void searchButton_Click(object sender, EventArgs e)
         {
-            if(searchTextBox.Text != "")
+            if (searchTextBox.Text != "")
             {
                 itemsListBox.Items.Clear();
-                List<ItemsItem> list = new List<ItemsItem>();
-                foreach(ItemsItem item in items.Item)
+                list.Clear();
+                foreach (ItemsItem item in items.Item)
                 {
-                    if(item.Name.ToLower().Contains(searchTextBox.Text.ToLower()))
+                    if (item.Name.ToLower().Contains(searchTextBox.Text.ToLower()))
                     {
                         list.Add(item);
                     }
                 }
                 list.Sort((x, y) => x.Name.CompareTo(y.Name));
                 itemsListBox.Items.AddRange(list.ToArray());
-                if(itemsListBox.Items.Count > 0)
+                if (itemsListBox.Items.Count > 0)
                 {
                     itemsListBox.SelectedIndex = 0;
                     itemsListBox.Focus();
@@ -204,7 +204,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         {
             selected = (ItemsItem)itemsListBox.SelectedItem;
             character.Gear[WoWHelper.Slot(slot)] = selected;
-            if(selected.Name == "None")
+            if (selected.Name == "None")
             {
                 armorTooltip.Hide(itemsListBox);
             }
@@ -223,22 +223,20 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         void typeRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton radioButton = (RadioButton)sender;
-            if(radioButton.Checked)
+            if (radioButton.Checked)
             {
-                selected = null;
-                items = null;
                 itemsListBox.Items.Clear();
                 radioButton.Font = new Font(radioButton.Font, FontStyle.Bold);
                 XmlSerializer serializer = new XmlSerializer(typeof(Items));
-                using(StreamReader reader = new StreamReader(@"Data\" + radioButton.Text + ItemsFile()))
+                using (StreamReader reader = new StreamReader(@"Data\" + radioButton.Text + ItemsFile()))
                 {
                     items = (Items)serializer.Deserialize(reader.BaseStream);
                 }
                 RaceFilter();
                 ClassFilter();
-                List<ItemsItem> list = new List<ItemsItem>(items.Item);
+                list.Clear();
+                list.AddRange(items.Item);
                 list.Sort((x, y) => x.Name.CompareTo(y.Name));
-                item = null;
                 item = new ItemsItem
                 {
                     ID = "0",
@@ -260,12 +258,11 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void ArmorItemsDialog_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
-                if(searchTextBox.Focused)
+                if (searchTextBox.Focused)
                 {
                     searchButton_Click(searchButton, null);
-                    AcceptButton = null;
                 }
                 else
                 {
@@ -278,7 +275,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void ArmorItemsDialog_LocationChanged(object sender, EventArgs e)
         {
-            if(selected.Name == "None")
+            if (selected.Name == "None")
             {
                 armorTooltip.Hide(itemsListBox);
             }

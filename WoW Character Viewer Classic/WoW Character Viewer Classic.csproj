@@ -138,11 +138,11 @@
     <Compile Include="Dialogs\WeaponItemsDialog.Designer.cs">
       <DependentUpon>WeaponItemsDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ArmortemsDialog.cs">
+    <Compile Include="Dialogs\ArmorItemsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ArmortemsDialog.Designer.cs">
-      <DependentUpon>ArmortemsDialog.cs</DependentUpon>
+    <Compile Include="Dialogs\ArmorItemsDialog.Designer.cs">
+      <DependentUpon>ArmorItemsDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\CosmetictemsDialog.cs">
       <SubType>Form</SubType>
@@ -227,8 +227,8 @@
     <EmbeddedResource Include="Dialogs\WeaponItemsDialog.resx">
       <DependentUpon>WeaponItemsDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ArmortemsDialog.resx">
-      <DependentUpon>ArmortemsDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Dialogs\ArmorItemsDialog.resx">
+      <DependentUpon>ArmorItemsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\CosmetictemsDialog.resx">
       <DependentUpon>CosmetictemsDialog.cs</DependentUpon>

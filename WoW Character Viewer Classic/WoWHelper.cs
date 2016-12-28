@@ -9,7 +9,7 @@ namespace WoW_Character_Viewer_Classic
         public static Color QalityColor(int quality)
         {
             Color color = new Color();
-            switch(quality)
+            switch (quality)
             {
                 case -1:
                     color = Color.FromArgb(25, 25, 25);
@@ -42,7 +42,7 @@ namespace WoW_Character_Viewer_Classic
         public static Color ClassColor(string name)
         {
             Color color = new Color();
-            switch(name)
+            switch (name)
             {
                 case "Warrior":
                     color = Color.FromArgb(199, 156, 110);
@@ -78,7 +78,7 @@ namespace WoW_Character_Viewer_Classic
         public static int Slot(string name)
         {
             int slot = -1;
-            switch(name)
+            switch (name)
             {
                 case "head":
                     slot = 0;
@@ -162,7 +162,7 @@ namespace WoW_Character_Viewer_Classic
         public static string Slot(int index)
         {
             string slot = "";
-            switch(index)
+            switch (index)
             {
                 case 0:
                     slot = "head";
@@ -246,7 +246,7 @@ namespace WoW_Character_Viewer_Classic
         public static string SlotIcon(string slot, string characterClass)
         {
             string icon = "";
-            switch(slot)
+            switch (slot)
             {
                 case "head":
                     icon = "UI-PaperDoll-Slot-Head";
@@ -318,7 +318,7 @@ namespace WoW_Character_Viewer_Classic
         public static string SlotIcon(int slot, string characterClass)
         {
             string icon = "";
-            switch(slot)
+            switch (slot)
             {
                 case 0:
                     icon = "UI-PaperDoll-Slot-Head";
@@ -390,7 +390,7 @@ namespace WoW_Character_Viewer_Classic
         public static string SlotName(string slot, string characterClass)
         {
             string name = "";
-            switch(slot)
+            switch (slot)
             {
                 case "head":
                 case "neck":
@@ -437,7 +437,7 @@ namespace WoW_Character_Viewer_Classic
         static string ClassSlotName(string slot, string characterClass)
         {
             string name = "";
-            switch(characterClass)
+            switch (characterClass)
             {
                 case "Warrior":
                 case "Hunter":
@@ -461,7 +461,7 @@ namespace WoW_Character_Viewer_Classic
         static string ClassSlotName(int slot, string characterClass)
         {
             string name = "";
-            switch(characterClass)
+            switch (characterClass)
             {
                 case "Warrior":
                 case "Hunter":
@@ -485,7 +485,7 @@ namespace WoW_Character_Viewer_Classic
         public static bool RaceMatch(int raceMask, string characterRace)
         {
             int mask = 0;
-            switch(characterRace)
+            switch (characterRace)
             {
                 case "Human":
                     mask = 1;
@@ -518,7 +518,7 @@ namespace WoW_Character_Viewer_Classic
         public static bool ClassMatch(int classMask, string characterClass)
         {
             int mask = 0;
-            switch(characterClass)
+            switch (characterClass)
             {
                 case "Warrior":
                     mask = 1;
@@ -553,7 +553,7 @@ namespace WoW_Character_Viewer_Classic
 
         public static bool SlotMatch(string itemSlot, string slot)
         {
-            switch(slot)
+            switch (slot)
             {
                 case "mainHand":
                     return itemSlot != "Off Hand";
@@ -567,7 +567,7 @@ namespace WoW_Character_Viewer_Classic
         static string ClassName(int classMask)
         {
             string name = "";
-            switch(classMask)
+            switch (classMask)
             {
                 case 1:
                     name = "Warrior";
@@ -604,9 +604,9 @@ namespace WoW_Character_Viewer_Classic
         {
             int mask = 1;
             List<string> list = new List<string>();
-            for(int i = 0; i < 9; i++)
+            for (int i = 0; i < 9; i++)
             {
-                if((classMask & mask) == mask)
+                if ((classMask & mask) == mask)
                 {
                     list.Add(ClassName(classMask & mask));
                 }
@@ -618,7 +618,7 @@ namespace WoW_Character_Viewer_Classic
         public static int SheatheAttachment(int sheathe, bool offhand)
         {
             int attachment = -1;
-            switch(sheathe)
+            switch (sheathe)
             {
                 case 1:
                     attachment = offhand ? 30 : 31;
@@ -639,7 +639,7 @@ namespace WoW_Character_Viewer_Classic
         public static Quaternion SheatheRotation(int sheathe, bool offhand)
         {
             Quaternion quaternion = Quaternion.Identity;
-            switch(sheathe)
+            switch (sheathe)
             {
                 case 1:
                     quaternion = offhand ? new Quaternion(new Vector3D(0f, 1f, 0f), -90f) : new Quaternion(new Vector3D(0f, 1f, 0f), 90f);

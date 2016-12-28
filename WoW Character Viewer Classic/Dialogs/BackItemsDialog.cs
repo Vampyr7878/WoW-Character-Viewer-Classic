@@ -15,33 +15,32 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         ItemsItem item;
         CharacterModel character;
         float rotation;
+        List<ItemsItem> list;
 
         public BackItemsDialog()
         {
             InitializeComponent();
+            list = new List<ItemsItem>();
         }
 
         public ItemsItem Selected { get { return selected; } }
 
         public void GetItemList(string characterRace, string characterClass, CharacterModel character)
         {
-            selected = null;
-            items = null;
             searchTextBox.Text = "";
             itemsListBox.Items.Clear();
-            this.character = null;
             this.character = character;
             rotation = 0;
             XmlSerializer serializer = new XmlSerializer(typeof(Items));
-            using(StreamReader reader = new StreamReader(@"Data\BackItems.xml"))
+            using (StreamReader reader = new StreamReader(@"Data\BackItems.xml"))
             {
                 items = (Items)serializer.Deserialize(reader.BaseStream);
             }
             RaceFilter(characterRace);
             ClassFilter(characterClass);
-            List<ItemsItem> list = new List<ItemsItem>(items.Item);
+            list.Clear();
+            list.AddRange(items.Item);
             list.Sort((x, y) => x.Name.CompareTo(y.Name));
-            item = null;
             item = new ItemsItem
             {
                 Name = "None",
@@ -56,10 +55,11 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void RaceFilter(string characterRace)
         {
-            List<ItemsItem> list = new List<ItemsItem>(items.Item);
-            foreach(ItemsItem item in items.Item)
+            list.Clear();
+            list.AddRange(items.Item);
+            foreach (ItemsItem item in items.Item)
             {
-                if(!WoWHelper.RaceMatch(item.AllowableRace, characterRace))
+                if (!WoWHelper.RaceMatch(item.AllowableRace, characterRace))
                 {
                     list.Remove(item);
                 }
@@ -69,10 +69,11 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void ClassFilter(string characterClass)
         {
-            List<ItemsItem> list = new List<ItemsItem>(items.Item);
-            foreach(ItemsItem item in items.Item)
+            list.Clear();
+            list.AddRange(items.Item);
+            foreach (ItemsItem item in items.Item)
             {
-                if(!WoWHelper.ClassMatch(item.AllowableClass, characterClass))
+                if (!WoWHelper.ClassMatch(item.AllowableClass, characterClass))
                 {
                     list.Remove(item);
                 }
@@ -112,20 +113,20 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void searchButton_Click(object sender, EventArgs e)
         {
-            if(searchTextBox.Text != "")
+            if (searchTextBox.Text != "")
             {
                 itemsListBox.Items.Clear();
-                List<ItemsItem> list = new List<ItemsItem>();
-                foreach(ItemsItem item in items.Item)
+                list.Clear();
+                foreach (ItemsItem item in items.Item)
                 {
-                    if(item.Name.ToLower().Contains(searchTextBox.Text.ToLower()))
+                    if (item.Name.ToLower().Contains(searchTextBox.Text.ToLower()))
                     {
                         list.Add(item);
                     }
                 }
                 list.Sort((x, y) => x.Name.CompareTo(y.Name));
                 itemsListBox.Items.AddRange(list.ToArray());
-                if(itemsListBox.Items.Count > 0)
+                if (itemsListBox.Items.Count > 0)
                 {
                     itemsListBox.SelectedIndex = 0;
                     itemsListBox.Focus();
@@ -142,7 +143,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         {
             selected = (ItemsItem)itemsListBox.SelectedItem;
             character.Gear[3] = selected;
-            if(selected.Name == "None")
+            if (selected.Name == "None")
             {
                 backTooltip.Hide(itemsListBox);
             }
@@ -160,12 +161,11 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void BackItemsDialog_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
-                if(searchTextBox.Focused)
+                if (searchTextBox.Focused)
                 {
                     searchButton_Click(searchButton, null);
-                    AcceptButton = null;
                 }
                 else
                 {
@@ -178,7 +178,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void BackItemsDialog_LocationChanged(object sender, EventArgs e)
         {
-            if(selected.Name == "None")
+            if (selected.Name == "None")
             {
                 backTooltip.Hide(itemsListBox);
             }

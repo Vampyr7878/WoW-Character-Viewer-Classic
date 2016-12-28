@@ -20,10 +20,12 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         string slot;
         string characterRace;
         string characterClass;
+        List<ItemsItem> list;
 
         public WeaponItemsDialog()
         {
             InitializeComponent();
+            list = new List<ItemsItem>();
         }
 
         public ItemsItem Selected { get { return selected; } }
@@ -33,13 +35,9 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         public void GetItemList(string slot, string characterRace, string characterClass, CharacterModel character)
         {
             offHand = character.Gear[17];
-            this.character = null;
             this.character = character;
-            this.slot = null;
             this.slot = slot;
-            this.characterRace = null;
             this.characterRace = characterRace;
-            this.characterClass = null;
             this.characterClass = characterClass;
             rotation = 0;
             searchTextBox.Text = "";
@@ -48,7 +46,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void SlotItems()
         {
-            switch(slot)
+            switch (slot)
             {
                 case "mainHand":
                     ClassTypeMainHand();
@@ -74,7 +72,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             wandRadioButton.Visible = false;
             shieldRadioButton.Visible = false;
             heldInOffHandRadioButton.Visible = false;
-            switch(characterClass)
+            switch (characterClass)
             {
                 case "Warrior":
                     daggerRadioButton.Visible = true;
@@ -189,7 +187,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void ClassCheckMainHand()
         {
-            switch(characterClass)
+            switch (characterClass)
             {
                 case "Warrior":
                     sword1HRadioButton.Checked = false;
@@ -238,7 +236,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             thrownRadioButton.Visible = false;
             wandRadioButton.Visible = false;
             heldInOffHandRadioButton.Visible = true;
-            switch(characterClass)
+            switch (characterClass)
             {
                 case "Warrior":
                     daggerRadioButton.Visible = true;
@@ -362,7 +360,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void ClassCheckOffHand()
         {
-            switch(characterClass)
+            switch (characterClass)
             {
                 case "Warrior":
                     sword1HRadioButton.Checked = false;
@@ -417,7 +415,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             sword2HRadioButton.Visible = false;
             shieldRadioButton.Visible = false;
             heldInOffHandRadioButton.Visible = false;
-            switch(characterClass)
+            switch (characterClass)
             {
                 case "Warrior":
                     bowRadioButton.Visible = true;
@@ -466,7 +464,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void ClassCheckRanged()
         {
-            switch(characterClass)
+            switch (characterClass)
             {
                 case "Warrior":
                     bowRadioButton.Checked = false;
@@ -497,7 +495,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         string ItemsFile(string type)
         {
-            if(type == "Held In Off-Hand")
+            if (type == "Held In Off-Hand")
             {
                 return "HeldInOffHand";
             }
@@ -506,10 +504,11 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void RaceFilter()
         {
-            List<ItemsItem> list = new List<ItemsItem>(items.Item);
-            foreach(ItemsItem item in items.Item)
+            list.Clear();
+            list.AddRange(items.Item);
+            foreach (ItemsItem item in items.Item)
             {
-                if(!WoWHelper.RaceMatch(item.AllowableRace, characterRace))
+                if (!WoWHelper.RaceMatch(item.AllowableRace, characterRace))
                 {
                     list.Remove(item);
                 }
@@ -519,10 +518,11 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void ClassFilter()
         {
-            List<ItemsItem> list = new List<ItemsItem>(items.Item);
-            foreach(ItemsItem item in items.Item)
+            list.Clear();
+            list.AddRange(items.Item);
+            foreach (ItemsItem item in items.Item)
             {
-                if(!WoWHelper.ClassMatch(item.AllowableClass, characterClass))
+                if (!WoWHelper.ClassMatch(item.AllowableClass, characterClass))
                 {
                     list.Remove(item);
                 }
@@ -532,10 +532,11 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void SlotFilter()
         {
-            List<ItemsItem> list = new List<ItemsItem>(items.Item);
-            foreach(ItemsItem item in items.Item)
+            list.Clear();
+            list.AddRange(items.Item);
+            foreach (ItemsItem item in items.Item)
             {
-                if(!WoWHelper.SlotMatch(item.Slot, slot))
+                if (!WoWHelper.SlotMatch(item.Slot, slot))
                 {
                     list.Remove(item);
                 }
@@ -576,20 +577,20 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void searchButton_Click(object sender, EventArgs e)
         {
-            if(searchTextBox.Text != "")
+            if (searchTextBox.Text != "")
             {
                 itemsListBox.Items.Clear();
-                List<ItemsItem> list = new List<ItemsItem>();
-                foreach(ItemsItem item in items.Item)
+                list.Clear();
+                foreach (ItemsItem item in items.Item)
                 {
-                    if(item.Name.ToLower().Contains(searchTextBox.Text.ToLower()))
+                    if (item.Name.ToLower().Contains(searchTextBox.Text.ToLower()))
                     {
                         list.Add(item);
                     }
                 }
                 list.Sort((x, y) => x.Name.CompareTo(y.Name));
                 itemsListBox.Items.AddRange(list.ToArray());
-                if(itemsListBox.Items.Count > 0)
+                if (itemsListBox.Items.Count > 0)
                 {
                     itemsListBox.SelectedIndex = 0;
                     itemsListBox.Focus();
@@ -606,11 +607,11 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         {
             selected = (ItemsItem)itemsListBox.SelectedItem;
             character.Gear[WoWHelper.Slot(slot)] = selected;
-            if(shieldRadioButton.Checked)
+            if (shieldRadioButton.Checked)
             {
                 weaponTooltip.Hide(itemsListBox);
                 heldInOffHandTooltip.Hide(itemsListBox);
-                if(selected.Name == "None")
+                if (selected.Name == "None")
                 {
                     shieldTooltip.Hide(itemsListBox);
                 }
@@ -620,11 +621,11 @@ namespace WoW_Character_Viewer_Classic.Dialogs
                     shieldTooltip.Show(selected.Name, itemsListBox, itemsListBox.Size.Width + 6 + openGLControl.Width, 0);
                 }
             }
-            else if(heldInOffHandRadioButton.Checked)
+            else if (heldInOffHandRadioButton.Checked)
             {
                 weaponTooltip.Hide(itemsListBox);
                 shieldTooltip.Hide(itemsListBox);
-                if(selected.Name == "None")
+                if (selected.Name == "None")
                 {
                     heldInOffHandTooltip.Hide(itemsListBox);
                 }
@@ -638,7 +639,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             {
                 shieldTooltip.Hide(itemsListBox);
                 heldInOffHandTooltip.Hide(itemsListBox);
-                if(selected.Name == "None")
+                if (selected.Name == "None")
                 {
                     weaponTooltip.Hide(itemsListBox);
                 }
@@ -658,11 +659,10 @@ namespace WoW_Character_Viewer_Classic.Dialogs
         void typeRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton radioButton = (RadioButton)sender;
-            if(radioButton.Checked)
+            if (radioButton.Checked)
             {
-                if(radioButton.Text == "Polearm" || radioButton.Text == "Staff" || radioButton.Text.Contains("2H"))
+                if (radioButton.Text == "Polearm" || radioButton.Text == "Staff" || radioButton.Text.Contains("2H"))
                 {
-                    character.Gear[17] = null;
                     character.Gear[17] = new ItemsItem
                     {
                         Name = "None",
@@ -673,24 +673,21 @@ namespace WoW_Character_Viewer_Classic.Dialogs
                 }
                 else
                 {
-                    character.Gear[17] = null;
                     character.Gear[17] = offHand;
                 }
-                selected = null;
-                items = null;
                 itemsListBox.Items.Clear();
                 radioButton.Font = new Font(radioButton.Font, FontStyle.Bold);
                 XmlSerializer serializer = new XmlSerializer(typeof(Items));
-                using(StreamReader reader = new StreamReader(@"Data\" + ItemsFile(radioButton.Text) + "Items.xml"))
+                using (StreamReader reader = new StreamReader(@"Data\" + ItemsFile(radioButton.Text) + "Items.xml"))
                 {
                     items = (Items)serializer.Deserialize(reader.BaseStream);
                 }
                 RaceFilter();
                 ClassFilter();
                 SlotFilter();
-                List<ItemsItem> list = new List<ItemsItem>(items.Item);
+                list.Clear();
+                list.AddRange(items.Item);
                 list.Sort((x, y) => x.Name.CompareTo(y.Name));
-                item = null;
                 item = new ItemsItem
                 {
                     ID = "0",
@@ -712,12 +709,11 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void WeaponItemsDialog_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
-                if(searchTextBox.Focused)
+                if (searchTextBox.Focused)
                 {
                     searchButton_Click(searchButton, null);
-                    AcceptButton = null;
                 }
                 else
                 {
@@ -730,11 +726,11 @@ namespace WoW_Character_Viewer_Classic.Dialogs
 
         void WeaopnItemsDialog_LocationChanged(object sender, EventArgs e)
         {
-            if(shieldRadioButton.Checked)
+            if (shieldRadioButton.Checked)
             {
                 weaponTooltip.Hide(itemsListBox);
                 heldInOffHandTooltip.Hide(itemsListBox);
-                if(selected.Name == "None")
+                if (selected.Name == "None")
                 {
                     shieldTooltip.Hide(itemsListBox);
                 }
@@ -744,11 +740,11 @@ namespace WoW_Character_Viewer_Classic.Dialogs
                     shieldTooltip.Show(selected.Name, itemsListBox, itemsListBox.Size.Width + 6 + openGLControl.Width, 0);
                 }
             }
-            else if(heldInOffHandRadioButton.Checked)
+            else if (heldInOffHandRadioButton.Checked)
             {
                 weaponTooltip.Hide(itemsListBox);
                 shieldTooltip.Hide(itemsListBox);
-                if(selected.Name == "None")
+                if (selected.Name == "None")
                 {
                     heldInOffHandTooltip.Hide(itemsListBox);
                 }
@@ -762,7 +758,7 @@ namespace WoW_Character_Viewer_Classic.Dialogs
             {
                 shieldTooltip.Hide(itemsListBox);
                 heldInOffHandTooltip.Hide(itemsListBox);
-                if(selected.Name == "None")
+                if (selected.Name == "None")
                 {
                     weaponTooltip.Hide(itemsListBox);
                 }

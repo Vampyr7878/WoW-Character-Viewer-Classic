@@ -15,12 +15,12 @@ namespace WoW_Character_Viewer_Classic.Controls
 
         protected override void OnDrawItem(DrawItemEventArgs e)
         {
-            if(e.Index >= Items.Count || e.Index <= -1)
+            if (e.Index >= Items.Count || e.Index <= -1)
             {
                 return;
             }
             ItemsItem item = (ItemsItem)Items[e.Index];
-            if(item == null)
+            if (item == null)
             {
                 return;
             }
@@ -33,10 +33,6 @@ namespace WoW_Character_Viewer_Classic.Controls
             Font font = (e.State & DrawItemState.Selected) == DrawItemState.Selected ? bold : Font;
             Color color = item.Name == "None" ? Color.White : WoWHelper.QalityColor(item.Quality);
             graphics.DrawString(item.Name, font, new SolidBrush(color), 15, e.Bounds.Y + (e.Bounds.Height - stringSize.Height) / 2);
-            graphics = null;
-            item = null;
-            icon = null;
-            font = null;
         }
     }
 }

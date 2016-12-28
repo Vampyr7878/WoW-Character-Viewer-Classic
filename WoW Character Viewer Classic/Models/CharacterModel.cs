@@ -1,6 +1,5 @@
 ﻿using SharpGL;
 using SharpGL.SceneGraph.Assets;
-using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -9,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace WoW_Character_Viewer_Classic.Models
 {
-    public abstract class CharacterModel : IDisposable
+    public abstract class CharacterModel
     {
         Model model;
         Model standing;
@@ -38,28 +37,25 @@ namespace WoW_Character_Viewer_Classic.Models
         protected string facialName;
         protected string[] facialNames;
         protected int facialsCount;
-        bool disposed;
+        Vector3D position;
+        Quaternion rotation;
+        Vector3D scale;
 
         protected CharacterModel(string file)
         {
-            disposed = false;
+            position = new Vector3D();
+            rotation = new Quaternion();
+            scale = new Vector3D();
             XmlSerializer serializer = new XmlSerializer(typeof(Model));
-            using(StreamReader reader = new StreamReader(file))
+            using (StreamReader reader = new StreamReader(file))
             {
                 standing = (Model)serializer.Deserialize(reader);
-                reader.Dispose();
             }
-            using(StreamReader reader = new StreamReader(file.Replace(".xml", "Mounted.xml")))
+            using (StreamReader reader = new StreamReader(file.Replace(".xml", "Mounted.xml")))
             {
                 mounted = (Model)serializer.Deserialize(reader);
-                reader.Dispose();
             }
             model = standing;
-            Gear = new ItemsItem[25];
-            Skeleton = false;
-            Ranged = false;
-            Sheathe = false;
-            Mounted = false;
             texturesPath = @"Character\" + model.Name.Replace("Female", "").Replace("Male", "") + @"\";
             objectComponentsPath = @"Item\ObjectComponents\";
             textureComponentsPath = @"Item\TextureComponents\";
@@ -69,25 +65,20 @@ namespace WoW_Character_Viewer_Classic.Models
             geosets = model.View.Geosets;
             bones = model.Bones;
             textures = new Texture[model.Textures.Length];
-            for(int i = 0; i < textures.Length; i++)
+            for (int i = 0; i < textures.Length; i++)
             {
                 textures[i] = new Texture();
             }
             billboards = new List<int>();
-            for(int i = 0; i < model.Bones.Length; i++)
+            for (int i = 0; i < model.Bones.Length; i++)
             {
-                if((model.Bones[i].Billboard & 8) == 8)
+                if ((model.Bones[i].Billboard & 8) == 8)
                 {
                     billboards.Add(i);
                 }
             }
             skinName = "Skin Color: ";
-            Skin = 0;
             faceName = "Face: ";
-            Face = 0;
-            Hair = 0;
-            Color = 0;
-            Facial = 0;
             GetHairNames();
             GetFacialNames();
             mount = new Mount();
@@ -100,7 +91,6 @@ namespace WoW_Character_Viewer_Classic.Models
                 new ObjectComponent(),
                 new ObjectComponent()
             };
-            serializer = null;
         }
 
         public Model Model { get { return model; } }
@@ -151,12 +141,27 @@ namespace WoW_Character_Viewer_Classic.Models
 
         public int FacialsCount { get { return facialsCount; } }
 
+        public void Initialize()
+        {
+            model = standing;
+            Gear = new ItemsItem[25];
+            Skeleton = false;
+            Ranged = false;
+            Sheathe = false;
+            Mounted = false;
+            Skin = 0;
+            Face = 0;
+            Hair = 0;
+            Color = 0;
+            Facial = 0;
+        }
+
         public void Mount(bool mounted)
         {
             Mounted = mounted;
-            if(Mounted)
+            if (Mounted)
             {
-                if(Gear[24].ID != "0")
+                if (Gear[24].ID != "0")
                 {
                     model = this.mounted;
                     Ranged = false;
@@ -186,7 +191,7 @@ namespace WoW_Character_Viewer_Classic.Models
         public string[] GetGear()
         {
             string[] GearID = new string[25];
-            for(int i = 0; i < 25; i++)
+            for (int i = 0; i < 25; i++)
             {
                 GearID[i] = Gear[i].ID;
             }
@@ -200,9 +205,9 @@ namespace WoW_Character_Viewer_Classic.Models
 
         protected void MakeTextures(OpenGL gl)
         {
-            for(int i = 0; i < textures.Length; i++)
+            for (int i = 0; i < textures.Length; i++)
             {
-                switch(model.Textures[i].type)
+                switch (model.Textures[i].type)
                 {
                     case 0:
                         MakeTexture(gl, i);
@@ -226,60 +231,61 @@ namespace WoW_Character_Viewer_Classic.Models
         void MakeTexture(OpenGL gl, int index)
         {
             textures[index].Destroy(gl);
-            Bitmap bitmap = LoadBitmap(model.Textures[index].file.Replace(".BLP", ".PNG"));
-            textures[index].Create(gl, bitmap);
-            bitmap.Dispose();
-            bitmap = null;
+            using (Bitmap bitmap = LoadBitmap(model.Textures[index].file.Replace(".BLP", ".PNG")))
+            {
+                textures[index].Create(gl, bitmap);
+            }
         }
 
         void MakeBodyTexture(OpenGL gl, int index)
         {
             textures[index].Destroy(gl);
             string gender = model.Name.Contains("Female") ? @"Female\" : @"Male\";
-            Bitmap bitmap = LoadBitmap(texturesPath + gender + model.Name + "Skin00_" + Number(Skin) + ".png");
-            bitmap = new Bitmap(bitmap);
-            Graphics graphics = Graphics.FromImage(bitmap);
-            if(!LegUpper())
+            using (Bitmap bitmap = LoadBitmap(texturesPath + gender + model.Name + "Skin00_" + Number(Skin) + ".png"))
             {
-                DrawLayer(graphics, texturesPath + gender + model.Name + "NakedPelvisSkin00_" + Number(Skin) + ".png", 128, 96);
+                using (Bitmap image = new Bitmap(bitmap))
+                {
+                    using (Graphics graphics = Graphics.FromImage(image))
+                    {
+                        if (!LegUpper())
+                        {
+                            DrawLayer(graphics, texturesPath + gender + model.Name + "NakedPelvisSkin00_" + Number(Skin) + ".png", 128, 96);
+                        }
+                        if (model.Name.Contains("Female") && !TorsoUpper())
+                        {
+                            DrawLayer(graphics, texturesPath + gender + model.Name + "NakedTorsoSkin00_" + Number(Skin) + ".png", 128, 0);
+                        }
+                        DrawLayer(graphics, texturesPath + gender + model.Name + "FaceUpper" + Number(Face) + "_" + Number(Skin) + ".png", 0, 160);
+                        DrawLayer(graphics, texturesPath + gender + model.Name + "FaceLower" + Number(Face) + "_" + Number(Skin) + ".png", 0, 192);
+                        DrawLayer(graphics, texturesPath + "FacialUpperHair" + GetFacialUpper() + ".png", 0, 160);
+                        DrawLayer(graphics, texturesPath + "FacialLowerHair" + GetFacialLower() + ".png", 0, 192);
+                        DrawLayer(graphics, texturesPath + "ScalpUpperHair" + GetScalpUpper() + ".png", 0, 160);
+                        DrawLayer(graphics, texturesPath + "ScalpLowerHair" + GetScalpLower() + ".png", 0, 192);
+                        MakeLegsTexture(graphics, gender);
+                        MakeShirtTexture(graphics, gender);
+                        MakeChestTexture(graphics, gender);
+                        MakeTabardTexture(graphics, gender);
+                        MakeWristTexture(graphics, gender);
+                        MakeHandsTexture(graphics, gender);
+                        MakeWaistTexture(graphics, gender);
+                        MakeFeetTexture(graphics, gender);
+                        textures[index].Create(gl, image);
+                    }
+                }
             }
-            if(model.Name.Contains("Female") && !TorsoUpper())
-            {
-                DrawLayer(graphics, texturesPath + gender + model.Name + "NakedTorsoSkin00_" + Number(Skin) + ".png", 128, 0);
-            }
-            DrawLayer(graphics, texturesPath + gender + model.Name + "FaceUpper" + Number(Face) + "_" + Number(Skin) + ".png", 0, 160);
-            DrawLayer(graphics, texturesPath + gender + model.Name + "FaceLower" + Number(Face) + "_" + Number(Skin) + ".png", 0, 192);
-            DrawLayer(graphics, texturesPath + "FacialUpperHair" + GetFacialUpper() + ".png", 0, 160);
-            DrawLayer(graphics, texturesPath + "FacialLowerHair" + GetFacialLower() + ".png", 0, 192);
-            DrawLayer(graphics, texturesPath + "ScalpUpperHair" + GetScalpUpper() + ".png", 0, 160);
-            DrawLayer(graphics, texturesPath + "ScalpLowerHair" + GetScalpLower() + ".png", 0, 192);
-            MakeLegsTexture(graphics, gender);
-            MakeShirtTexture(graphics, gender);
-            MakeChestTexture(graphics, gender);
-            MakeTabardTexture(graphics, gender);
-            MakeWristTexture(graphics, gender);
-            MakeHandsTexture(graphics, gender);
-            MakeWaistTexture(graphics, gender);
-            MakeFeetTexture(graphics, gender);
-            textures[index].Create(gl, bitmap);
-            graphics.Dispose();
-            graphics = null;
-            bitmap.Dispose();
-            bitmap = null;
-            gender = null;
         }
 
         bool LegUpper()
         {
-            if(Gear[4].Textures != null && !string.IsNullOrEmpty(Gear[4].Textures.LegUpper))
+            if (Gear[4].Textures != null && !string.IsNullOrEmpty(Gear[4].Textures.LegUpper))
             {
                 return true;
             }
-            if(Gear[5].Textures != null && !string.IsNullOrEmpty(Gear[5].Textures.LegUpper))
+            if (Gear[5].Textures != null && !string.IsNullOrEmpty(Gear[5].Textures.LegUpper))
             {
                 return true;
             }
-            if(Gear[6].Textures != null && !string.IsNullOrEmpty(Gear[6].Textures.LegUpper))
+            if (Gear[6].Textures != null && !string.IsNullOrEmpty(Gear[6].Textures.LegUpper))
             {
                 return true;
             }
@@ -288,11 +294,11 @@ namespace WoW_Character_Viewer_Classic.Models
 
         bool TorsoUpper()
         {
-            if(Gear[4].Textures != null && !string.IsNullOrEmpty(Gear[4].Textures.TorsoUpper))
+            if (Gear[4].Textures != null && !string.IsNullOrEmpty(Gear[4].Textures.TorsoUpper))
             {
                 return true;
             }
-            if(Gear[10].Textures != null && !string.IsNullOrEmpty(Gear[10].Textures.TorsoUpper))
+            if (Gear[10].Textures != null && !string.IsNullOrEmpty(Gear[10].Textures.TorsoUpper))
             {
                 return true;
             }
@@ -301,7 +307,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         void MakeLegsTexture(Graphics graphics, string gender)
         {
-            if(Gear[10].Textures != null)
+            if (Gear[10].Textures != null)
             {
                 DrawLayer(graphics, ArmorTexture(@"LegUpperTexture\" + Gear[10].Textures.LegUpper, gender), 128, 96);
                 DrawLayer(graphics, ArmorTexture(@"LegLowerTexture\" + Gear[10].Textures.LegLower, gender), 128, 160);
@@ -310,7 +316,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         void MakeShirtTexture(Graphics graphics, string gender)
         {
-            if(Gear[5].Textures != null)
+            if (Gear[5].Textures != null)
             {
                 DrawLayer(graphics, ArmorTexture(@"ArmUpperTexture\" + Gear[5].Textures.ArmUpper, gender), 0, 0);
                 DrawLayer(graphics, ArmorTexture(@"ArmLowerTexture\" + Gear[5].Textures.ArmLower, gender), 0, 64);
@@ -321,18 +327,18 @@ namespace WoW_Character_Viewer_Classic.Models
 
         void MakeChestTexture(Graphics graphics, string gender)
         {
-            if(Gear[4].Textures != null)
+            if (Gear[4].Textures != null)
             {
                 DrawLayer(graphics, ArmorTexture(@"ArmUpperTexture\" + Gear[4].Textures.ArmUpper, gender), 0, 0);
                 DrawLayer(graphics, ArmorTexture(@"ArmLowerTexture\" + Gear[4].Textures.ArmLower, gender), 0, 64);
                 DrawLayer(graphics, ArmorTexture(@"TorsoUpperTexture\" + Gear[4].Textures.TorsoUpper, gender), 128, 0);
                 DrawLayer(graphics, ArmorTexture(@"TorsoLowerTexture\" + Gear[4].Textures.TorsoLower, gender), 128, 64);
                 DrawLayer(graphics, ArmorTexture(@"LegUpperTexture\" + Gear[4].Textures.LegUpper, gender), 128, 96);
-                if(Gear[4].Models.Robe == "" && (Gear[10].Models == null || Gear[10].Models.Robe == ""))
+                if (Gear[4].Models.Robe == "" && (Gear[10].Models == null || Gear[10].Models.Robe == ""))
                 {
                     DrawLayer(graphics, ArmorTexture(@"LegLowerTexture\" + Gear[4].Textures.LegLower, gender), 128, 160);
                 }
-                else if(Gear[4].Models.Robe == "Robe1")
+                else if (Gear[4].Models.Robe == "Robe1")
                 {
                     DrawLayer(graphics, ArmorTexture(@"LegLowerTexture\" + Gear[4].Textures.LegLower, gender), 128, 160);
                 }
@@ -341,7 +347,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         void MakeTabardTexture(Graphics graphics, string gender)
         {
-            if(Gear[6].Textures != null)
+            if (Gear[6].Textures != null)
             {
                 DrawLayer(graphics, ArmorTexture(@"TorsoUpperTexture\" + Gear[6].Textures.TorsoUpper, gender), 128, 0);
                 DrawLayer(graphics, ArmorTexture(@"TorsoLowerTexture\" + Gear[6].Textures.TorsoLower, gender), 128, 64);
@@ -350,7 +356,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         void MakeWristTexture(Graphics graphics, string gender)
         {
-            if(Gear[7].Textures != null && (Gear[4].Models == null || Gear[4].Models.Sleeve == ""))
+            if (Gear[7].Textures != null && (Gear[4].Models == null || Gear[4].Models.Sleeve == ""))
             {
                 DrawLayer(graphics, ArmorTexture(@"ArmLowerTexture\" + Gear[7].Textures.ArmLower, gender), 0, 64);
             }
@@ -358,9 +364,9 @@ namespace WoW_Character_Viewer_Classic.Models
 
         void MakeHandsTexture(Graphics graphics, string gender)
         {
-            if(Gear[8].Textures != null)
+            if (Gear[8].Textures != null)
             {
-                if(Gear[4].Models == null || Gear[4].Models.Sleeve == "" || Gear[8].Models.Wrist != "Wrist1")
+                if (Gear[4].Models == null || Gear[4].Models.Sleeve == "" || Gear[8].Models.Wrist != "Wrist1")
                 {
                     DrawLayer(graphics, ArmorTexture(@"ArmLowerTexture\" + Gear[8].Textures.ArmLower, gender), 0, 64);
                 }
@@ -370,7 +376,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         void MakeWaistTexture(Graphics graphics, string gender)
         {
-            if(Gear[9].Textures != null)
+            if (Gear[9].Textures != null)
             {
                 DrawLayer(graphics, ArmorTexture(@"LegUpperTexture\" + Gear[9].Textures.LegUpper, gender), 128, 96);
             }
@@ -378,13 +384,13 @@ namespace WoW_Character_Viewer_Classic.Models
 
         void MakeFeetTexture(Graphics graphics, string gender)
         {
-            if(Gear[11].Textures != null)
+            if (Gear[11].Textures != null)
             {
-                if((Gear[4].Models == null || Gear[4].Models.Robe == "") && (Gear[10].Models == null || Gear[10].Models.Robe == ""))
+                if ((Gear[4].Models == null || Gear[4].Models.Robe == "") && (Gear[10].Models == null || Gear[10].Models.Robe == ""))
                 {
                     DrawLayer(graphics, ArmorTexture(@"LegLowerTexture\" + Gear[11].Textures.LegLower, gender), 128, 160);
                 }
-                if(!Model.Name.Contains("Tauren") && !Model.Name.Contains("Troll"))
+                if (!Model.Name.Contains("Tauren") && !Model.Name.Contains("Troll"))
                 {
                     DrawLayer(graphics, ArmorTexture(@"FootTexture\" + Gear[11].Textures.Foot, gender), 128, 224);
                 }
@@ -394,7 +400,7 @@ namespace WoW_Character_Viewer_Classic.Models
         string ArmorTexture(string texture, string gender)
         {
             string file = textureComponentsPath + texture + "_U.png";
-            if(!File.Exists(file))
+            if (!File.Exists(file))
             {
                 file = gender == @"Male\" ? file.Replace("_U", "_M") : file.Replace("_U", "_F");
             }
@@ -403,26 +409,26 @@ namespace WoW_Character_Viewer_Classic.Models
 
         void DrawLayer(Graphics graphics, string layer, int x, int y)
         {
-            Bitmap bitmap = LoadBitmap(layer);
-            if(bitmap != null)
+            using (Bitmap bitmap = LoadBitmap(layer))
             {
-                graphics.DrawImage(bitmap, new Point(x, y));
-                bitmap.Dispose();
-                bitmap = null;
+                if (bitmap != null)
+                {
+                    graphics.DrawImage(bitmap, x, y);
+                }
             }
         }
 
         void MakeCapeTexture(OpenGL gl, int index)
         {
             textures[index].Destroy(gl);
-            if(Gear[3].Textures != null)
+            if (Gear[3].Textures != null)
             {
-                Bitmap bitmap = LoadBitmap(objectComponentsPath + @"Cape\" + Gear[3].Textures.Left + ".png");
-                if(bitmap != null)
+                using (Bitmap bitmap = LoadBitmap(objectComponentsPath + @"Cape\" + Gear[3].Textures.Left + ".png"))
                 {
-                    textures[index].Create(gl, bitmap);
-                    bitmap.Dispose();
-                    bitmap = null;
+                    if (bitmap != null)
+                    {
+                        textures[index].Create(gl, bitmap);
+                    }
                 }
             }
         }
@@ -430,12 +436,12 @@ namespace WoW_Character_Viewer_Classic.Models
         void MakeHairTexture(OpenGL gl, int index)
         {
             textures[index].Destroy(gl);
-            Bitmap bitmap = LoadBitmap(texturesPath + "Hair" + GetHairTexture() + "_" + Number(Color) + ".png");
-            if(bitmap != null)
+            using (Bitmap bitmap = LoadBitmap(texturesPath + "Hair" + GetHairTexture() + "_" + Number(Color) + ".png"))
             {
-                textures[index].Create(gl, bitmap);
-                bitmap.Dispose();
-                bitmap = null;
+                if (bitmap != null)
+                {
+                    textures[index].Create(gl, bitmap);
+                }
             }
         }
 
@@ -443,19 +449,18 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             textures[index].Destroy(gl);
             string gender = model.Name.Contains("Female") ? @"Female\" : @"Male\";
-            Bitmap bitmap = LoadBitmap(texturesPath + gender + model.Name + "Skin00_" + Number(Skin) + "_Extra.png");
-            textures[index].Create(gl, bitmap);
-            bitmap.Dispose();
-            bitmap = null;
-            gender = null;
+            using (Bitmap bitmap = LoadBitmap(texturesPath + gender + model.Name + "Skin00_" + Number(Skin) + "_Extra.png"))
+            {
+                textures[index].Create(gl, bitmap);
+            }
         }
 
         Bitmap LoadBitmap(string file)
         {
-            if(File.Exists(file))
+            if (File.Exists(file))
             {
                 Bitmap bitmap;
-                using(StreamReader reader = new StreamReader(file))
+                using (StreamReader reader = new StreamReader(file))
                 {
                     bitmap = new Bitmap(reader.BaseStream);
                 }
@@ -482,19 +487,36 @@ namespace WoW_Character_Viewer_Classic.Models
             EquipMount();
         }
 
+        Vector3D SetVector3D(Vector3D vector, float x, float y, float z)
+        {
+            vector.X = x;
+            vector.Y = y;
+            vector.Z = z;
+            return vector;
+        }
+
+        Quaternion SetQuaternion(Quaternion quaterion, float x, float y, float z, float w)
+        {
+            quaterion.X = x;
+            quaterion.Y = y;
+            quaterion.Z = z;
+            quaterion.W = w;
+            return quaterion;
+        }
+
         void EquipHead()
         {
-            if(Gear[0].ID == "0")
+            if (Gear[0].ID == "0")
             {
                 components[0].Initialize();
             }
             else
             {
                 ModelBone bone = bones[FindAttachment(11).bone];
-                Vector3D position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
-                Quaternion rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
-                Vector3D scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
-                if(components[0].ID != Gear[0].ID)
+                position = SetVector3D(position, bone.Position.x, bone.Position.y, bone.Position.z);
+                rotation = SetQuaternion(rotation, bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
+                scale = SetVector3D(scale, bone.Scale.x, bone.Scale.y, bone.Scale.z);
+                if (components[0].ID != Gear[0].ID)
                 {
                     components[0].Initialize(Gear[0].ID, Gear[0].Models.Left.Replace(".mdx", HeadName()), Gear[0].Textures.Left, objectComponentsPath + @"Head\", position, rotation, scale);
                 }
@@ -502,7 +524,6 @@ namespace WoW_Character_Viewer_Classic.Models
                 {
                     components[0].Modify(position, rotation, scale);
                 }
-                bone = null;
             }
             HideHair();
             HideFacial();
@@ -511,7 +532,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         void EquipShoulders()
         {
-            if(Gear[2].ID == "0")
+            if (Gear[2].ID == "0")
             {
                 components[1].Initialize();
                 components[2].Initialize();
@@ -519,10 +540,10 @@ namespace WoW_Character_Viewer_Classic.Models
             else
             {
                 ModelBone bone = bones[FindAttachment(6).bone];
-                Vector3D position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
-                Quaternion rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
-                Vector3D scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
-                if(components[1].ID != Gear[2].ID)
+                position = SetVector3D(position, bone.Position.x, bone.Position.y, bone.Position.z);
+                rotation = SetQuaternion(rotation, bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
+                scale = SetVector3D(scale, bone.Scale.x, bone.Scale.y, bone.Scale.z);
+                if (components[1].ID != Gear[2].ID)
                 {
                     components[1].Initialize(Gear[2].ID, Gear[2].Models.Left.Replace(".mdx", ".xml"), Gear[2].Textures.Left, objectComponentsPath + @"Shoulder\", position, rotation, scale);
                 }
@@ -530,12 +551,11 @@ namespace WoW_Character_Viewer_Classic.Models
                 {
                     components[1].Modify(position, rotation, scale);
                 }
-                bone = null;
                 bone = bones[FindAttachment(5).bone];
-                position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
-                rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
-                scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
-                if(components[2].ID != Gear[2].ID)
+                position = SetVector3D(position, bone.Position.x, bone.Position.y, bone.Position.z);
+                rotation = SetQuaternion(rotation, bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
+                scale = SetVector3D(scale, bone.Scale.x, bone.Scale.y, bone.Scale.z);
+                if (components[2].ID != Gear[2].ID)
                 {
                     components[2].Initialize(Gear[2].ID, Gear[2].Models.Right.Replace(".mdx", ".xml"), Gear[2].Textures.Right, objectComponentsPath + @"Shoulder\", position, rotation, scale);
                 }
@@ -543,13 +563,12 @@ namespace WoW_Character_Viewer_Classic.Models
                 {
                     components[2].Modify(position, rotation, scale);
                 }
-                bone = null;
             }
         }
 
         void EquipMainHand()
         {
-            if(Gear[16].ID == "0" || (Sheathe && (Gear[16].Sheath == 0 || Gear[16].Sheath == 7)))
+            if (Gear[16].ID == "0" || (Sheathe && (Gear[16].Sheath == 0 || Gear[16].Sheath == 7)))
             {
                 components[3].Initialize();
             }
@@ -557,11 +576,11 @@ namespace WoW_Character_Viewer_Classic.Models
             {
                 int attachment = Sheathe ? WoWHelper.SheatheAttachment(Gear[16].Sheath, false) : 1;
                 ModelBone bone = bones[FindAttachment(attachment).bone];
-                Vector3D position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
-                Quaternion rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
+                position = SetVector3D(position, bone.Position.x, bone.Position.y, bone.Position.z);
+                rotation = SetQuaternion(rotation, bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
                 rotation = Sheathe ? rotation * WoWHelper.SheatheRotation(Gear[16].Sheath, false) : rotation;
-                Vector3D scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
-                if(Gear[16].ID != components[3].ID)
+                scale = SetVector3D(scale, bone.Scale.x, bone.Scale.y, bone.Scale.z);
+                if (Gear[16].ID != components[3].ID)
                 {
                     components[3].Initialize(Gear[16].ID, Gear[16].Models.Left.Replace(".mdx", ".xml"), Gear[16].Textures.Left, objectComponentsPath + @"Weapon\", position, rotation, scale);
                 }
@@ -569,13 +588,12 @@ namespace WoW_Character_Viewer_Classic.Models
                 {
                     components[3].Modify(position, rotation, scale);
                 }
-                bone = null;
             }
         }
 
         void EquipOffHand()
         {
-            if(Gear[17].ID == "0" || (Sheathe && (Gear[17].Sheath == 0 || Gear[17].Sheath == 7)))
+            if (Gear[17].ID == "0" || (Sheathe && (Gear[17].Sheath == 0 || Gear[17].Sheath == 7)))
             {
                 components[4].Initialize();
             }
@@ -584,11 +602,11 @@ namespace WoW_Character_Viewer_Classic.Models
                 int attachment = Sheathe ? WoWHelper.SheatheAttachment(Gear[17].Sheath, true) : Gear[17].Type == "Shield" ? 0 : 2;
                 ModelBone bone = bones[FindAttachment(attachment).bone];
                 string type = Gear[17].Type == "Shield" ? @"Shield\" : @"Weapon\";
-                Vector3D position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
-                Quaternion rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
+                position = SetVector3D(position, bone.Position.x, bone.Position.y, bone.Position.z);
+                rotation = SetQuaternion(rotation, bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
                 rotation = Sheathe ? rotation * WoWHelper.SheatheRotation(Gear[17].Sheath, true) : rotation;
-                Vector3D scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
-                if(Gear[17].ID != components[4].ID)
+                scale = SetVector3D(scale, bone.Scale.x, bone.Scale.y, bone.Scale.z);
+                if (Gear[17].ID != components[4].ID)
                 {
                     components[4].Initialize(Gear[17].ID, Gear[17].Models.Left.Replace(".mdx", ".xml"), Gear[17].Textures.Left, objectComponentsPath + type, position, rotation, scale);
                 }
@@ -596,25 +614,23 @@ namespace WoW_Character_Viewer_Classic.Models
                 {
                     components[4].Modify(position, rotation, scale);
                 }
-                bone = null;
-                type = null;
             }
 
         }
 
         void EquipRanged()
         {
-            if(!Ranged || Gear[18].ID == "0" || Gear[18].Slot == "Relic")
+            if (!Ranged || Gear[18].ID == "0" || Gear[18].Slot == "Relic")
             {
                 components[5].Initialize();
             }
             else
             {
                 ModelBone bone = Gear[18].Type == "Bow" ? bones[FindAttachment(2).bone] : bones[FindAttachment(1).bone];
-                Vector3D position = new Vector3D(bone.Position.x, bone.Position.y, bone.Position.z);
-                Quaternion rotation = new Quaternion(bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
-                Vector3D scale = new Vector3D(bone.Scale.x, bone.Scale.y, bone.Scale.z);
-                if(components[5].ID != Gear[18].ID)
+                position = SetVector3D(position, bone.Position.x, bone.Position.y, bone.Position.z);
+                rotation = SetQuaternion(rotation, bone.Rotation.x, bone.Rotation.y, bone.Rotation.z, bone.Rotation.w);
+                scale = SetVector3D(scale, bone.Scale.x, bone.Scale.y, bone.Scale.z);
+                if (components[5].ID != Gear[18].ID)
                 {
                     components[5].Initialize(Gear[18].ID, Gear[18].Models.Left.Replace(".mdx", ".xml"), Gear[18].Textures.Left, objectComponentsPath + @"Weapon\", position, rotation, scale);
                 }
@@ -622,19 +638,18 @@ namespace WoW_Character_Viewer_Classic.Models
                 {
                     components[5].Modify(position, rotation, scale);
                 }
-                bone = null;
             }
         }
 
         void EquipMount()
         {
-            if(!Mounted || Gear[24].ID == "0")
+            if (!Mounted || Gear[24].ID == "0")
             {
                 mount.Initialize();
             }
             else
             {
-                if(mount.ID != Gear[24].ID)
+                if (mount.ID != Gear[24].ID)
                 {
                     mount.Initialize(Gear[24].ID, Gear[24].Models.Left, Gear[24].Textures.Left, Gear[24].Textures.Right, Gear[24].Textures.ArmUpper, @"Creature\");
                 }
@@ -643,9 +658,9 @@ namespace WoW_Character_Viewer_Classic.Models
 
         ModelAttachment FindAttachment(int id)
         {
-            foreach(ModelAttachment attachment in model.Attachments)
+            foreach (ModelAttachment attachment in model.Attachments)
             {
-                if(attachment.id == id)
+                if (attachment.id == id)
                 {
                     return attachment;
                 }
@@ -656,7 +671,7 @@ namespace WoW_Character_Viewer_Classic.Models
         string HeadName()
         {
             string name = "_" + model.Name.Substring(0, 2);
-            if(model.Name.Contains("Female"))
+            if (model.Name.Contains("Female"))
             {
                 return name + "F.xml";
             }
@@ -670,7 +685,7 @@ namespace WoW_Character_Viewer_Classic.Models
             Blend(gl, geoset);
             gl.Enable(OpenGL.GL_TEXTURE_2D);
             textures[FindTexture(geoset)].Bind(gl);
-            foreach(int billboard in billboards)
+            foreach (int billboard in billboards)
             {
                 x = model.Bones[billboard].Position.x;
                 y = model.Bones[billboard].Position.y;
@@ -680,9 +695,9 @@ namespace WoW_Character_Viewer_Classic.Models
                 gl.Rotate(-Rotation, 0f, 1f, 0f);
                 gl.Translate(-x, -y, -z);
                 gl.Begin(OpenGL.GL_TRIANGLES);
-                for(int i = start; i < start + count; i++)
+                for (int i = start; i < start + count; i++)
                 {
-                    if(vertices[indices[triangles[i]]].Bones[0].index == billboard)
+                    if (vertices[indices[triangles[i]]].Bones[0].index == billboard)
                     {
                         x = vertices[indices[triangles[i]]].Texture.x;
                         y = vertices[indices[triangles[i]]].Texture.y;
@@ -710,7 +725,7 @@ namespace WoW_Character_Viewer_Classic.Models
             gl.Enable(OpenGL.GL_TEXTURE_2D);
             textures[FindTexture(geoset)].Bind(gl);
             gl.Begin(OpenGL.GL_TRIANGLES);
-            for(int i = start; i < start + count; i++)
+            for (int i = start; i < start + count; i++)
             {
                 x = vertices[indices[triangles[i]]].Texture.x;
                 y = vertices[indices[triangles[i]]].Texture.y;
@@ -731,7 +746,7 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             int color = FindColor(geoset);
             int transparency = FindTransparency(geoset);
-            if(color == -1)
+            if (color == -1)
             {
                 gl.Color(1f, 1f, 1f, model.Transparencies[transparency]);
             }
@@ -743,9 +758,9 @@ namespace WoW_Character_Viewer_Classic.Models
 
         int FindColor(int geoset)
         {
-            foreach(ModelViewTexture viewTexture in model.View.Textures)
+            foreach (ModelViewTexture viewTexture in model.View.Textures)
             {
-                if(viewTexture.geoset == geoset)
+                if (viewTexture.geoset == geoset)
                 {
                     return viewTexture.color;
                 }
@@ -755,9 +770,9 @@ namespace WoW_Character_Viewer_Classic.Models
 
         int FindTransparency(int geoset)
         {
-            foreach(ModelViewTexture viewTexture in model.View.Textures)
+            foreach (ModelViewTexture viewTexture in model.View.Textures)
             {
-                if(viewTexture.geoset == geoset)
+                if (viewTexture.geoset == geoset)
                 {
                     return viewTexture.transparency;
                 }
@@ -767,7 +782,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         void Blend(OpenGL gl, int geoset)
         {
-            switch(model.Blending[FindBlend(geoset)])
+            switch (model.Blending[FindBlend(geoset)])
             {
                 case 1:
                     gl.Enable(OpenGL.GL_BLEND);
@@ -790,9 +805,9 @@ namespace WoW_Character_Viewer_Classic.Models
 
         int FindBlend(int geoset)
         {
-            foreach(ModelViewTexture texture in model.View.Textures)
+            foreach (ModelViewTexture texture in model.View.Textures)
             {
-                if(texture.geoset == geoset)
+                if (texture.geoset == geoset)
                 {
                     return texture.blend;
                 }
@@ -815,14 +830,14 @@ namespace WoW_Character_Viewer_Classic.Models
         protected void RenderSkeleton(OpenGL gl)
         {
             float x, y, z;
-            if(Skeleton)
+            if (Skeleton)
             {
                 gl.Color(1f, 0f, 0f);
                 gl.Disable(OpenGL.GL_DEPTH_TEST);
                 gl.Begin(OpenGL.GL_LINES);
-                foreach(ModelBone bone in bones)
+                foreach (ModelBone bone in bones)
                 {
-                    if(bone.Parent >= 0)
+                    if (bone.Parent >= 0)
                     {
                         x = bones[bone.Parent].Position.x;
                         y = bones[bone.Parent].Position.y;
@@ -845,66 +860,21 @@ namespace WoW_Character_Viewer_Classic.Models
             FacialGeosets();
             MakeTextures(gl);
             EquipGear();
-            if(Mounted)
+            if (Mounted)
             {
-                if(Gear[24].Name.Contains("Kodo"))
+                if (Gear[24].Name.Contains("Kodo"))
                 {
                     gl.Scale(0.5f, 0.5f, 0.5f);
                 }
                 ModelBone attachment = mount.GetAttachment();
-                Quaternion rotation = new Quaternion(attachment.Rotation.x, attachment.Rotation.y, attachment.Rotation.z, attachment.Rotation.w);
+                rotation = SetQuaternion(rotation, attachment.Rotation.x, attachment.Rotation.y, attachment.Rotation.z, attachment.Rotation.w);
                 gl.Translate(attachment.Position.x, attachment.Position.y, attachment.Position.z);
                 gl.Rotate(rotation.Angle, rotation.Axis.X, rotation.Axis.Y, rotation.Axis.Z);
-                if(Gear[24].Name.Contains("Kodo"))
+                if (Gear[24].Name.Contains("Kodo"))
                 {
                     gl.Scale(2f, 2f, 2f);
                 }
             }
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if(!disposed)
-            {
-                if(disposing)
-                {
-                    mount.Dispose();
-                    foreach (ObjectComponent component in components)
-                    {
-                        component.Dispose();
-                    }
-                }
-                model = null;
-                components = null;
-                vertices = null;
-                indices = null;
-                triangles = null;
-                geosets = null;
-                billboards = null;
-                bones = null;
-                textures = null;
-                texturesPath = null;
-                objectComponentsPath = null;
-                skinName = null;
-                faceName = null;
-                hairName = null;
-                hairNames = null;
-                colorName = null;
-                facialName = null;
-                facialNames = null;
-                disposed = true;
-            }
-        }
-
-        ~CharacterModel()
-        {
-            Dispose(false);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         protected abstract void GetHairNames();

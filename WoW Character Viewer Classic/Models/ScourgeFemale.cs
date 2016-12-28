@@ -57,17 +57,18 @@ namespace WoW_Character_Viewer_Classic.Models
         };
 
         List<Geosets> currentGeosets;
-        bool disposed;
+        List<Geosets> list;
 
-        public ScourgeFemale() : base(@"Character\Scourge\Female\ScourgeFemale.xml")
+        public ScourgeFemale()
+            : base(@"Character\Scourge\Female\ScourgeFemale.xml")
         {
-            disposed = false;
             currentGeosets = new List<Geosets>
             {
                 Geosets.Body1,
                 Geosets.Arms1,
                 Geosets.Bones1
             };
+            list = new List<Geosets>();
             skinsCount = 6;
             facesCount = 10;
             hairName = "Hair Style: ";
@@ -133,7 +134,7 @@ namespace WoW_Character_Viewer_Classic.Models
         protected override string GetHairTexture()
         {
             string hairTexture = "";
-            switch(Hair)
+            switch (Hair)
             {
                 case 0:
                 case 1:
@@ -157,83 +158,79 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             currentGeosets.RemoveAll(item => item.ToString().Contains("Style"));
             currentGeosets.RemoveAll(item => item.ToString().Contains("Hair"));
-            List<Geosets> list;
-            switch(Hair)
+            list.Clear();
+            switch (Hair)
             {
                 case 0:
-                    list = new List<Geosets>
+                    list.AddRange(new List<Geosets>
                     {
                         Geosets.Hair06
-                    };
+                    });
                     break;
                 case 1:
-                    list = new List<Geosets>
+                    list.AddRange(new List<Geosets>
                     {
                         Geosets.Hair04
-                    };
+                    });
                     break;
                 case 2:
-                    list = new List<Geosets>
+                    list.AddRange(new List<Geosets>
                     {
                         Geosets.Hair02
-                    };
+                    });
                     break;
                 case 3:
-                    list = new List<Geosets>
+                    list.AddRange(new List<Geosets>
                     {
                         Geosets.Hair05
-                    };
+                    });
                     break;
                 case 4:
-                    list = new List<Geosets>
+                    list.AddRange(new List<Geosets>
                     {
                         Geosets.Hair01
-                    };
+                    });
                     break;
                 case 5:
-                    list = new List<Geosets>
+                    list.AddRange(new List<Geosets>
                     {
                         Geosets.Style1,
                         Geosets.Hair07
-                    };
+                    });
                     break;
                 case 6:
-                    list = new List<Geosets>
+                    list.AddRange(new List<Geosets>
                     {
                         Geosets.Hair08
-                    };
+                    });
                     break;
                 case 7:
-                    list = new List<Geosets>
+                    list.AddRange(new List<Geosets>
                     {
                         Geosets.Hair09
-                    };
+                    });
                     break;
                 case 8:
-                    list = new List<Geosets>
+                    list.AddRange(new List<Geosets>
                     {
                         Geosets.Hair10
-                    };
+                    });
                     break;
                 case 9:
-                    list = new List<Geosets>
+                    list.AddRange(new List<Geosets>
                     {
                         Geosets.Hair03
-                    };
-                    break;
-                default:
-                    list = new List<Geosets>();
+                    });
                     break;
             }
             currentGeosets.AddRange(list);
-            list = null;
         }
 
         protected override void FacialGeosets()
         {
             currentGeosets.RemoveAll(item => item.ToString().Contains("Glow"));
-            List<Geosets> list;
-            switch(Facial)
+            list.Clear();
+            switch (Facial)
             {
                 case 0:
                 case 1:
@@ -241,17 +238,13 @@ namespace WoW_Character_Viewer_Classic.Models
                 case 4:
                 case 6:
                 case 7:
-                    list = new List<Geosets>
+                    list.AddRange(new List<Geosets>
                     {
                         Geosets.Glow1
-                    };
-                    break;
-                default:
-                    list = new List<Geosets>();
+                    });
                     break;
             }
             currentGeosets.AddRange(list);
-            list = null;
         }
 
         protected override void EquipCape()
@@ -259,7 +252,7 @@ namespace WoW_Character_Viewer_Classic.Models
             currentGeosets.RemoveAll(item => item.ToString().Contains("Back"));
             currentGeosets.RemoveAll(item => item.ToString().Contains("Cape"));
             currentGeosets.RemoveAll(item => item.ToString().Contains("Buttons"));
-            if(Gear[3].ID == "0")
+            if (Gear[3].ID == "0")
             {
                 currentGeosets.Add(Geosets.Back1);
             }
@@ -273,7 +266,7 @@ namespace WoW_Character_Viewer_Classic.Models
         protected override void EquipHands()
         {
             currentGeosets.RemoveAll(item => item.ToString().Contains("Wrist"));
-            if(Gear[8].ID == "0")
+            if (Gear[8].ID == "0")
             {
                 currentGeosets.Add(Geosets.Wrist1);
             }
@@ -281,7 +274,7 @@ namespace WoW_Character_Viewer_Classic.Models
             {
                 currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[8].Models.Wrist));
             }
-            if(currentGeosets.Contains(Geosets.Wrist3))
+            if (currentGeosets.Contains(Geosets.Wrist3))
             {
                 currentGeosets.Add(Geosets.Wrist4);
             }
@@ -290,7 +283,7 @@ namespace WoW_Character_Viewer_Classic.Models
         protected override void EquipFeet()
         {
             currentGeosets.RemoveAll(item => item.ToString().Contains("Boots"));
-            if(Gear[11].ID == "0")
+            if (Gear[11].ID == "0")
             {
                 currentGeosets.Add(Geosets.Boots1);
             }
@@ -298,7 +291,7 @@ namespace WoW_Character_Viewer_Classic.Models
             {
                 currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[11].Models.Boots));
             }
-            if(currentGeosets.Contains(Geosets.Boots3))
+            if (currentGeosets.Contains(Geosets.Boots3))
             {
                 currentGeosets.Add(Geosets.Boots4);
             }
@@ -308,11 +301,11 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             currentGeosets.RemoveAll(item => item.ToString().Contains("Legs"));
             currentGeosets.RemoveAll(item => item.ToString().Contains("Robe"));
-            if(Gear[10].ID != "0" && Gear[10].Models.Robe != "")
+            if (Gear[10].ID != "0" && Gear[10].Models.Robe != "")
             {
                 currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[10].Models.Robe));
             }
-            if(!currentGeosets.Contains(Geosets.Robe1))
+            if (!currentGeosets.Contains(Geosets.Robe1))
             {
                 currentGeosets.Add(Geosets.Legs1);
             }
@@ -325,9 +318,9 @@ namespace WoW_Character_Viewer_Classic.Models
         protected override void EquipShirt()
         {
             currentGeosets.RemoveAll(item => item.ToString().Contains("Sleeve"));
-            if(Gear[5].ID != "0")
+            if (Gear[5].ID != "0")
             {
-                if((Gear[4].Textures == null || Gear[4].Textures.ArmLower == "") && currentGeosets.Contains(Geosets.Wrist1) && Gear[5].Models.Sleeve != "")
+                if ((Gear[4].Textures == null || Gear[4].Textures.ArmLower == "") && currentGeosets.Contains(Geosets.Wrist1) && Gear[5].Models.Sleeve != "")
                 {
                     currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[5].Models.Sleeve));
                 }
@@ -336,7 +329,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         protected override void EquipWrist()
         {
-            if(Gear[7].ID != "0")
+            if (Gear[7].ID != "0")
             {
                 currentGeosets.RemoveAll(item => item.ToString().Contains("Sleeve"));
             }
@@ -344,22 +337,22 @@ namespace WoW_Character_Viewer_Classic.Models
 
         protected override void EquipChest()
         {
-            if(Gear[5].Models == null || Gear[5].Models.Sleeve == "")
+            if (Gear[5].Models == null || Gear[5].Models.Sleeve == "")
             {
                 currentGeosets.RemoveAll(item => item.ToString().Contains("Sleeve"));
             }
-            if(Gear[4].ID != "0")
+            if (Gear[4].ID != "0")
             {
-                if(currentGeosets.Contains(Geosets.Wrist1) && Gear[4].Models.Sleeve != "")
+                if (currentGeosets.Contains(Geosets.Wrist1) && Gear[4].Models.Sleeve != "")
                 {
                     currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[4].Models.Sleeve));
                 }
-                if(!currentGeosets.Contains(Geosets.Robe1) && Gear[4].Models.Robe != "")
+                if (!currentGeosets.Contains(Geosets.Robe1) && Gear[4].Models.Robe != "")
                 {
                     currentGeosets.Add((Geosets)Enum.Parse(typeof(Geosets), Gear[4].Models.Robe));
                 }
             }
-            if(currentGeosets.Contains(Geosets.Robe1))
+            if (currentGeosets.Contains(Geosets.Robe1))
             {
                 currentGeosets.RemoveAll(item => item.ToString().Contains("Legs"));
                 currentGeosets.RemoveAll(item => item.ToString().Contains("Boots"));
@@ -369,7 +362,7 @@ namespace WoW_Character_Viewer_Classic.Models
         protected override void EquipTabard()
         {
             currentGeosets.RemoveAll(item => item.ToString().Contains("Tabard"));
-            if(Gear[6].ID != "0" && !currentGeosets.Contains(Geosets.Robe1))
+            if (Gear[6].ID != "0" && !currentGeosets.Contains(Geosets.Robe1))
             {
                 currentGeosets.Add(Geosets.Tabard1);
             }
@@ -377,7 +370,7 @@ namespace WoW_Character_Viewer_Classic.Models
 
         protected override void HideHair()
         {
-            if(Gear[0].ID != "0" && Gear[0].Female.Hair[4] == '1')
+            if (Gear[0].ID != "0" && Gear[0].Female.Hair[4] == '1')
             {
                 currentGeosets.RemoveAll(item => item.ToString().Contains("Style"));
                 currentGeosets.RemoveAll(item => item.ToString().Contains("Hair"));
@@ -391,7 +384,7 @@ namespace WoW_Character_Viewer_Classic.Models
         protected override void HideEars()
         {
             currentGeosets.RemoveAll(item => item.ToString().Contains("Ears"));
-            if(Gear[0].ID != "0" && Gear[0].Female.Ears[4] == '1')
+            if (Gear[0].ID != "0" && Gear[0].Female.Ears[4] == '1')
             {
                 currentGeosets.Add(Geosets.Ears2);
             }
@@ -405,9 +398,9 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             gl.PushMatrix();
             Prepare(gl);
-            foreach(Geosets geoset in currentGeosets)
+            foreach (Geosets geoset in currentGeosets)
             {
-                if(billboards.Contains(vertices[indices[triangles[geosets[(int)geoset].triangle]]].Bones[0].index))
+                if (billboards.Contains(vertices[indices[triangles[geosets[(int)geoset].triangle]]].Bones[0].index))
                 {
                     RenderBillboard(gl, (int)geoset, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
                 }
@@ -416,32 +409,19 @@ namespace WoW_Character_Viewer_Classic.Models
                     RenderGeoset(gl, (int)geoset, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
                 }
             }
-            foreach(ObjectComponent component in components)
+            foreach (ObjectComponent component in components)
             {
-                if(!component.Empty)
+                if (!component.Empty)
                 {
                     component.Render(gl, Rotation);
                 }
             }
             RenderSkeleton(gl);
             gl.PopMatrix();
-            if(!mount.Empty)
+            if (!mount.Empty)
             {
                 mount.Render(gl, Rotation);
             }
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if(!disposed)
-            {
-                if(disposing)
-                {
-                }
-                currentGeosets = null;
-                disposed = true;
-            }
-            base.Dispose(disposing);
         }
     }
 }

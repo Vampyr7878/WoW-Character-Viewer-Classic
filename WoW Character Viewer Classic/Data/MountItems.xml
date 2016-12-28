@@ -7,7 +7,7 @@
 		<Slot></Slot>
 		<Sheath>0</Sheath>
 		<Quality>3</Quality>
-		<Icon></Icon>
+		<Icon>Spell_Nature_Swiftness</Icon>
 		<Male>
 			<Hair></Hair>
 			<Beards></Beards>
@@ -57,7 +57,7 @@
 		<Slot></Slot>
 		<Sheath>0</Sheath>
 		<Quality>4</Quality>
-		<Icon></Icon>
+		<Icon>Ability_Mount_Charger</Icon>
 		<Male>
 			<Hair></Hair>
 			<Beards></Beards>
@@ -107,7 +107,7 @@
 		<Slot></Slot>
 		<Sheath>0</Sheath>
 		<Quality>3</Quality>
-		<Icon></Icon>
+		<Icon>Spell_Nature_Swiftness</Icon>
 		<Male>
 			<Hair></Hair>
 			<Beards></Beards>
@@ -157,7 +157,7 @@
 		<Slot></Slot>
 		<Sheath>0</Sheath>
 		<Quality>4</Quality>
-		<Icon></Icon>
+		<Icon>Ability_Mount_Dreadsteed</Icon>
 		<Male>
 			<Hair></Hair>
 			<Beards></Beards>
@@ -236,7 +236,7 @@
 		</Models>
 		<Textures>
 			<Left>DireWolf\RidingDireWolfSkinBrown</Left>
-			<Right></Right>
+			<Right>DireWolf\DireWolfSkinBrownAlpha</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -486,7 +486,7 @@
 		</Models>
 		<Textures>
 			<Left>DireWolf\RidingDireWolfSkinDarkGrey</Left>
-			<Right></Right>
+			<Right>DireWolf\DireWolfSkinDarkGreyAlpha</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -536,7 +536,7 @@
 		</Models>
 		<Textures>
 			<Left>DireWolf\RidingDireWolfSkinDarkBrown</Left>
-			<Right></Right>
+			<Right>DireWolf\DireWolfSkinDarkBrownAlpha</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -586,7 +586,7 @@
 		</Models>
 		<Textures>
 			<Left>Ram\RidingRamSkinGrey</Left>
-			<Right></Right>
+			<Right>Ram\RamSkinGreyAlpha</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -636,7 +636,7 @@
 		</Models>
 		<Textures>
 			<Left>Ram\RidingRamSkinBrown</Left>
-			<Right></Right>
+			<Right>Ram\RamSkinBrownAlpha</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -686,7 +686,7 @@
 		</Models>
 		<Textures>
 			<Left>Ram\RidingRamSkinWhite</Left>
-			<Right></Right>
+			<Right>Ram\RamSkinWhiteAlpha</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -1336,7 +1336,7 @@
 		</Models>
 		<Textures>
 			<Left>DireWolf\RidingDireWolfSkinReddishBrown</Left>
-			<Right></Right>
+			<Right>DireWolf\DireWolfSkinReddishBrownAlpha</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -1386,7 +1386,7 @@
 		</Models>
 		<Textures>
 			<Left>DireWolf\RidingDireWolfSkinLightBlue</Left>
-			<Right></Right>
+			<Right>DireWolf\DireWolfSkinLightBlueAlpha</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -1786,7 +1786,7 @@
 		</Models>
 		<Textures>
 			<Left>Ram\RidingRamSkinBlack</Left>
-			<Right></Right>
+			<Right>Ram\RamSkinBlackAlpha</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -1836,7 +1836,7 @@
 		</Models>
 		<Textures>
 			<Left>Ram\RidingRamSkinBlue</Left>
-			<Right></Right>
+			<Right>Ram\RamSkinBlueAlpha</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -2336,7 +2336,7 @@
 		</Models>
 		<Textures>
 			<Left>RidingHorse\PvPRidingHorseSkinBlack</Left>
-			<Right></Right>
+			<Right>RidingHorse\RidingHorseEyeGlowViolet</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -2386,7 +2386,7 @@
 		</Models>
 		<Textures>
 			<Left>FrostSabre\PVPRidingTigerSkinBlack</Left>
-			<Right></Right>
+			<Right>FrostSabre\PVPRidingTigerEyeGlowViolet</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -2436,8 +2436,8 @@
 		</Models>
 		<Textures>
 			<Left>MechaStrider\PvPMechaStriderSkin_BlackBlack</Left>
-			<Right></Right>
-			<ArmUpper></ArmUpper>
+			<Right>MechaStrider\PvPMechaStriderHeadlightGlow</Right>
+			<ArmUpper>MechaStrider\PvPMechaStriderTaillightGlow</ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
 			<TorsoUpper></TorsoUpper>
@@ -2486,8 +2486,8 @@
 		</Models>
 		<Textures>
 			<Left>Ram\PvPRidingRamSkinDarkBlack</Left>
-			<Right></Right>
-			<ArmUpper></ArmUpper>
+			<Right>Ram\RamSkinDarkBlackAlpha</Right>
+			<ArmUpper>Ram\RIDINGRAMEYEGLOWBLUE</ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
 			<TorsoUpper></TorsoUpper>
@@ -2536,8 +2536,8 @@
 		</Models>
 		<Textures>
 			<Left>DireWolf\PvPRidingDireWolfSkinDarkBlack</Left>
-			<Right></Right>
-			<ArmUpper></ArmUpper>
+			<Right>DireWolf\DireWolfEyeGlowGreen</Right>
+			<ArmUpper>DireWolf\PvPRidingDireWolfSkinDarkBlackAlpha</ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
 			<TorsoUpper></TorsoUpper>
@@ -2586,8 +2586,8 @@
 		</Models>
 		<Textures>
 			<Left>RidingRaptor\PvPRidingRaptorSkinDarkBlack</Left>
-			<Right></Right>
-			<ArmUpper></ArmUpper>
+			<Right>RidingRaptor\PvPRidingRaptorEyeGlowYellow</Right>
+			<ArmUpper>RidingRaptor\PvPRidingRaptorFeathersBlack</ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
 			<TorsoUpper></TorsoUpper>
@@ -2636,7 +2636,7 @@
 		</Models>
 		<Textures>
 			<Left>Kodobeast\PVPKotoBeastSkinBlack</Left>
-			<Right></Right>
+			<Right>Kodobeast\PVPKotoBeastEyeGlowRed</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -2736,7 +2736,7 @@
 		</Models>
 		<Textures>
 			<Left>FrostSabre\PVPRidingTigerSkinWhite</Left>
-			<Right></Right>
+			<Right>FrostSabre\PVPRidingTigerEyeGlowGreen</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -2786,7 +2786,7 @@
 		</Models>
 		<Textures>
 			<Left>FrostSabre\PVPRidingTigerSkinGrey</Left>
-			<Right></Right>
+			<Right>FrostSabre\PVPRidingTigerEyeGlowPurple</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -2836,8 +2836,8 @@
 		</Models>
 		<Textures>
 			<Left>MechaStrider\PvPMechaStriderSkin_GreenBlack</Left>
-			<Right></Right>
-			<ArmUpper></ArmUpper>
+			<Right>MechaStrider\PvPMechaStriderHeadlightGlow</Right>
+			<ArmUpper>MechaStrider\PvPMechaStriderTaillightGlow</ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
 			<TorsoUpper></TorsoUpper>
@@ -2886,8 +2886,8 @@
 		</Models>
 		<Textures>
 			<Left>MechaStrider\PvPMechaStriderSkin_WhiteBlack</Left>
-			<Right></Right>
-			<ArmUpper></ArmUpper>
+			<Right>MechaStrider\PvPMechaStriderHeadlightGlow</Right>
+			<ArmUpper>MechaStrider\PvPMechaStriderTaillightGlow</ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
 			<TorsoUpper></TorsoUpper>
@@ -2936,8 +2936,8 @@
 		</Models>
 		<Textures>
 			<Left>MechaStrider\PvPMechaStriderSkin_YellowBlack</Left>
-			<Right></Right>
-			<ArmUpper></ArmUpper>
+			<Right>MechaStrider\PvPMechaStriderHeadlightGlow</Right>
+			<ArmUpper>MechaStrider\PvPMechaStriderTaillightGlow</ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
 			<TorsoUpper></TorsoUpper>
@@ -2986,7 +2986,7 @@
 		</Models>
 		<Textures>
 			<Left>RidingHorse\PvPRidingHorseSkinBeige</Left>
-			<Right></Right>
+			<Right>RidingHorse\RidingHorseEyeGlowGreen</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -3036,7 +3036,7 @@
 		</Models>
 		<Textures>
 			<Left>RidingHorse\PvPRidingHorseSkinBrown</Left>
-			<Right></Right>
+			<Right>RidingHorse\RidingHorseEyeGlowOrange</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -3086,7 +3086,7 @@
 		</Models>
 		<Textures>
 			<Left>RidingHorse\PvPRidingHorseSkinWhite</Left>
-			<Right></Right>
+			<Right>RidingHorse\RidingHorseEyeGlowBlue</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -3136,8 +3136,8 @@
 		</Models>
 		<Textures>
 			<Left>Ram\PvPRidingRamSkinWhite</Left>
-			<Right></Right>
-			<ArmUpper></ArmUpper>
+			<Right>Ram\RamSkinWhiteAlpha</Right>
+			<ArmUpper>Ram\RidingRamEyeGlowGreen</ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
 			<TorsoUpper></TorsoUpper>
@@ -3186,8 +3186,8 @@
 		</Models>
 		<Textures>
 			<Left>Ram\PvPRidingRamSkinBrown</Left>
-			<Right></Right>
-			<ArmUpper></ArmUpper>
+			<Right>Ram\RamSkinBrownAlpha</Right>
+			<ArmUpper>Ram\RIDINGRAMEYEGLOWVIOLET</ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
 			<TorsoUpper></TorsoUpper>
@@ -3236,8 +3236,8 @@
 		</Models>
 		<Textures>
 			<Left>Ram\PvPRidingRamSkinDarkGrey</Left>
-			<Right></Right>
-			<ArmUpper></ArmUpper>
+			<Right>Ram\RamSkinDarkGreyAlpha</Right>
+			<ArmUpper>Ram\RIDINGRAMEYEGLOWBLUE</ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
 			<TorsoUpper></TorsoUpper>
@@ -3286,8 +3286,8 @@
 		</Models>
 		<Textures>
 			<Left>RidingRaptor\PvPRidingRaptorSkinAqua</Left>
-			<Right></Right>
-			<ArmUpper></ArmUpper>
+			<Right>RidingRaptor\PVPRIDINGRAPTOREYEGLOWLIGHTGREEN</Right>
+			<ArmUpper>RidingRaptor\PvPRidingRaptorFeathersAqua</ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
 			<TorsoUpper></TorsoUpper>
@@ -3336,8 +3336,8 @@
 		</Models>
 		<Textures>
 			<Left>RidingRaptor\PvPRidingRaptorSkinYellow</Left>
-			<Right></Right>
-			<ArmUpper></ArmUpper>
+			<Right>RidingRaptor\PVPRIDINGRAPTOREYEGLOWORANGE</Right>
+			<ArmUpper>RidingRaptor\PvPRidingRaptorFeathersYellow</ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
 			<TorsoUpper></TorsoUpper>
@@ -3386,8 +3386,8 @@
 		</Models>
 		<Textures>
 			<Left>RidingRaptor\PvPRidingRaptorSkinOrange</Left>
-			<Right></Right>
-			<ArmUpper></ArmUpper>
+			<Right>RidingRaptor\PVPRIDINGRAPTOREYEGLOWBLUE</Right>
+			<ArmUpper>RidingRaptor\PvPRidingRaptorFeathersOrange</ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
 			<TorsoUpper></TorsoUpper>
@@ -3486,6 +3486,7 @@
 		</Models>
 		<Textures>
 			<Left>Kodobeast\Tier2KotoBeastSkinWhite</Left>
+			<Right>Kodobeast\PVPKotoBeastEyeGlowYellow</Right>
 			<Right></Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
@@ -3536,7 +3537,7 @@
 		</Models>
 		<Textures>
 			<Left>Kodobeast\Tier2KotoBeastSkinNatural</Left>
-			<Right></Right>
+			<Right>Kodobeast\PVPKotoBeastEyeGlowYellow</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -3586,7 +3587,7 @@
 		</Models>
 		<Textures>
 			<Left>Kodobeast\Tier2KotoBeastSkinDrab</Left>
-			<Right></Right>
+			<Right>Kodobeast\PVPKotoBeastEyeGlowYellow</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -3636,8 +3637,8 @@
 		</Models>
 		<Textures>
 			<Left>DireWolf\Tier2RidingDireWolfSkinBrown</Left>
-			<Right></Right>
-			<ArmUpper></ArmUpper>
+			<Right>DireWolf\DireWolfEyeGlowGreen</Right>
+			<ArmUpper>DireWolf\Tier2RidingDireWolfSkinBrownAlpha</ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
 			<TorsoUpper></TorsoUpper>
@@ -3686,8 +3687,8 @@
 		</Models>
 		<Textures>
 			<Left>DireWolf\Tier2RidingDireWolfSkinLightGray</Left>
-			<Right></Right>
-			<ArmUpper></ArmUpper>
+			<Right>DireWolf\DireWolfEyeGlowGreen</Right>
+			<ArmUpper>DireWolf\Tier2RidingDireWolfSkinLightGrayAlpha</ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
 			<TorsoUpper></TorsoUpper>
@@ -3736,8 +3737,8 @@
 		</Models>
 		<Textures>
 			<Left>DireWolf\Tier2RidingDireWolfSkinGray</Left>
-			<Right></Right>
-			<ArmUpper></ArmUpper>
+			<Right>DireWolf\DireWolfEyeGlowGreen</Right>
+			<ArmUpper>DireWolf\Tier2RidingDireWolfSkinGrayAlpha</ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
 			<TorsoUpper></TorsoUpper>
@@ -3786,7 +3787,7 @@
 		</Models>
 		<Textures>
 			<Left>FrostSabre\PVPRidingTigerSkinBlackSpotted</Left>
-			<Right></Right>
+			<Right>FrostSabre\PVPRidingTigerEyeGlowGreen</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -3836,8 +3837,8 @@
 		</Models>
 		<Textures>
 			<Left>DireWolf\PvPRidingDireWolfSkinFrostWolf</Left>
-			<Right></Right>
-			<ArmUpper></ArmUpper>
+			<Right>DireWolf\DireWolfEyeGlowGreen</Right>
+			<ArmUpper>DireWolf\PvPRidingDireWolfSkinFrostWolfAlpha</ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
 			<TorsoUpper></TorsoUpper>
@@ -3886,8 +3887,8 @@
 		</Models>
 		<Textures>
 			<Left>Ram\PvPRidingRamSkinStormPike</Left>
-			<Right></Right>
-			<ArmUpper></ArmUpper>
+			<Right>Ram\RamSkinStormPikeAlpha</Right>
+			<ArmUpper>Ram\RIDINGRAMEYEGLOWVIOLET</ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
 			<TorsoUpper></TorsoUpper>
@@ -3936,8 +3937,8 @@
 		</Models>
 		<Textures>
 			<Left>RidingRaptor\PvPRidingRaptorSkinCrimson</Left>
-			<Right></Right>
-			<ArmUpper></ArmUpper>
+			<Right>RidingRaptor\PVPRIDINGRAPTOREYEGLOWLIGHTGREEN</Right>
+			<ArmUpper>RidingRaptor\PvPRidingRaptorFeathersCrimson</ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
 			<TorsoUpper></TorsoUpper>
@@ -3986,7 +3987,7 @@
 		</Models>
 		<Textures>
 			<Left>FrostSabre\PVPRidingTigerSkinOrange</Left>
-			<Right></Right>
+			<Right>FrostSabre\PVPRidingTigerEyeGlowGreen</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -4036,7 +4037,7 @@
 		</Models>
 		<Textures>
 			<Left>RidingSilithid\RidingSilithidTankSkinArmoredBlack</Left>
-			<Right></Right>
+			<Right>RidingSilithid\RidingSilithidEyeGlowYellow</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -4086,7 +4087,7 @@
 		</Models>
 		<Textures>
 			<Left>RidingSilithid\RidingSilithidTankSkinArmoredBlue</Left>
-			<Right></Right>
+			<Right>RidingSilithid\RidingSilithidEyeGlowGreen</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -4136,7 +4137,7 @@
 		</Models>
 		<Textures>
 			<Left>RidingSilithid\RidingSilithidTankSkinArmoredRed</Left>
-			<Right></Right>
+			<Right>RidingSilithid\RidingSilithidEyeGlowOrange</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -4186,7 +4187,7 @@
 		</Models>
 		<Textures>
 			<Left>RidingSilithid\RidingSilithidTankSkinArmoredGreen</Left>
-			<Right></Right>
+			<Right>RidingSilithid\RidingSilithidEyeGlowViolet</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
@@ -4236,7 +4237,7 @@
 		</Models>
 		<Textures>
 			<Left>RidingSilithid\RidingSilithidTankSkinArmoredYellow</Left>
-			<Right></Right>
+			<Right>RidingSilithid\RidingSilithidEyeGlowBlue</Right>
 			<ArmUpper></ArmUpper>
 			<ArmLower></ArmLower>
 			<Hand></Hand>
