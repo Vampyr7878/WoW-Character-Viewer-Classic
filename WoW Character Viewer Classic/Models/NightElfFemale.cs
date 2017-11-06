@@ -340,33 +340,81 @@ namespace WoW_Character_Viewer_Classic.Models
             }
         }
 
+        public override void BearForm(bool shapeshift)
+        {
+            Shapeshift = shapeshift;
+            Owlbear = false;
+            form.Initialize("DruidBear", "DruidBearSkin", null, null, @"Creature\DruidBear\");
+        }
+
+        public override void AquaticForm(bool shapeshift)
+        {
+            Shapeshift = shapeshift;
+            Owlbear = false;
+            form.Initialize("SeaLion", "SeaLionSkin", null, null, @"Creature\SeaLion\");
+        }
+
+        public override void CatForm(bool shapeshift)
+        {
+            Shapeshift = shapeshift;
+            Owlbear = false;
+            form.Initialize("DruidCat", "DruidCatSkinBlack", null, null, @"Creature\DruidCat\");
+        }
+
+        public override void TravelForm(bool shapeshift)
+        {
+            Shapeshift = shapeshift;
+            Owlbear = false;
+            form.Initialize("Tiger", "TigerSkinYellow", null, null, @"Creature\Tiger\");
+        }
+
+        public override void MoonkinForm(bool shapeshift)
+        {
+            Shapeshift = shapeshift;
+            Owlbear = shapeshift;
+            moonkin.Initialize("DruidOwlbear", "DruidOwlBearNESkin1", "DruidOwlBearNESkin2", null, @"Creature\DruidOwlbear\", components[3], components[4], Gear[16], Gear[17]);
+        }
+
         public override void Render(OpenGL gl)
         {
             gl.PushMatrix();
             Prepare(gl);
-            foreach (Geosets geoset in currentGeosets)
+            if (Shapeshift)
             {
-                if (billboards.Contains(vertices[indices[triangles[geosets[(int)geoset].triangle]]].Bones[0].index))
+                if (Owlbear)
                 {
-                    RenderBillboard(gl, (int)geoset, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
+                    moonkin.Render(gl, Rotation);
                 }
                 else
                 {
-                    RenderGeoset(gl, (int)geoset, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
+                    form.Render(gl, Rotation);
                 }
             }
-            foreach (ObjectComponent component in components)
+            else
             {
-                if (!component.Empty)
+                foreach (Geosets geoset in currentGeosets)
                 {
-                    component.Render(gl, Rotation);
+                    if (billboards.Contains(vertices[indices[triangles[geosets[(int)geoset].triangle]]].Bones[0].index))
+                    {
+                        RenderBillboard(gl, (int)geoset, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
+                    }
+                    else
+                    {
+                        RenderGeoset(gl, (int)geoset, geosets[(int)geoset].triangle, geosets[(int)geoset].triangles);
+                    }
                 }
-            }
-            RenderSkeleton(gl);
-            gl.PopMatrix();
-            if (!mount.Empty)
-            {
-                mount.Render(gl, Rotation);
+                foreach (ObjectComponent component in components)
+                {
+                    if (!component.Empty)
+                    {
+                        component.Render(gl, Rotation);
+                    }
+                }
+                gl.PopMatrix();
+                if (!mount.Empty)
+                {
+                    mount.Render(gl, Rotation);
+                }
             }
         }
     }

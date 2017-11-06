@@ -1,6 +1,5 @@
 ﻿using SharpGL;
 using SharpGL.SceneGraph.Assets;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Media.Media3D;
@@ -8,21 +7,15 @@ using System.Xml.Serialization;
 
 namespace WoW_Character_Viewer_Classic.Models
 {
-    public abstract class CharacterModel
+    public abstract class CharacterModel : Model3D
     {
-        Model model;
         Model standing;
         Model mounted;
         protected Mount mount;
+        protected Creature form;
+        protected Humanoid moonkin;
         protected ObjectComponent[] components;
-        protected ModelVertex[] vertices;
-        protected int[] indices;
-        protected int[] triangles;
-        protected ModelViewGeoset[] geosets;
-        protected List<int> billboards;
         ModelBone[] bones;
-        Texture[] textures;
-        string texturesPath;
         string objectComponentsPath;
         string textureComponentsPath;
         string skinName;
@@ -37,11 +30,13 @@ namespace WoW_Character_Viewer_Classic.Models
         protected string facialName;
         protected string[] facialNames;
         protected int facialsCount;
+        bool sheathe;
         Vector3D position;
         Quaternion rotation;
         Vector3D scale;
 
         protected CharacterModel(string file)
+            : base()
         {
             position = new Vector3D();
             rotation = new Quaternion();
@@ -69,7 +64,6 @@ namespace WoW_Character_Viewer_Classic.Models
             {
                 textures[i] = new Texture();
             }
-            billboards = new List<int>();
             for (int i = 0; i < model.Bones.Length; i++)
             {
                 if ((model.Bones[i].Billboard & 8) == 8)
@@ -82,6 +76,8 @@ namespace WoW_Character_Viewer_Classic.Models
             GetHairNames();
             GetFacialNames();
             mount = new Mount();
+            form = new Creature();
+            moonkin = new Humanoid();
             components = new[]
             {
                 new ObjectComponent(),
@@ -103,9 +99,13 @@ namespace WoW_Character_Viewer_Classic.Models
 
         public bool Ranged { get; set; }
 
-        public bool Sheathe { get; set; }
-
         public bool Mounted { get; set; }
+
+        public bool Sheathe { get { return sheathe; } }
+
+        public bool Shapeshift { get; set; }
+
+        public bool Owlbear { get; set; }
 
         public string SkinName { get { return skinName; } }
 
@@ -141,14 +141,16 @@ namespace WoW_Character_Viewer_Classic.Models
 
         public int FacialsCount { get { return facialsCount; } }
 
-        public void Initialize()
+        public override void Initialize()
         {
             model = standing;
             Gear = new ItemsItem[25];
-            Skeleton = false;
+            Skeleton = true;
             Ranged = false;
-            Sheathe = false;
+            sheathe = false;
             Mounted = false;
+            Shapeshift = false;
+            Owlbear = false;
             Skin = 0;
             Face = 0;
             Hair = 0;
@@ -165,7 +167,7 @@ namespace WoW_Character_Viewer_Classic.Models
                 {
                     model = this.mounted;
                     Ranged = false;
-                    Sheathe = true;
+                    sheathe = true;
                     vertices = model.Vertices;
                     indices = model.View.Indices;
                     triangles = model.View.Triangles;
@@ -188,6 +190,12 @@ namespace WoW_Character_Viewer_Classic.Models
             }
         }
 
+        public void SetSheathe(bool sheathe)
+        {
+            this.sheathe = sheathe;
+            moonkin.Sheathe = sheathe;
+        }
+
         public string[] GetGear()
         {
             string[] GearID = new string[25];
@@ -203,7 +211,7 @@ namespace WoW_Character_Viewer_Classic.Models
             return number > 9 ? number.ToString() : "0" + number;
         }
 
-        protected void MakeTextures(OpenGL gl)
+        protected override void MakeTextures(OpenGL gl)
         {
             for (int i = 0; i < textures.Length; i++)
             {
@@ -228,7 +236,7 @@ namespace WoW_Character_Viewer_Classic.Models
             }
         }
 
-        void MakeTexture(OpenGL gl, int index)
+        protected override void MakeTexture(OpenGL gl, int index)
         {
             textures[index].Destroy(gl);
             using (Bitmap bitmap = LoadBitmap(model.Textures[index].file.Replace(".BLP", ".PNG")))
@@ -455,20 +463,6 @@ namespace WoW_Character_Viewer_Classic.Models
             }
         }
 
-        Bitmap LoadBitmap(string file)
-        {
-            if (File.Exists(file))
-            {
-                Bitmap bitmap;
-                using (StreamReader reader = new StreamReader(file))
-                {
-                    bitmap = new Bitmap(reader.BaseStream);
-                }
-                return bitmap;
-            }
-            return null;
-        }
-
         protected void EquipGear()
         {
             EquipCape();
@@ -682,9 +676,9 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             float x, y, z;
             SetColor(gl, geoset);
-            Blend(gl, geoset);
+            Blend(gl, geoset, 0);
             gl.Enable(OpenGL.GL_TEXTURE_2D);
-            textures[FindTexture(geoset)].Bind(gl);
+            textures[FindTexture(geoset, 0)].Bind(gl);
             foreach (int billboard in billboards)
             {
                 x = model.Bones[billboard].Position.x;
@@ -721,9 +715,9 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             float x, y, z;
             SetColor(gl, geoset);
-            Blend(gl, geoset);
+            Blend(gl, geoset, 0);
             gl.Enable(OpenGL.GL_TEXTURE_2D);
-            textures[FindTexture(geoset)].Bind(gl);
+            textures[FindTexture(geoset, 0)].Bind(gl);
             gl.Begin(OpenGL.GL_TRIANGLES);
             for (int i = start; i < start + count; i++)
             {
@@ -740,118 +734,6 @@ namespace WoW_Character_Viewer_Classic.Models
             gl.DepthMask((byte)OpenGL.GL_TRUE);
             gl.Disable(OpenGL.GL_BLEND);
             gl.Disable(OpenGL.GL_ALPHA_TEST);
-        }
-
-        void SetColor(OpenGL gl, int geoset)
-        {
-            int color = FindColor(geoset);
-            int transparency = FindTransparency(geoset);
-            if (color == -1)
-            {
-                gl.Color(1f, 1f, 1f, model.Transparencies[transparency]);
-            }
-            else
-            {
-                gl.Color(model.Colors[color].red, model.Colors[color].green, model.Colors[color].blue, model.Colors[color].alpha * model.Transparencies[transparency]);
-            }
-        }
-
-        int FindColor(int geoset)
-        {
-            foreach (ModelViewTexture viewTexture in model.View.Textures)
-            {
-                if (viewTexture.geoset == geoset)
-                {
-                    return viewTexture.color;
-                }
-            }
-            return -1;
-        }
-
-        int FindTransparency(int geoset)
-        {
-            foreach (ModelViewTexture viewTexture in model.View.Textures)
-            {
-                if (viewTexture.geoset == geoset)
-                {
-                    return viewTexture.transparency;
-                }
-            }
-            return -1;
-        }
-
-        void Blend(OpenGL gl, int geoset)
-        {
-            switch (model.Blending[FindBlend(geoset)])
-            {
-                case 1:
-                    gl.Enable(OpenGL.GL_BLEND);
-                    gl.Enable(OpenGL.GL_ALPHA_TEST);
-                    gl.BlendFunc(OpenGL.GL_ONE, OpenGL.GL_ZERO);
-                    gl.AlphaFunc(OpenGL.GL_GREATER, 0.9f);
-                    break;
-                case 2:
-                    gl.Enable(OpenGL.GL_BLEND);
-                    gl.DepthMask((byte)OpenGL.GL_FALSE);
-                    gl.BlendFunc(OpenGL.GL_SRC_ALPHA, OpenGL.GL_ONE_MINUS_SRC_ALPHA);
-                    break;
-                case 4:
-                    gl.Enable(OpenGL.GL_BLEND);
-                    gl.DepthMask((byte)OpenGL.GL_FALSE);
-                    gl.BlendFunc(OpenGL.GL_SRC_ALPHA, OpenGL.GL_ONE);
-                    break;
-            }
-        }
-
-        int FindBlend(int geoset)
-        {
-            foreach (ModelViewTexture texture in model.View.Textures)
-            {
-                if (texture.geoset == geoset)
-                {
-                    return texture.blend;
-                }
-            }
-            return -1;
-        }
-
-        int FindTexture(int geoset)
-        {
-            foreach (ModelViewTexture texture in model.View.Textures)
-            {
-                if (texture.geoset == geoset)
-                {
-                    return texture.texture;
-                }
-            }
-            return -1;
-        }
-
-        protected void RenderSkeleton(OpenGL gl)
-        {
-            float x, y, z;
-            if (Skeleton)
-            {
-                gl.Color(1f, 0f, 0f);
-                gl.Disable(OpenGL.GL_DEPTH_TEST);
-                gl.Begin(OpenGL.GL_LINES);
-                foreach (ModelBone bone in bones)
-                {
-                    if (bone.Parent >= 0)
-                    {
-                        x = bones[bone.Parent].Position.x;
-                        y = bones[bone.Parent].Position.y;
-                        z = bones[bone.Parent].Position.z;
-                        gl.Vertex(x, y, z);
-                        x = bone.Position.x;
-                        y = bone.Position.y;
-                        z = bone.Position.z;
-                        gl.Vertex(x, y, z);
-                    }
-                }
-                gl.End();
-                gl.Enable(OpenGL.GL_DEPTH_TEST);
-            }
         }
 
         public void Prepare(OpenGL gl)
@@ -916,6 +798,16 @@ namespace WoW_Character_Viewer_Classic.Models
         protected abstract void HideFacial();
 
         protected abstract void HideEars();
+
+        public abstract void BearForm(bool shapeshift);
+
+        public abstract void AquaticForm(bool shapeshift);
+
+        public abstract void CatForm(bool shapeshift);
+
+        public abstract void TravelForm(bool shapeshift);
+
+        public abstract void MoonkinForm(bool shapeshift);
 
         public abstract void Render(OpenGL gl);
     }

@@ -2,53 +2,38 @@
 using SharpGL.SceneGraph.Assets;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Windows.Media.Media3D;
 using System.Xml.Serialization;
 
 namespace WoW_Character_Viewer_Classic.Models
 {
-    public class ObjectComponent : Model3D
+    public class Creature : Model3D
     {
-        Vector3D position;
-        Quaternion rotation;
-        Vector3D scale;
-        string texture;
-        string id;
+        protected string texture1;
+        protected string texture2;
+        protected string texture3;
 
-        public ObjectComponent()
+        public Creature()
             : base()
         {
-            Empty = true;
-            id = "0";
         }
-
-        public string ID { get { return id; } }
-
-        public bool Empty { get; set; }
 
         public override void Initialize()
         {
-            Empty = true;
-            id = "0";
         }
 
-        public void Initialize(string id, string file, string texture, string path, Vector3D position, Quaternion rotation, Vector3D scale)
+        public void Initialize(string file, string texture1, string texture2, string texture3, string path)
         {
             if (file == "")
             {
-                Empty = true;
+                Initialize();
                 return;
             }
-            this.id = id;
-            Empty = false;
-            this.texture = texture;
-            this.position = position;
-            this.rotation = rotation;
-            this.scale = scale;
+            this.texture1 = texture1;
+            this.texture2 = texture2;
+            this.texture3 = texture3;
             texturesPath = path;
             XmlSerializer serializer = new XmlSerializer(typeof(Model));
-            using (StreamReader reader = new StreamReader(path + file))
+            using (StreamReader reader = new StreamReader(path + file + ".xml"))
             {
                 model = (Model)serializer.Deserialize(reader);
             }
@@ -71,13 +56,6 @@ namespace WoW_Character_Viewer_Classic.Models
             }
         }
 
-        public void Modify(Vector3D position, Quaternion rotation, Vector3D scale)
-        {
-            this.position = position;
-            this.rotation = rotation;
-            this.scale = scale;
-        }
-
         protected override void MakeTextures(OpenGL gl)
         {
             for (int i = 0; i < textures.Length; i++)
@@ -87,8 +65,14 @@ namespace WoW_Character_Viewer_Classic.Models
                     case 0:
                         MakeTexture(gl, i);
                         break;
-                    case 2:
-                        MakeObjectTexture(gl, i);
+                    case 11:
+                        MakeCreature1Texture(gl, i);
+                        break;
+                    case 12:
+                        MakeCreature2Texture(gl, i);
+                        break;
+                    case 13:
+                        MakeCreature3Texture(gl, i);
                         break;
                 }
             }
@@ -97,8 +81,7 @@ namespace WoW_Character_Viewer_Classic.Models
         protected override void MakeTexture(OpenGL gl, int index)
         {
             textures[index].Destroy(gl);
-            string[] file = model.Textures[index].file.Replace(".BLP", ".PNG").Replace(".blp", ".png").Split('\\');
-            using (Bitmap bitmap = LoadBitmap(texturesPath + file.Last()))
+            using (Bitmap bitmap = LoadBitmap(model.Textures[index].file.Replace("SPELLS", "CREATURE").Replace("Spells", "Creature").Replace(".BLP", ".PNG").Replace(".blp", ".png")))
             {
                 if (bitmap != null)
                 {
@@ -107,10 +90,34 @@ namespace WoW_Character_Viewer_Classic.Models
             }
         }
 
-        void MakeObjectTexture(OpenGL gl, int index)
+        void MakeCreature1Texture(OpenGL gl, int index)
         {
             textures[index].Destroy(gl);
-            using (Bitmap bitmap = LoadBitmap(texturesPath + texture + ".png"))
+            using (Bitmap bitmap = LoadBitmap(texturesPath + texture1 + ".png"))
+            {
+                if (bitmap != null)
+                {
+                    textures[index].Create(gl, bitmap);
+                }
+            }
+        }
+
+        void MakeCreature2Texture(OpenGL gl, int index)
+        {
+            textures[index].Destroy(gl);
+            using (Bitmap bitmap = LoadBitmap(texturesPath + texture2 + ".png"))
+            {
+                if (bitmap != null)
+                {
+                    textures[index].Create(gl, bitmap);
+                }
+            }
+        }
+
+        void MakeCreature3Texture(OpenGL gl, int index)
+        {
+            textures[index].Destroy(gl);
+            using (Bitmap bitmap = LoadBitmap(texturesPath + texture3 + ".png"))
             {
                 if (bitmap != null)
                 {
@@ -131,9 +138,6 @@ namespace WoW_Character_Viewer_Classic.Models
                 y = model.Bones[billboard].Position.y;
                 z = model.Bones[billboard].Position.z;
                 gl.PushMatrix();
-                gl.Translate(position.X, position.Y, position.Z);
-                gl.Rotate(rotation.Angle, rotation.Axis.X, rotation.Axis.Y, rotation.Axis.Z);
-                gl.Scale(scale.X, scale.Y, scale.Z);
                 gl.Translate(x, y, z);
                 gl.Rotate(-characterRotation, 0f, 1f, 0f);
                 gl.Translate(-x, -y, -z);
@@ -163,11 +167,8 @@ namespace WoW_Character_Viewer_Classic.Models
         {
             float x, y, z;
             SetColor(gl, geoset);
-            int layers = CountTextures(geoset);
             gl.PushMatrix();
-            gl.Translate(position.X, position.Y, position.Z);
-            gl.Rotate(rotation.Angle, rotation.Axis.X, rotation.Axis.Y, rotation.Axis.Z);
-            gl.Scale(scale.X, scale.Y, scale.Z);
+            int layers = CountTextures(geoset);
             for (int i = 0; i < layers; i++)
             {
                 Blend(gl, geoset, i);
@@ -191,7 +192,7 @@ namespace WoW_Character_Viewer_Classic.Models
             gl.PopMatrix();
         }
 
-        int CountTextures(int geoset)
+        protected int CountTextures(int geoset)
         {
             int count = 0;
             foreach (ModelViewTexture texture in model.View.Textures)
@@ -204,7 +205,7 @@ namespace WoW_Character_Viewer_Classic.Models
             return count;
         }
 
-        bool GeosetBillboard(int start, int count)
+        protected bool GeosetBillboard(int start, int count)
         {
             for (int i = start; i < start + count; i++)
             {

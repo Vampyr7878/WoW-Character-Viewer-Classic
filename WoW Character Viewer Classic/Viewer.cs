@@ -25,6 +25,8 @@ namespace WoW_Character_Viewer_Classic
         bool characterGender;
         string characterRace;
         string characterClass;
+        int characterForm;
+        string[] characterForms;
         string iconsPath;
         CharacterModel character;
         HumanMale humanMale;
@@ -98,6 +100,13 @@ namespace WoW_Character_Viewer_Classic
             character.Initialize();
             RandomGender(random.Next(2));
             RandomRace(random.Next(8));
+            characterForm = 0;
+            characterForms = new string[6];
+            characterForms[1] = "Bear Form";
+            characterForms[2] = "Aquatic Form";
+            characterForms[3] = "Cat Form";
+            characterForms[4] = "Travel Form";
+            characterForms[5] = "Moonkin Form";
         }
 
         void ResetCamera()
@@ -452,6 +461,7 @@ namespace WoW_Character_Viewer_Classic
         void ChangeRace()
         {
             RaceUnclick();
+            FormUnclick();
             switch (characterRace)
             {
                 case "Human":
@@ -482,7 +492,6 @@ namespace WoW_Character_Viewer_Classic
             character.Initialize();
             characterClass = "Warrior";
             ChangeClass();
-            showSkeletonButton.Text = "Show Skeleton";
             Skin();
             Face();
             Hair();
@@ -715,7 +724,7 @@ namespace WoW_Character_Viewer_Classic
             ResetGearIcons();
             character.Ranged = false;
             rangedMeleeButton.Text = "Ranged";
-            character.Sheathe = false;
+            character.SetSheathe(false);
             sheatheUnsheatheButton.Text = "Sheathe";
             character.Mount(false);
             mountDismountButton.Text = "Mount";
@@ -737,46 +746,160 @@ namespace WoW_Character_Viewer_Classic
         void Warrior()
         {
             warriorButton.FlatStyle = FlatStyle.Flat;
+            form1Button.Visible = false;
+            form2Button.Visible = false;
+            form3Button.Visible = false;
+            form4Button.Visible = false;
+            form5Button.Visible = false;
         }
 
         void Paladin()
         {
             paladinButton.FlatStyle = FlatStyle.Flat;
+            form1Button.Visible = false;
+            form2Button.Visible = false;
+            form3Button.Visible = false;
+            form4Button.Visible = false;
+            form5Button.Visible = false;
         }
 
         void Hunter()
         {
             hunterButton.FlatStyle = FlatStyle.Flat;
+            form1Button.Visible = false;
+            form2Button.Visible = false;
+            form3Button.Visible = false;
+            form4Button.Visible = false;
+            form5Button.Visible = false;
         }
 
         void Rogue()
         {
             rogueButton.FlatStyle = FlatStyle.Flat;
+            form1Button.Visible = false;
+            form2Button.Visible = false;
+            form3Button.Visible = false;
+            form4Button.Visible = false;
+            form5Button.Visible = false;
         }
 
         void Priest()
         {
             priestButton.FlatStyle = FlatStyle.Flat;
+            form1Button.Visible = false;
+            form2Button.Visible = false;
+            form3Button.Visible = false;
+            form4Button.Visible = false;
+            form5Button.Visible = false;
         }
 
         void Shaman()
         {
             shamanButton.FlatStyle = FlatStyle.Flat;
+            form1Button.Visible = false;
+            form2Button.Visible = false;
+            form3Button.Visible = false;
+            form4Button.Visible = false;
+            form5Button.Visible = false;
         }
 
         void Mage()
         {
             mageButton.FlatStyle = FlatStyle.Flat;
+            form1Button.Visible = false;
+            form2Button.Visible = false;
+            form3Button.Visible = false;
+            form4Button.Visible = false;
+            form5Button.Visible = false;
         }
 
         void Warlock()
         {
             warlockButton.FlatStyle = FlatStyle.Flat;
+            form1Button.Visible = false;
+            form2Button.Visible = false;
+            form3Button.Visible = false;
+            form4Button.Visible = false;
+            form5Button.Visible = false;
         }
 
         void Druid()
         {
             druidButton.FlatStyle = FlatStyle.Flat;
+            form1Button.Visible = true;
+            form2Button.Visible = true;
+            form3Button.Visible = true;
+            form4Button.Visible = true;
+            form5Button.Visible = true;
+        }
+
+        void ChangeForm()
+        {
+            FormUnclick();
+            switch(characterForm)
+            {
+                case 1:
+                    Form1();
+                    break;
+                case 2:
+                    Form2();
+                    break;
+                case 3:
+                    Form3();
+                    break;
+                case 4:
+                    Form4();
+                    break;
+                case 5:
+                    Form5();
+                    break;
+            }
+            character.Mount(false);
+            mountDismountButton.Text = "Mount";
+        }
+
+        void FormUnclick()
+        {
+            form1Button.FlatStyle = FlatStyle.Popup;
+            form2Button.FlatStyle = FlatStyle.Popup;
+            form3Button.FlatStyle = FlatStyle.Popup;
+            form4Button.FlatStyle = FlatStyle.Popup;
+            form5Button.FlatStyle = FlatStyle.Popup;
+            character.BearForm(false);
+            character.AquaticForm(false);
+            character.CatForm(false);
+            character.TravelForm(false);
+            character.MoonkinForm(false);
+        }
+
+        void Form1()
+        {
+            form1Button.FlatStyle = FlatStyle.Flat;
+            character.BearForm(true);
+        }
+
+        void Form2()
+        {
+            form2Button.FlatStyle = FlatStyle.Flat;
+            character.AquaticForm(true);
+        }
+
+        void Form3()
+        {
+            form3Button.FlatStyle = FlatStyle.Flat;
+            character.CatForm(true);
+        }
+
+        void Form4()
+        {
+            form4Button.FlatStyle = FlatStyle.Flat;
+            character.TravelForm(true);
+        }
+
+        void Form5()
+        {
+            form5Button.FlatStyle = FlatStyle.Flat;
+            character.MoonkinForm(true);
         }
 
         void ChangeIcon(Button button)
@@ -851,7 +974,7 @@ namespace WoW_Character_Viewer_Classic
             {
                 character.Ranged = !character.Ranged;
                 rangedMeleeButton.Text = character.Ranged ? "Melee" : "Ranged";
-                character.Sheathe = character.Ranged;
+                character.SetSheathe(character.Ranged);
                 sheatheUnsheatheButton.Text = character.Sheathe ? "Unsheathe" : "Sheathe";
             }
         }
@@ -860,7 +983,7 @@ namespace WoW_Character_Viewer_Classic
         {
             if (!character.Mounted)
             {
-                character.Sheathe = !character.Sheathe;
+                character.SetSheathe(!character.Sheathe);
                 sheatheUnsheatheButton.Text = character.Sheathe ? "Unsheathe" : "Sheathe";
                 character.Ranged = false;
                 rangedMeleeButton.Text = "Ranged";
@@ -873,6 +996,8 @@ namespace WoW_Character_Viewer_Classic
             mountDismountButton.Text = character.Mounted ? "Dismount" : "Mount";
             rangedMeleeButton.Text = character.Ranged ? "Melee" : "Ranged";
             sheatheUnsheatheButton.Text = character.Sheathe ? "Unsheathe" : "Sheathe";
+            FormUnclick();
+            characterForm = 0;
         }
 
         void Skin()
@@ -963,7 +1088,11 @@ namespace WoW_Character_Viewer_Classic
         void Cape()
         {
             bool mounted = character.Mounted;
+            bool shapeshift = character.Shapeshift;
+            bool Owlbear = character.Owlbear;
             character.Mount(false);
+            character.Shapeshift = false;
+            character.Owlbear = false;
             ItemsItem item = character.Gear[3];
             backItemsDialog.GetItemList(characterRace, characterClass, character);
             if (backItemsDialog.ShowDialog() == DialogResult.OK)
@@ -975,13 +1104,19 @@ namespace WoW_Character_Viewer_Classic
             {
                 character.Gear[3] = item;
             }
+            character.Owlbear = Owlbear;
+            character.Shapeshift = shapeshift;
             character.Mount(mounted);
         }
 
         void Armor(string slot)
         {
             bool mounted = character.Mounted;
+            bool shapeshift = character.Shapeshift;
+            bool Owlbear = character.Owlbear;
             character.Mount(false);
+            character.Shapeshift = false;
+            character.Owlbear = false;
             ItemsItem item = character.Gear[WoWHelper.Slot(slot)];
             armorItemsDialog.GetItemList(slot, characterRace, characterClass, character);
             if (armorItemsDialog.ShowDialog() == DialogResult.OK)
@@ -994,13 +1129,19 @@ namespace WoW_Character_Viewer_Classic
             {
                 character.Gear[WoWHelper.Slot(slot)] = item;
             }
+            character.Owlbear = Owlbear;
+            character.Shapeshift = shapeshift;
             character.Mount(mounted);
         }
 
         void Cosmetic(string slot)
         {
             bool mounted = character.Mounted;
+            bool shapeshift = character.Shapeshift;
+            bool Owlbear = character.Owlbear;
             character.Mount(false);
+            character.Shapeshift = false;
+            character.Owlbear = false;
             ItemsItem item = character.Gear[WoWHelper.Slot(slot)];
             cosmeticItemsDialog.GetItemList(slot, characterRace, characterClass, character);
             if (cosmeticItemsDialog.ShowDialog() == DialogResult.OK)
@@ -1013,6 +1154,8 @@ namespace WoW_Character_Viewer_Classic
             {
                 character.Gear[WoWHelper.Slot(slot)] = item;
             }
+            character.Owlbear = Owlbear;
+            character.Shapeshift = shapeshift;
             character.Mount(mounted);
         }
 
@@ -1021,8 +1164,13 @@ namespace WoW_Character_Viewer_Classic
             bool ranged = character.Ranged;
             bool sheathe = character.Sheathe;
             bool mounted = character.Mounted;
-            character.Ranged = character.Sheathe = slot == "rangedRelic";
+            bool shapeshift = character.Shapeshift;
+            bool Owlbear = character.Owlbear;
+            character.SetSheathe(slot == "rangedRelic");
+            character.Ranged = character.Sheathe;
             character.Mount(false);
+            character.Shapeshift = false;
+            character.Owlbear = false;
             ItemsItem item = character.Gear[WoWHelper.Slot(slot)];
             weaponItemsDialog.GetItemList(slot, characterRace, characterClass, character);
             if (weaponItemsDialog.ShowDialog() == DialogResult.OK)
@@ -1066,9 +1214,15 @@ namespace WoW_Character_Viewer_Classic
                     character.Gear[17] = weaponItemsDialog.OffHand;
                 }
             }
+            character.Owlbear = Owlbear;
+            character.Shapeshift = shapeshift;
             character.Ranged = ranged;
-            character.Sheathe = sheathe;
+            character.SetSheathe(sheathe);
             character.Mount(mounted);
+            if(character.Owlbear)
+            {
+                Form5();
+            }
         }
 
         void Relic()
@@ -1124,6 +1278,10 @@ namespace WoW_Character_Viewer_Classic
             bool ranged = character.Ranged;
             bool sheathe = character.Sheathe;
             bool mounted = character.Mounted;
+            bool shapeshift = character.Shapeshift;
+            bool Owlbear = character.Owlbear;
+            character.Shapeshift = false;
+            character.Owlbear = false;
             ItemsItem item = character.Gear[24];
             mountItemsDialog.GetItemList(characterRace, characterClass, character);
             if (mountItemsDialog.ShowDialog() == DialogResult.OK)
@@ -1138,8 +1296,10 @@ namespace WoW_Character_Viewer_Classic
                 character.Mount(false);
                 mountDismountButton.Text = "Mount";
             }
+            character.Owlbear = Owlbear;
+            character.Shapeshift = shapeshift;
             character.Ranged = ranged;
-            character.Sheathe = sheathe;
+            character.SetSheathe(sheathe);
         }
 
         void openGLControl_OpenGLDraw(object sender, RenderEventArgs e)
@@ -1561,6 +1721,35 @@ namespace WoW_Character_Viewer_Classic
             }
         }
 
+        void formButton_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            int formIndex = int.Parse(button.Name.Substring(4, 1));
+            if (formIndex == characterForm)
+            {
+                characterForm = 0;
+            }
+            else
+            {
+                characterForm = formIndex;
+            }
+            ChangeForm();
+        }
+
+        void formButton_MouseEnter(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            int formIndex = int.Parse(button.Name.Substring(4, 1));
+            string text = characterForms[formIndex];
+            buttonTooltip.Show(text, button, 48, 48);
+        }
+
+        void formButton_MouseLeave(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            buttonTooltip.Hide(button);
+        }
+
         void bagButtonClick(object sender, EventArgs e)
         {
             Button button = (Button)sender;
@@ -1624,13 +1813,6 @@ namespace WoW_Character_Viewer_Classic
             {
                 mountTooltip.Hide(button);
             }
-        }
-
-        void showSkeleton_Click(object sender, EventArgs e)
-        {
-            character.Skeleton = !character.Skeleton;
-            showSkeletonButton.Text = null;
-            showSkeletonButton.Text = character.Skeleton ? "Hide Skeleton" : "Show Skeleton";
         }
 
         void bottomButton_Click(object sender, EventArgs e)

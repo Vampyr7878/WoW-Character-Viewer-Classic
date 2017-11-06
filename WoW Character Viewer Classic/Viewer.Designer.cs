@@ -31,7 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Viewer));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.appearancePage = new System.Windows.Forms.TabPage();
-            this.showSkeletonButton = new System.Windows.Forms.Button();
+            this.form5Button = new System.Windows.Forms.Button();
+            this.form4Button = new System.Windows.Forms.Button();
+            this.form3Button = new System.Windows.Forms.Button();
+            this.form2Button = new System.Windows.Forms.Button();
+            this.form1Button = new System.Windows.Forms.Button();
             this.mountDismountButton = new System.Windows.Forms.Button();
             this.sheatheUnsheatheButton = new System.Windows.Forms.Button();
             this.rangedMeleeButton = new System.Windows.Forms.Button();
@@ -101,6 +105,7 @@
             this.neckButton = new System.Windows.Forms.Button();
             this.headButton = new System.Windows.Forms.Button();
             this.openGLControl = new SharpGL.OpenGLControl();
+            this.talentsPage = new System.Windows.Forms.TabPage();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.slotTooltip = new WoW_Character_Viewer_Classic.Controls.ButtonTooltip();
@@ -126,18 +131,23 @@
             // 
             this.tabControl.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabControl.Controls.Add(this.appearancePage);
+            this.tabControl.Controls.Add(this.talentsPage);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(818, 509);
+            this.tabControl.Size = new System.Drawing.Size(818, 557);
             this.tabControl.TabIndex = 1;
             // 
             // appearancePage
             // 
             this.appearancePage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.appearancePage.Controls.Add(this.showSkeletonButton);
+            this.appearancePage.Controls.Add(this.form5Button);
+            this.appearancePage.Controls.Add(this.form4Button);
+            this.appearancePage.Controls.Add(this.form3Button);
+            this.appearancePage.Controls.Add(this.form2Button);
+            this.appearancePage.Controls.Add(this.form1Button);
             this.appearancePage.Controls.Add(this.mountDismountButton);
             this.appearancePage.Controls.Add(this.sheatheUnsheatheButton);
             this.appearancePage.Controls.Add(this.rangedMeleeButton);
@@ -210,29 +220,91 @@
             this.appearancePage.Location = new System.Drawing.Point(4, 25);
             this.appearancePage.Name = "appearancePage";
             this.appearancePage.Padding = new System.Windows.Forms.Padding(3);
-            this.appearancePage.Size = new System.Drawing.Size(810, 480);
+            this.appearancePage.Size = new System.Drawing.Size(810, 528);
             this.appearancePage.TabIndex = 0;
             this.appearancePage.Text = "Appearance";
             // 
-            // showSkeletonButton
+            // form5Button
             // 
-            this.showSkeletonButton.BackColor = System.Drawing.Color.Maroon;
-            this.showSkeletonButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.showSkeletonButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.showSkeletonButton.Location = new System.Drawing.Point(0, 384);
-            this.showSkeletonButton.Name = "showSkeletonButton";
-            this.showSkeletonButton.Size = new System.Drawing.Size(82, 48);
-            this.showSkeletonButton.TabIndex = 69;
-            this.showSkeletonButton.Text = "Show Skeleton";
-            this.showSkeletonButton.UseVisualStyleBackColor = false;
-            this.showSkeletonButton.Click += new System.EventHandler(this.showSkeleton_Click);
+            this.form5Button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("form5Button.BackgroundImage")));
+            this.form5Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.form5Button.FlatAppearance.BorderSize = 3;
+            this.form5Button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.form5Button.Location = new System.Drawing.Point(192, 432);
+            this.form5Button.Name = "form5Button";
+            this.form5Button.Size = new System.Drawing.Size(48, 48);
+            this.form5Button.TabIndex = 73;
+            this.form5Button.UseVisualStyleBackColor = true;
+            this.form5Button.Click += new System.EventHandler(this.formButton_Click);
+            this.form5Button.MouseEnter += new System.EventHandler(this.formButton_MouseEnter);
+            this.form5Button.MouseLeave += new System.EventHandler(this.formButton_MouseLeave);
+            // 
+            // form4Button
+            // 
+            this.form4Button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("form4Button.BackgroundImage")));
+            this.form4Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.form4Button.FlatAppearance.BorderSize = 3;
+            this.form4Button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.form4Button.Location = new System.Drawing.Point(144, 432);
+            this.form4Button.Name = "form4Button";
+            this.form4Button.Size = new System.Drawing.Size(48, 48);
+            this.form4Button.TabIndex = 72;
+            this.form4Button.UseVisualStyleBackColor = true;
+            this.form4Button.Click += new System.EventHandler(this.formButton_Click);
+            this.form4Button.MouseEnter += new System.EventHandler(this.formButton_MouseEnter);
+            this.form4Button.MouseLeave += new System.EventHandler(this.formButton_MouseLeave);
+            // 
+            // form3Button
+            // 
+            this.form3Button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("form3Button.BackgroundImage")));
+            this.form3Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.form3Button.FlatAppearance.BorderSize = 3;
+            this.form3Button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.form3Button.Location = new System.Drawing.Point(96, 432);
+            this.form3Button.Name = "form3Button";
+            this.form3Button.Size = new System.Drawing.Size(48, 48);
+            this.form3Button.TabIndex = 71;
+            this.form3Button.UseVisualStyleBackColor = true;
+            this.form3Button.Click += new System.EventHandler(this.formButton_Click);
+            this.form3Button.MouseEnter += new System.EventHandler(this.formButton_MouseEnter);
+            this.form3Button.MouseLeave += new System.EventHandler(this.formButton_MouseLeave);
+            // 
+            // form2Button
+            // 
+            this.form2Button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("form2Button.BackgroundImage")));
+            this.form2Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.form2Button.FlatAppearance.BorderSize = 3;
+            this.form2Button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.form2Button.Location = new System.Drawing.Point(48, 432);
+            this.form2Button.Name = "form2Button";
+            this.form2Button.Size = new System.Drawing.Size(48, 48);
+            this.form2Button.TabIndex = 70;
+            this.form2Button.UseVisualStyleBackColor = true;
+            this.form2Button.Click += new System.EventHandler(this.formButton_Click);
+            this.form2Button.MouseEnter += new System.EventHandler(this.formButton_MouseEnter);
+            this.form2Button.MouseLeave += new System.EventHandler(this.formButton_MouseLeave);
+            // 
+            // form1Button
+            // 
+            this.form1Button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("form1Button.BackgroundImage")));
+            this.form1Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.form1Button.FlatAppearance.BorderSize = 3;
+            this.form1Button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.form1Button.Location = new System.Drawing.Point(0, 432);
+            this.form1Button.Name = "form1Button";
+            this.form1Button.Size = new System.Drawing.Size(48, 48);
+            this.form1Button.TabIndex = 69;
+            this.form1Button.UseVisualStyleBackColor = true;
+            this.form1Button.Click += new System.EventHandler(this.formButton_Click);
+            this.form1Button.MouseEnter += new System.EventHandler(this.formButton_MouseEnter);
+            this.form1Button.MouseLeave += new System.EventHandler(this.formButton_MouseLeave);
             // 
             // mountDismountButton
             // 
             this.mountDismountButton.BackColor = System.Drawing.Color.Maroon;
             this.mountDismountButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.mountDismountButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.mountDismountButton.Location = new System.Drawing.Point(440, 432);
+            this.mountDismountButton.Location = new System.Drawing.Point(440, 480);
             this.mountDismountButton.Name = "mountDismountButton";
             this.mountDismountButton.Size = new System.Drawing.Size(82, 48);
             this.mountDismountButton.TabIndex = 68;
@@ -245,7 +317,7 @@
             this.sheatheUnsheatheButton.BackColor = System.Drawing.Color.Maroon;
             this.sheatheUnsheatheButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.sheatheUnsheatheButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.sheatheUnsheatheButton.Location = new System.Drawing.Point(352, 432);
+            this.sheatheUnsheatheButton.Location = new System.Drawing.Point(352, 480);
             this.sheatheUnsheatheButton.Name = "sheatheUnsheatheButton";
             this.sheatheUnsheatheButton.Size = new System.Drawing.Size(82, 48);
             this.sheatheUnsheatheButton.TabIndex = 67;
@@ -258,7 +330,7 @@
             this.rangedMeleeButton.BackColor = System.Drawing.Color.Maroon;
             this.rangedMeleeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.rangedMeleeButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.rangedMeleeButton.Location = new System.Drawing.Point(264, 432);
+            this.rangedMeleeButton.Location = new System.Drawing.Point(264, 480);
             this.rangedMeleeButton.Name = "rangedMeleeButton";
             this.rangedMeleeButton.Size = new System.Drawing.Size(82, 48);
             this.rangedMeleeButton.TabIndex = 66;
@@ -271,7 +343,7 @@
             this.saveButton.BackColor = System.Drawing.Color.Maroon;
             this.saveButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.saveButton.Location = new System.Drawing.Point(176, 432);
+            this.saveButton.Location = new System.Drawing.Point(176, 480);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(82, 48);
             this.saveButton.TabIndex = 65;
@@ -284,7 +356,7 @@
             this.openButton.BackColor = System.Drawing.Color.Maroon;
             this.openButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.openButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.openButton.Location = new System.Drawing.Point(88, 432);
+            this.openButton.Location = new System.Drawing.Point(88, 480);
             this.openButton.Name = "openButton";
             this.openButton.Size = new System.Drawing.Size(82, 48);
             this.openButton.TabIndex = 64;
@@ -297,7 +369,7 @@
             this.resetButton.BackColor = System.Drawing.Color.Maroon;
             this.resetButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.resetButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.resetButton.Location = new System.Drawing.Point(0, 432);
+            this.resetButton.Location = new System.Drawing.Point(0, 480);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(82, 48);
             this.resetButton.TabIndex = 63;
@@ -310,7 +382,7 @@
             this.mountButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("mountButton.BackgroundImage")));
             this.mountButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.mountButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.mountButton.Location = new System.Drawing.Point(522, 432);
+            this.mountButton.Location = new System.Drawing.Point(522, 480);
             this.mountButton.Name = "mountButton";
             this.mountButton.Size = new System.Drawing.Size(48, 48);
             this.mountButton.TabIndex = 62;
@@ -324,7 +396,7 @@
             this.bag4Button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bag4Button.BackgroundImage")));
             this.bag4Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bag4Button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bag4Button.Location = new System.Drawing.Point(570, 432);
+            this.bag4Button.Location = new System.Drawing.Point(570, 480);
             this.bag4Button.Name = "bag4Button";
             this.bag4Button.Size = new System.Drawing.Size(48, 48);
             this.bag4Button.TabIndex = 61;
@@ -338,7 +410,7 @@
             this.bag3Button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bag3Button.BackgroundImage")));
             this.bag3Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bag3Button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bag3Button.Location = new System.Drawing.Point(618, 432);
+            this.bag3Button.Location = new System.Drawing.Point(618, 480);
             this.bag3Button.Name = "bag3Button";
             this.bag3Button.Size = new System.Drawing.Size(48, 48);
             this.bag3Button.TabIndex = 60;
@@ -352,7 +424,7 @@
             this.bag2Button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bag2Button.BackgroundImage")));
             this.bag2Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bag2Button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bag2Button.Location = new System.Drawing.Point(666, 432);
+            this.bag2Button.Location = new System.Drawing.Point(666, 480);
             this.bag2Button.Name = "bag2Button";
             this.bag2Button.Size = new System.Drawing.Size(48, 48);
             this.bag2Button.TabIndex = 59;
@@ -366,7 +438,7 @@
             this.bag1Button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bag1Button.BackgroundImage")));
             this.bag1Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bag1Button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bag1Button.Location = new System.Drawing.Point(714, 432);
+            this.bag1Button.Location = new System.Drawing.Point(714, 480);
             this.bag1Button.Name = "bag1Button";
             this.bag1Button.Size = new System.Drawing.Size(48, 48);
             this.bag1Button.TabIndex = 58;
@@ -380,7 +452,7 @@
             this.backpackButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("backpackButton.BackgroundImage")));
             this.backpackButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.backpackButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.backpackButton.Location = new System.Drawing.Point(762, 432);
+            this.backpackButton.Location = new System.Drawing.Point(762, 480);
             this.backpackButton.Name = "backpackButton";
             this.backpackButton.Size = new System.Drawing.Size(48, 48);
             this.backpackButton.TabIndex = 57;
@@ -1179,6 +1251,16 @@
             this.openGLControl.MouseLeave += new System.EventHandler(this.openGLControl_MouseLeave);
             this.openGLControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.openGLControl_MouseUp);
             // 
+            // talentsPage
+            // 
+            this.talentsPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.talentsPage.Location = new System.Drawing.Point(4, 25);
+            this.talentsPage.Name = "talentsPage";
+            this.talentsPage.Padding = new System.Windows.Forms.Padding(3);
+            this.talentsPage.Size = new System.Drawing.Size(810, 528);
+            this.talentsPage.TabIndex = 1;
+            this.talentsPage.Text = "Talents";
+            // 
             // saveFileDialog
             // 
             this.saveFileDialog.DefaultExt = "chr";
@@ -1349,7 +1431,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.ClientSize = new System.Drawing.Size(818, 509);
+            this.ClientSize = new System.Drawing.Size(818, 557);
             this.Controls.Add(this.tabControl);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ForeColor = System.Drawing.Color.Yellow;
@@ -1439,7 +1521,6 @@
         private System.Windows.Forms.Button openButton;
         private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.Button mountButton;
-        private System.Windows.Forms.Button showSkeletonButton;
         private Controls.ButtonTooltip slotTooltip;
         private Controls.ButtonTooltip buttonTooltip;
         private Controls.JewelryTooltip jewelryTooltip;
@@ -1456,6 +1537,12 @@
         private Controls.MountTooltip mountTooltip;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.Button form3Button;
+        private System.Windows.Forms.Button form2Button;
+        private System.Windows.Forms.Button form1Button;
+        private System.Windows.Forms.Button form5Button;
+        private System.Windows.Forms.Button form4Button;
+        private System.Windows.Forms.TabPage talentsPage;
     }
 }
 

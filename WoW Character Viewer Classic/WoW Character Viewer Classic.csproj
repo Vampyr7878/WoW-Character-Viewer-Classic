@@ -162,6 +162,9 @@
     <Compile Include="Dialogs\JewelryItemsDialog.Designer.cs">
       <DependentUpon>JewelryItemsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Creature.cs" />
+    <Compile Include="Models\Humanoid.cs" />
+    <Compile Include="Models\Model3D.cs" />
     <Compile Include="Models\CharacterModel.cs" />
     <Compile Include="Models\DwarfFemale.cs" />
     <Compile Include="Models\DwarfMale.cs" />
@@ -283,6 +286,21 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Creature\DruidBear\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Creature\DruidCat\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Creature\DruidOwlbear\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Creature\SeaLion\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Creature\Tiger\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

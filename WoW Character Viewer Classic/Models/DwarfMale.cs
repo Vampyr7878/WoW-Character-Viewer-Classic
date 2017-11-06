@@ -493,6 +493,26 @@ namespace WoW_Character_Viewer_Classic.Models
         {
         }
 
+        public override void BearForm(bool shapeshift)
+        {
+        }
+
+        public override void AquaticForm(bool shapeshift)
+        {
+        }
+
+        public override void CatForm(bool shapeshift)
+        {
+        }
+
+        public override void TravelForm(bool shapeshift)
+        {
+        }
+
+        public override void MoonkinForm(bool shapeshift)
+        {
+        }
+
         public override void Render(OpenGL gl)
         {
             gl.PushMatrix();
@@ -515,7 +535,6 @@ namespace WoW_Character_Viewer_Classic.Models
                     component.Render(gl, Rotation);
                 }
             }
-            RenderSkeleton(gl);
             gl.PopMatrix();
             if (!mount.Empty)
             {

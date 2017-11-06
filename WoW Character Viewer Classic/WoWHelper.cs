@@ -621,7 +621,7 @@ namespace WoW_Character_Viewer_Classic
             switch (sheathe)
             {
                 case 1:
-                    attachment = offhand ? 30 : 31;
+                    attachment = offhand ? 27 : 26;
                     break;
                 case 2:
                     attachment = 30;
@@ -643,7 +643,8 @@ namespace WoW_Character_Viewer_Classic
             {
                 case 1:
                     quaternion = offhand ? new Quaternion(new Vector3D(0f, 1f, 0f), -90f) : new Quaternion(new Vector3D(0f, 1f, 0f), 90f);
-                    quaternion *= new Quaternion(new Vector3D(0f, 0f, 1f), -45f);
+                    quaternion *= new Quaternion(new Vector3D(0f, 0f, 1f), -67.5f);
+                    quaternion *= offhand ? new Quaternion(new Vector3D(0f, 1f, 0f), -10f) : new Quaternion(new Vector3D(0f, 1f, 0f), 10f);
                     break;
                 case 2:
                     quaternion = new Quaternion(new Vector3D(0f, 1f, 0f), 90f);
